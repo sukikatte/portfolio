@@ -1,0 +1,287 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} - 项目详情{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="page-title">{{ project.title }}</h1>
+        <p class="page-subtitle">{{ project.subtitle }}</p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- 项目概览 -->
+    <section class="project-overview">
+        <div class="overview-grid">
+            <div class="overview-main">
+                <div class="project-banner">
+                    <div class="banner-icon">{{ project.icon }}</div>
+                    <div class="banner-info">
+                        <h2>{{ project.title }}</h2>
+                        <p class="project-tech">{{ project.technologies }}</p>
+                        <div class="project-badges">
+                            {% for badge in project.badges %}
+                            <span class="project-badge">{{ badge }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-description">
+                    <h3>项目描述</h3>
+                    <p>{{ project.description }}</p>
+                </div>
+            </div>
+            
+            <div class="overview-sidebar">
+                <div class="project-info-card">
+                    <h4>项目信息</h4>
+                    <div class="info-item">
+                        <span class="info-label">开发时间：</span>
+                        <span class="info-value">{{ project.duration }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">导师：</span>
+                        <span class="info-value">{{ project.advisor }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">项目类型：</span>
+                        <span class="info-value">{{ project.type }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">开发角色：</span>
+                        <span class="info-value">{{ project.role }}</span>
+                    </div>
+                </div>
+                
+                <div class="project-links-card">
+                    <h4>项目链接</h4>
+                    <div class="link-buttons">
+                        <a href="{{ project.github_link }}" class="link-btn github" target="_blank">
+                            <span class="btn-icon">📁</span>
+                            GitHub代码
+                        </a>
+                        <a href="#" class="link-btn demo" target="_blank">
+                            <span class="btn-icon">🚀</span>
+                            在线演示
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心功能 -->
+    <section class="project-features">
+        <h2>核心功能</h2>
+        <div class="features-grid">
+            {% for feature in project.features %}
+            <div class="feature-card">
+                <div class="feature-icon">{{ feature.icon }}</div>
+                <h3>{{ feature.title }}</h3>
+                <p>{{ feature.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- 技术架构 -->
+    <section class="project-architecture">
+        <h2>技术架构</h2>
+        <div class="architecture-content">
+            <div class="tech-stack">
+                <h3>技术栈</h3>
+                <div class="tech-categories">
+                    {% for category in project.tech_stack %}
+                    <div class="tech-category">
+                        <h4>{{ category.name }}</h4>
+                        <div class="tech-tags">
+                            {% for tech in category.technologies %}
+                            <span class="tech-tag">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="architecture-diagram">
+                <h3>系统架构</h3>
+                <div class="diagram-placeholder">
+                    <p>架构图将在这里显示</p>
+                    <small>（可以放置系统架构图或流程图）</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目亮点 -->
+    <section class="project-highlights">
+        <h2>项目亮点</h2>
+        <div class="highlights-grid">
+            {% for highlight in project.highlights %}
+            <div class="highlight-item">
+                <div class="highlight-number">{{ loop.index }}</div>
+                <div class="highlight-content">
+                    <h3>{{ highlight.title }}</h3>
+                    <p>{{ highlight.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- 项目文档 -->
+    <section class="project-documents">
+        <h2>项目文档</h2>
+        <div class="documents-grid">
+            <div class="document-card">
+                <div class="document-icon">📖</div>
+                <h3>用户文档</h3>
+                <p>详细的使用说明和功能介绍，帮助用户快速上手使用系统</p>
+                <div class="document-info">
+                    <span class="doc-size">PDF • 2.5MB</span>
+                    <span class="doc-pages">15页</span>
+                </div>
+                <div class="document-actions">
+                    <button class="preview-btn" onclick="openPDFModal('user_documentation.pdf', '用户文档')">
+                        <span class="btn-icon">👁️</span>
+                        在线预览
+                    </button>
+                    <a href="{{ url_for('static', filename='documents/user_documentation.pdf') }}" class="download-btn" download>
+                        <span class="btn-icon">📥</span>
+                        下载文档
+                    </a>
+                </div>
+            </div>
+            
+            <div class="document-card">
+                <div class="document-icon">⚙️</div>
+                <h3>系统文档</h3>
+                <p>技术架构说明、API文档和开发指南，面向开发者</p>
+                <div class="document-info">
+                    <span class="doc-size">PDF • 4.2MB</span>
+                    <span class="doc-pages">28页</span>
+                </div>
+                <div class="document-actions">
+                    <button class="preview-btn" onclick="openPDFModal('system_documentation.pdf', '系统文档')">
+                        <span class="btn-icon">👁️</span>
+                        在线预览
+                    </button>
+                    <a href="{{ url_for('static', filename='documents/system_documentation.pdf') }}" class="download-btn" download>
+                        <span class="btn-icon">📥</span>
+                        下载文档
+                    </a>
+                </div>
+            </div>
+            
+            <div class="document-card">
+                <div class="document-icon">🎯</div>
+                <h3>项目报告</h3>
+                <p>完整的项目总结报告，包含开发过程和成果展示</p>
+                <div class="document-info">
+                    <span class="doc-size">PDF • 3.1MB</span>
+                    <span class="doc-pages">22页</span>
+                </div>
+                <div class="document-actions">
+                    <button class="preview-btn" onclick="openPDFModal('project_report.pdf', '项目报告')">
+                        <span class="btn-icon">👁️</span>
+                        在线预览
+                    </button>
+                    <a href="{{ url_for('static', filename='documents/project_report.pdf') }}" class="download-btn" download>
+                        <span class="btn-icon">📥</span>
+                        下载文档
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PDF预览模态框 -->
+    <div id="pdfModal" class="pdf-modal">
+        <div class="pdf-modal-content">
+            <div class="pdf-modal-header">
+                <h3 id="pdfModalTitle">文档预览</h3>
+                <button class="pdf-close-btn" onclick="closePDFModal()">&times;</button>
+            </div>
+            <div class="pdf-modal-body">
+                <iframe id="pdfViewer" src="" width="100%" height="600px" frameborder="0"></iframe>
+            </div>
+            <div class="pdf-modal-footer">
+                <button class="pdf-download-btn" onclick="downloadCurrentPDF()">
+                    <span class="btn-icon">📥</span>
+                    下载当前文档
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 项目截图 -->
+    <section class="project-screenshots">
+        <h2>项目截图</h2>
+        <div class="screenshots-grid">
+            <div class="screenshot-placeholder">
+                <div class="placeholder-icon">🖼️</div>
+                <p>首页截图</p>
+            </div>
+            <div class="screenshot-placeholder">
+                <div class="placeholder-icon">🖼️</div>
+                <p>游戏界面</p>
+            </div>
+            <div class="screenshot-placeholder">
+                <div class="placeholder-icon">🖼️</div>
+                <p>社区功能</p>
+            </div>
+            <div class="screenshot-placeholder">
+                <div class="placeholder-icon">🖼️</div>
+                <p>地图展示</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学习收获 -->
+    <section class="project-learning">
+        <h2>学习收获</h2>
+        <div class="learning-content">
+            <div class="learning-item">
+                <h3>技术成长</h3>
+                <ul>
+                    <li>掌握了全栈Web开发流程，从需求分析到部署上线</li>
+                    <li>深入理解了Flask框架和RESTful API设计</li>
+                    <li>学会了Firebase实时数据库的使用和优化</li>
+                    <li>掌握了Web爬虫技术和数据清洗方法</li>
+                </ul>
+            </div>
+            
+            <div class="learning-item">
+                <h3>项目管理</h3>
+                <ul>
+                    <li>学会了如何平衡功能复杂度和开发时间</li>
+                    <li>掌握了版本控制和团队协作工具的使用</li>
+                    <li>提升了文档编写和技术交流能力</li>
+                    <li>学会了如何评估和优化系统性能</li>
+                </ul>
+            </div>
+            
+            <div class="learning-item">
+                <h3>用户体验</h3>
+                <ul>
+                    <li>理解了游戏化设计在教育应用中的重要性</li>
+                    <li>学会了如何设计直观的用户界面</li>
+                    <li>掌握了响应式设计的基本原则</li>
+                    <li>提升了用户需求分析和产品设计能力</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 返回按钮 -->
+    <div class="back-to-projects">
+        <a href="{{ url_for('projects') }}" class="back-btn">
+            <span class="btn-icon">←</span>
+            返回项目列表
+        </a>
+    </div>
+</div>
+{% endblock %}

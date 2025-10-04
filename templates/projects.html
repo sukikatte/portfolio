@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block title %}技术项目 - 我的作品集{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="page-title">技术项目</h1>
+        <p class="page-subtitle">展示我的开发项目与技术创新</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="filter-section">
+        <h2>项目分类</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="web">Web开发</button>
+            <button class="filter-btn" data-filter="mobile">移动应用</button>
+            <button class="filter-btn" data-filter="ai">AI/机器学习</button>
+            <button class="filter-btn" data-filter="game">游戏开发</button>
+            <button class="filter-btn" data-filter="desktop">桌面应用</button>
+        </div>
+    </div>
+
+    <section class="projects-grid">
+        <!-- Frankenstories - AI故事生成项目 -->
+        <div class="project-card featured" data-category="ai">
+            <div class="project-header">
+                <div class="project-icon">🤖</div>
+                <div class="project-badge">核心项目</div>
+            </div>
+            <h3>Frankenstories: 从可复用元素生成故事</h3>
+            <p class="project-tech">Python • LLM • 多模态叙事 • ComiXML</p>
+            <p class="project-desc">
+                专注于多模态叙事计算创意项目的概念设计阶段，旨在开发一个由大语言模型驱动的故事生成器，
+                结合漫画条结构（ComiXML）从现有的视觉和文本元素中生成新的叙事。
+            </p>
+            <div class="project-features">
+                <span class="feature-tag">AI驱动</span>
+                <span class="feature-tag">多模态</span>
+                <span class="feature-tag">计算创意</span>
+                <span class="feature-tag">独立研究</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link">查看演示</a>
+                <a href="#" class="project-link">研究文档</a>
+            </div>
+        </div>
+
+        <!-- Dwen Dwen's Neighbour - 野生动物网站 -->
+        <div class="project-card featured" data-category="web">
+            <div class="project-header">
+                <div class="project-icon">🐼</div>
+                <div class="project-badge">全栈项目</div>
+            </div>
+            <h3>中国野生动物保护网站</h3>
+            <p class="project-tech">Python • JavaScript • Flask • Firebase • ECharts • Gunicorn</p>
+            <p class="project-desc">
+                创建了一个用于中国动物保护教育的网站，包含百科全书、迷你游戏、虚拟熊猫养成、用户社区和捐赠功能。
+                使用Flask框架构建后端，集成Firebase实时数据库处理高用户交互，并使用ECharts制作交互式地图。
+            </p>
+            <div class="project-features">
+                <span class="feature-tag">游戏化教育</span>
+                <span class="feature-tag">Web爬虫</span>
+                <span class="feature-tag">实时数据库</span>
+                <span class="feature-tag">交互地图</span>
+            </div>
+            <div class="project-links">
+                <a href="{{ url_for('project_detail', project_id='wildlife') }}" class="project-link">项目详情</a>
+                <a href="https://github.com/sukikatte/dwen_dwens_neighbour" class="project-link">GitHub</a>
+            </div>
+        </div>
+
+        <!-- Android音乐猜歌游戏 -->
+        <div class="project-card" data-category="mobile">
+            <div class="project-header">
+                <div class="project-icon">🎵</div>
+            </div>
+            <h3>音乐Android应用</h3>
+            <p class="project-tech">Java • Android Studio • Firebase • 阿里云OSS</p>
+            <p class="project-desc">
+                独立设计并开发了一个轻量级音乐Android应用程序，具有歌曲库管理、单人猜歌游戏和多人在线对战模块。
+                使用Firebase实时数据库实现实时多人游戏玩法，集成阿里云OSS进行音频存储。
+            </p>
+            <div class="project-features">
+                <span class="feature-tag">实时多人</span>
+                <span class="feature-tag">云存储</span>
+                <span class="feature-tag">独立开发</span>
+                <span class="feature-tag">轻量级</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link">下载APK</a>
+                <a href="https://github.com/sukikatte/guess_songs" class="project-link">GitHub</a>
+            </div>
+        </div>
+
+        <!-- 麻将游戏 -->
+        <div class="project-card" data-category="desktop">
+            <div class="project-header">
+                <div class="project-icon">🀄</div>
+            </div>
+            <h3>跨平台麻将桌面应用程序</h3>
+            <p class="project-tech">Python • JavaFX • Java • 游戏开发</p>
+            <p class="project-desc">
+                使用JavaFX开发的麻将游戏，支持单人模式与3个AI对手对战。
+                计划扩展联机功能，实现真正的多人对战体验。
+            </p>
+            <div class="project-features">
+                <span class="feature-tag">AI对手</span>
+                <span class="feature-tag">桌面应用</span>
+                <span class="feature-tag">游戏逻辑</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link">下载游戏</a>
+                <a href="https://github.com/sukikatte/Mahjong" class="project-link">GitHub</a>
+            </div>
+        </div>
+
+        <!-- 中药识别网站 -->
+        <div class="project-card" data-category="web">
+            <div class="project-header">
+                <div class="project-icon">🌿</div>
+                <div class="project-badge">合作项目</div>
+            </div>
+            <h3>中医药知识平台</h3>
+            <p class="project-tech">Python • JavaScript • Flask • Gunicorn</p>
+            <p class="project-desc">
+                中医药识别与管理系统，帮助用户识别中药材并提供相关信息。
+                团队合作项目，参与比赛并获得良好成绩。
+            </p>
+            <div class="project-features">
+                <span class="feature-tag">图像识别</span>
+                <span class="feature-tag">知识管理</span>
+                <span class="feature-tag">团队合作</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link">查看项目</a>
+                <a href="https://github.com/sukikatte/Chinese_traditional_medicine" class="project-link">GitHub</a>
+            </div>
+        </div>
+
+        <!-- 校园点餐网站 -->
+        <div class="project-card" data-category="web">
+            <div class="project-header">
+                <div class="project-icon">🍽️</div>
+            </div>
+            <h3>校园在线订餐系统</h3>
+            <p class="project-tech">Python • JavaScript • Flask • HTML/CSS • SQL</p>
+            <p class="project-desc">
+                使用Python和Flask Web框架开发了一个校园在线订餐网站，支持包括管理员、厨师和顾客在内的多个用户角色。
+                集成了评分系统、实时聊天以及动态菜单浏览和订购功能。
+            </p>
+            <div class="project-features">
+                <span class="feature-tag">角色管理</span>
+                <span class="feature-tag">实时聊天</span>
+                <span class="feature-tag">Web应用</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link">在线演示</a>
+                <a href="https://github.com/sukikatte/parrot_ordering" class="project-link">GitHub</a>
+            </div>
+        </div>
+
+        <!-- 票务管理系统 -->
+        <div class="project-card" data-category="web">
+            <div class="project-header">
+                <div class="project-icon">🎫</div>
+                <div class="project-badge">团队项目</div>
+            </div>
+            <h3>多角色票务管理系统</h3>
+            <p class="project-tech">Java • Spring Boot • MySQL • UML</p>
+            <p class="project-desc">
+                参与完整的开发周期，开发支持三种用户角色（管理员、组织者和普通用户）的票务预订网站，
+                主要负责开发表示层和应用层，应用面向对象设计原则开发基于角色的权限系统。
+            </p>
+            <div class="project-features">
+                <span class="feature-tag">团队协作</span>
+                <span class="feature-tag">UML建模</span>
+                <span class="feature-tag">权限系统</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link">查看项目</a>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+

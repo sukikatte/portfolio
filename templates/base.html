@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}我的作品集{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('home') }}" class="nav-logo">我的作品集</a>
+            <ul class="nav-menu">
+                <li><a href="{{ url_for('about') }}" class="nav-link">关于我</a></li>
+                <li><a href="{{ url_for('projects') }}" class="nav-link">技术项目</a></li>
+                <li><a href="{{ url_for('artwork') }}" class="nav-link">艺术创作</a></li>
+                <li><a href="{{ url_for('music') }}" class="nav-link">音乐作品</a></li>
+                <li><a href="{{ url_for('contact') }}" class="nav-link">联系我</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 我的作品集. 为港大IDT申请而制作.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+
+
+
