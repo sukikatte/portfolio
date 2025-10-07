@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fullpage.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- 动态背景 -->
@@ -63,10 +63,23 @@
         <!-- Section 0: Home / Hero -->
         <section class="fullpage-section active" id="home">
             <div class="section-content">
-                <p class="hero-tagline">IDT PORTFOLIO 2025</p>
-                <h1 class="hero-title">Technology is powerful — but only meaningful when it connects with people.</h1>
-                <p class="hero-subtitle">
-                    I am Zitong Wang, a software engineer passionate about building innovative, user-centered systems where code meets creativity.
+                <div class="hero-name-container">
+                    <div class="name-frame">
+                        <div class="frame-corner tl"></div>
+                        <div class="frame-corner tr"></div>
+                        <div class="frame-corner bl"></div>
+                        <div class="frame-corner br"></div>
+                        
+                        <h1 class="hero-name">
+                            <span class="name-line">Zitong</span>
+                            <span class="name-line">Wang</span>
+                        </h1>
+                    </div>
+                    <div class="hero-divider"></div>
+                    <p class="hero-role">Innovative Systems & Interaction Design</p>
+                </div>
+                <p class="hero-statement">
+                    Technology is powerful — but it matters only when it connects with people.
                 </p>
             </div>
         </section>
