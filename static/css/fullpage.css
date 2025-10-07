@@ -586,6 +586,10 @@ html, body {
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .projects-slider-container {
@@ -597,6 +601,7 @@ html, body {
 .project-slide {
     min-width: 100%;
     flex-shrink: 0;
+    padding: 0 2rem;
 }
 
 .project-overview-card {
@@ -604,11 +609,90 @@ html, body {
     grid-template-columns: 1fr 2fr;
     gap: 3rem;
     align-items: center;
-    padding: 2rem;
+    padding: 3.5rem;
+    min-height: 500px;
+    background: var(--bg-card);
+    border-radius: 20px;
+    position: relative;
+    border: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+/* 装饰边框 */
+.project-overview-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), #FFD700, var(--neon-blue));
+    background-size: 300% 300%;
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: borderFlow 4s ease infinite;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes borderFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* 装饰线条 */
+.project-overview-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, 
+        transparent 0%,
+        var(--neon-blue) 50%,
+        transparent 100%
+    );
+    box-shadow: 0 0 15px var(--accent-glow);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 右上角装饰点 */
+.project-icon-section::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--neon-blue);
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.project-icon-section::after {
+    content: '';
+    position: absolute;
+    top: 2.5rem;
+    right: 2.5rem;
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--neon-purple);
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: pulse 3s ease-in-out infinite 0.5s;
 }
 
 .project-icon-section {
     text-align: center;
+    position: relative;
 }
 
 .project-icon-mega {
@@ -621,6 +705,11 @@ html, body {
 @keyframes floatSlow {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-20px); }
+}
+
+.project-info-section {
+    position: relative;
+    z-index: 10;
 }
 
 .project-info-section h2 {
@@ -663,6 +752,69 @@ html, body {
 .project-actions {
     display: flex;
     gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Explore按钮 - 炫彩窄版 */
+.btn-explore {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.4rem;
+    background: linear-gradient(135deg, #00f5ff, #ff00ea);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    position: relative;
+    overflow: visible;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 0 25px rgba(0, 245, 255, 0.5),
+        0 0 50px rgba(255, 0, 234, 0.3),
+        0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    cursor: pointer;
+}
+
+.btn-explore::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-explore:hover::before {
+    left: 100%;
+}
+
+.btn-explore:hover {
+    transform: translateX(5px) scale(1.05);
+    box-shadow: 
+        0 0 40px rgba(0, 245, 255, 0.6),
+        0 8px 25px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-explore:hover .btn-icon {
+    transform: translateX(5px);
+}
+
+.btn-text {
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+}
+
+.btn-icon {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
 }
 
 /* 项目导航 */
@@ -874,165 +1026,44 @@ html, body {
 }
 
 /* ============================================
-   Contact Section - 压缩版本
+   Contact Section - 简化版本
    ============================================ */
 .contact-header {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .decorative-line {
-    width: 50px;
+    width: 80px;
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
     box-shadow: 0 0 10px var(--accent-glow);
 }
 
-/* CV 卡片 - 压缩 */
-.cv-section {
-    max-width: 420px;
-    margin: 1.5rem auto;
-}
-
-.cv-card {
-    background: var(--bg-card);
-    border: 2px solid var(--neon-blue);
-    border-radius: 15px;
-    padding: 1.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s ease;
-}
-
-.cv-card::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), #FFD700, var(--neon-blue));
-    background-size: 400% 400%;
-    border-radius: 15px;
-    z-index: -1;
-    animation: gradientRotate 6s ease infinite;
-}
-
-@keyframes gradientRotate {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-.cv-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(0, 217, 255, 0.3);
-}
-
-.cv-icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-}
-
-.cv-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-}
-
-.cv-card p {
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-}
-
-.btn-cv {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.7rem 1.5rem;
-    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-    color: white;
-    border: none;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 20px rgba(0, 217, 255, 0.3);
-    text-decoration: none;
-}
-
-.btn-cv:hover {
-    transform: translateX(5px);
-    box-shadow: 0 8px 30px rgba(0, 217, 255, 0.5);
-}
-
-.btn-cv:hover .btn-arrow {
-    transform: translateX(5px);
-}
-
-.btn-arrow {
-    transition: transform 0.3s ease;
-    font-size: 1.2rem;
-}
-
-/* 分隔线 - 压缩 */
-.section-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
-    margin: 1.5rem 0;
-}
-
-.divider-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--neon-blue);
-    border-radius: 50%;
-    box-shadow: 0 0 15px var(--accent-glow);
-    animation: pulse 2s ease-in-out infinite;
-}
-
-.divider-line {
-    width: 120px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.5); opacity: 0.6; }
-}
-
-/* 联系方式网格 - 压缩 */
+/* 联系方式网格 */
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    max-width: 800px;
-    margin: 0 auto 1.5rem;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 3rem auto;
 }
 
 .contact-item {
     text-align: center;
-    padding: 1.3rem 1rem;
+    padding: 2.5rem 2rem;
     background: var(--bg-card);
-    border-radius: 12px;
-    border: 1px solid rgba(0, 217, 255, 0.1);
+    border-radius: 15px;
+    border: 2px solid var(--neon-blue);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    box-shadow: 
+        0 0 20px rgba(0, 217, 255, 0.3),
+        inset 0 0 30px rgba(0, 217, 255, 0.05);
 }
 
 .contact-item::before {
@@ -1041,10 +1072,11 @@ html, body {
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+    height: 4px;
+    background: linear-gradient(90deg, var(--neon-blue), #ff00ea);
     transform: scaleX(0);
     transition: transform 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 217, 255, 0.6);
 }
 
 .contact-item:hover::before {
@@ -1052,87 +1084,99 @@ html, body {
 }
 
 .contact-item:hover {
-    border-color: var(--neon-blue);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+    border-color: #ff00ea;
+    transform: translateY(-8px);
+    box-shadow: 
+        0 0 40px rgba(0, 217, 255, 0.5),
+        0 0 60px rgba(255, 0, 234, 0.3),
+        0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .contact-icon-wrapper {
-    margin-bottom: 0.6rem;
+    margin-bottom: 1.5rem;
 }
 
 .contact-icon-large {
-    font-size: 2.2rem;
+    font-size: 3.5rem;
     display: inline-block;
     transition: transform 0.3s ease;
 }
 
 .contact-item:hover .contact-icon-large {
-    transform: scale(1.15) rotate(5deg);
+    transform: scale(1.2) rotate(10deg);
 }
 
 .contact-item h4 {
-    font-size: 1rem;
-    color: var(--neon-blue);
-    margin-bottom: 0.5rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
 }
 
 .contact-item a {
-    color: var(--text-secondary);
+    color: white;
     text-decoration: none;
-    font-size: 0.85rem;
-    transition: color 0.3s ease;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
-.contact-item a:hover {
-    color: var(--neon-blue);
+.contact-item:hover a {
+    color: #ff00ea;
+    text-shadow: 0 0 15px rgba(255, 0, 234, 0.8);
 }
 
 .item-line {
     width: 0;
-    height: 2px;
-    background: var(--neon-blue);
-    margin: 0.6rem auto 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--neon-blue), #ff00ea);
+    margin: 1rem auto 0;
     transition: width 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 217, 255, 0.6);
 }
 
 .contact-item:hover .item-line {
-    width: 50%;
+    width: 70%;
+    box-shadow: 
+        0 0 20px rgba(0, 217, 255, 0.8),
+        0 0 30px rgba(255, 0, 234, 0.5);
 }
 
-/* 引用区域 - 压缩 */
+/* 引用区域 */
 .contact-quote {
-    max-width: 650px;
-    margin: 1.5rem auto 0;
+    max-width: 700px;
+    margin: 3rem auto 0;
     text-align: center;
     position: relative;
-    padding: 1rem;
+    padding: 2rem 1rem;
 }
 
 .quote-mark {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: var(--neon-blue);
-    opacity: 0.3;
+    opacity: 0.25;
     font-family: Georgia, serif;
     line-height: 0;
     position: absolute;
-    top: -10px;
-    left: 10px;
+    top: 0;
+    left: 20px;
 }
 
 .quote-mark.closing {
-    bottom: -10px;
-    right: 10px;
+    bottom: 0;
+    right: 20px;
     top: auto;
     left: auto;
 }
 
 .contact-quote p {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: var(--text-secondary);
     font-style: italic;
-    line-height: 1.6;
+    line-height: 1.8;
     position: relative;
     z-index: 1;
 }
@@ -1151,21 +1195,23 @@ html, body {
     }
 }
 
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1); 
+        opacity: 1; 
+    }
+    50% { 
+        transform: scale(1.5); 
+        opacity: 0.6; 
+    }
+}
+
 /* ============================================
    响应式设计
    ============================================ */
 @media (max-width: 1024px) {
     .cards-grid {
         grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .project-overview-card {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .project-icon-mega {
-        font-size: 8rem;
     }
 }
 
@@ -1244,7 +1290,8 @@ html, body {
     /* 联系页面响应式 */
     .contact-grid {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: 1.5rem;
+        margin: 2rem auto;
     }
     
     .contact-header {
@@ -1252,52 +1299,32 @@ html, body {
     }
     
     .decorative-line {
-        width: 30px;
-    }
-    
-    .cv-section {
-        margin: 1rem auto;
-    }
-    
-    .cv-card {
-        padding: 1.2rem;
-    }
-    
-    .cv-icon {
-        font-size: 2rem;
-    }
-    
-    .cv-card h3 {
-        font-size: 1.1rem;
-    }
-    
-    .section-divider {
-        margin: 1rem 0;
-    }
-    
-    .divider-line {
-        width: 80px;
+        width: 40px;
     }
     
     .contact-item {
-        padding: 1rem;
+        padding: 2rem 1.5rem;
     }
     
     .contact-icon-large {
-        font-size: 2rem;
+        font-size: 3rem;
+    }
+    
+    .contact-item h4 {
+        font-size: 1.1rem;
     }
     
     .contact-quote {
-        padding: 0.5rem;
-        margin: 1rem auto 0;
+        padding: 1rem;
+        margin: 2rem auto 0;
     }
     
     .quote-mark {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
     
     .contact-quote p {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 }
 

@@ -48,7 +48,7 @@
             <span class="key">↑</span>
             <span class="key">↓</span>
         </div>
-        <span class="hint-text">使用方向键导航</span>
+        <span class="hint-text">use directional keys to navigate</span>
     </div>
     
     <!-- 滚动提示（一直显示） -->
@@ -114,21 +114,17 @@
                                     <p class="project-brief">{{ project.description }}</p>
                                     
                                     <div class="project-actions">
-                                        <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn btn-primary">
-                                            了解更多 →
+                                        <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn-explore">
+                                            <span class="btn-text">Explore Project</span>
+                                            <span class="btn-icon">→</span>
                                         </a>
-                                        {% if project.github and project.github != '#' %}
-                                        <a href="{{ project.github }}" class="btn btn-secondary" target="_blank">
-                                            GitHub
-                                        </a>
-                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         {% endfor %}
                     </div>
-                    
+
                     <!-- 项目导航 -->
                     <div class="project-nav">
                         <button class="project-nav-btn prev">‹</button>
@@ -176,16 +172,16 @@
                     <div class="about-text">
                         <h3>The Designer's Mindset</h3>
                         <p>
-                            I'm a software engineer with a passion for creating technology that truly resonates with people. 
-                            My journey began with functional programming, but evolved into a deep exploration of how systems 
+                            I'm a software engineer with a passion for creating technology that truly resonates with people.
+                            My journey began with functional programming, but evolved into a deep exploration of how systems
                             can be designed to serve human needs.
                         </p>
-                        
+
                         <blockquote>
-                            "Years of playing music taught me how timing shapes emotion — a principle I now apply to designing 
+                            "Years of playing music taught me how timing shapes emotion — a principle I now apply to designing
                             intuitive user flows. Drawing trained my eye for visual balance, which guides my interface design decisions."
                         </blockquote>
-                        
+
                         <p>
                             <strong>功能为基、体验为魂</strong> — Functionality is the foundation, experience is the soul.
                         </p>
@@ -202,29 +198,9 @@
                     <h2 class="section-title">Let's Connect</h2>
                     <div class="decorative-line"></div>
                 </div>
-                
+
                 <p class="section-subtitle">Ready to bring ideas to life? Let's talk.</p>
-                
-                <!-- CV 下载区域 -->
-                <div class="cv-section">
-                    <div class="cv-card">
-                        <div class="cv-icon">📄</div>
-                        <h3>Resume / CV</h3>
-                        <p>View my complete professional background</p>
-                        <a href="#" class="btn-cv" download>
-                            <span>Download CV</span>
-                            <span class="btn-arrow">→</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- 分隔线 -->
-                <div class="section-divider">
-                    <span class="divider-dot"></span>
-                    <span class="divider-line"></span>
-                    <span class="divider-dot"></span>
-                </div>
-                
+
                 <!-- 联系方式网格 -->
                 <div class="contact-grid">
                     <div class="contact-item">
@@ -232,29 +208,29 @@
                             <span class="contact-icon-large">📧</span>
                         </div>
                         <h4>Email</h4>
-                        <a href="mailto:your.email@example.com">your.email@example.com</a>
+                        <a href="mailto:zitong.wang@ucdconnect.ie">zitong.wang@ucdconnect.ie</a>
                         <div class="item-line"></div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <div class="contact-icon-wrapper">
                             <span class="contact-icon-large">💻</span>
                         </div>
                         <h4>GitHub</h4>
-                        <a href="https://github.com/yourusername" target="_blank">@yourusername</a>
+                        <a href="https://github.com/sukikatte" target="_blank">@sukikatte</a>
                         <div class="item-line"></div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <div class="contact-icon-wrapper">
-                            <span class="contact-icon-large">💼</span>
+                            <span class="contact-icon-large">📄</span>
                         </div>
-                        <h4>LinkedIn</h4>
-                        <a href="https://linkedin.com/in/yourprofile" target="_blank">Your Name</a>
+                        <h4>Resume</h4>
+                        <a href="{{ url_for('static', filename='documents/CV.pdf') }}" download="Zitong_Wang_CV.pdf">Download CV</a>
                         <div class="item-line"></div>
                     </div>
                 </div>
-                
+
                 <!-- 底部引用 -->
                 <div class="contact-quote">
                     <div class="quote-mark">"</div>

@@ -12,7 +12,8 @@
 <body>
     <!-- 返回按钮 -->
     <a href="{{ url_for('home') }}" class="back-button">
-        <span>←</span> Back to Portfolio
+        <span class="back-arrow">←</span>
+        <span class="back-text">BACK TO PORTFOLIO</span>
     </a>
     
     <!-- 项目头部 -->
@@ -148,14 +149,6 @@
         </section>
         
     </main>
-    
-    <!-- 底部导航 -->
-    <footer class="project-footer">
-        <a href="{{ url_for('home') }}" class="footer-link">← Back to Portfolio</a>
-        {% if project.github and project.github != '#' %}
-        <a href="{{ project.github }}" class="footer-link" target="_blank">View on GitHub →</a>
-        {% endif %}
-    </footer>
     
     <script src="{{ url_for('static', filename='js/project_detail.js') }}"></script>
 </body>
