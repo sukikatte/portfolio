@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zitong Wang - IDT Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fullpage.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 动态背景 -->
+    <canvas id="bgCanvas" class="bg-canvas"></canvas>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="logo-name">Zitong Wang</span>
+                <span class="logo-separator">/</span>
+                <span class="logo-portfolio">Portfolio</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link" data-section="0">Home</a></li>
+                <li><a href="#journey" class="nav-link" data-section="1">Journey</a></li>
+                <li><a href="#projects" class="nav-link" data-section="2">Projects</a></li>
+                <li><a href="#behind" class="nav-link" data-section="3">Behind</a></li>
+                <li><a href="#about" class="nav-link" data-section="4">About</a></li>
+                <li><a href="#contact" class="nav-link" data-section="5">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 侧边导航点 -->
+    <div class="side-nav">
+        <div class="nav-dot active" data-section="0"></div>
+        <div class="nav-dot" data-section="1"></div>
+        <div class="nav-dot" data-section="2"></div>
+        <div class="nav-dot" data-section="3"></div>
+        <div class="nav-dot" data-section="4"></div>
+        <div class="nav-dot" data-section="5"></div>
+    </div>
+
+    <!-- 键盘提示（只在首页显示） -->
+    <div class="keyboard-hint">
+        <div class="key-hint">
+            <span class="key">↑</span>
+            <span class="key">↓</span>
+        </div>
+        <span class="hint-text">使用方向键导航</span>
+    </div>
+    
+    <!-- 滚动提示（一直显示） -->
+    <div class="scroll-hint">
+        <div class="scroll-text">Scroll to explore</div>
+        <div class="scroll-arrow">↓</div>
+    </div>
+
+    <!-- 全屏容器 -->
+    <div class="fullpage-container">
+        
+        <!-- Section 1: Home / Hero -->
+        <section class="fullpage-section active" id="home">
+            <div class="section-content">
+                <p class="hero-tagline">IDT PORTFOLIO 2025</p>
+                <h1 class="hero-title">Technology is powerful — but only meaningful when it connects with people.</h1>
+                <p class="hero-subtitle">
+                    I am Zitong Wang, a software engineer passionate about building innovative, user-centered systems where code meets creativity.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: Journey / Timeline -->
+        <section class="fullpage-section" id="journey">
+            <div class="section-content">
+                <h2 class="section-title">Journey: From Functionality to Experience</h2>
+                <div class="timeline-horizontal">
+                    {% for item in timeline %}
+                    <div class="timeline-item-h">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="timeline-year">📍 {{ item.year }}</div>
+                            <h3 class="timeline-project">{{ item.project }}</h3>
+                            <p class="timeline-desc">{{ item.description }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Projects Overview -->
+        <section class="fullpage-section" id="projects">
+            <div class="section-content">
+                <h2 class="section-title">Core Projects</h2>
+                <div class="projects-slider">
+                    <div class="projects-slider-container">
+                        {% for project in projects %}
+                        <div class="project-slide">
+                            <div class="project-slide-content">
+                                <div class="project-slide-left">
+                                    <span class="project-icon-large">{{ project.icon }}</span>
+                                </div>
+                                <div class="project-slide-right">
+                                    <h3 class="project-title-large">{{ project.title }}</h3>
+                                    <p class="project-subtitle-large">{{ project.subtitle }}</p>
+                                    
+                                    <div class="project-tags">
+                                        {% for tag in project.tags %}
+                                        <span class="tag">{{ tag }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    
+                                    <p class="project-description">{{ project.description }}</p>
+                                    
+                                    <div class="project-highlights-mini">
+                                        <h4>Key Highlights</h4>
+                                        <ul>
+                                            {% for highlight in project.highlights %}
+                                            <li>{{ highlight }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="project-tech-mini">
+                                        {% for tech in project.tech_stack %}
+                                        <span class="tech-badge">{{ tech }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    
+                                    {% if project.github and project.github != '#' %}
+                                    <a href="{{ project.github }}" class="btn btn-primary" target="_blank">View on GitHub →</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <!-- 项目导航 -->
+                    <div class="project-nav">
+                        <button class="project-nav-btn prev">‹</button>
+                        <div class="project-indicators">
+                            {% for project in projects %}
+                            <span class="project-indicator {% if loop.index0 == 0 %}active{% endif %}" data-index="{{ loop.index0 }}"></span>
+                            {% endfor %}
+                        </div>
+                        <button class="project-nav-btn next">›</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Behind the Scenes -->
+        <section class="fullpage-section" id="behind">
+            <div class="section-content">
+                <h2 class="section-title">Behind the Scenes</h2>
+                <p class="section-subtitle">How I think, design, and build</p>
+                <div class="cards-grid">
+                    {% for card in cards %}
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="flip-card-icon">{{ card.icon }}</div>
+                                <h3 class="flip-card-title">{{ card.title }}</h3>
+                                <p class="flip-card-subtitle">{{ card.front }}</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="flip-card-icon">{{ card.icon }}</div>
+                                <p class="flip-card-content">{{ card.back }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: About Me -->
+        <section class="fullpage-section" id="about">
+            <div class="section-content">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content-compact">
+                    <div class="about-text">
+                        <h3>The Designer's Mindset</h3>
+                        <p>
+                            I'm a software engineer with a passion for creating technology that truly resonates with people. 
+                            My journey began with functional programming, but evolved into a deep exploration of how systems 
+                            can be designed to serve human needs.
+                        </p>
+                        
+                        <blockquote>
+                            "Years of playing music taught me how timing shapes emotion — a principle I now apply to designing 
+                            intuitive user flows. Drawing trained my eye for visual balance, which guides my interface design decisions."
+                        </blockquote>
+                        
+                        <p>
+                            <strong>功能为基、体验为魂</strong> — Functionality is the foundation, experience is the soul.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Contact -->
+        <section class="fullpage-section" id="contact">
+            <div class="section-content">
+                <div class="contact-header">
+                    <div class="decorative-line"></div>
+                    <h2 class="section-title">Let's Connect</h2>
+                    <div class="decorative-line"></div>
+                </div>
+                
+                <p class="section-subtitle">Ready to bring ideas to life? Let's talk.</p>
+                
+                <!-- CV 下载区域 -->
+                <div class="cv-section">
+                    <div class="cv-card">
+                        <div class="cv-icon">📄</div>
+                        <h3>Resume / CV</h3>
+                        <p>View my complete professional background</p>
+                        <a href="#" class="btn btn-cv" download>
+                            <span>Download CV</span>
+                            <span class="btn-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 分隔线 -->
+                <div class="section-divider">
+                    <span class="divider-dot"></span>
+                    <span class="divider-line"></span>
+                    <span class="divider-dot"></span>
+                </div>
+                
+                <!-- 联系方式网格 -->
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon-wrapper">
+                            <span class="contact-icon-large">📧</span>
+                        </div>
+                        <h4>Email</h4>
+                        <a href="mailto:your.email@example.com">your.email@example.com</a>
+                        <div class="item-line"></div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon-wrapper">
+                            <span class="contact-icon-large">💻</span>
+                        </div>
+                        <h4>GitHub</h4>
+                        <a href="https://github.com/yourusername" target="_blank">@yourusername</a>
+                        <div class="item-line"></div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon-wrapper">
+                            <span class="contact-icon-large">💼</span>
+                        </div>
+                        <h4>LinkedIn</h4>
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank">Your Name</a>
+                        <div class="item-line"></div>
+                    </div>
+                </div>
+                
+                <!-- 底部引用 -->
+                <div class="contact-quote">
+                    <div class="quote-mark">"</div>
+                    <p>Let's create technology that truly resonates with people.</p>
+                    <div class="quote-mark closing">"</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/fullpage.js') }}"></script>
+</body>
+</html>
+

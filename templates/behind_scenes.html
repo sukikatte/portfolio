@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Behind the Scenes - Zitong Wang{% endblock %}
+
+{% block content %}
+<section class="behind-section">
+    <h1 class="section-title">Behind the Scenes</h1>
+    <p style="text-align: center; color: var(--text-secondary); max-width: 800px; margin: 0 auto 3rem; font-size: 1.1rem;">
+        How I think, design, and build — exploring the process behind the projects
+    </p>
+    
+    <div class="cards-grid">
+        {% for card in cards %}
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <!-- 正面 -->
+                <div class="flip-card-front">
+                    <div class="flip-card-icon">{{ card.icon }}</div>
+                    <h3 class="flip-card-title">{{ card.title }}</h3>
+                    <p class="flip-card-subtitle">{{ card.front }}</p>
+                </div>
+                
+                <!-- 背面 -->
+                <div class="flip-card-back">
+                    <div class="flip-card-icon">{{ card.icon }}</div>
+                    <p class="flip-card-content">{{ card.back }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div style="text-align: center; margin-top: 4rem;">
+        <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8; max-width: 800px; margin: 0 auto;">
+            Every project begins with understanding <span style="color: var(--neon-blue); font-weight: 600;">who</span> will use it, 
+            designing <span style="color: var(--neon-blue); font-weight: 600;">how</span> they'll interact with it, 
+            building the <span style="color: var(--neon-blue); font-weight: 600;">system</span> that powers it, 
+            and crafting the <span style="color: var(--neon-blue); font-weight: 600;">experience</span> that makes it memorable.
+        </p>
+    </div>
+</section>
+{% endblock %}
+
