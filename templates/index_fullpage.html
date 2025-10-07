@@ -34,12 +34,12 @@
 
     <!-- 侧边导航点 -->
     <div class="side-nav">
-        <div class="nav-dot active" data-section="0"></div>
-        <div class="nav-dot" data-section="1"></div>
-        <div class="nav-dot" data-section="2"></div>
-        <div class="nav-dot" data-section="3"></div>
-        <div class="nav-dot" data-section="4"></div>
-        <div class="nav-dot" data-section="5"></div>
+        <div class="nav-dot active" data-section="0" title="Home"></div>
+        <div class="nav-dot" data-section="1" title="Journey"></div>
+        <div class="nav-dot" data-section="2" title="Projects"></div>
+        <div class="nav-dot" data-section="3" title="Behind"></div>
+        <div class="nav-dot" data-section="4" title="About"></div>
+        <div class="nav-dot" data-section="5" title="Contact"></div>
     </div>
 
     <!-- 键盘提示（只在首页显示） -->
@@ -60,7 +60,7 @@
     <!-- 全屏容器 -->
     <div class="fullpage-container">
         
-        <!-- Section 1: Home / Hero -->
+        <!-- Section 0: Home / Hero -->
         <section class="fullpage-section active" id="home">
             <div class="section-content">
                 <p class="hero-tagline">IDT PORTFOLIO 2025</p>
@@ -71,7 +71,7 @@
             </div>
         </section>
 
-        <!-- Section 2: Journey / Timeline -->
+        <!-- Section 1: Journey / Timeline -->
         <section class="fullpage-section" id="journey">
             <div class="section-content">
                 <h2 class="section-title">Journey: From Functionality to Experience</h2>
@@ -90,21 +90,20 @@
             </div>
         </section>
 
-        <!-- Section 3: Projects Overview -->
+        <!-- Section 2: Projects (横向切换) -->
         <section class="fullpage-section" id="projects">
             <div class="section-content">
-                <h2 class="section-title">Core Projects</h2>
-                <div class="projects-slider">
+                <div class="projects-slider-wrapper">
                     <div class="projects-slider-container">
                         {% for project in projects %}
                         <div class="project-slide">
-                            <div class="project-slide-content">
-                                <div class="project-slide-left">
-                                    <span class="project-icon-large">{{ project.icon }}</span>
+                            <div class="project-overview-card">
+                                <div class="project-icon-section">
+                                    <span class="project-icon-mega">{{ project.icon }}</span>
                                 </div>
-                                <div class="project-slide-right">
-                                    <h3 class="project-title-large">{{ project.title }}</h3>
-                                    <p class="project-subtitle-large">{{ project.subtitle }}</p>
+                                <div class="project-info-section">
+                                    <h2>{{ project.title }}</h2>
+                                    <p class="subtitle">{{ project.subtitle }}</p>
                                     
                                     <div class="project-tags">
                                         {% for tag in project.tags %}
@@ -112,26 +111,18 @@
                                         {% endfor %}
                                     </div>
                                     
-                                    <p class="project-description">{{ project.description }}</p>
+                                    <p class="project-brief">{{ project.description }}</p>
                                     
-                                    <div class="project-highlights-mini">
-                                        <h4>Key Highlights</h4>
-                                        <ul>
-                                            {% for highlight in project.highlights %}
-                                            <li>{{ highlight }}</li>
-                                            {% endfor %}
-                                        </ul>
+                                    <div class="project-actions">
+                                        <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn btn-primary">
+                                            了解更多 →
+                                        </a>
+                                        {% if project.github and project.github != '#' %}
+                                        <a href="{{ project.github }}" class="btn btn-secondary" target="_blank">
+                                            GitHub
+                                        </a>
+                                        {% endif %}
                                     </div>
-                                    
-                                    <div class="project-tech-mini">
-                                        {% for tech in project.tech_stack %}
-                                        <span class="tech-badge">{{ tech }}</span>
-                                        {% endfor %}
-                                    </div>
-                                    
-                                    {% if project.github and project.github != '#' %}
-                                    <a href="{{ project.github }}" class="btn btn-primary" target="_blank">View on GitHub →</a>
-                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -152,7 +143,7 @@
             </div>
         </section>
 
-        <!-- Section 4: Behind the Scenes -->
+        <!-- Section 3: Behind the Scenes -->
         <section class="fullpage-section" id="behind">
             <div class="section-content">
                 <h2 class="section-title">Behind the Scenes</h2>
@@ -177,7 +168,7 @@
             </div>
         </section>
 
-        <!-- Section 5: About Me -->
+        <!-- Section 4: About Me -->
         <section class="fullpage-section" id="about">
             <div class="section-content">
                 <h2 class="section-title">About Me</h2>
@@ -203,7 +194,7 @@
             </div>
         </section>
 
-        <!-- Section 6: Contact -->
+        <!-- Section 5: Contact -->
         <section class="fullpage-section" id="contact">
             <div class="section-content">
                 <div class="contact-header">
@@ -220,7 +211,7 @@
                         <div class="cv-icon">📄</div>
                         <h3>Resume / CV</h3>
                         <p>View my complete professional background</p>
-                        <a href="#" class="btn btn-cv" download>
+                        <a href="#" class="btn-cv" download>
                             <span>Download CV</span>
                             <span class="btn-arrow">→</span>
                         </a>
@@ -278,4 +269,3 @@
     <script src="{{ url_for('static', filename='js/fullpage.js') }}"></script>
 </body>
 </html>
-

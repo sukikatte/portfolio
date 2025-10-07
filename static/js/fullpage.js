@@ -9,18 +9,18 @@ class FullPageScroll {
         this.totalSections = this.sections.length;
         this.container = document.querySelector('.fullpage-container');
         this.isScrolling = false;
-        this.scrollDelay = 1000; // 滚动间隔时间
+        this.scrollDelay = 1000;
         
         // 项目幻灯片
         this.projectsContainer = document.querySelector('.projects-slider-container');
         this.projectSlides = document.querySelectorAll('.project-slide');
         this.totalProjects = this.projectSlides.length;
-        this.currentProject = 1; // 从1开始，因为0是克隆的最后一个
+        this.currentProject = 1; // 从1开始（0是克隆的最后一个）
         this.isTransitioning = false;
         
         // 自动播放
         this.autoPlayInterval = null;
-        this.autoPlayDelay = 5000; // 5秒
+        this.autoPlayDelay = 5000;
         this.lastInteraction = Date.now();
         
         this.init();
@@ -32,7 +32,7 @@ class FullPageScroll {
         this.updateActiveDot();
         this.updateActiveNav();
         this.initProjectSlider();
-        console.log('Full-page scrolling initialized ✨');
+        console.log(`Full-page scrolling initialized ✨ - ${this.totalSections} sections`);
     }
     
     setupInfiniteScroll() {
@@ -101,18 +101,14 @@ class FullPageScroll {
     handleWheel(e) {
         e.preventDefault();
         
-        // 如果正在滚动中，直接返回，防止连续触发
         if (this.isScrolling) return;
         
-        // 只响应明显的滚动动作
-        const threshold = 50; // 滚动阈值
+        const threshold = 50;
         if (Math.abs(e.deltaY) < threshold) return;
         
         if (e.deltaY > 0) {
-            // 向下滚动
             this.goToSection(this.currentSection + 1);
         } else {
-            // 向上滚动
             this.goToSection(this.currentSection - 1);
         }
     }
@@ -163,7 +159,6 @@ class FullPageScroll {
                 keyboardHint.style.visibility = 'visible';
             } else {
                 keyboardHint.style.opacity = '0';
-                // 延迟设置 visibility 以保证淡出动画完成
                 setTimeout(() => {
                     if (this.currentSection !== 0) {
                         keyboardHint.style.visibility = 'hidden';
@@ -177,11 +172,9 @@ class FullPageScroll {
         const scrollText = document.querySelector('.scroll-text');
         if (scrollArrow && scrollText) {
             if (index === this.totalSections - 1) {
-                // 最后一页：显示向上箭头
                 scrollArrow.textContent = '↑';
                 scrollText.textContent = 'Scroll up';
             } else {
-                // 其他页：显示向下箭头
                 scrollArrow.textContent = '↓';
                 scrollText.textContent = 'Scroll to explore';
             }
@@ -217,16 +210,21 @@ class FullPageScroll {
     // 项目幻灯片功能
     // ============================================
     initProjectSlider() {
+        const prevBtn = document.querySelector('.project-nav-btn.prev');
+        const nextBtn = document.querySelector('.project-nav-btn.next');
+        
+        if (!prevBtn || !nextBtn) return;
+        
         // 上一个按钮
-        document.querySelector('.project-nav-btn.prev').addEventListener('click', () => {
+        prevBtn.addEventListener('click', () => {
             this.userInteraction();
-            this.prevProject();
+            this.goToProject(this.currentProject - 1);
         });
         
         // 下一个按钮
-        document.querySelector('.project-nav-btn.next').addEventListener('click', () => {
+        nextBtn.addEventListener('click', () => {
             this.userInteraction();
-            this.nextProject(false);
+            this.goToProject(this.currentProject + 1);
         });
         
         // 指示器点击
@@ -246,7 +244,6 @@ class FullPageScroll {
             });
             
             projectsSection.addEventListener('mouseleave', () => {
-                // 离开项目区域且当前在项目页面时，重新启动自动播放
                 if (this.currentSection === 2) {
                     this.startAutoPlay();
                 }
@@ -254,7 +251,7 @@ class FullPageScroll {
         }
     }
     
-    goToProject(index, isAuto = false) {
+    goToProject(index) {
         if (this.isTransitioning) return;
         
         this.isTransitioning = true;
@@ -262,7 +259,7 @@ class FullPageScroll {
         // 启用过渡动画
         this.projectsContainer.style.transition = 'transform 0.6s cubic-bezier(0.65, 0, 0.35, 1)';
         
-        // 移动到目标位置（包括克隆的项目）
+        // 移动到目标位置
         this.currentProject = index;
         const offset = -this.currentProject * 100;
         this.projectsContainer.style.transform = `translateX(${offset}%)`;
@@ -278,11 +275,6 @@ class FullPageScroll {
             this.handleInfiniteLoop();
             this.isTransitioning = false;
         }, 600);
-        
-        // 如果不是自动播放，则重置自动播放计时器
-        if (!isAuto) {
-            this.userInteraction();
-        }
     }
     
     getRealIndex(index) {
@@ -311,14 +303,6 @@ class FullPageScroll {
         }
     }
     
-    nextProject(isAuto = false) {
-        this.goToProject(this.currentProject + 1, isAuto);
-    }
-    
-    prevProject() {
-        this.goToProject(this.currentProject - 1, false);
-    }
-    
     userInteraction() {
         // 记录用户交互时间
         this.lastInteraction = Date.now();
@@ -340,7 +324,7 @@ class FullPageScroll {
         this.autoPlayInterval = setInterval(() => {
             // 只在项目页面时自动播放
             if (this.currentSection === 2) {
-                this.nextProject(true);
+                this.goToProject(this.currentProject + 1);
             } else {
                 this.stopAutoPlay();
             }
@@ -364,28 +348,25 @@ class FullPageScroll {
 document.addEventListener('DOMContentLoaded', () => {
     new FullPageScroll();
     
-    // 添加加载动画
+    // 页面加载动画
     document.body.style.opacity = '0';
     setTimeout(() => {
         document.body.style.transition = 'opacity 0.5s ease';
         document.body.style.opacity = '1';
     }, 100);
     
-    // 项目卡片3D效果（项目页面）
-    initProjectCardEffects();
-    
-    // 视差效果
-    initParallaxEffect();
-    
     // 初始化动态背景
     initDynamicBackground();
+    
+    // 项目卡片3D效果
+    initProjectCardEffects();
 });
 
 // ============================================
 // 项目卡片3D悬停效果
 // ============================================
 function initProjectCardEffects() {
-    const cards = document.querySelectorAll('.timeline-card, .flip-card');
+    const cards = document.querySelectorAll('.timeline-card, .flip-card, .project-overview-card');
     
     cards.forEach(card => {
         card.addEventListener('mousemove', function(e) {
@@ -409,7 +390,7 @@ function initProjectCardEffects() {
 }
 
 // ============================================
-// 视差效果（背景元素）
+// 视差效果
 // ============================================
 function initParallaxEffect() {
     const sections = document.querySelectorAll('.fullpage-section');
@@ -419,105 +400,10 @@ function initParallaxEffect() {
         const mouseY = e.clientY / window.innerHeight;
         
         sections.forEach(section => {
-            const bg = section.querySelector('::before');
-            if (bg) {
-                const moveX = (mouseX - 0.5) * 30;
-                const moveY = (mouseY - 0.5) * 30;
-                section.style.backgroundPosition = `${50 + moveX}% ${50 + moveY}%`;
-            }
+            const moveX = (mouseX - 0.5) * 30;
+            const moveY = (mouseY - 0.5) * 30;
+            section.style.backgroundPosition = `${50 + moveX}% ${50 + moveY}%`;
         });
-    });
-}
-
-// ============================================
-// 粒子背景效果（可选）
-// ============================================
-function initParticlesBackground() {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    
-    canvas.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-        pointer-events: none;
-    `;
-    
-    document.body.prepend(canvas);
-    
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    const particles = [];
-    const particleCount = 80;
-    
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.vx = (Math.random() - 0.5) * 0.3;
-            this.vy = (Math.random() - 0.5) * 0.3;
-            this.radius = Math.random() * 1.5;
-            this.opacity = Math.random() * 0.5 + 0.2;
-        }
-        
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
-            
-            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-        }
-        
-        draw() {
-            ctx.fillStyle = `rgba(0, 217, 255, ${this.opacity})`;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-    
-    for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-    }
-    
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        particles.forEach(particle => {
-            particle.update();
-            particle.draw();
-        });
-        
-        // 连接邻近粒子
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance < 120) {
-                    ctx.strokeStyle = `rgba(0, 217, 255, ${0.15 * (1 - distance / 120)})`;
-                    ctx.lineWidth = 0.5;
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.stroke();
-                }
-            }
-        }
-        
-        requestAnimationFrame(animate);
-    }
-    
-    animate();
-    
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
     });
 }
 
@@ -551,7 +437,7 @@ function initDynamicBackground() {
     
     // 粒子系统
     const particles = [];
-    const particleCount = 50; // 增加粒子数量
+    const particleCount = 50;
     
     class Particle {
         constructor() {
@@ -559,15 +445,14 @@ function initDynamicBackground() {
             this.y = Math.random() * canvas.height;
             this.vx = (Math.random() - 0.5) * 0.5;
             this.vy = (Math.random() - 0.5) * 0.5;
-            this.radius = Math.random() * 2.5 + 1; // 增大粒子
-            this.opacity = Math.random() * 0.6 + 0.3; // 增加不透明度
+            this.radius = Math.random() * 2.5 + 1;
+            this.opacity = Math.random() * 0.6 + 0.3;
         }
         
         update() {
             this.x += this.vx;
             this.y += this.vy;
             
-            // 边界检测
             if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
             if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
             
@@ -589,7 +474,6 @@ function initDynamicBackground() {
             ctx.fillStyle = `rgba(0, 217, 255, ${this.opacity})`;
             ctx.fill();
             
-            // 发光效果
             ctx.shadowBlur = 10;
             ctx.shadowColor = 'rgba(0, 217, 255, 0.5)';
             ctx.fill();
@@ -597,17 +481,15 @@ function initDynamicBackground() {
         }
     }
     
-    // 初始化粒子
     for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
     }
     
     // 绘制网格线
     function drawGrid() {
-        ctx.strokeStyle = 'rgba(0, 217, 255, 0.08)'; // 增加网格可见度
+        ctx.strokeStyle = 'rgba(0, 217, 255, 0.08)';
         ctx.lineWidth = 1;
         
-        // 垂直线
         for (let x = 0; x < canvas.width; x += gridSize) {
             ctx.beginPath();
             ctx.moveTo(x, 0);
@@ -615,7 +497,6 @@ function initDynamicBackground() {
             ctx.stroke();
         }
         
-        // 水平线
         for (let y = 0; y < canvas.height; y += gridSize) {
             ctx.beginPath();
             ctx.moveTo(0, y);
@@ -626,9 +507,6 @@ function initDynamicBackground() {
     
     // 绘制连接线
     function drawConnections() {
-        ctx.strokeStyle = 'rgba(0, 217, 255, 0.2)';
-        ctx.lineWidth = 1;
-        
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
@@ -636,8 +514,9 @@ function initDynamicBackground() {
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
                 if (distance < 150) {
-                    const opacity = (1 - distance / 150) * 0.4; // 增加连接线可见度
+                    const opacity = (1 - distance / 150) * 0.4;
                     ctx.strokeStyle = `rgba(0, 217, 255, ${opacity})`;
+                    ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
@@ -653,29 +532,24 @@ function initDynamicBackground() {
         
         const gridX = Math.floor(mouseX / gridSize) * gridSize;
         const gridY = Math.floor(mouseY / gridSize) * gridSize;
-        const radius = gridSize * 2; // 高亮半径
+        const radius = gridSize * 2;
         
-        // 绘制径向渐变背景（中间亮，边缘淡）
+        // 径向渐变背景
         const bgGradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, radius);
-        bgGradient.addColorStop(0, 'rgba(0, 217, 255, 0.12)');   // 中心最亮
-        bgGradient.addColorStop(0.5, 'rgba(0, 217, 255, 0.06)'); // 中间
-        bgGradient.addColorStop(1, 'rgba(0, 217, 255, 0)');      // 边缘完全透明
+        bgGradient.addColorStop(0, 'rgba(0, 217, 255, 0.12)');
+        bgGradient.addColorStop(0.5, 'rgba(0, 217, 255, 0.06)');
+        bgGradient.addColorStop(1, 'rgba(0, 217, 255, 0)');
         
         ctx.fillStyle = bgGradient;
         ctx.beginPath();
         ctx.arc(mouseX, mouseY, radius, 0, Math.PI * 2);
         ctx.fill();
         
-        // 绘制渐变网格线（3x3区域，中间最亮）
+        // 绘制渐变网格线（3x3区域）
         for (let x = gridX - gridSize; x <= gridX + gridSize; x += gridSize) {
-            // 计算这条线到鼠标的距离，用于渐变
             const distanceX = Math.abs(x - mouseX);
-            const opacity = Math.max(0, 1 - distanceX / radius) * 0.4; // 根据距离计算不透明度
+            const opacity = Math.max(0, 1 - distanceX / radius) * 0.4;
             
-            ctx.strokeStyle = `rgba(0, 217, 255, ${opacity})`;
-            ctx.lineWidth = 1.5;
-            
-            // 垂直线使用渐变
             const gradient = ctx.createLinearGradient(x, gridY - gridSize, x, gridY + gridSize * 2);
             const centerY = mouseY;
             const distTop = Math.abs((gridY - gridSize) - centerY);
@@ -686,18 +560,17 @@ function initDynamicBackground() {
             gradient.addColorStop(1, `rgba(0, 217, 255, ${Math.max(0, 1 - distBottom / radius) * 0.4})`);
             
             ctx.strokeStyle = gradient;
+            ctx.lineWidth = 1.5;
             ctx.beginPath();
             ctx.moveTo(x, gridY - gridSize);
             ctx.lineTo(x, gridY + gridSize * 2);
             ctx.stroke();
         }
         
-        // 高亮的水平线（同样使用渐变）
         for (let y = gridY - gridSize; y <= gridY + gridSize; y += gridSize) {
             const distanceY = Math.abs(y - mouseY);
             const opacity = Math.max(0, 1 - distanceY / radius) * 0.4;
             
-            // 水平线使用渐变
             const gradient = ctx.createLinearGradient(gridX - gridSize, y, gridX + gridSize * 2, y);
             const centerX = mouseX;
             const distLeft = Math.abs((gridX - gridSize) - centerX);
@@ -720,19 +593,14 @@ function initDynamicBackground() {
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // 绘制网格
         drawGrid();
-        
-        // 绘制鼠标高亮
         drawMouseHighlight();
         
-        // 更新和绘制粒子
         particles.forEach(particle => {
             particle.update();
             particle.draw();
         });
         
-        // 绘制连接线
         drawConnections();
         
         requestAnimationFrame(animate);
@@ -740,31 +608,5 @@ function initDynamicBackground() {
     
     animate();
     console.log('动态背景已启动 ✨ - 粒子数:', particleCount);
-}
-
-// ============================================
-// 性能优化：防抖和节流
-// ============================================
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-function throttle(func, limit) {
-    let inThrottle;
-    return function(...args) {
-        if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
 }
 

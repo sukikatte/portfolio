@@ -1,0 +1,452 @@
+/* ============================================
+   Project Detail Page Styles
+   Tech Minimalism Theme
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #0a0e27;
+    --bg-secondary: #151934;
+    --bg-card: #1a1f3a;
+    --neon-blue: #00d9ff;
+    --neon-purple: #a78bfa;
+    --neon-pink: #ff006e;
+    --neon-green: #4ade80;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent-glow: rgba(0, 217, 255, 0.3);
+}
+
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+::selection {
+    background: var(--neon-blue);
+    color: var(--bg-primary);
+}
+
+/* ============================================
+   返回按钮
+   ============================================ */
+.back-button {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 1000;
+    padding: 0.8rem 1.5rem;
+    background: var(--bg-card);
+    border: 2px solid var(--neon-blue);
+    border-radius: 50px;
+    color: var(--neon-blue);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-button:hover {
+    background: var(--neon-blue);
+    color: var(--bg-primary);
+    box-shadow: 0 0 30px var(--accent-glow);
+    transform: translateX(-5px);
+}
+
+/* ============================================
+   项目头部
+   ============================================ */
+.project-header {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    position: relative;
+}
+
+.project-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 50%, rgba(0, 217, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(167, 139, 250, 0.1) 0%, transparent 50%);
+}
+
+.header-content {
+    max-width: 800px;
+    position: relative;
+    z-index: 1;
+}
+
+.project-icon-huge {
+    font-size: 8rem;
+    display: block;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 50px var(--accent-glow));
+    animation: floatSlow 4s ease-in-out infinite;
+}
+
+@keyframes floatSlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.project-header h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.project-subtitle {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    color: var(--neon-blue);
+    margin-bottom: 2rem;
+}
+
+.project-meta {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.meta-tag {
+    padding: 0.5rem 1.2rem;
+    background: rgba(0, 217, 255, 0.1);
+    border: 1px solid rgba(0, 217, 255, 0.3);
+    border-radius: 25px;
+    font-size: 0.85rem;
+    color: var(--neon-blue);
+}
+
+.project-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.link-btn {
+    padding: 0.8rem 2rem;
+    background: var(--neon-blue);
+    color: var(--bg-primary);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 30px var(--accent-glow);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.link-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 50px var(--accent-glow);
+}
+
+/* ============================================
+   内容区域
+   ============================================ */
+.project-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.content-section {
+    margin-bottom: 6rem;
+    position: relative;
+    padding: 3rem;
+    background: var(--bg-card);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 217, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.content-section:hover {
+    border-color: rgba(0, 217, 255, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 217, 255, 0.1);
+}
+
+.content-section.alt {
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(167, 139, 250, 0.05));
+}
+
+.content-section.highlight-section {
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(167, 139, 250, 0.1));
+    border-color: var(--neon-blue);
+}
+
+.section-number {
+    position: absolute;
+    top: -1.5rem;
+    left: 2rem;
+    width: 3rem;
+    height: 3rem;
+    background: var(--bg-primary);
+    border: 2px solid var(--neon-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--neon-blue);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.section-inner h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-inner h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.section-desc {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+/* ============================================
+   高亮列表
+   ============================================ */
+.highlights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(0, 217, 255, 0.05);
+    border-left: 3px solid var(--neon-blue);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.highlight-item:hover {
+    background: rgba(0, 217, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.highlight-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--neon-blue);
+    border-radius: 50%;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* ============================================
+   技术栈展示
+   ============================================ */
+.tech-stack-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(167, 139, 250, 0.1);
+    border-radius: 12px;
+}
+
+.tech-badge-large {
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, var(--neon-purple), #9D4EDD);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 0 15px rgba(167, 139, 250, 0.3);
+}
+
+/* ============================================
+   成果网格
+   ============================================ */
+.outcome-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.outcome-card {
+    padding: 1.5rem;
+    background: var(--bg-primary);
+    border: 2px solid var(--neon-blue);
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.outcome-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px var(--accent-glow);
+}
+
+.outcome-card p {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* ============================================
+   学习收获列表
+   ============================================ */
+.learnings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.learning-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.2rem;
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(167, 139, 250, 0.05));
+    border-radius: 10px;
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.learning-item:hover {
+    border-color: var(--neon-blue);
+    transform: translateX(5px);
+    box-shadow: 0 5px 20px rgba(0, 217, 255, 0.15);
+}
+
+.learning-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.learning-item span:last-child {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* ============================================
+   底部导航
+   ============================================ */
+.project-footer {
+    background: var(--bg-secondary);
+    padding: 3rem 2rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    border-top: 1px solid rgba(0, 217, 255, 0.1);
+}
+
+.footer-link {
+    padding: 1rem 2rem;
+    background: var(--bg-card);
+    border: 2px solid var(--neon-blue);
+    border-radius: 50px;
+    color: var(--neon-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+    background: var(--neon-blue);
+    color: var(--bg-primary);
+    box-shadow: 0 0 30px var(--accent-glow);
+    transform: translateY(-3px);
+}
+
+/* ============================================
+   响应式设计
+   ============================================ */
+@media (max-width: 768px) {
+    .back-button {
+        top: 1rem;
+        left: 1rem;
+        font-size: 0.8rem;
+        padding: 0.6rem 1.2rem;
+    }
+    
+    .project-header {
+        padding: 5rem 1.5rem 3rem;
+    }
+    
+    .project-icon-huge {
+        font-size: 5rem;
+    }
+    
+    .project-header h1 {
+        font-size: 2rem;
+    }
+    
+    .project-content {
+        padding: 2rem 1rem;
+    }
+    
+    .content-section {
+        padding: 2rem 1.5rem;
+        margin-bottom: 4rem;
+    }
+    
+    .section-inner h2 {
+        font-size: 1.5rem;
+    }
+    
+    .section-desc {
+        font-size: 1rem;
+    }
+    
+    .outcome-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-footer {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+

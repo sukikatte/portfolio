@@ -1,72 +1,162 @@
-{% extends "base.html" %}
-
-{% block title %}{{ project.title }} - Zitong Wang{% endblock %}
-
-{% block content %}
-<section class="projects-section">
-    <div style="max-width: 900px; margin: 0 auto;">
-        <!-- 项目头部 -->
-        <div style="text-align: center; margin-bottom: 3rem;">
-            <span style="font-size: 5rem; display: block; margin-bottom: 1rem;">{{ project.icon }}</span>
-            <h1 class="section-title" style="margin-bottom: 0.5rem;">{{ project.title }}</h1>
-            <p style="font-size: 1.3rem; color: var(--neon-blue); margin-bottom: 2rem;">{{ project.subtitle }}</p>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ project.title }} - Zitong Wang</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/project_detail.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <a href="{{ url_for('home') }}" class="back-button">
+        <span>←</span> Back to Portfolio
+    </a>
+    
+    <!-- 项目头部 -->
+    <header class="project-header">
+        <div class="header-content">
+            <span class="project-icon-huge">{{ project.icon }}</span>
+            <h1>{{ project.title }}</h1>
+            <p class="project-subtitle">{{ project.subtitle }}</p>
             
-            <div class="project-tags" style="justify-content: center;">
+            <div class="project-meta">
                 {% for tag in project.tags %}
-                <span class="tag">{{ tag }}</span>
+                <span class="meta-tag">{{ tag }}</span>
                 {% endfor %}
             </div>
-        </div>
-        
-        <!-- 项目描述 -->
-        <div style="background: var(--bg-card); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(0, 217, 255, 0.2); margin-bottom: 2rem;">
-            <h2 style="color: var(--neon-blue); margin-bottom: 1rem; font-size: 1.5rem;">Project Overview</h2>
-            <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8;">{{ project.description }}</p>
-        </div>
-        
-        <!-- 核心亮点 -->
-        <div style="background: var(--bg-card); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(0, 217, 255, 0.2); margin-bottom: 2rem;">
-            <h2 style="color: var(--neon-blue); margin-bottom: 1.5rem; font-size: 1.5rem;">Key Highlights</h2>
-            <ul style="list-style: none; padding: 0;">
-                {% for highlight in project.highlights %}
-                <li style="color: var(--text-secondary); margin-bottom: 1rem; padding-left: 2rem; position: relative; line-height: 1.6;">
-                    <span style="position: absolute; left: 0; color: var(--neon-blue);">✓</span>
-                    {{ highlight }}
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-        
-        <!-- 技术栈 -->
-        <div style="background: var(--bg-card); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(0, 217, 255, 0.2); margin-bottom: 2rem;">
-            <h2 style="color: var(--neon-blue); margin-bottom: 1.5rem; font-size: 1.5rem;">Tech Stack</h2>
-            <div style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
-                {% for tech in project.tech_stack %}
-                <span style="padding: 0.6rem 1.2rem; background: rgba(167, 139, 250, 0.1); border: 1px solid rgba(167, 139, 250, 0.3); border-radius: 20px; color: var(--neon-purple); font-weight: 500;">
-                    {{ tech }}
-                </span>
-                {% endfor %}
+            
+            <div class="project-links">
+                {% if project.github and project.github != '#' %}
+                <a href="{{ project.github }}" class="link-btn" target="_blank">
+                    <span>💻</span> View on GitHub
+                </a>
+                {% endif %}
             </div>
         </div>
+    </header>
+    
+    <!-- 内容区域 -->
+    <main class="project-content">
         
-        <!-- 成就 -->
-        {% if project.achievement %}
-        <div style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(167, 139, 250, 0.1)); padding: 2rem; border-radius: 20px; border: 1px solid rgba(0, 217, 255, 0.3); margin-bottom: 2rem; text-align: center;">
-            <h3 style="color: var(--neon-blue); margin-bottom: 0.5rem;">🏆 Achievement</h3>
-            <p style="color: var(--text-primary); font-size: 1.1rem; font-weight: 500;">{{ project.achievement }}</p>
-        </div>
+        <!-- Part 1: Problem / Context -->
+        <section class="content-section">
+            <div class="section-number">01</div>
+            <div class="section-inner">
+                <h2>{{ project.problem.title }}</h2>
+                <p class="section-desc">{{ project.problem.content }}</p>
+                <div class="highlights-list">
+                    {% for item in project.problem.highlights %}
+                    <div class="highlight-item">
+                        <span class="highlight-dot"></span>
+                        <span>{{ item }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        
+        <!-- Part 2: Ideation & Design Thinking -->
+        <section class="content-section alt">
+            <div class="section-number">02</div>
+            <div class="section-inner">
+                <h2>{{ project.ideation.title }}</h2>
+                <p class="section-desc">{{ project.ideation.content }}</p>
+                <div class="highlights-list">
+                    {% for item in project.ideation.highlights %}
+                    <div class="highlight-item">
+                        <span class="highlight-dot"></span>
+                        <span>{{ item }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        
+        <!-- Part 3: Solution & Technical Implementation -->
+        <section class="content-section">
+            <div class="section-number">03</div>
+            <div class="section-inner">
+                <h2>{{ project.solution.title }}</h2>
+                <p class="section-desc">{{ project.solution.content }}</p>
+                <div class="tech-stack-display">
+                    {% for tech in project.tech_stack %}
+                    <span class="tech-badge-large">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+                <div class="highlights-list">
+                    {% for item in project.solution.highlights %}
+                    <div class="highlight-item">
+                        <span class="highlight-dot"></span>
+                        <span>{{ item }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        
+        <!-- Part 4: User Experience & Interface Design -->
+        <section class="content-section alt">
+            <div class="section-number">04</div>
+            <div class="section-inner">
+                <h2>{{ project.ux.title }}</h2>
+                <p class="section-desc">{{ project.ux.content }}</p>
+                <div class="highlights-list">
+                    {% for item in project.ux.highlights %}
+                    <div class="highlight-item">
+                        <span class="highlight-dot"></span>
+                        <span>{{ item }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        
+        <!-- Part 5: Outcome & Impact -->
+        <section class="content-section highlight-section">
+            <div class="section-number">05</div>
+            <div class="section-inner">
+                <h2>{{ project.outcome.title }}</h2>
+                <p class="section-desc">{{ project.outcome.content }}</p>
+                <div class="outcome-grid">
+                    {% for item in project.outcome.highlights %}
+                    <div class="outcome-card">
+                        <p>{{ item }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        
+        <!-- Part 6: Reflection -->
+        <section class="content-section">
+            <div class="section-number">06</div>
+            <div class="section-inner">
+                <h2>{{ project.reflection.title }}</h2>
+                <p class="section-desc">{{ project.reflection.content }}</p>
+                <div class="learnings-list">
+                    {% for learning in project.reflection.learnings %}
+                    <div class="learning-item">
+                        <span class="learning-icon">💡</span>
+                        <span>{{ learning }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- 底部导航 -->
+    <footer class="project-footer">
+        <a href="{{ url_for('home') }}" class="footer-link">← Back to Portfolio</a>
+        {% if project.github and project.github != '#' %}
+        <a href="{{ project.github }}" class="footer-link" target="_blank">View on GitHub →</a>
         {% endif %}
-        
-        <!-- 链接按钮 -->
-        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 3rem;">
-            <a href="{{ project.github }}" class="btn btn-primary" target="_blank" style="display: inline-block;">
-                View on GitHub
-            </a>
-            <a href="{{ url_for('projects') }}" class="btn btn-secondary" style="display: inline-block;">
-                ← Back to Projects
-            </a>
-        </div>
-    </div>
-</section>
-{% endblock %}
-
+    </footer>
+    
+    <script src="{{ url_for('static', filename='js/project_detail.js') }}"></script>
+</body>
+</html>
