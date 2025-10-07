@@ -1,346 +1,341 @@
-// 移动端导航菜单切换
+// ============================================
+// Portfolio Interactive Animations
+// ============================================
+
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // 导航栏活动状态
+    setActiveNavLink();
+    
+    // 导航栏滚动效果
+    handleNavbarScroll();
+    
+    // 移动端菜单
+    initMobileMenu();
+    
+    // 平滑滚动
+    initSmoothScroll();
+    
+    // 元素进入视口动画
+    initScrollAnimations();
+    
+    // 鼠标跟随效果（可选）
+    // initCursorEffect();
+    
+    console.log('Portfolio initialized ✨');
+});
+
+// ============================================
+// 导航栏活动状态
+// ============================================
+function setActiveNavLink() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        const linkPath = new URL(link.href).pathname;
+        if (currentPath === linkPath) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// ============================================
+// 导航栏滚动效果
+// ============================================
+function handleNavbarScroll() {
+    const navbar = document.querySelector('.navbar');
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        // 向下滚动时添加阴影
+        if (currentScroll > 50) {
+            navbar.style.boxShadow = '0 4px 30px rgba(0, 217, 255, 0.1)';
+        } else {
+            navbar.style.boxShadow = 'none';
+        }
+        
+        lastScroll = currentScroll;
+    });
+}
+
+// ============================================
+// 移动端菜单
+// ============================================
+function initMobileMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-    }
-});
-
-// 平滑滚动
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// 数字动画效果
-function animateNumbers() {
-    const statNumbers = document.querySelectorAll('.stat-number');
+    if (!hamburger || !navMenu) return;
     
-    statNumbers.forEach(stat => {
-        const target = parseInt(stat.getAttribute('data-target'));
-        const duration = 2000; // 2秒
-        const increment = target / (duration / 16); // 60fps
-        let current = 0;
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
         
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            stat.textContent = Math.floor(current);
-        }, 16);
-    });
-}
-
-// 当统计部分进入视口时触发数字动画
-const observerOptions = {
-    threshold: 0.5,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animateNumbers();
-            observer.unobserve(entry.target);
+        // 动画效果
+        const spans = hamburger.querySelectorAll('span');
+        if (hamburger.classList.contains('active')) {
+            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+        } else {
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
         }
     });
-}, observerOptions);
-
-// 观察统计部分
-const statsSection = document.querySelector('.stats-section');
-if (statsSection) {
-    observer.observe(statsSection);
-}
-
-// 项目筛选功能
-document.addEventListener('DOMContentLoaded', function() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
     
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // 移除所有按钮的active类
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // 添加当前按钮的active类
-            this.classList.add('active');
-            
-            const filter = this.getAttribute('data-filter');
-            
-            projectCards.forEach(card => {
-                if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                    card.style.display = 'block';
-                    card.style.animation = 'fadeInUp 0.5s ease-out';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+    // 点击菜单项后关闭
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
         });
     });
-});
-
-// 导航栏滚动效果
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.boxShadow = 'none';
-    }
-});
-
-// 页面加载动画
-window.addEventListener('load', function() {
-    document.body.classList.add('loaded');
-});
-
-// PDF预览功能
-let currentPDFFile = '';
-
-function openPDFModal(filename, title) {
-    currentPDFFile = filename;
-    document.getElementById('pdfModalTitle').textContent = title;
-    
-    // 使用PDF.js或直接嵌入PDF
-    const pdfUrl = `/static/documents/${filename}`;
-    const pdfViewer = document.getElementById('pdfViewer');
-    
-    // 方法1：直接嵌入PDF（适用于现代浏览器）
-    pdfViewer.src = pdfUrl + '#toolbar=1&navpanes=1&scrollbar=1';
-    
-    // 方法2：如果直接嵌入不工作，使用PDF.js
-    // pdfViewer.src = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(window.location.origin + pdfUrl)}`;
-    
-    document.getElementById('pdfModal').style.display = 'flex';
-    document.body.style.overflow = 'hidden'; // 防止背景滚动
 }
 
-function closePDFModal() {
-    document.getElementById('pdfModal').style.display = 'none';
-    document.getElementById('pdfViewer').src = ''; // 清空iframe
-    document.body.style.overflow = 'auto'; // 恢复滚动
-    currentPDFFile = '';
-}
-
-function downloadCurrentPDF() {
-    if (currentPDFFile) {
-        const link = document.createElement('a');
-        link.href = `/static/documents/${currentPDFFile}`;
-        link.download = currentPDFFile;
-        link.click();
-    }
-}
-
-// 点击模态框背景关闭
-document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('pdfModal');
-    if (modal) {
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closePDFModal();
+// ============================================
+// 平滑滚动
+// ============================================
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
-    }
+    });
+}
+
+// ============================================
+// 滚动动画 - Intersection Observer
+// ============================================
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
     
-    // ESC键关闭模态框
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closePDFModal();
-        }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // 观察所有需要动画的元素
+    const animatedElements = document.querySelectorAll(
+        '.project-card, .timeline-item, .flip-card, .about-content'
+    );
+    
+    animatedElements.forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// ============================================
+// 项目卡片悬停效果增强
+// ============================================
+document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mouseenter', function(e) {
+        this.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+    });
+    
+    card.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+        
+        this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = '';
     });
 });
 
-// 添加CSS动画类
-const style = document.createElement('style');
-style.textContent = `
-    .nav-menu.active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: white;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-    }
+// ============================================
+// 数字计数动画（如果页面有统计数字）
+// ============================================
+function animateCounter(element, target, duration = 2000) {
+    let start = 0;
+    const increment = target / (duration / 16);
     
-    .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-    
-    .hamburger.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-    }
-    
-    body.loaded .hero-title {
-        animation: fadeInUp 1s ease-out;
-    }
-    
-    body.loaded .hero-subtitle {
-        animation: fadeInUp 1s ease-out 0.3s both;
-    }
-    
-    body.loaded .hero-buttons {
-        animation: fadeInUp 1s ease-out 0.6s both;
-    }
-    
-    /* PDF模态框样式 */
-    .pdf-modal {
-        display: none;
+    const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+            element.textContent = target;
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(start);
+        }
+    }, 16);
+}
+
+// ============================================
+// 可选：自定义光标效果
+// ============================================
+function initCursorEffect() {
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    cursor.style.cssText = `
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--neon-blue);
+        border-radius: 50%;
         position: fixed;
-        z-index: 2000;
-        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.1s ease;
+        mix-blend-mode: difference;
+    `;
+    document.body.appendChild(cursor);
+    
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX - 10 + 'px';
+        cursor.style.top = e.clientY - 10 + 'px';
+    });
+    
+    // 悬停在可点击元素上时放大
+    document.querySelectorAll('a, button, .project-card').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.transform = 'scale(1.5)';
+            cursor.style.background = 'rgba(0, 217, 255, 0.2)';
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.style.transform = 'scale(1)';
+            cursor.style.background = 'transparent';
+        });
+    });
+}
+
+// ============================================
+// 打字机效果（可用于首页标题）
+// ============================================
+function typeWriter(element, text, speed = 50) {
+    let i = 0;
+    element.textContent = '';
+    
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    
+    type();
+}
+
+// ============================================
+// 粒子背景效果（可选 - 性能开销较大）
+// ============================================
+function initParticles() {
+    // 使用 Canvas 创建粒子效果
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.style.cssText = `
+        position: fixed;
         top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(5px);
-        align-items: center;
-        justify-content: center;
-        animation: fadeIn 0.3s ease-out;
-    }
+        z-index: -1;
+        pointer-events: none;
+    `;
     
-    .pdf-modal-content {
-        background: white;
-        border-radius: 15px;
-        width: 90%;
-        max-width: 1000px;
-        max-height: 90vh;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        animation: slideIn 0.3s ease-out;
-    }
+    document.body.appendChild(canvas);
     
-    .pdf-modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 30px;
-        border-bottom: 1px solid #eee;
-    }
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     
-    .pdf-modal-header h3 {
-        margin: 0;
-        color: #333;
-        font-size: 1.3rem;
-    }
+    const particles = [];
+    const particleCount = 50;
     
-    .pdf-close-btn {
-        background: none;
-        border: none;
-        font-size: 2rem;
-        color: #666;
-        cursor: pointer;
-        padding: 0;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        transition: all 0.3s ease;
-    }
-    
-    .pdf-close-btn:hover {
-        background: #f0f0f0;
-        color: #333;
-    }
-    
-    .pdf-modal-body {
-        flex: 1;
-        padding: 0;
-        overflow: hidden;
-    }
-    
-    .pdf-modal-footer {
-        padding: 20px 30px;
-        border-top: 1px solid #eee;
-        text-align: center;
-    }
-    
-    .pdf-download-btn {
-        background: #007bff;
-        color: white;
-        border: none;
-        padding: 12px 25px;
-        border-radius: 25px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .pdf-download-btn:hover {
-        background: #0056b3;
-        transform: translateY(-2px);
-    }
-    
-    .document-actions {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .preview-btn {
-        background: #17a2b8;
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 25px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-    }
-    
-    .preview-btn:hover {
-        background: #138496;
-        transform: translateY(-2px);
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-    
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateY(-50px) scale(0.9);
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.radius = Math.random() * 2;
         }
-        to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
+        
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        }
+        
+        draw() {
+            ctx.fillStyle = 'rgba(0, 217, 255, 0.5)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fill();
         }
     }
-`;
-document.head.appendChild(style);
+    
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        
+        // 连接邻近粒子
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 150) {
+                    ctx.strokeStyle = `rgba(0, 217, 255, ${0.2 * (1 - distance / 150)})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+}
 
-
+// 如果想启用粒子效果，取消下面的注释
+// initParticles();

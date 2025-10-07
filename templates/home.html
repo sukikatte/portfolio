@@ -1,87 +1,36 @@
 {% extends "base.html" %}
 
-{% block title %}首页 - 我的作品集{% endblock %}
+{% block title %}Home - Zitong Wang{% endblock %}
 
 {% block content %}
-<div class="hero-section">
+<!-- Hero Section -->
+<section class="hero-section">
     <div class="hero-content">
-        <h1 class="hero-title">
-            <span class="title-line">创新设计与技术</span>
-            <span class="title-line">跨领域作品集</span>
-        </h1>
+        <p class="hero-tagline">IDT PORTFOLIO 2025</p>
+        <h1 class="hero-title">Technology is powerful — but only meaningful when it connects with people.</h1>
         <p class="hero-subtitle">
-            展示我的开发项目、艺术创作与音乐作品
-            <br>为港大IDT申请而精心制作
+            I am Zitong Wang, a software engineer passionate about building innovative, user-centered systems where code meets creativity.
         </p>
-        <div class="hero-buttons">
-            <a href="{{ url_for('projects') }}" class="btn btn-primary">查看项目</a>
-            <a href="{{ url_for('about') }}" class="btn btn-secondary">了解我</a>
-        </div>
-    </div>
-    <div class="hero-visual">
-        <div class="floating-cards">
-            <div class="card card-1">
-                <div class="card-icon">💻</div>
-                <span>技术项目</span>
-            </div>
-            <div class="card card-2">
-                <div class="card-icon">🎨</div>
-                <span>艺术创作</span>
-            </div>
-            <div class="card card-3">
-                <div class="card-icon">🎵</div>
-                <span>音乐作品</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-<section class="featured-section">
-    <div class="container">
-        <h2 class="section-title">精选作品</h2>
-        <div class="featured-grid">
-            <div class="featured-item">
-                <div class="featured-icon">🚀</div>
-                <h3>创新项目</h3>
-                <p>展示我的技术实现能力与创新思维</p>
-                <a href="{{ url_for('projects') }}" class="featured-link">探索项目 →</a>
-            </div>
-            <div class="featured-item">
-                <div class="featured-icon">🎨</div>
-                <h3>艺术创作</h3>
-                <p>分享我的绘画作品与创意设计</p>
-                <a href="{{ url_for('artwork') }}" class="featured-link">查看作品 →</a>
-            </div>
-            <div class="featured-item">
-                <div class="featured-icon">🎵</div>
-                <h3>音乐作品</h3>
-                <p>乐队演出视频与原创音乐创作</p>
-                <a href="{{ url_for('music') }}" class="featured-link">聆听音乐 →</a>
-            </div>
+        <div class="hero-cta">
+            <a href="{{ url_for('projects') }}" class="btn btn-primary">View Projects</a>
+            <a href="{{ url_for('about') }}" class="btn btn-secondary">About Me</a>
         </div>
     </div>
 </section>
 
-<section class="stats-section">
-    <div class="container">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number" data-target="9">0</div>
-                <div class="stat-label">技术项目</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" data-target="3">0</div>
-                <div class="stat-label">AI项目</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" data-target="5">0</div>
-                <div class="stat-label">Web应用</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" data-target="4">0</div>
-                <div class="stat-label">编程语言</div>
+<!-- Timeline Section -->
+<section class="timeline-section">
+    <h2 class="section-title">Journey: From Functionality to Experience</h2>
+    <div class="timeline">
+        {% for item in timeline %}
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-year">📍 {{ item.year }}</div>
+                <h3 class="timeline-project">{{ item.project }}</h3>
+                <p class="timeline-desc">{{ item.description }}</p>
             </div>
         </div>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}

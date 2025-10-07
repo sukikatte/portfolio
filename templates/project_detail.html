@@ -1,287 +1,72 @@
 {% extends "base.html" %}
 
-{% block title %}{{ project.title }} - 项目详情{% endblock %}
+{% block title %}{{ project.title }} - Zitong Wang{% endblock %}
 
 {% block content %}
-<div class="page-header">
-    <div class="container">
-        <h1 class="page-title">{{ project.title }}</h1>
-        <p class="page-subtitle">{{ project.subtitle }}</p>
-    </div>
-</div>
-
-<div class="container">
-    <!-- 项目概览 -->
-    <section class="project-overview">
-        <div class="overview-grid">
-            <div class="overview-main">
-                <div class="project-banner">
-                    <div class="banner-icon">{{ project.icon }}</div>
-                    <div class="banner-info">
-                        <h2>{{ project.title }}</h2>
-                        <p class="project-tech">{{ project.technologies }}</p>
-                        <div class="project-badges">
-                            {% for badge in project.badges %}
-                            <span class="project-badge">{{ badge }}</span>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-description">
-                    <h3>项目描述</h3>
-                    <p>{{ project.description }}</p>
-                </div>
-            </div>
+<section class="projects-section">
+    <div style="max-width: 900px; margin: 0 auto;">
+        <!-- 项目头部 -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="font-size: 5rem; display: block; margin-bottom: 1rem;">{{ project.icon }}</span>
+            <h1 class="section-title" style="margin-bottom: 0.5rem;">{{ project.title }}</h1>
+            <p style="font-size: 1.3rem; color: var(--neon-blue); margin-bottom: 2rem;">{{ project.subtitle }}</p>
             
-            <div class="overview-sidebar">
-                <div class="project-info-card">
-                    <h4>项目信息</h4>
-                    <div class="info-item">
-                        <span class="info-label">开发时间：</span>
-                        <span class="info-value">{{ project.duration }}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">导师：</span>
-                        <span class="info-value">{{ project.advisor }}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">项目类型：</span>
-                        <span class="info-value">{{ project.type }}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">开发角色：</span>
-                        <span class="info-value">{{ project.role }}</span>
-                    </div>
-                </div>
-                
-                <div class="project-links-card">
-                    <h4>项目链接</h4>
-                    <div class="link-buttons">
-                        <a href="{{ project.github_link }}" class="link-btn github" target="_blank">
-                            <span class="btn-icon">📁</span>
-                            GitHub代码
-                        </a>
-                        <a href="#" class="link-btn demo" target="_blank">
-                            <span class="btn-icon">🚀</span>
-                            在线演示
-                        </a>
-                    </div>
-                </div>
+            <div class="project-tags" style="justify-content: center;">
+                {% for tag in project.tags %}
+                <span class="tag">{{ tag }}</span>
+                {% endfor %}
             </div>
         </div>
-    </section>
-
-    <!-- 核心功能 -->
-    <section class="project-features">
-        <h2>核心功能</h2>
-        <div class="features-grid">
-            {% for feature in project.features %}
-            <div class="feature-card">
-                <div class="feature-icon">{{ feature.icon }}</div>
-                <h3>{{ feature.title }}</h3>
-                <p>{{ feature.description }}</p>
-            </div>
-            {% endfor %}
+        
+        <!-- 项目描述 -->
+        <div style="background: var(--bg-card); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(0, 217, 255, 0.2); margin-bottom: 2rem;">
+            <h2 style="color: var(--neon-blue); margin-bottom: 1rem; font-size: 1.5rem;">Project Overview</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8;">{{ project.description }}</p>
         </div>
-    </section>
-
-    <!-- 技术架构 -->
-    <section class="project-architecture">
-        <h2>技术架构</h2>
-        <div class="architecture-content">
-            <div class="tech-stack">
-                <h3>技术栈</h3>
-                <div class="tech-categories">
-                    {% for category in project.tech_stack %}
-                    <div class="tech-category">
-                        <h4>{{ category.name }}</h4>
-                        <div class="tech-tags">
-                            {% for tech in category.technologies %}
-                            <span class="tech-tag">{{ tech }}</span>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            
-            <div class="architecture-diagram">
-                <h3>系统架构</h3>
-                <div class="diagram-placeholder">
-                    <p>架构图将在这里显示</p>
-                    <small>（可以放置系统架构图或流程图）</small>
-                </div>
+        
+        <!-- 核心亮点 -->
+        <div style="background: var(--bg-card); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(0, 217, 255, 0.2); margin-bottom: 2rem;">
+            <h2 style="color: var(--neon-blue); margin-bottom: 1.5rem; font-size: 1.5rem;">Key Highlights</h2>
+            <ul style="list-style: none; padding: 0;">
+                {% for highlight in project.highlights %}
+                <li style="color: var(--text-secondary); margin-bottom: 1rem; padding-left: 2rem; position: relative; line-height: 1.6;">
+                    <span style="position: absolute; left: 0; color: var(--neon-blue);">✓</span>
+                    {{ highlight }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <!-- 技术栈 -->
+        <div style="background: var(--bg-card); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(0, 217, 255, 0.2); margin-bottom: 2rem;">
+            <h2 style="color: var(--neon-blue); margin-bottom: 1.5rem; font-size: 1.5rem;">Tech Stack</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
+                {% for tech in project.tech_stack %}
+                <span style="padding: 0.6rem 1.2rem; background: rgba(167, 139, 250, 0.1); border: 1px solid rgba(167, 139, 250, 0.3); border-radius: 20px; color: var(--neon-purple); font-weight: 500;">
+                    {{ tech }}
+                </span>
+                {% endfor %}
             </div>
         </div>
-    </section>
-
-    <!-- 项目亮点 -->
-    <section class="project-highlights">
-        <h2>项目亮点</h2>
-        <div class="highlights-grid">
-            {% for highlight in project.highlights %}
-            <div class="highlight-item">
-                <div class="highlight-number">{{ loop.index }}</div>
-                <div class="highlight-content">
-                    <h3>{{ highlight.title }}</h3>
-                    <p>{{ highlight.description }}</p>
-                </div>
-            </div>
-            {% endfor %}
+        
+        <!-- 成就 -->
+        {% if project.achievement %}
+        <div style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(167, 139, 250, 0.1)); padding: 2rem; border-radius: 20px; border: 1px solid rgba(0, 217, 255, 0.3); margin-bottom: 2rem; text-align: center;">
+            <h3 style="color: var(--neon-blue); margin-bottom: 0.5rem;">🏆 Achievement</h3>
+            <p style="color: var(--text-primary); font-size: 1.1rem; font-weight: 500;">{{ project.achievement }}</p>
         </div>
-    </section>
-
-    <!-- 项目文档 -->
-    <section class="project-documents">
-        <h2>项目文档</h2>
-        <div class="documents-grid">
-            <div class="document-card">
-                <div class="document-icon">📖</div>
-                <h3>用户文档</h3>
-                <p>详细的使用说明和功能介绍，帮助用户快速上手使用系统</p>
-                <div class="document-info">
-                    <span class="doc-size">PDF • 2.5MB</span>
-                    <span class="doc-pages">15页</span>
-                </div>
-                <div class="document-actions">
-                    <button class="preview-btn" onclick="openPDFModal('user_documentation.pdf', '用户文档')">
-                        <span class="btn-icon">👁️</span>
-                        在线预览
-                    </button>
-                    <a href="{{ url_for('static', filename='documents/user_documentation.pdf') }}" class="download-btn" download>
-                        <span class="btn-icon">📥</span>
-                        下载文档
-                    </a>
-                </div>
-            </div>
-            
-            <div class="document-card">
-                <div class="document-icon">⚙️</div>
-                <h3>系统文档</h3>
-                <p>技术架构说明、API文档和开发指南，面向开发者</p>
-                <div class="document-info">
-                    <span class="doc-size">PDF • 4.2MB</span>
-                    <span class="doc-pages">28页</span>
-                </div>
-                <div class="document-actions">
-                    <button class="preview-btn" onclick="openPDFModal('system_documentation.pdf', '系统文档')">
-                        <span class="btn-icon">👁️</span>
-                        在线预览
-                    </button>
-                    <a href="{{ url_for('static', filename='documents/system_documentation.pdf') }}" class="download-btn" download>
-                        <span class="btn-icon">📥</span>
-                        下载文档
-                    </a>
-                </div>
-            </div>
-            
-            <div class="document-card">
-                <div class="document-icon">🎯</div>
-                <h3>项目报告</h3>
-                <p>完整的项目总结报告，包含开发过程和成果展示</p>
-                <div class="document-info">
-                    <span class="doc-size">PDF • 3.1MB</span>
-                    <span class="doc-pages">22页</span>
-                </div>
-                <div class="document-actions">
-                    <button class="preview-btn" onclick="openPDFModal('project_report.pdf', '项目报告')">
-                        <span class="btn-icon">👁️</span>
-                        在线预览
-                    </button>
-                    <a href="{{ url_for('static', filename='documents/project_report.pdf') }}" class="download-btn" download>
-                        <span class="btn-icon">📥</span>
-                        下载文档
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PDF预览模态框 -->
-    <div id="pdfModal" class="pdf-modal">
-        <div class="pdf-modal-content">
-            <div class="pdf-modal-header">
-                <h3 id="pdfModalTitle">文档预览</h3>
-                <button class="pdf-close-btn" onclick="closePDFModal()">&times;</button>
-            </div>
-            <div class="pdf-modal-body">
-                <iframe id="pdfViewer" src="" width="100%" height="600px" frameborder="0"></iframe>
-            </div>
-            <div class="pdf-modal-footer">
-                <button class="pdf-download-btn" onclick="downloadCurrentPDF()">
-                    <span class="btn-icon">📥</span>
-                    下载当前文档
-                </button>
-            </div>
+        {% endif %}
+        
+        <!-- 链接按钮 -->
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 3rem;">
+            <a href="{{ project.github }}" class="btn btn-primary" target="_blank" style="display: inline-block;">
+                View on GitHub
+            </a>
+            <a href="{{ url_for('projects') }}" class="btn btn-secondary" style="display: inline-block;">
+                ← Back to Projects
+            </a>
         </div>
     </div>
-
-    <!-- 项目截图 -->
-    <section class="project-screenshots">
-        <h2>项目截图</h2>
-        <div class="screenshots-grid">
-            <div class="screenshot-placeholder">
-                <div class="placeholder-icon">🖼️</div>
-                <p>首页截图</p>
-            </div>
-            <div class="screenshot-placeholder">
-                <div class="placeholder-icon">🖼️</div>
-                <p>游戏界面</p>
-            </div>
-            <div class="screenshot-placeholder">
-                <div class="placeholder-icon">🖼️</div>
-                <p>社区功能</p>
-            </div>
-            <div class="screenshot-placeholder">
-                <div class="placeholder-icon">🖼️</div>
-                <p>地图展示</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 学习收获 -->
-    <section class="project-learning">
-        <h2>学习收获</h2>
-        <div class="learning-content">
-            <div class="learning-item">
-                <h3>技术成长</h3>
-                <ul>
-                    <li>掌握了全栈Web开发流程，从需求分析到部署上线</li>
-                    <li>深入理解了Flask框架和RESTful API设计</li>
-                    <li>学会了Firebase实时数据库的使用和优化</li>
-                    <li>掌握了Web爬虫技术和数据清洗方法</li>
-                </ul>
-            </div>
-            
-            <div class="learning-item">
-                <h3>项目管理</h3>
-                <ul>
-                    <li>学会了如何平衡功能复杂度和开发时间</li>
-                    <li>掌握了版本控制和团队协作工具的使用</li>
-                    <li>提升了文档编写和技术交流能力</li>
-                    <li>学会了如何评估和优化系统性能</li>
-                </ul>
-            </div>
-            
-            <div class="learning-item">
-                <h3>用户体验</h3>
-                <ul>
-                    <li>理解了游戏化设计在教育应用中的重要性</li>
-                    <li>学会了如何设计直观的用户界面</li>
-                    <li>掌握了响应式设计的基本原则</li>
-                    <li>提升了用户需求分析和产品设计能力</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- 返回按钮 -->
-    <div class="back-to-projects">
-        <a href="{{ url_for('projects') }}" class="back-btn">
-            <span class="btn-icon">←</span>
-            返回项目列表
-        </a>
-    </div>
-</div>
+</section>
 {% endblock %}
+
