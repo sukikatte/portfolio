@@ -64,17 +64,10 @@
         <section class="fullpage-section active" id="home">
             <div class="section-content">
                 <div class="hero-name-container">
-                    <div class="name-frame">
-                        <div class="frame-corner tl"></div>
-                        <div class="frame-corner tr"></div>
-                        <div class="frame-corner bl"></div>
-                        <div class="frame-corner br"></div>
-                        
-                        <h1 class="hero-name">
-                            <span class="name-line">Zitong</span>
-                            <span class="name-line">Wang</span>
-                        </h1>
-                    </div>
+                    <h1 class="hero-name">
+                        <span class="name-line">Zitong</span>
+                        <span class="name-line">Wang</span>
+                    </h1>
                     <div class="hero-divider"></div>
                     <p class="hero-role">Innovative Systems & Interaction Design</p>
                 </div>
@@ -87,18 +80,166 @@
         <!-- Section 1: Journey / Timeline -->
         <section class="fullpage-section" id="journey">
             <div class="section-content">
-                <h2 class="section-title">Journey: From Functionality to Experience</h2>
-                <div class="timeline-horizontal">
-                    {% for item in timeline %}
-                    <div class="timeline-item-h">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-card">
-                            <div class="timeline-year">📍 {{ item.year }}</div>
-                            <h3 class="timeline-project">{{ item.project }}</h3>
-                            <p class="timeline-desc">{{ item.description }}</p>
+                <div class="journey-header">
+                    <h2 class="section-title">Journey: From Functionality to Experience</h2>
+                    <p class="journey-intro">
+                        This is how I grew from a functionality-focused developer into a designer of human-centered systems.
+                    </p>
+                </div>
+                
+                <!-- 项目时间轴 -->
+                <div class="projects-timeline">
+                    <div class="timeline-line"></div>
+                    
+                    <!-- Project 1: Digital Mahjong -->
+                    <div class="timeline-project" data-project="0">
+                        <div class="project-dot"></div>
+                        <div class="project-label">Digital Mahjong</div>
+                        <div class="project-year">Sophomore</div>
+                    </div>
+                    
+                    <!-- Project 2: Guess Songs -->
+                    <div class="timeline-project" data-project="1">
+                        <div class="project-dot"></div>
+                        <div class="project-label">Guess Songs</div>
+                        <div class="project-year">Junior</div>
+                    </div>
+                    
+                    <!-- Project 3: Dwen Dwen's Neighbor -->
+                    <div class="timeline-project" data-project="2">
+                        <div class="project-dot"></div>
+                        <div class="project-label">Dwen Dwen's Neighbor</div>
+                        <div class="project-year">Junior</div>
+                    </div>
+                    
+                    <!-- Project 4: Chinese Medicine -->
+                    <div class="timeline-project" data-project="3">
+                        <div class="project-dot"></div>
+                        <div class="project-label">Chinese Medicine</div>
+                        <div class="project-year">Senior</div>
+                    </div>
+                    
+                    <!-- Project 5: Parrot Ordering -->
+                    <div class="timeline-project" data-project="4">
+                        <div class="project-dot"></div>
+                        <div class="project-label">Parrot Ordering</div>
+                        <div class="project-year">Senior</div>
+                    </div>
+                    
+                    <!-- Project 6: Event Management -->
+                    <div class="timeline-project" data-project="5">
+                        <div class="project-dot"></div>
+                        <div class="project-label">Event Management</div>
+                        <div class="project-year">Senior</div>
+                    </div>
+                    
+                    <!-- Project 7: Frankenstories -->
+                    <div class="timeline-project" data-project="6">
+                        <div class="project-dot"></div>
+                        <div class="project-label">Frankenstories</div>
+                        <div class="project-year">Senior</div>
+                    </div>
+                </div>
+                
+                <!-- 项目详情展示区域 -->
+                <div class="project-details">
+                    <!-- Project 0: Digital Mahjong -->
+                    <div class="project-detail active" data-project="0">
+                        <h3 class="detail-title">Digital Mahjong</h3>
+                        <div class="detail-meta">
+                            <span class="detail-tech">Java, JavaFX, Event-driven UI</span>
+                            <a href="#" class="detail-github" target="_blank">GitHub →</a>
+                        </div>
+                        <div class="detail-content">
+                            <p><strong>Focus:</strong> Core game logic, win detection, AI opponents, and event-driven UI with JavaFX.</p>
+                            <p><strong>Learning:</strong> Software is not only about algorithms — user experience is what makes technology meaningful.</p>
+                            <p><strong>Turning Point:</strong> Professor's feedback ("lacked user thinking") reshaped how I think about software design.</p>
                         </div>
                     </div>
-                    {% endfor %}
+                    
+                    <!-- Project 1: Guess Songs -->
+                    <div class="project-detail" data-project="1">
+                        <h3 class="detail-title">Guess Songs</h3>
+                        <div class="detail-meta">
+                            <span class="detail-tech">Java, Android Studio, Firebase, Cloud OSS</span>
+                            <a href="#" class="detail-github" target="_blank">GitHub →</a>
+                        </div>
+                        <div class="detail-content">
+                            <p><strong>Focus:</strong> Native Android app with modular MVVM architecture, Classic/Timed/Multiplayer modes.</p>
+                            <p><strong>Learning:</strong> Engineering can create experiences — such as real-time competition and responsive UI — not just functions.</p>
+                            <p><strong>Impact:</strong> Realized that architecture and interface must evolve together for engaging products.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2: Dwen Dwen's Neighbor -->
+                    <div class="project-detail" data-project="2">
+                        <h3 class="detail-title">Dwen Dwen's Neighbor</h3>
+                        <div class="detail-meta">
+                            <span class="detail-tech">Python, Flask, Firebase, JavaScript, ECharts</span>
+                            <a href="https://github.com/sukikatte/dwen_dwens_neighbour" class="detail-github" target="_blank">GitHub →</a>
+                        </div>
+                        <div class="detail-content">
+                            <p><strong>Focus:</strong> Modular, bilingual platform for multi-user interaction with animal encyclopedia and virtual panda care.</p>
+                            <p><strong>Learning:</strong> Designing experiences requires merging engineering with storytelling, interaction, and accessibility.</p>
+                            <p><strong>Result:</strong> 3rd Prize, China Innovation & Entrepreneurship Competition (BJUT).</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3: Chinese Medicine -->
+                    <div class="project-detail" data-project="3">
+                        <h3 class="detail-title">Chinese Medicine Platform</h3>
+                        <div class="detail-meta">
+                            <span class="detail-tech">Vue.js, JavaScript, Flask, SQLAlchemy, Fuzzy Matching</span>
+                            <a href="#" class="detail-github" target="_blank">GitHub →</a>
+                        </div>
+                        <div class="detail-content">
+                            <p><strong>Focus:</strong> Bilingual full-stack platform with role-based access control and AI consultation chat.</p>
+                            <p><strong>Learning:</strong> Building platforms that solve real-world problems requires understanding user needs deeply.</p>
+                            <p><strong>Vision:</strong> Moving from "product developer" to "experience designer" shaping meaningful digital ecosystems.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 4: Parrot Ordering -->
+                    <div class="project-detail" data-project="4">
+                        <h3 class="detail-title">Parrot Ordering System</h3>
+                        <div class="detail-meta">
+                            <span class="detail-tech">Python, Flask, JavaScript, HTML, CSS</span>
+                            <a href="#" class="detail-github" target="_blank">GitHub →</a>
+                        </div>
+                        <div class="detail-content">
+                            <p><strong>Focus:</strong> Modular food ordering system with role-based workflows (Admin/Cook/Customer).</p>
+                            <p><strong>Learning:</strong> Interactive features like real-time menu management and social review systems enhance user engagement.</p>
+                            <p><strong>Impact:</strong> The ultimate goal is not technology itself, but the value it creates for people and society.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 5: Event Management -->
+                    <div class="project-detail" data-project="5">
+                        <h3 class="detail-title">Event Management Platform</h3>
+                        <div class="detail-meta">
+                            <span class="detail-tech">Spring Boot, MySQL, Docker, Maven</span>
+                            <a href="#" class="detail-github" target="_blank">GitHub →</a>
+                        </div>
+                        <div class="detail-content">
+                            <p><strong>Focus:</strong> Full-stack event management platform with multi-role access control (Admin/Organizer/User).</p>
+                            <p><strong>Learning:</strong> Secure backend with Spring Security, containerized deployment via Docker, complete SDLC with 70+ UML diagrams.</p>
+                            <p><strong>Result:</strong> Comprehensive documentation and scalable architecture for enterprise-level applications.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 6: Frankenstories -->
+                    <div class="project-detail" data-project="6">
+                        <h3 class="detail-title">Frankenstories: Story Generation from Reusable Parts</h3>
+                        <div class="detail-meta">
+                            <span class="detail-tech">LLM, Multimodal AI, ComiXML, Computational Creativity</span>
+                            <a href="#" class="detail-github" target="_blank">GitHub →</a>
+                        </div>
+                        <div class="detail-content">
+                            <p><strong>Focus:</strong> Developing an LLM-powered story generation system that recombines visual and textual elements from existing comic strips (ComiXML) to produce new narratives, aiming to explore computational creativity and automated storytelling.</p>
+                            <p><strong>Learning:</strong> Building a multimodal content generation pipeline, integrating language models with structured visual data for creative narrative production.</p>
+                            <p><strong>Impact:</strong> Final Year Project under Assoc. Prof. Tony Veale, exploring the intersection of AI and creative storytelling (Sept. 2025 - Present).</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

@@ -360,6 +360,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 项目卡片3D效果
     initProjectCardEffects();
+    
+    // 初始化Journey时间轴交互
+    initJourneyTimeline();
 });
 
 // ============================================
@@ -608,5 +611,107 @@ function initDynamicBackground() {
     
     animate();
     console.log('动态背景已启动 ✨ - 粒子数:', particleCount);
+}
+
+// ============================================
+// Journey 项目时间轴交互
+// ============================================
+function initJourneyTimeline() {
+    const timelineProjects = document.querySelectorAll('.timeline-project');
+    const projectDetails = document.querySelectorAll('.project-detail');
+    const projectDetailsContainer = document.querySelector('.project-details');
+    const projectsTimeline = document.querySelector('.projects-timeline');
+    
+    if (timelineProjects.length === 0 || projectDetails.length === 0) {
+        return; // Journey页面不存在，直接返回
+    }
+    
+    let currentProject = -1; // 初始状态没有激活的项目
+    let isDetailsVisible = false;
+    
+    // 激活指定项目
+    function activateProject(projectIndex) {
+        if (projectIndex === currentProject) return;
+        
+        currentProject = projectIndex;
+        
+        // 更新时间轴项目状态
+        timelineProjects.forEach((project, index) => {
+            if (index === projectIndex) {
+                project.classList.add('active');
+            } else {
+                project.classList.remove('active');
+            }
+        });
+        
+        // 更新详情显示
+        projectDetails.forEach((detail, index) => {
+            if (index === projectIndex) {
+                detail.classList.add('active');
+            } else {
+                detail.classList.remove('active');
+            }
+        });
+        
+        // 显示详情区域并上移时间轴
+        if (!isDetailsVisible) {
+            projectDetailsContainer.classList.add('show');
+            projectsTimeline.style.transform = 'translateY(-100px)';
+            isDetailsVisible = true;
+        }
+    }
+    
+    // 隐藏详情区域并恢复时间轴位置
+    function hideDetails() {
+        if (isDetailsVisible) {
+            projectDetailsContainer.classList.remove('show');
+            projectsTimeline.style.transform = 'translateY(0)';
+            isDetailsVisible = false;
+            currentProject = -1;
+            
+            // 清除所有激活状态
+            timelineProjects.forEach(project => {
+                project.classList.remove('active');
+            });
+            projectDetails.forEach(detail => {
+                detail.classList.remove('active');
+            });
+        }
+    }
+    
+    // 为每个项目添加hover事件
+    timelineProjects.forEach((project, index) => {
+        // hover事件
+        project.addEventListener('mouseenter', () => {
+            activateProject(index);
+        });
+        
+        // 点击事件
+        project.addEventListener('click', () => {
+            activateProject(index);
+        });
+    });
+    
+    // 为时间轴容器添加鼠标离开事件
+    projectsTimeline.addEventListener('mouseleave', () => {
+        hideDetails();
+    });
+    
+    // 监听页面切换，当离开Journey页面时隐藏详情
+    const journeySection = document.getElementById('journey');
+    if (journeySection) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    if (!journeySection.classList.contains('active')) {
+                        hideDetails();
+                    }
+                }
+            });
+        });
+        observer.observe(journeySection, { attributes: true });
+    }
+    
+    console.log('Journey 项目时间轴已初始化 ✨ - 共', timelineProjects.length, '个项目');
 }
 
