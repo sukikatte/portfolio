@@ -180,6 +180,20 @@ class FullPageScroll {
             }
         }
         
+        // 控制背景显示：首页显示Three.js星空，其他页面显示网格星空
+        const bgCanvas = document.getElementById('bgCanvas');
+        const starsCanvas = document.getElementById('starsCanvas');
+        
+        if (index === 0) {
+            // 首页：隐藏网格背景，显示Three.js星空
+            if (bgCanvas) bgCanvas.style.display = 'none';
+            if (starsCanvas) starsCanvas.style.display = 'block';
+        } else {
+            // 其他页面：显示网格背景，隐藏Three.js星空
+            if (bgCanvas) bgCanvas.style.display = 'block';
+            if (starsCanvas) starsCanvas.style.display = 'none';
+        }
+        
         // 如果进入项目页面（index = 2），启动自动播放
         if (index === 2) {
             this.startAutoPlay();
@@ -355,7 +369,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.opacity = '1';
     }, 100);
     
-    // 初始化动态背景
+    // 初始化背景显示状态（首页显示Three.js星空，隐藏网格背景）
+    const bgCanvas = document.getElementById('bgCanvas');
+    const starsCanvas = document.getElementById('starsCanvas');
+    if (bgCanvas) bgCanvas.style.display = 'none'; // 首页默认隐藏网格背景
+    if (starsCanvas) starsCanvas.style.display = 'block'; // 首页显示Three.js星空
+    
+    // 初始化动态背景（即使初始隐藏也要初始化，以便切换时能正常显示）
     initDynamicBackground();
     
     // 项目卡片3D效果

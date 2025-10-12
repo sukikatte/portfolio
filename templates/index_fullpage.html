@@ -8,9 +8,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-    <!-- 动态背景 -->
+    <!-- 网格星空背景画布 -->
     <canvas id="bgCanvas" class="bg-canvas"></canvas>
     
     <!-- 导航栏 -->
@@ -25,9 +27,8 @@
                 <li><a href="#home" class="nav-link" data-section="0">Home</a></li>
                 <li><a href="#journey" class="nav-link" data-section="1">Journey</a></li>
                 <li><a href="#projects" class="nav-link" data-section="2">Projects</a></li>
-                <li><a href="#behind" class="nav-link" data-section="3">Behind</a></li>
-                <li><a href="#about" class="nav-link" data-section="4">About</a></li>
-                <li><a href="#contact" class="nav-link" data-section="5">Contact</a></li>
+                <li><a href="#about" class="nav-link" data-section="3">About</a></li>
+                <li><a href="#contact" class="nav-link" data-section="4">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -37,9 +38,8 @@
         <div class="nav-dot active" data-section="0" title="Home"></div>
         <div class="nav-dot" data-section="1" title="Journey"></div>
         <div class="nav-dot" data-section="2" title="Projects"></div>
-        <div class="nav-dot" data-section="3" title="Behind"></div>
-        <div class="nav-dot" data-section="4" title="About"></div>
-        <div class="nav-dot" data-section="5" title="Contact"></div>
+        <div class="nav-dot" data-section="3" title="About"></div>
+        <div class="nav-dot" data-section="4" title="Contact"></div>
     </div>
 
     <!-- 键盘提示（只在首页显示） -->
@@ -64,17 +64,11 @@
         <section class="fullpage-section active" id="home">
             <div class="section-content">
                 <div class="hero-name-container">
-                    <h1 class="hero-name">
-                        <span class="name-line">Zitong</span>
-                        <span class="name-line">Wang</span>
-                    </h1>
-                    <div class="hero-divider"></div>
-                    <p class="hero-role">Innovative Systems & Interaction Design</p>
+                    <h1 class="hero-name">Portfolio</h1>
                 </div>
-                <p class="hero-statement">
-                    Technology is powerful — but it matters only when it connects with people.
-                </p>
             </div>
+            <!-- Three.js 星空背景画布 -->
+            <canvas id="starsCanvas" class="stars-canvas"></canvas>
         </section>
 
         <!-- Section 1: Journey / Timeline -->
@@ -293,32 +287,7 @@
             </div>
         </section>
 
-        <!-- Section 3: Behind the Scenes -->
-        <section class="fullpage-section" id="behind">
-            <div class="section-content">
-                <h2 class="section-title">Behind the Scenes</h2>
-                <p class="section-subtitle">How I think, design, and build</p>
-                <div class="cards-grid">
-                    {% for card in cards %}
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="flip-card-icon">{{ card.icon }}</div>
-                                <h3 class="flip-card-title">{{ card.title }}</h3>
-                                <p class="flip-card-subtitle">{{ card.front }}</p>
-                            </div>
-                            <div class="flip-card-back">
-                                <div class="flip-card-icon">{{ card.icon }}</div>
-                                <p class="flip-card-content">{{ card.back }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 4: About Me -->
+        <!-- Section 3: About Me -->
         <section class="fullpage-section" id="about">
             <div class="section-content">
                 <h2 class="section-title">About Me</h2>
@@ -344,7 +313,7 @@
             </div>
         </section>
 
-        <!-- Section 5: Contact -->
+        <!-- Section 4: Contact -->
         <section class="fullpage-section" id="contact">
             <div class="section-content">
                 <div class="contact-header">
@@ -397,5 +366,6 @@
     </div>
 
     <script src="{{ url_for('static', filename='js/fullpage.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/stars.js') }}"></script>
 </body>
 </html>

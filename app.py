@@ -383,38 +383,10 @@ TIMELINE = [
     }
 ]
 
-# Behind the Scenes 数据
-BEHIND_SCENES = [
-    {
-        'icon': '🧠',
-        'title': '用户思维',
-        'front': 'User-Centered Design',
-        'back': 'Persona 设计、用户旅程图、需求分析、可用性测试'
-    },
-    {
-        'icon': '🪄',
-        'title': '交互逻辑',
-        'front': 'Interaction Design',
-        'back': '流程图、状态图、原型设计、交互模式库'
-    },
-    {
-        'icon': '🛠️',
-        'title': '技术架构',
-        'front': 'System Architecture',
-        'back': '系统设计、数据库结构、API 设计、性能优化'
-    },
-    {
-        'icon': '📐',
-        'title': '视觉设计',
-        'front': 'Visual Design',
-        'back': '动画设计、配色系统、排版规范、设计系统'
-    }
-]
-
 @app.route('/')
 def home():
     # 全屏滚动单页版本
-    return render_template('index_fullpage.html', timeline=TIMELINE, projects=PROJECTS, cards=BEHIND_SCENES)
+    return render_template('index_fullpage.html', timeline=TIMELINE, projects=PROJECTS)
 
 @app.route('/old')
 def home_old():
@@ -431,10 +403,6 @@ def project_detail(project_id):
     if not project:
         return "项目不存在", 404
     return render_template('project_detail.html', project=project)
-
-@app.route('/behind-scenes')
-def behind_scenes():
-    return render_template('behind_scenes.html', cards=BEHIND_SCENES)
 
 @app.route('/about')
 def about():

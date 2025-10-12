@@ -102,3 +102,4 @@ function animateNumber(element, target, duration = 2000) {
     }, 16);
 }
 
+
