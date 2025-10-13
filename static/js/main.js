@@ -52,7 +52,7 @@ function handleNavbarScroll() {
         
         // 向下滚动时添加阴影
         if (currentScroll > 50) {
-            navbar.style.boxShadow = '0 4px 30px rgba(0, 217, 255, 0.1)';
+            navbar.style.boxShadow = '0 4px 30px rgba(76, 201, 240, 0.1)';
         } else {
             navbar.style.boxShadow = 'none';
         }
@@ -218,7 +218,7 @@ function initCursorEffect() {
     document.querySelectorAll('a, button, .project-card').forEach(el => {
         el.addEventListener('mouseenter', () => {
             cursor.style.transform = 'scale(1.5)';
-            cursor.style.background = 'rgba(0, 217, 255, 0.2)';
+            cursor.style.background = 'rgba(76, 201, 240, 0.2)';
         });
         el.addEventListener('mouseleave', () => {
             cursor.style.transform = 'scale(1)';
@@ -289,7 +289,7 @@ function initParticles() {
         }
         
         draw() {
-            ctx.fillStyle = 'rgba(0, 217, 255, 0.5)';
+            ctx.fillStyle = 'rgba(76, 201, 240, 0.5)';
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
             ctx.fill();
@@ -316,7 +316,7 @@ function initParticles() {
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
                 if (distance < 150) {
-                    ctx.strokeStyle = `rgba(0, 217, 255, ${0.2 * (1 - distance / 150)})`;
+                    ctx.strokeStyle = `rgba(76, 201, 240, ${0.2 * (1 - distance / 150)})`;
                     ctx.lineWidth = 0.5;
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);

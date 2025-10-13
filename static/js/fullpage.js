@@ -494,11 +494,11 @@ function initDynamicBackground() {
         draw() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(0, 217, 255, ${this.opacity})`;
+            ctx.fillStyle = `rgba(76, 201, 240, ${this.opacity})`;
             ctx.fill();
             
             ctx.shadowBlur = 10;
-            ctx.shadowColor = 'rgba(0, 217, 255, 0.5)';
+            ctx.shadowColor = 'rgba(76, 201, 240, 0.5)';
             ctx.fill();
             ctx.shadowBlur = 0;
         }
@@ -510,7 +510,7 @@ function initDynamicBackground() {
     
     // 绘制网格线
     function drawGrid() {
-        ctx.strokeStyle = 'rgba(0, 217, 255, 0.08)';
+        ctx.strokeStyle = 'rgba(76, 201, 240, 0.08)';
         ctx.lineWidth = 1;
         
         for (let x = 0; x < canvas.width; x += gridSize) {
@@ -538,7 +538,7 @@ function initDynamicBackground() {
                 
                 if (distance < 150) {
                     const opacity = (1 - distance / 150) * 0.4;
-                    ctx.strokeStyle = `rgba(0, 217, 255, ${opacity})`;
+                    ctx.strokeStyle = `rgba(76, 201, 240, ${opacity})`;
                     ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
@@ -559,9 +559,9 @@ function initDynamicBackground() {
         
         // 径向渐变背景
         const bgGradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, radius);
-        bgGradient.addColorStop(0, 'rgba(0, 217, 255, 0.12)');
-        bgGradient.addColorStop(0.5, 'rgba(0, 217, 255, 0.06)');
-        bgGradient.addColorStop(1, 'rgba(0, 217, 255, 0)');
+        bgGradient.addColorStop(0, 'rgba(76, 201, 240, 0.12)');
+        bgGradient.addColorStop(0.5, 'rgba(76, 201, 240, 0.06)');
+        bgGradient.addColorStop(1, 'rgba(76, 201, 240, 0)');
         
         ctx.fillStyle = bgGradient;
         ctx.beginPath();
@@ -578,9 +578,9 @@ function initDynamicBackground() {
             const distTop = Math.abs((gridY - gridSize) - centerY);
             const distBottom = Math.abs((gridY + gridSize * 2) - centerY);
             
-            gradient.addColorStop(0, `rgba(0, 217, 255, ${Math.max(0, 1 - distTop / radius) * 0.4})`);
-            gradient.addColorStop(0.5, `rgba(0, 217, 255, ${opacity})`);
-            gradient.addColorStop(1, `rgba(0, 217, 255, ${Math.max(0, 1 - distBottom / radius) * 0.4})`);
+            gradient.addColorStop(0, `rgba(76, 201, 240, ${Math.max(0, 1 - distTop / radius) * 0.4})`);
+            gradient.addColorStop(0.5, `rgba(76, 201, 240, ${opacity})`);
+            gradient.addColorStop(1, `rgba(76, 201, 240, ${Math.max(0, 1 - distBottom / radius) * 0.4})`);
             
             ctx.strokeStyle = gradient;
             ctx.lineWidth = 1.5;
@@ -599,9 +599,9 @@ function initDynamicBackground() {
             const distLeft = Math.abs((gridX - gridSize) - centerX);
             const distRight = Math.abs((gridX + gridSize * 2) - centerX);
             
-            gradient.addColorStop(0, `rgba(0, 217, 255, ${Math.max(0, 1 - distLeft / radius) * 0.4})`);
-            gradient.addColorStop(0.5, `rgba(0, 217, 255, ${opacity})`);
-            gradient.addColorStop(1, `rgba(0, 217, 255, ${Math.max(0, 1 - distRight / radius) * 0.4})`);
+            gradient.addColorStop(0, `rgba(76, 201, 240, ${Math.max(0, 1 - distLeft / radius) * 0.4})`);
+            gradient.addColorStop(0.5, `rgba(76, 201, 240, ${opacity})`);
+            gradient.addColorStop(1, `rgba(76, 201, 240, ${Math.max(0, 1 - distRight / radius) * 0.4})`);
             
             ctx.strokeStyle = gradient;
             ctx.lineWidth = 1.5;
@@ -637,101 +637,208 @@ function initDynamicBackground() {
 // Journey 项目时间轴交互
 // ============================================
 function initJourneyTimeline() {
-    const timelineProjects = document.querySelectorAll('.timeline-project');
-    const projectDetails = document.querySelectorAll('.project-detail');
-    const projectDetailsContainer = document.querySelector('.project-details');
-    const projectsTimeline = document.querySelector('.projects-timeline');
+    const container = document.querySelector('.journey-slider-container');
+    const originalSlides = document.querySelectorAll('.journey-slide');
+    const prevBtn = document.querySelector('.journey-nav-btn.prev');
+    const nextBtn = document.querySelector('.journey-nav-btn.next');
+    const indicators = document.querySelectorAll('.journey-indicator');
     
-    if (timelineProjects.length === 0 || projectDetails.length === 0) {
-        return; // Journey页面不存在，直接返回
+    if (!container || originalSlides.length === 0) {
+        return;
     }
     
-    let currentProject = -1; // 初始状态没有激活的项目
-    let isDetailsVisible = false;
+    const totalSlides = originalSlides.length;
     
-    // 激活指定项目
-    function activateProject(projectIndex) {
-        if (projectIndex === currentProject) return;
+    // 克隆前3个和后3个幻灯片以实现无限循环
+    const cloneCount = 3;
+    
+    // 克隆后面的3个到前面（倒序遍历保持正序插入）
+    for (let i = totalSlides - 1; i >= totalSlides - cloneCount; i--) {
+        const clone = originalSlides[i].cloneNode(true);
+        clone.classList.add('clone');
+        container.insertBefore(clone, container.firstChild);
+    }
+    
+    // 克隆前面的3个到后面
+    for (let i = 0; i < cloneCount; i++) {
+        const clone = originalSlides[i].cloneNode(true);
+        clone.classList.add('clone');
+        container.appendChild(clone);
+    }
+    
+    // 重新获取所有幻灯片（包括克隆的）
+    const allSlides = container.querySelectorAll('.journey-slide');
+    let currentIndex = cloneCount; // 从第一个真实项目开始（跳过克隆的）
+    let isTransitioning = false;
+    
+    // 计算每个卡片的宽度（包括间距）
+    function getSlideWidth() {
+        const slide = allSlides[0];
+        const slideWidth = slide.offsetWidth;
+        // 从CSS中读取gap值
+        const computedStyle = getComputedStyle(container);
+        const gap = parseFloat(computedStyle.gap) || 48;
+        return slideWidth + gap;
+    }
+    
+    // 更新滑块位置
+    function updateSlider(animate = true) {
+        const slideWidth = getSlideWidth();
+        const wrapper = document.querySelector('.journey-slider-wrapper');
+        const wrapperWidth = wrapper.offsetWidth;
         
-        currentProject = projectIndex;
+        // 获取实际gap值
+        const computedStyle = getComputedStyle(container);
+        const gap = parseFloat(computedStyle.gap) || 48;
         
-        // 更新时间轴项目状态
-        timelineProjects.forEach((project, index) => {
-            if (index === projectIndex) {
-                project.classList.add('active');
-            } else {
-                project.classList.remove('active');
-            }
-        });
+        // 计算居中偏移量
+        const centerOffset = (wrapperWidth - slideWidth + gap) / 2;
+        const offset = -(currentIndex * slideWidth) + centerOffset;
         
-        // 更新详情显示
-        projectDetails.forEach((detail, index) => {
-            if (index === projectIndex) {
-                detail.classList.add('active');
-            } else {
-                detail.classList.remove('active');
-            }
-        });
-        
-        // 显示详情区域并上移时间轴
-        if (!isDetailsVisible) {
-            projectDetailsContainer.classList.add('show');
-            projectsTimeline.style.transform = 'translateY(-100px)';
-            isDetailsVisible = true;
+        if (!animate) {
+            container.style.transition = 'none';
+        } else {
+            container.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
         }
-    }
-    
-    // 隐藏详情区域并恢复时间轴位置
-    function hideDetails() {
-        if (isDetailsVisible) {
-            projectDetailsContainer.classList.remove('show');
-            projectsTimeline.style.transform = 'translateY(0)';
-            isDetailsVisible = false;
-            currentProject = -1;
-            
-            // 清除所有激活状态
-            timelineProjects.forEach(project => {
-                project.classList.remove('active');
-            });
-            projectDetails.forEach(detail => {
-                detail.classList.remove('active');
-            });
-        }
-    }
-    
-    // 为每个项目添加hover事件
-    timelineProjects.forEach((project, index) => {
-        // hover事件
-        project.addEventListener('mouseenter', () => {
-            activateProject(index);
+        
+        container.style.transform = `translateX(${offset}px)`;
+        
+        // 更新指示器（映射到真实索引）
+        const realIndex = (currentIndex - cloneCount + totalSlides) % totalSlides;
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === realIndex);
         });
         
-        // 点击事件
-        project.addEventListener('click', () => {
-            activateProject(index);
-        });
-    });
-    
-    // 为时间轴容器添加鼠标离开事件
-    projectsTimeline.addEventListener('mouseleave', () => {
-        hideDetails();
-    });
-    
-    // 监听页面切换，当离开Journey页面时隐藏详情
-    const journeySection = document.getElementById('journey');
-    if (journeySection) {
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                    if (!journeySection.classList.contains('active')) {
-                        hideDetails();
-                    }
+        // 更新中心卡片的高亮状态（添加center类）
+        allSlides.forEach((slide, index) => {
+            const card = slide.querySelector('.journey-card');
+            if (card) {
+                if (index === currentIndex) {
+                    card.classList.add('center');
+                } else {
+                    card.classList.remove('center');
                 }
-            });
+            }
         });
-        observer.observe(journeySection, { attributes: true });
     }
     
-    console.log('Journey 项目时间轴已初始化 ✨ - 共', timelineProjects.length, '个项目');
+    // 处理无限循环的跳转
+    function handleInfiniteLoop() {
+        if (currentIndex <= cloneCount - 1) {
+            // 到达克隆的前端，跳转到真实的后端
+            currentIndex = totalSlides + cloneCount - 1;
+            updateSlider(false);
+        } else if (currentIndex >= totalSlides + cloneCount) {
+            // 到达克隆的后端，跳转到真实的前端
+            currentIndex = cloneCount;
+            updateSlider(false);
+        }
+    }
+    
+    // 添加/移除卡牌变形效果
+    function addSwipeEffect(direction) {
+        const allCards = document.querySelectorAll('.journey-card');
+        console.log('🎴 添加圆弧效果:', direction, '- 找到', allCards.length, '个卡牌');
+        allCards.forEach(card => {
+            card.classList.remove('swipe-left', 'swipe-right');
+            if (direction === 'left') {
+                card.classList.add('swipe-left');
+                console.log('  → 添加 swipe-left 类');
+            } else if (direction === 'right') {
+                card.classList.add('swipe-right');
+                console.log('  → 添加 swipe-right 类');
+            }
+        });
+    }
+    
+    function removeSwipeEffect() {
+        const allCards = document.querySelectorAll('.journey-card');
+        console.log('🔄 移除圆弧效果 - 共', allCards.length, '个卡牌');
+        allCards.forEach(card => {
+            card.classList.remove('swipe-left', 'swipe-right');
+        });
+    }
+    
+    // 前一个（向左切换）
+    function goToPrev() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex--;
+        // 向左切换：两侧应向左同向弯曲
+        addSwipeEffect('left');
+        
+        updateSlider(true);
+        
+        setTimeout(() => {
+            handleInfiniteLoop();
+            removeSwipeEffect();
+            isTransitioning = false;
+        }, 600);
+    }
+    
+    // 后一个（向右切换）
+    function goToNext() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex++;
+        // 向右切换：两侧应向右同向弯曲
+        addSwipeEffect('right');
+        
+        updateSlider(true);
+        
+        setTimeout(() => {
+            handleInfiniteLoop();
+            removeSwipeEffect();
+            isTransitioning = false;
+        }, 600);
+    }
+    
+    // 跳转到指定索引
+    function goToSlide(index) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex = index + cloneCount;
+        updateSlider(true);
+        
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 600);
+    }
+    
+    // 初始化位置
+    updateSlider(false);
+    
+    // 添加事件监听
+    if (prevBtn) prevBtn.addEventListener('click', goToPrev);
+    if (nextBtn) nextBtn.addEventListener('click', goToNext);
+    
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => goToSlide(index));
+    });
+    
+    // 键盘控制
+    document.addEventListener('keydown', (e) => {
+        const journeySection = document.getElementById('journey');
+        if (journeySection && journeySection.classList.contains('active')) {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                goToPrev();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                goToNext();
+            }
+        }
+    });
+    
+    // 窗口大小改变时重新计算位置
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            updateSlider(false);
+        }, 100);
+    });
+    
+    console.log('Journey 无限循环滑动已初始化 ✨ - 共', totalSlides, '个项目');
 }
 

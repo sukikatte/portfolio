@@ -76,147 +76,8 @@ PROJECTS = [
                 '下一步：添加社区功能，让用户分享保护心得'
             ]
         }
-    },
-    {
-        'id': 'guess-songs',
-        'title': 'Guess Songs',
-        'subtitle': 'Real-time Multiplayer Music Game',
-        'tags': ['Solo Project', 'Cloud + Realtime DB', 'Game + Interaction'],
-        'icon': '🎵',
-        'color': '#FF6B6B',
-        'description': '从 0 构建的轻量级音乐问答游戏，强调实时交互和用户体验',
-        'tech_stack': ['Firebase', 'Cloud Storage', 'Real-time Database', 'JavaScript'],
-        'github': '#',
-        
-        'problem': {
-            'title': 'Problem / Context',
-            'content': '市面上的音乐游戏大多需要下载客户端，操作复杂。我想创建一个轻量级的网页版音乐问答游戏，让用户无需安装即可多人对战，随时随地享受猜歌乐趣。',
-            'highlights': [
-                '目标用户：音乐爱好者、休闲游戏玩家',
-                '核心需求：快速开始、多人互动、实时反馈',
-                '技术挑战：音频存储、实时同步、低延迟'
-            ]
-        },
-        'ideation': {
-            'title': 'Ideation & Design Thinking',
-            'content': '设计了简单的游戏流程：创建/加入房间 → 听歌片段 → 快速抢答 → 实时排行。关注用户的社交需求，添加排行榜和对战机制增加竞争性和趣味性。',
-            'highlights': [
-                '游戏机制：限时抢答、积分系统、排行榜',
-                '社交设计：多人房间、实时对战、成就分享',
-                '音频策略：15秒片段、渐进式加载、云存储'
-            ]
-        },
-        'solution': {
-            'title': 'Solution & Technical Implementation',
-            'content': '使用Firebase Realtime Database实现多设备实时同步，自建音频云存储系统绕过API限制。前端采用原生JavaScript，确保快速响应。所有状态变化立即同步到所有客户端。',
-            'highlights': [
-                'Firebase Realtime Database：毫秒级同步',
-                '云存储OSS：自建音频库，无API依赖',
-                'WebSocket：实时通信，低延迟',
-                '缓存策略：预加载下一首，流畅体验'
-            ]
-        },
-        'ux': {
-            'title': 'User Experience & Interface Design',
-            'content': '简洁的游戏界面，大号按钮便于快速操作。实时显示所有玩家状态，增强对战氛围。音频波形可视化，视觉反馈丰富。排行榜设计带动画，成就感强烈。',
-            'highlights': [
-                '极简UI：3秒理解规则，即刻开始',
-                '实时反馈：答题瞬间显示对错',
-                '音频可视化：波形动画增强沉浸感',
-                '排行榜动画：数字跳动，成就满满'
-            ]
-        },
-        'outcome': {
-            'title': 'Outcome & Impact',
-            'content': '成功实现多人实时对战，延迟控制在100ms以内。音频云存储方案稳定可靠，支持100+歌曲库。用户平均游戏时长15分钟，复玩率高。',
-            'highlights': [
-                '⚡ 实时同步延迟 < 100ms',
-                '🎵 音频库包含100+歌曲',
-                '👥 支持同时10人对战',
-                '🔄 用户平均游戏时长15分钟'
-            ]
-        },
-        'reflection': {
-            'title': 'Reflection',
-            'content': '从0到1独立开发一个实时游戏，学会了云服务集成、实时通信、性能优化等技能。最大的收获是理解了"实时性"对用户体验的重要性。',
-            'learnings': [
-                '实时性是多人游戏的核心体验',
-                'Firebase非常适合快速构建实时应用',
-                '音频处理需要平衡质量和加载速度',
-                '下一步：添加更多游戏模式、自定义歌单'
-            ]
-        }
-    },
-    {
-        'id': 'mahjong',
-        'title': 'Digital Mahjong',
-        'subtitle': 'Algorithmic Thinking Meets User Experience',
-        'tags': ['Algorithm + UI', 'Early Work'],
-        'icon': '🀄',
-        'color': '#95E1D3',
-        'description': '从功能实现入手的桌面麻将游戏算法与交互探索',
-        'tech_stack': ['Python', 'Algorithm Design', 'Game Logic'],
-        'github': '#',
-        
-        'problem': {
-            'title': 'Problem / Context',
-            'content': '这是我的第一个完整项目，目标是用Python实现一个功能完整的麻将游戏。重点在于算法设计：番型计算、胡牌判断、AI对手等核心逻辑。',
-            'highlights': [
-                '技术挑战：复杂的规则系统、状态管理',
-                '学习目标：算法设计、数据结构、游戏逻辑',
-                '初期思维：功能优先，追求完整实现'
-            ]
-        },
-        'ideation': {
-            'title': 'Ideation & Design Thinking',
-            'content': '项目完成后，教师评价："功能完整，但缺乏用户思维"。这句话成为我的转折点。开始思考：用户真正需要什么？如何让游戏更易用？界面如何更直观？',
-            'highlights': [
-                '反思：功能≠用户体验',
-                '转变：从"能用"到"好用"的思考',
-                '启发：技术服务于人，而非炫技'
-            ]
-        },
-        'solution': {
-            'title': 'Solution & Technical Implementation',
-            'content': 'Python面向对象设计，将麻将规则抽象为类和方法。状态机管理游戏流程，算法实现番型计算和胡牌判断。虽然技术实现扎实，但UI设计确实不够友好。',
-            'highlights': [
-                '核心算法：番型计算、胡牌判断逻辑',
-                '状态机：游戏流程控制',
-                '数据结构：麻将牌组的高效表示',
-                'AI对手：基础策略算法'
-            ]
-        },
-        'ux': {
-            'title': 'User Experience & Interface Design',
-            'content': '早期版本的UI非常简陋，只关注功能实现。按钮布局混乱，操作流程不清晰，缺少视觉反馈。这些问题让我意识到UI/UX的重要性。',
-            'highlights': [
-                '问题：UI简陋，缺乏视觉层次',
-                '问题：操作流程不直观',
-                '问题：缺少反馈动画',
-                '教训：技术和体验同等重要'
-            ]
-        },
-        'outcome': {
-            'title': 'Outcome & Impact',
-            'content': '虽然项目在用户体验上有不足，但算法实现获得认可。更重要的是，这次经历让我明白了用户导向设计的重要性，促使我在后续项目中更关注UX。',
-            'highlights': [
-                '✅ 功能完整，算法扎实',
-                '⚠️ UI/UX需改进',
-                '💡 重要转折点：开始关注用户体验',
-                '📚 学到的比做出的更重要'
-            ]
-        },
-        'reflection': {
-            'title': 'Reflection',
-            'content': '这是我的起点项目，虽不完美但意义重大。教师的批评是最好的礼物，让我从"程序员"转变为"设计者"。后续所有项目都受这次经历影响，开始真正关注用户需求。',
-            'learnings': [
-                '功能实现只是第一步，用户体验才是关键',
-                '批评是成长的催化剂',
-                '技术与设计缺一不可',
-                '这个项目定义了我之后的方向'
-            ]
-        }
-    },
+    }
+,
     {
         'id': 'chinese-medicine',
         'title': 'Chinese Medicine Recommendation',
@@ -286,7 +147,150 @@ PROJECTS = [
                 '下一步：引入专业医师审核，提高可靠性'
             ]
         }
-    },
+    }
+,
+    {
+        'id': 'guess-songs',
+        'title': 'Guess Songs',
+        'subtitle': 'Real-time Multiplayer Music Game',
+        'tags': ['Solo Project', 'Cloud + Realtime DB', 'Game + Interaction'],
+        'icon': '🎵',
+        'color': '#FF6B6B',
+        'description': '从 0 构建的轻量级音乐问答游戏，强调实时交互和用户体验',
+        'tech_stack': ['Firebase', 'Cloud Storage', 'Real-time Database', 'JavaScript'],
+        'github': '#',
+        
+        'problem': {
+            'title': 'Problem / Context',
+            'content': '市面上的音乐游戏大多需要下载客户端，操作复杂。我想创建一个轻量级的网页版音乐问答游戏，让用户无需安装即可多人对战，随时随地享受猜歌乐趣。',
+            'highlights': [
+                '目标用户：音乐爱好者、休闲游戏玩家',
+                '核心需求：快速开始、多人互动、实时反馈',
+                '技术挑战：音频存储、实时同步、低延迟'
+            ]
+        },
+        'ideation': {
+            'title': 'Ideation & Design Thinking',
+            'content': '设计了简单的游戏流程：创建/加入房间 → 听歌片段 → 快速抢答 → 实时排行。关注用户的社交需求，添加排行榜和对战机制增加竞争性和趣味性。',
+            'highlights': [
+                '游戏机制：限时抢答、积分系统、排行榜',
+                '社交设计：多人房间、实时对战、成就分享',
+                '音频策略：15秒片段、渐进式加载、云存储'
+            ]
+        },
+        'solution': {
+            'title': 'Solution & Technical Implementation',
+            'content': '使用Firebase Realtime Database实现多设备实时同步，自建音频云存储系统绕过API限制。前端采用原生JavaScript，确保快速响应。所有状态变化立即同步到所有客户端。',
+            'highlights': [
+                'Firebase Realtime Database：毫秒级同步',
+                '云存储OSS：自建音频库，无API依赖',
+                'WebSocket：实时通信，低延迟',
+                '缓存策略：预加载下一首，流畅体验'
+            ]
+        },
+        'ux': {
+            'title': 'User Experience & Interface Design',
+            'content': '简洁的游戏界面，大号按钮便于快速操作。实时显示所有玩家状态，增强对战氛围。音频波形可视化，视觉反馈丰富。排行榜设计带动画，成就感强烈。',
+            'highlights': [
+                '极简UI：3秒理解规则，即刻开始',
+                '实时反馈：答题瞬间显示对错',
+                '音频可视化：波形动画增强沉浸感',
+                '排行榜动画：数字跳动，成就满满'
+            ]
+        },
+        'outcome': {
+            'title': 'Outcome & Impact',
+            'content': '成功实现多人实时对战，延迟控制在100ms以内。音频云存储方案稳定可靠，支持100+歌曲库。用户平均游戏时长15分钟，复玩率高。',
+            'highlights': [
+                '⚡ 实时同步延迟 < 100ms',
+                '🎵 音频库包含100+歌曲',
+                '👥 支持同时10人对战',
+                '🔄 用户平均游戏时长15分钟'
+            ]
+        },
+        'reflection': {
+            'title': 'Reflection',
+            'content': '从0到1独立开发一个实时游戏，学会了云服务集成、实时通信、性能优化等技能。最大的收获是理解了"实时性"对用户体验的重要性。',
+            'learnings': [
+                '实时性是多人游戏的核心体验',
+                'Firebase非常适合快速构建实时应用',
+                '音频处理需要平衡质量和加载速度',
+                '下一步：添加更多游戏模式、自定义歌单'
+            ]
+        }
+    }
+,
+    {
+        'id': 'mahjong',
+        'title': 'Digital Mahjong',
+        'subtitle': 'Algorithmic Thinking Meets User Experience',
+        'tags': ['Algorithm + UI', 'Early Work'],
+        'icon': '🀄',
+        'color': '#95E1D3',
+        'description': '从功能实现入手的桌面麻将游戏算法与交互探索',
+        'tech_stack': ['Python', 'Algorithm Design', 'Game Logic'],
+        'github': '#',
+        
+        'problem': {
+            'title': 'Problem / Context',
+            'content': '这是我的第一个完整项目，目标是用Python实现一个功能完整的麻将游戏。重点在于算法设计：番型计算、胡牌判断、AI对手等核心逻辑。',
+            'highlights': [
+                '技术挑战：复杂的规则系统、状态管理',
+                '学习目标：算法设计、数据结构、游戏逻辑',
+                '初期思维：功能优先，追求完整实现'
+            ]
+        },
+        'ideation': {
+            'title': 'Ideation & Design Thinking',
+            'content': '项目完成后，教师评价："功能完整，但缺乏用户思维"。这句话成为我的转折点。开始思考：用户真正需要什么？如何让游戏更易用？界面如何更直观？',
+            'highlights': [
+                '反思：功能≠用户体验',
+                '转变：从"能用"到"好用"的思考',
+                '启发：技术服务于人，而非炫技'
+            ]
+        },
+        'solution': {
+            'title': 'Solution & Technical Implementation',
+            'content': 'Python面向对象设计，将麻将规则抽象为类和方法。状态机管理游戏流程，算法实现番型计算和胡牌判断。虽然技术实现扎实，但UI设计确实不够友好。',
+            'highlights': [
+                '核心算法：番型计算、胡牌判断逻辑',
+                '状态机：游戏流程控制',
+                '数据结构：麻将牌组的高效表示',
+                'AI对手：基础策略算法'
+            ]
+        },
+        'ux': {
+            'title': 'User Experience & Interface Design',
+            'content': '早期版本的UI非常简陋，只关注功能实现。按钮布局混乱，操作流程不清晰，缺少视觉反馈。这些问题让我意识到UI/UX的重要性。',
+            'highlights': [
+                '问题：UI简陋，缺乏视觉层次',
+                '问题：操作流程不直观',
+                '问题：缺少反馈动画',
+                '教训：技术和体验同等重要'
+            ]
+        },
+        'outcome': {
+            'title': 'Outcome & Impact',
+            'content': '虽然项目在用户体验上有不足，但算法实现获得认可。更重要的是，这次经历让我明白了用户导向设计的重要性，促使我在后续项目中更关注UX。',
+            'highlights': [
+                '✅ 功能完整，算法扎实',
+                '⚠️ UI/UX需改进',
+                '💡 重要转折点：开始关注用户体验',
+                '📚 学到的比做出的更重要'
+            ]
+        },
+        'reflection': {
+            'title': 'Reflection',
+            'content': '这是我的起点项目，虽不完美但意义重大。教师的批评是最好的礼物，让我从"程序员"转变为"设计者"。后续所有项目都受这次经历影响，开始真正关注用户需求。',
+            'learnings': [
+                '功能实现只是第一步，用户体验才是关键',
+                '批评是成长的催化剂',
+                '技术与设计缺一不可',
+                '这个项目定义了我之后的方向'
+            ]
+        }
+    }
+,
     {
         'id': 'parrot-ordering',
         'title': 'Parrot Ordering System',
@@ -357,7 +361,9 @@ PROJECTS = [
             ]
         }
     }
-]
+    ]
+
+
 
 # 时间轴数据
 TIMELINE = [

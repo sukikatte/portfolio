@@ -27,8 +27,7 @@
                 <li><a href="#home" class="nav-link" data-section="0">Home</a></li>
                 <li><a href="#journey" class="nav-link" data-section="1">Journey</a></li>
                 <li><a href="#projects" class="nav-link" data-section="2">Projects</a></li>
-                <li><a href="#about" class="nav-link" data-section="3">About</a></li>
-                <li><a href="#contact" class="nav-link" data-section="4">Contact</a></li>
+                <li><a href="#connect" class="nav-link" data-section="3">Connect</a></li>
             </ul>
         </div>
     </nav>
@@ -38,8 +37,7 @@
         <div class="nav-dot active" data-section="0" title="Home"></div>
         <div class="nav-dot" data-section="1" title="Journey"></div>
         <div class="nav-dot" data-section="2" title="Projects"></div>
-        <div class="nav-dot" data-section="3" title="About"></div>
-        <div class="nav-dot" data-section="4" title="Contact"></div>
+        <div class="nav-dot" data-section="3" title="Connect"></div>
     </div>
 
     <!-- 键盘提示（只在首页显示） -->
@@ -74,165 +72,86 @@
         <!-- Section 1: Journey / Timeline -->
         <section class="fullpage-section" id="journey">
             <div class="section-content">
-                <div class="journey-header">
-                    <h2 class="section-title">Journey: From Functionality to Experience</h2>
-                    <p class="journey-intro">
-                        This is how I grew from a functionality-focused developer into a designer of human-centered systems.
-                    </p>
-                </div>
-                
-                <!-- 项目时间轴 -->
-                <div class="projects-timeline">
-                    <div class="timeline-line"></div>
-                    
-                    <!-- Project 1: Digital Mahjong -->
-                    <div class="timeline-project" data-project="0">
-                        <div class="project-dot"></div>
-                        <div class="project-label">Digital Mahjong</div>
-                        <div class="project-year">Sophomore</div>
-                    </div>
-                    
-                    <!-- Project 2: Guess Songs -->
-                    <div class="timeline-project" data-project="1">
-                        <div class="project-dot"></div>
-                        <div class="project-label">Guess Songs</div>
-                        <div class="project-year">Junior</div>
-                    </div>
-                    
-                    <!-- Project 3: Dwen Dwen's Neighbor -->
-                    <div class="timeline-project" data-project="2">
-                        <div class="project-dot"></div>
-                        <div class="project-label">Dwen Dwen's Neighbor</div>
-                        <div class="project-year">Junior</div>
-                    </div>
-                    
-                    <!-- Project 4: Chinese Medicine -->
-                    <div class="timeline-project" data-project="3">
-                        <div class="project-dot"></div>
-                        <div class="project-label">Chinese Medicine</div>
-                        <div class="project-year">Senior</div>
-                    </div>
-                    
-                    <!-- Project 5: Parrot Ordering -->
-                    <div class="timeline-project" data-project="4">
-                        <div class="project-dot"></div>
-                        <div class="project-label">Parrot Ordering</div>
-                        <div class="project-year">Senior</div>
-                    </div>
-                    
-                    <!-- Project 6: Event Management -->
-                    <div class="timeline-project" data-project="5">
-                        <div class="project-dot"></div>
-                        <div class="project-label">Event Management</div>
-                        <div class="project-year">Senior</div>
-                    </div>
-                    
-                    <!-- Project 7: Frankenstories -->
-                    <div class="timeline-project" data-project="6">
-                        <div class="project-dot"></div>
-                        <div class="project-label">Frankenstories</div>
-                        <div class="project-year">Senior</div>
-                    </div>
-                </div>
-                
-                <!-- 项目详情展示区域 -->
-                <div class="project-details">
-                    <!-- Project 0: Digital Mahjong -->
-                    <div class="project-detail active" data-project="0">
-                        <h3 class="detail-title">Digital Mahjong</h3>
-                        <div class="detail-meta">
-                            <span class="detail-tech">Java, JavaFX, Event-driven UI</span>
-                            <a href="#" class="detail-github" target="_blank">GitHub →</a>
+                <!-- 横向滑动项目展示 -->
+                <div class="journey-slider-wrapper">
+                    <div class="journey-slider-container">
+                        <!-- Project 1: Dwen Dwen's Neighbor -->
+                        <div class="journey-slide">
+                            <div class="journey-card-wrapper">
+                                <div class="journey-card journey-card--dwen"><span class="dwen-blob" aria-hidden="true"></span></div>
+                                <h3 class="journey-project-name">Dwen Dwen's Neighbor</h3>
+                                <p class="journey-year">Junior</p>
+                            </div>
                         </div>
-                        <div class="detail-content">
-                            <p><strong>Focus:</strong> Core game logic, win detection, AI opponents, and event-driven UI with JavaFX.</p>
-                            <p><strong>Learning:</strong> Software is not only about algorithms — user experience is what makes technology meaningful.</p>
-                            <p><strong>Turning Point:</strong> Professor's feedback ("lacked user thinking") reshaped how I think about software design.</p>
+                        
+                        <!-- Project 2: Chinese Medicine -->
+                        <div class="journey-slide">
+                            <div class="journey-card-wrapper">
+                                <div class="journey-card journey-card--medicine"><span class="card-blob" aria-hidden="true"></span></div>
+                                <h3 class="journey-project-name">Chinese Medicine</h3>
+                                <p class="journey-year">Senior</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Project 3: Guess Songs -->
+                        <div class="journey-slide">
+                            <div class="journey-card-wrapper">
+                                <div class="journey-card journey-card--songs"><span class="card-blob" aria-hidden="true"></span></div>
+                                <h3 class="journey-project-name">Guess Songs</h3>
+                                <p class="journey-year">Junior</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Project 4: Digital Mahjong -->
+                        <div class="journey-slide">
+                            <div class="journey-card-wrapper">
+                                <div class="journey-card journey-card--mahjong"><span class="card-blob" aria-hidden="true"></span></div>
+                                <h3 class="journey-project-name">Digital Mahjong</h3>
+                                <p class="journey-year">Sophomore</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Project 5: Parrot Ordering -->
+                        <div class="journey-slide">
+                            <div class="journey-card-wrapper">
+                                <div class="journey-card journey-card--parrot"><span class="card-blob" aria-hidden="true"></span></div>
+                                <h3 class="journey-project-name">Parrot Ordering</h3>
+                                <p class="journey-year">Senior</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Project 6: Event Management -->
+                        <div class="journey-slide">
+                            <div class="journey-card-wrapper">
+                                <div class="journey-card journey-card--event"><span class="card-blob" aria-hidden="true"></span></div>
+                                <h3 class="journey-project-name">Event Management</h3>
+                                <p class="journey-year">Senior</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Project 7: Frankenstories -->
+                        <div class="journey-slide">
+                            <div class="journey-card-wrapper">
+                                <div class="journey-card journey-card--franken"><span class="card-blob" aria-hidden="true"></span></div>
+                                <h3 class="journey-project-name">Frankenstories</h3>
+                                <p class="journey-year">Senior</p>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Project 1: Guess Songs -->
-                    <div class="project-detail" data-project="1">
-                        <h3 class="detail-title">Guess Songs</h3>
-                        <div class="detail-meta">
-                            <span class="detail-tech">Java, Android Studio, Firebase, Cloud OSS</span>
-                            <a href="#" class="detail-github" target="_blank">GitHub →</a>
+                    <!-- 导航控制 -->
+                    <div class="journey-nav">
+                        <button class="journey-nav-btn prev">‹</button>
+                        <div class="journey-indicators">
+                            <span class="journey-indicator active" data-index="0"></span>
+                            <span class="journey-indicator" data-index="1"></span>
+                            <span class="journey-indicator" data-index="2"></span>
+                            <span class="journey-indicator" data-index="3"></span>
+                            <span class="journey-indicator" data-index="4"></span>
+                            <span class="journey-indicator" data-index="5"></span>
+                            <span class="journey-indicator" data-index="6"></span>
                         </div>
-                        <div class="detail-content">
-                            <p><strong>Focus:</strong> Native Android app with modular MVVM architecture, Classic/Timed/Multiplayer modes.</p>
-                            <p><strong>Learning:</strong> Engineering can create experiences — such as real-time competition and responsive UI — not just functions.</p>
-                            <p><strong>Impact:</strong> Realized that architecture and interface must evolve together for engaging products.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 2: Dwen Dwen's Neighbor -->
-                    <div class="project-detail" data-project="2">
-                        <h3 class="detail-title">Dwen Dwen's Neighbor</h3>
-                        <div class="detail-meta">
-                            <span class="detail-tech">Python, Flask, Firebase, JavaScript, ECharts</span>
-                            <a href="https://github.com/sukikatte/dwen_dwens_neighbour" class="detail-github" target="_blank">GitHub →</a>
-                        </div>
-                        <div class="detail-content">
-                            <p><strong>Focus:</strong> Modular, bilingual platform for multi-user interaction with animal encyclopedia and virtual panda care.</p>
-                            <p><strong>Learning:</strong> Designing experiences requires merging engineering with storytelling, interaction, and accessibility.</p>
-                            <p><strong>Result:</strong> 3rd Prize, China Innovation & Entrepreneurship Competition (BJUT).</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 3: Chinese Medicine -->
-                    <div class="project-detail" data-project="3">
-                        <h3 class="detail-title">Chinese Medicine Platform</h3>
-                        <div class="detail-meta">
-                            <span class="detail-tech">Vue.js, JavaScript, Flask, SQLAlchemy, Fuzzy Matching</span>
-                            <a href="#" class="detail-github" target="_blank">GitHub →</a>
-                        </div>
-                        <div class="detail-content">
-                            <p><strong>Focus:</strong> Bilingual full-stack platform with role-based access control and AI consultation chat.</p>
-                            <p><strong>Learning:</strong> Building platforms that solve real-world problems requires understanding user needs deeply.</p>
-                            <p><strong>Vision:</strong> Moving from "product developer" to "experience designer" shaping meaningful digital ecosystems.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 4: Parrot Ordering -->
-                    <div class="project-detail" data-project="4">
-                        <h3 class="detail-title">Parrot Ordering System</h3>
-                        <div class="detail-meta">
-                            <span class="detail-tech">Python, Flask, JavaScript, HTML, CSS</span>
-                            <a href="#" class="detail-github" target="_blank">GitHub →</a>
-                        </div>
-                        <div class="detail-content">
-                            <p><strong>Focus:</strong> Modular food ordering system with role-based workflows (Admin/Cook/Customer).</p>
-                            <p><strong>Learning:</strong> Interactive features like real-time menu management and social review systems enhance user engagement.</p>
-                            <p><strong>Impact:</strong> The ultimate goal is not technology itself, but the value it creates for people and society.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 5: Event Management -->
-                    <div class="project-detail" data-project="5">
-                        <h3 class="detail-title">Event Management Platform</h3>
-                        <div class="detail-meta">
-                            <span class="detail-tech">Spring Boot, MySQL, Docker, Maven</span>
-                            <a href="#" class="detail-github" target="_blank">GitHub →</a>
-                        </div>
-                        <div class="detail-content">
-                            <p><strong>Focus:</strong> Full-stack event management platform with multi-role access control (Admin/Organizer/User).</p>
-                            <p><strong>Learning:</strong> Secure backend with Spring Security, containerized deployment via Docker, complete SDLC with 70+ UML diagrams.</p>
-                            <p><strong>Result:</strong> Comprehensive documentation and scalable architecture for enterprise-level applications.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 6: Frankenstories -->
-                    <div class="project-detail" data-project="6">
-                        <h3 class="detail-title">Frankenstories: Story Generation from Reusable Parts</h3>
-                        <div class="detail-meta">
-                            <span class="detail-tech">LLM, Multimodal AI, ComiXML, Computational Creativity</span>
-                            <a href="#" class="detail-github" target="_blank">GitHub →</a>
-                        </div>
-                        <div class="detail-content">
-                            <p><strong>Focus:</strong> Developing an LLM-powered story generation system that recombines visual and textual elements from existing comic strips (ComiXML) to produce new narratives, aiming to explore computational creativity and automated storytelling.</p>
-                            <p><strong>Learning:</strong> Building a multimodal content generation pipeline, integrating language models with structured visual data for creative narrative production.</p>
-                            <p><strong>Impact:</strong> Final Year Project under Assoc. Prof. Tony Veale, exploring the intersection of AI and creative storytelling (Sept. 2025 - Present).</p>
-                        </div>
+                        <button class="journey-nav-btn next">›</button>
                     </div>
                 </div>
             </div>
@@ -287,78 +206,66 @@
             </div>
         </section>
 
-        <!-- Section 3: About Me -->
-        <section class="fullpage-section" id="about">
+        <!-- Section 3: Connect (About + Contact 合并) -->
+        <section class="fullpage-section" id="connect">
             <div class="section-content">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-content-compact">
-                    <div class="about-text">
-                        <h3>The Designer's Mindset</h3>
-                        <p>
-                            I'm a software engineer with a passion for creating technology that truly resonates with people.
-                            My journey began with functional programming, but evolved into a deep exploration of how systems
-                            can be designed to serve human needs.
-                        </p>
-
-                        <blockquote>
-                            "Years of playing music taught me how timing shapes emotion — a principle I now apply to designing
-                            intuitive user flows. Drawing trained my eye for visual balance, which guides my interface design decisions."
-                        </blockquote>
-
-                        <p>
-                            <strong>功能为基、体验为魂</strong> — Functionality is the foundation, experience is the soul.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 4: Contact -->
-        <section class="fullpage-section" id="contact">
-            <div class="section-content">
-                <div class="contact-header">
-                    <div class="decorative-line"></div>
-                    <h2 class="section-title">Let's Connect</h2>
-                    <div class="decorative-line"></div>
-                </div>
-
-                <p class="section-subtitle">Ready to bring ideas to life? Let's talk.</p>
-
-                <!-- 联系方式网格 -->
-                <div class="contact-grid">
-                    <div class="contact-item">
-                        <div class="contact-icon-wrapper">
-                            <span class="contact-icon-large">📧</span>
+                <div class="connect-container">
+                    <!-- 左侧：About -->
+                    <div class="connect-left">
+                        <div class="connect-header">
+                            <h2 class="section-title">Let's Connect</h2>
+                            <div class="title-underline"></div>
                         </div>
-                        <h4>Email</h4>
-                        <a href="mailto:zitong.wang@ucdconnect.ie">zitong.wang@ucdconnect.ie</a>
-                        <div class="item-line"></div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon-wrapper">
-                            <span class="contact-icon-large">💻</span>
+                        
+                        <div class="about-brief">
+                            <p class="intro-text">
+                                I'm a software engineer passionate about creating technology that truly resonates with people.
+                            </p>
+                            
+                            <div class="philosophy-box">
+                                <div class="philosophy-icon">💫</div>
+                                <div class="philosophy-text">
+                                    <p class="philosophy-title">功能为基、体验为魂</p>
+                                    <p class="philosophy-subtitle">Functionality is the foundation, experience is the soul</p>
+                                </div>
+                            </div>
+                            
+                            <blockquote class="design-quote">
+                                "Years of playing music taught me how timing shapes emotion — a principle I now apply to designing intuitive user flows."
+                            </blockquote>
                         </div>
-                        <h4>GitHub</h4>
-                        <a href="https://github.com/sukikatte" target="_blank">@sukikatte</a>
-                        <div class="item-line"></div>
                     </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon-wrapper">
-                            <span class="contact-icon-large">📄</span>
+                    
+                    <!-- 右侧：Contact -->
+                    <div class="connect-right">
+                        <div class="contact-cards">
+                            <div class="contact-card">
+                                <div class="card-icon">📧</div>
+                                <h4>Email</h4>
+                                <a href="mailto:zitong.wang@ucdconnect.ie" class="contact-link">zitong.wang@ucdconnect.ie</a>
+                            </div>
+                            
+                            <div class="contact-card">
+                                <div class="card-icon">💻</div>
+                                <h4>GitHub</h4>
+                                <a href="https://github.com/sukikatte" target="_blank" class="contact-link">@sukikatte</a>
+                            </div>
+                            
+                            <div class="contact-card">
+                                <div class="card-icon">📄</div>
+                                <h4>Resume</h4>
+                                <a href="{{ url_for('static', filename='documents/CV.pdf') }}" download="Zitong_Wang_CV.pdf" class="contact-link">Download CV</a>
+                            </div>
                         </div>
-                        <h4>Resume</h4>
-                        <a href="{{ url_for('static', filename='documents/CV.pdf') }}" download="Zitong_Wang_CV.pdf">Download CV</a>
-                        <div class="item-line"></div>
+                        
+                        <div class="connect-cta">
+                            <p>Ready to bring ideas to life?</p>
+                            <a href="mailto:zitong.wang@ucdconnect.ie" class="cta-button">
+                                <span>Get in Touch</span>
+                                <span class="arrow">→</span>
+                            </a>
+                        </div>
                     </div>
-                </div>
-
-                <!-- 底部引用 -->
-                <div class="contact-quote">
-                    <div class="quote-mark">"</div>
-                    <p>Let's create technology that truly resonates with people.</p>
-                    <div class="quote-mark closing">"</div>
                 </div>
             </div>
         </section>

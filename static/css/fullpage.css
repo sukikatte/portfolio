@@ -11,16 +11,16 @@
 }
 
 :root {
-    /* 深色主题配色 */
-    --bg-primary: #0a0e27;
-    --bg-secondary: #151934;
-    --bg-card: #1a1f3a;
+    /* 深色主题配色 - 深蓝紫黑色调 */
+    --bg-primary: #08080f;
+    --bg-secondary: #12121f;
+    --bg-card: #1a1a2e;
     
-    /* 霓虹色 */
-    --neon-blue: #00d9ff;
+    /* 霓虹色 - 蓝/粉/薄荷绿 */
+    --neon-blue: #4CC9F0;
     --neon-purple: #a78bfa;
-    --neon-pink: #ff006e;
-    --neon-green: #4ade80;
+    --neon-pink: #F72585;
+    --neon-green: #06FFA5;
     
     /* 文字颜色 */
     --text-primary: #e2e8f0;
@@ -29,7 +29,7 @@
     
     /* 强调色 */
     --accent: var(--neon-blue);
-    --accent-glow: rgba(0, 217, 255, 0.3);
+    --accent-glow: rgba(76, 201, 240, 0.3);
 }
 
 html, body {
@@ -93,9 +93,9 @@ html, body {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(10, 14, 39, 0.8);
+    background: rgba(8, 8, 15, 0.85);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+    border-bottom: 1px solid rgba(76, 201, 240, 0.1);
     transition: all 0.3s ease;
 }
 
@@ -226,15 +226,15 @@ html, body {
     0% {
         opacity: 0;
         transform: translateX(-30px) scale(0.8);
-        filter: blur(10px) drop-shadow(0 0 0px rgba(0, 245, 255, 0));
+        filter: blur(10px) drop-shadow(0 0 0px rgba(76, 201, 240, 0));
     }
     50% {
-        filter: blur(5px) drop-shadow(0 0 15px rgba(0, 245, 255, 0.8));
+        filter: blur(5px) drop-shadow(0 0 15px rgba(76, 201, 240, 0.8));
     }
     100% {
         opacity: 1;
         transform: translateX(0) scale(1);
-        filter: blur(0) drop-shadow(0 0 8px rgba(0, 245, 255, 0.6));
+        filter: blur(0) drop-shadow(0 0 8px rgba(76, 201, 240, 0.6));
     }
 }
 
@@ -311,14 +311,14 @@ html, body {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: rgba(0, 217, 255, 0.2);
-    border: 2px solid rgba(0, 217, 255, 0.4);
+    background: rgba(76, 201, 240, 0.2);
+    border: 2px solid rgba(76, 201, 240, 0.4);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .nav-dot:hover {
-    background: rgba(0, 217, 255, 0.5);
+    background: rgba(76, 201, 240, 0.5);
     transform: scale(1.2);
 }
 
@@ -362,16 +362,16 @@ html, body {
     font-size: 1rem;
     font-weight: 600;
     box-shadow: 
-        0 0 15px rgba(0, 217, 255, 0.2),
-        inset 0 -2px 5px rgba(0, 217, 255, 0.1);
+        0 0 15px rgba(76, 201, 240, 0.2),
+        inset 0 -2px 5px rgba(76, 201, 240, 0.1);
     transition: all 0.3s ease;
 }
 
 .key:hover {
     transform: translateY(-2px);
     box-shadow: 
-        0 0 25px rgba(0, 217, 255, 0.4),
-        inset 0 -2px 5px rgba(0, 217, 255, 0.2);
+        0 0 25px rgba(76, 201, 240, 0.4),
+        inset 0 -2px 5px rgba(76, 201, 240, 0.2);
 }
 
 .hint-text {
@@ -446,7 +446,7 @@ html, body {
     bottom: 0;
     background: 
         radial-gradient(circle at 20% 50%, rgba(167, 139, 250, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.05) 0%, transparent 50%);
+        radial-gradient(circle at 80% 80%, rgba(76, 201, 240, 0.05) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -488,7 +488,7 @@ html, body {
     content: '';
     position: absolute;
     background: var(--neon-blue);
-    box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+    box-shadow: 0 0 10px rgba(76, 201, 240, 0.5);
 }
 
 .frame-corner::before {
@@ -583,7 +583,7 @@ html, body {
         neonSlideIn 0.8s ease 1.8s forwards,
         neonFlow 3s linear 2.6s infinite;
     position: relative;
-    filter: drop-shadow(0 0 8px rgba(0, 245, 255, 0.6));
+    filter: drop-shadow(0 0 8px rgba(76, 201, 240, 0.6));
 }
 
 .name-line {
@@ -662,213 +662,1289 @@ html, body {
 /* ========== Journey Page Styles - 项目时间轴 ========== */
 
 /* Header */
-.journey-header {
-    text-align: center;
-    margin-bottom: 4rem;
-    margin-top: 2rem;
+/* Journey 页面特殊背景 */
+#journey {
+    background: #000000;
 }
 
-.journey-intro {
-    color: var(--text-secondary);
-    font-size: 1.05rem;
-    max-width: 800px;
-    margin: 1rem auto 0;
-    line-height: 1.7;
-    white-space: nowrap;
+#journey::before {
+    display: none;
+}
+
+/* Journey 滑动效果 - 无限循环 */
+.journey-slider-wrapper {
+    position: relative;
+    width: 100%;
     overflow: hidden;
-    text-overflow: ellipsis;
+    padding: 0;
+    margin-top: 5rem;
 }
 
-/* 项目时间轴 */
-.projects-timeline {
+.journey-slider-container {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    max-width: 1400px;
-    margin: 0 auto 4rem;
-    position: relative;
-    padding: 3rem 0;
-    transition: transform 0.8s ease;
+    gap: 4.5rem; /* 原 3rem → 4.5rem，避免相邻卡牌覆盖右侧弧线 */
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 }
 
-.timeline-line {
-    position: absolute;
-    left: 5%;
-    right: 5%;
-    top: 20%;
-    height: 3px;
-    background: linear-gradient(90deg, 
-        var(--neon-blue) 0%, 
-        var(--neon-purple) 25%,
-        var(--neon-pink) 50%,
-        #ffd700 75%,
-        var(--neon-blue) 100%);
-    box-shadow: 0 0 20px var(--accent-glow);
-    border-radius: 2px;
+.journey-slide {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.timeline-project {
-    flex: 1;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.5s ease;
-    position: relative;
-    z-index: 10;
-    padding: 0 0.5rem;
+.journey-card-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1.2rem;
 }
 
-.timeline-project:hover {
-    transform: scale(1.1);
-}
-
-.timeline-project.active .project-dot {
-    width: 24px;
-    height: 24px;
-    background: var(--neon-blue);
-    box-shadow: 0 0 30px var(--neon-blue), 0 0 60px var(--neon-blue);
-}
-
-.timeline-project.active .project-label {
-    color: var(--neon-blue);
-    font-weight: 700;
-}
-
-.project-dot {
-    width: 18px;
-    height: 18px;
-    background: rgba(0, 217, 255, 0.3);
-    border: 3px solid var(--neon-blue);
-    border-radius: 50%;
-    margin-bottom: 1rem;
-    transition: all 0.5s ease;
-    box-shadow: 0 0 15px var(--accent-glow);
-}
-
-.project-label {
-    color: var(--text-primary);
-    font-size: 0.75rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    transition: all 0.5s ease;
-    line-height: 1.2;
-}
-
-.project-year {
-    color: var(--text-secondary);
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-/* 项目详情展示区域 */
-.project-details {
-    max-width: 1000px;
-    margin: 0 auto;
+.journey-card {
+    width: 240px;
+    height: 360px;
+    background-color: #000000; /* 黑色底 */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    min-height: 0;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s ease;
+    overflow: visible; /* 允许弧线在边缘处完整呈现 */
+    /* 默认：白色菱镜反射效果 */
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        0 0 30px rgba(255, 255, 255, 0.12),
+        0 0 60px rgba(255, 255, 255, 0.08),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
 }
 
-.project-details.show {
-    opacity: 1;
-    transform: translateY(0);
-    min-height: 300px;
+/* 交互时为卡牌填充方向性高亮 + 动态效果 */
+.journey-card.swipe-right {
+    /* 从左到右的流动高亮，强调向右切换 */
+    background-image: linear-gradient(90deg,
+        rgba(255,255,255,0.15) 0%,
+        rgba(255,255,255,0.08) 40%,
+        rgba(255,255,255,0.02) 100%
+    );
+    transform: perspective(1000px) rotateY(-8deg) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.project-detail {
-    opacity: 0;
+.journey-card.swipe-left {
+    /* 从右到左的流动高亮，强调向左切换 */
+    background-image: linear-gradient(270deg,
+        rgba(255,255,255,0.15) 0%,
+        rgba(255,255,255,0.08) 40%,
+        rgba(255,255,255,0.02) 100%
+    );
+    transform: perspective(1000px) rotateY(8deg) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 切换时保持白色边框，添加微光效果 + 保留高亮 */
+.journey-card.swipe-left,
+.journey-card.swipe-right {
+    /* 保持所有边框的白色效果 + 保留高亮 */
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        0 0 60px rgba(255, 255, 255, 0.1),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+    z-index: 5; /* 确保弧线外溢不被相邻卡片覆盖 */
+}
+
+/* 普通卡片在交互态不再用 ::before 叠加填充，避免与整卡遮罩重复 */
+/* 取消前面对整卡的遮罩，改由 ::before 实现两侧弧线且允许外溢，
+   从而保证同侧（右切右、左切左）也完全以弧线为基准 */
+
+/* 侧边弧线（使用伪元素绘制“完整弧线”，不改变卡牌矩形与上下边长度） */
+.journey-card::before,
+.journey-card::after {
+    content: '';
     position: absolute;
-    width: 100%;
-    transform: translateY(20px);
+    top: 0;
+    bottom: 0;
+    width: 48px; /* 默认占位，交互态会覆盖为全宽以绘制完整形状 */
     pointer-events: none;
-    transition: all 0.8s ease;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center center;
+    z-index: 2; /* 先设默认层级，稍后分别微调 before/after */
+}
+.journey-card::before { z-index: 1; }
+.journey-card::after { z-index: 3; }
+
+/* 左侧弧线（贴左侧绘制） */
+.journey-card::before {
+    left: 0;
 }
 
-.project-detail.active {
+/* 右侧弧线（贴右侧绘制） */
+.journey-card::after {
+    right: 0;
+}
+
+/* 向右切换：左右两侧同时向右“同向”弯曲（平行） */
+.journey-card.swipe-right::before,
+.journey-card.swipe-right::after {
     opacity: 1;
-    transform: translateY(0);
+}
+
+/* 删除整张卡牌闭合描边，恢复两侧独立弧线方案 */
+
+/* 向左切换：左右两侧同时向左“同向”弯曲（平行） */
+.journey-card.swipe-left::before,
+.journey-card.swipe-left::after {
+    opacity: 1;
+}
+
+/* 删除整张卡牌闭合描边，恢复两侧独立弧线方案 */
+
+/* 使用 SVG 作为背景绘制弧线（stroke），保证是“一整条弧线”，不分圆角与直线 */
+/* 右向弯曲：
+   - 左侧：从上到下的曲线向右内凹
+   - 右侧：从上到下的曲线也向右内凹
+*/
+/* 交互态：向右切换 → 两侧同向向右弯曲
+   使用 ::before 作为“白色填充的封闭形状”，允许向右外溢；
+   使用 ::after 绘制左右两条细弧线（高亮）。
+*/
+.journey-card.swipe-right::before {
+    opacity: 0; /* 禁用弧形填充 */
+}
+.journey-card.swipe-right::after {
+    opacity: 0; /* 禁用弧线描边 */
+}
+
+/* 左向弯曲：
+   - 左侧：从上到下的曲线向左内凹
+   - 右侧：从上到下的曲线也向左内凹
+*/
+/* 交互态：向左切换 → 两侧同向向左弯曲
+   ::before 绘制白色封闭填充（允许向左外溢），::after 绘制两条细弧线。
+*/
+.journey-card.swipe-left::before {
+    opacity: 0; /* 禁用弧形填充 */
+}
+.journey-card.swipe-left::after {
+    opacity: 0; /* 禁用弧线描边 */
+}
+
+/* 删除 Journey 卡牌顶部细线，避免与左侧弧线 ::before 冲突 */
+
+.journey-card {
     position: relative;
-    pointer-events: auto;
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
-.detail-title {
-    font-size: 2rem;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.journey-card:hover {
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
-.detail-meta {
+/* =====================
+   所有卡片的交互形状通用样式
+===================== */
+.card-blob {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 140px;
+    height: 140px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    filter: blur(0.2px);
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity 0.5s ease, left 1.6s cubic-bezier(0.23, 1, 0.32, 1), top 1.6s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: left, top, border-radius, transform;
+}
+
+/* 通用：悬浮时blob消散 - 渐变放大模糊消失 */
+.journey-card--medicine:hover .card-blob,
+.journey-card--songs:hover .card-blob,
+.journey-card--mahjong:hover .card-blob,
+.journey-card--parrot:hover .card-blob,
+.journey-card--event:hover .card-blob,
+.journey-card--franken:hover .card-blob {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.3);
+    filter: blur(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
+/* =====================
+   Dwen Dwen's Neighbor 专属样式
+   目标：彩色动态图案 + 粉蓝色棱镜光晕
+===================== */
+.journey-card--dwen {
+    /* 背景改为黑色，边框改为白色 */
+    background: #000000;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Dwen Dwen 在中心位置时的浅粉蓝色棱镜反射（白边+彩色外光晕+白色内反光） */
+.journey-card--dwen.center {
+    border-color: rgba(255, 255, 255, 0.25); /* 保持白色边框 */
+    overflow: visible;
+    position: relative;
+}
+
+.journey-card--dwen.center::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        -50px -30px 60px 10px rgba(255, 180, 210, 0.25),
+        50px -30px 60px 10px rgba(76, 201, 240, 0.25),
+        -80px -30px 100px 15px rgba(220, 140, 180, 0.18),
+        80px -30px 100px 15px rgba(100, 210, 230, 0.18),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+    clip-path: inset(0 -150px 0 -150px);
+}
+
+@keyframes dwenBgShift {
+    0% {
+        background-position:
+            20% 25%,
+            80% 20%,
+            30% 80%,
+            65% 70%,
+            0% 0%;
+    }
+    50% {
+        background-position:
+            25% 30%,
+            77% 23%,
+            34% 76%,
+            62% 72%,
+            0% 0%;
+    }
+    100% {
+        background-position:
+            18% 28%,
+            83% 18%,
+            28% 82%,
+            68% 68%,
+            0% 0%;
+    }
+}
+
+.journey-card--dwen .dwen-blob {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 140px;
+    height: 140px;
+    transform: translate(-50%, -50%);
+    background:
+        radial-gradient(120px 110px at 35% 45%, rgba(255, 180, 210, 0.35), transparent 70%),
+        radial-gradient(140px 120px at 60% 55%, rgba(0, 210, 255, 0.30), transparent 72%),
+        radial-gradient(100px 90px at 50% 55%, rgba(0, 138, 110, 0.35), transparent 80%);
+    border-radius: 42% 58% 48% 52% / 55% 45% 55% 45%; /* 更自由的8值椭圆 */
+    filter: blur(0.2px);
+    animation: dwenBlobMorph 7.5s ease-in-out infinite alternate, dwenBlobDrift 9s ease-in-out infinite alternate;
+    z-index: 2; /* 位于填充上方，弧线(3)下方 */
+    pointer-events: none;
+    transition: opacity 0.5s ease, left 1.6s cubic-bezier(0.23, 1, 0.32, 1), top 1.6s cubic-bezier(0.23, 1, 0.32, 1); /* 超平滑的躲避过渡，easeOutExpo缓动 */
+    will-change: left, top, border-radius, transform;
+}
+
+/* 悬浮时blob消散 - 增强消散效果 */
+.journey-card--dwen:hover .dwen-blob {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.3);
+    filter: blur(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
+/* 椭圆形态缓慢形变：保持接近椭圆 */
+@keyframes dwenBlobMorph {
+    0%   { border-radius: 42% 58% 48% 52% / 55% 45% 55% 45%; transform: translate(-50%, -50%) scale(1.00, 0.94) rotate(0deg); }
+    20%  { border-radius: 60% 40% 52% 48% / 48% 52% 46% 54%; transform: translate(-50%, -50%) scale(1.08, 0.92) rotate(10deg); }
+    40%  { border-radius: 55% 45% 60% 40% / 58% 42% 60% 40%; transform: translate(-50%, -50%) scale(0.92, 1.06) rotate(18deg); }
+    60%  { border-radius: 48% 52% 44% 56% / 40% 60% 42% 58%; transform: translate(-50%, -50%) scale(1.10, 0.90) rotate(8deg); }
+    80%  { border-radius: 62% 38% 50% 50% / 52% 48% 58% 42%; transform: translate(-50%, -50%) scale(0.96, 1.04) rotate(-6deg); }
+    100% { border-radius: 42% 58% 48% 52% / 55% 45% 55% 45%; transform: translate(-50%, -50%) scale(1.00, 0.94) rotate(0deg); }
+}
+
+/* 位置轻微漂移：避免剧烈移动，营造“活着”的微动感 */
+@keyframes dwenBlobDrift {
+    0%   { left: 50%; top: 50%; }
+    25%  { left: 53%; top: 48%; }
+    50%  { left: 49%; top: 53%; }
+    75%  { left: 47%; top: 51%; }
+    100% { left: 50%; top: 50%; }
+}
+
+/* =====================
+   Dwen "回避"效果：切换时反方向轻移 + 强化动效
+   右切 → 向右回避；左切 → 向左回避
+   仅在 swipe 态下临时取消位移动画（保留形变动画）
+===================== */
+.journey-card--dwen.swipe-right .dwen-blob {
+    /* 暂停位移动画，仅保留形变动画 + 添加交互动画 */
+    animation: dwenBlobMorph 7.5s ease-in-out infinite alternate, dwenSwipeRight 0.4s ease-out forwards;
+    left: calc(50% + 20px);
+    top: calc(50% - 3px);
+}
+
+.journey-card--dwen.swipe-left .dwen-blob {
+    animation: dwenBlobMorph 7.5s ease-in-out infinite alternate, dwenSwipeLeft 0.4s ease-out forwards;
+    left: calc(50% - 20px);
+    top: calc(50% + 3px);
+}
+
+@keyframes dwenSwipeRight {
+    0% { filter: blur(0.2px) brightness(1); }
+    50% { filter: blur(3px) brightness(1.3); }
+    100% { filter: blur(1px) brightness(1.1); }
+}
+
+@keyframes dwenSwipeLeft {
+    0% { filter: blur(0.2px) brightness(1); }
+    50% { filter: blur(3px) brightness(1.3); }
+    100% { filter: blur(1px) brightness(1.1); }
+}
+
+/* 保持交互态下的弧线填充与线条在 blob 之上可见 */
+/* Dwen 交互态：用 ::before 绘制浅绿色“弧线边界”封闭填充 */
+.journey-card--dwen.swipe-right::before {
+    opacity: 0; /* 禁用交互时的弧形填充背景 */
+}
+.journey-card--dwen.swipe-left::before {
+    opacity: 0; /* 禁用交互时的弧形填充背景 */
+}
+
+/* Dwen Dwen 悬浮时的互补色倒灌效果（橙黄紫流光） */
+.journey-card--dwen:hover {
+    background: 
+        linear-gradient(0deg, rgba(255, 150, 50, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(255, 200, 100, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(180, 100, 255, 0.3) 0%, transparent 60%),
+        #000000;
+    background-size: 200% 200%;
+    animation: dwenFlowingLight 3s ease-in-out infinite;
+}
+
+@keyframes dwenFlowingLight {
+    0% { 
+        background-position: 0% 0%, 0% 100%, 0% 50%;
+    }
+    33% { 
+        background-position: 50% 50%, 100% 0%, 50% 100%;
+    }
+    66% { 
+        background-position: 100% 100%, 50% 50%, 100% 0%;
+    }
+    100% { 
+        background-position: 0% 0%, 0% 100%, 0% 50%;
+    }
+}
+
+/* Dwen Dwen 交互时保持白色边框高亮 */
+.journey-card--dwen.swipe-right,
+.journey-card--dwen.swipe-left {
+    background-image: none !important;
+    /* 保留白色边框高亮效果 */
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Dwen Dwen 悬停+切换时：保留炫彩流光，隐藏blob */
+.journey-card--dwen.swipe-right:hover,
+.journey-card--dwen.swipe-left:hover {
+    background: 
+        linear-gradient(0deg, rgba(255, 150, 50, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(255, 200, 100, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(180, 100, 255, 0.3) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200% !important;
+    animation: dwenFlowingLight 3s ease-in-out infinite !important;
+}
+
+.journey-card--dwen.swipe-right:hover .dwen-blob,
+.journey-card--dwen.swipe-left:hover .dwen-blob {
+    opacity: 0 !important;
+}
+
+/* =====================
+   Chinese Medicine - 绿色+橘色雾面草药形状
+===================== */
+.journey-card--medicine .card-blob {
+    background: 
+        radial-gradient(ellipse at 35% 40%, rgba(150, 220, 180, 0.35), transparent 60%),
+        radial-gradient(ellipse at 65% 55%, rgba(255, 180, 120, 0.4), transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(180, 200, 160, 0.25), transparent 70%);
+    border-radius: 45% 55% 50% 50% / 50% 50% 50% 50%;
+    filter: blur(1px);
+    animation: medicineFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes medicineFloat {
+    0% { border-radius: 45% 55% 50% 50% / 50% 50% 50% 50%; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+    50% { border-radius: 50% 50% 45% 55% / 55% 45% 50% 50%; transform: translate(-50%, -50%) rotate(10deg) scale(1.1); }
+    100% { border-radius: 55% 45% 50% 50% / 50% 50% 55% 45%; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+}
+
+.journey-card--medicine.swipe-right .card-blob {
+    animation: medicineFloat 6s ease-in-out infinite alternate, medicineSwipeRight 0.4s ease-out forwards;
+    left: calc(50% + 20px);
+}
+
+.journey-card--medicine.swipe-left .card-blob {
+    animation: medicineFloat 6s ease-in-out infinite alternate, medicineSwipeLeft 0.4s ease-out forwards;
+    left: calc(50% - 20px);
+}
+
+@keyframes medicineSwipeRight {
+    0% { 
+        filter: blur(1px) brightness(1); 
+        opacity: 1;
+    }
+    50% { 
+        filter: blur(4px) brightness(1.2); 
+        opacity: 0.8;
+    }
+    100% { 
+        filter: blur(2px) brightness(1.15); 
+        opacity: 0.9;
+    }
+}
+
+@keyframes medicineSwipeLeft {
+    0% { 
+        filter: blur(1px) brightness(1); 
+        opacity: 1;
+    }
+    50% { 
+        filter: blur(4px) brightness(1.2); 
+        opacity: 0.8;
+    }
+    100% { 
+        filter: blur(2px) brightness(1.15); 
+        opacity: 0.9;
+    }
+}
+
+/* Chinese Medicine 悬浮时的互补色倒灌效果（紫蓝流光） */
+.journey-card--medicine:hover {
+    background: 
+        linear-gradient(0deg, rgba(150, 100, 255, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(120, 150, 255, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(180, 200, 255, 0.3) 0%, transparent 60%),
+        #000000;
+    background-size: 200% 200%;
+    animation: medicineFlowingLight 3.5s ease-in-out infinite;
+}
+
+@keyframes medicineFlowingLight {
+    0% { 
+        background-position: 0% 0%, 0% 100%, 0% 50%;
+    }
+    50% { 
+        background-position: 100% 100%, 100% 0%, 100% 100%;
+    }
+    100% { 
+        background-position: 0% 0%, 0% 100%, 0% 50%;
+    }
+}
+
+.journey-card--medicine.swipe-right,
+.journey-card--medicine.swipe-left {
+    background-image: none !important;
+    /* 保留白色边框高亮效果 */
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Medicine 悬停+切换时：保留炫彩流光，隐藏blob */
+.journey-card--medicine.swipe-right:hover,
+.journey-card--medicine.swipe-left:hover {
+    background: 
+        linear-gradient(0deg, rgba(150, 100, 255, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(120, 150, 255, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(180, 200, 255, 0.3) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200% !important;
+    animation: medicineFlowingLight 3.5s ease-in-out infinite !important;
+}
+
+.journey-card--medicine.swipe-right:hover .card-blob,
+.journey-card--medicine.swipe-left:hover .card-blob {
+    opacity: 0 !important;
+}
+
+/* Chinese Medicine 在中心位置时的绿橘色棱镜反射（白边+彩色外光晕+白色内反光） */
+.journey-card--medicine.center {
+    border-color: rgba(255, 255, 255, 0.25);
+    overflow: visible;
+    position: relative;
+}
+
+.journey-card--medicine.center::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        -50px -30px 60px 10px rgba(150, 220, 180, 0.25),
+        50px -30px 60px 10px rgba(255, 180, 120, 0.25),
+        -80px -30px 100px 15px rgba(180, 200, 160, 0.18),
+        80px -30px 100px 15px rgba(255, 200, 140, 0.18),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+    clip-path: inset(0 -150px 0 -150px);
+}
+
+/* =====================
+   Guess Songs - 音波形状（粉紫色）
+===================== */
+.journey-card--songs .card-blob {
+    background: 
+        radial-gradient(ellipse at 35% 45%, rgba(255, 140, 200, 0.4), transparent 60%),
+        radial-gradient(ellipse at 65% 55%, rgba(200, 140, 255, 0.45), transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(220, 160, 230, 0.3), transparent 70%);
+    border-radius: 30% 70% 70% 30% / 50% 50% 50% 50%;
+    filter: blur(0.5px);
+    animation: soundWave 4s ease-in-out infinite;
+}
+
+@keyframes soundWave {
+    0% { border-radius: 30% 70% 70% 30% / 50% 50% 50% 50%; transform: translate(-50%, -50%) scaleX(1); }
+    25% { border-radius: 70% 30% 30% 70% / 50% 50% 50% 50%; transform: translate(-50%, -50%) scaleX(1.15); }
+    50% { border-radius: 50% 50% 50% 50% / 30% 70% 70% 30%; transform: translate(-50%, -50%) scaleX(1); }
+    75% { border-radius: 50% 50% 50% 50% / 70% 30% 30% 70%; transform: translate(-50%, -50%) scaleX(0.85); }
+    100% { border-radius: 30% 70% 70% 30% / 50% 50% 50% 50%; transform: translate(-50%, -50%) scaleX(1); }
+}
+
+.journey-card--songs.swipe-right .card-blob {
+    animation: soundWave 4s ease-in-out infinite, blobSwipeRight 0.4s ease-out forwards;
+    left: calc(50% + 20px);
+}
+
+.journey-card--songs.swipe-left .card-blob {
+    animation: soundWave 4s ease-in-out infinite, blobSwipeLeft 0.4s ease-out forwards;
+    left: calc(50% - 20px);
+}
+
+/* Guess Songs 悬浮时的互补色倒灌效果（黄绿流光） */
+.journey-card--songs:hover {
+    background: 
+        linear-gradient(0deg, rgba(200, 255, 100, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(220, 255, 150, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(180, 255, 180, 0.3) 0%, transparent 60%),
+        #000000;
+    background-size: 200% 200%;
+    animation: songsFlowingLight 3.2s ease-in-out infinite;
+}
+
+@keyframes songsFlowingLight {
+    0% { 
+        background-position: 0% 0%, 100% 100%, 50% 0%;
+    }
+    50% { 
+        background-position: 100% 100%, 0% 0%, 0% 100%;
+    }
+    100% { 
+        background-position: 0% 0%, 100% 100%, 50% 0%;
+    }
+}
+
+.journey-card--songs.swipe-right,
+.journey-card--songs.swipe-left {
+    background-image: none !important;
+    /* 保留白色边框高亮效果 */
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Songs 悬停+切换时：保留炫彩流光，隐藏blob */
+.journey-card--songs.swipe-right:hover,
+.journey-card--songs.swipe-left:hover {
+    background: 
+        linear-gradient(0deg, rgba(200, 255, 100, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(220, 255, 150, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(180, 255, 180, 0.3) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200% !important;
+    animation: songsFlowingLight 3.2s ease-in-out infinite !important;
+}
+
+.journey-card--songs.swipe-right:hover .card-blob,
+.journey-card--songs.swipe-left:hover .card-blob {
+    opacity: 0 !important;
+}
+
+/* Guess Songs 在中心位置时的粉紫色棱镜反射（白边+彩色外光晕+白色内反光） */
+.journey-card--songs.center {
+    border-color: rgba(255, 255, 255, 0.25);
+    overflow: visible;
+    position: relative;
+}
+
+.journey-card--songs.center::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        -50px -30px 60px 10px rgba(255, 140, 200, 0.25),
+        50px -30px 60px 10px rgba(200, 140, 255, 0.25),
+        -80px -30px 100px 15px rgba(220, 160, 230, 0.18),
+        80px -30px 100px 15px rgba(235, 150, 215, 0.18),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+    clip-path: inset(0 -150px 0 -150px);
+}
+
+/* =====================
+   Digital Mahjong - 方形旋转（深蓝浅蓝）
+===================== */
+.journey-card--mahjong .card-blob {
+    background: 
+        radial-gradient(circle at 40% 45%, rgba(80, 130, 200, 0.45), transparent 55%),
+        radial-gradient(circle at 60% 55%, rgba(150, 200, 255, 0.4), transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(110, 160, 220, 0.3), transparent 70%);
+    border-radius: 20% 20% 20% 20% / 20% 20% 20% 20%;
+    filter: blur(0.5px);
+    animation: mahjongSpin 8s linear infinite;
+}
+
+@keyframes mahjongSpin {
+    0% { border-radius: 20% 20% 20% 20% / 20% 20% 20% 20%; transform: translate(-50%, -50%) rotate(0deg); }
+    25% { border-radius: 30% 30% 30% 30% / 30% 30% 30% 30%; transform: translate(-50%, -50%) rotate(90deg); }
+    50% { border-radius: 40% 40% 40% 40% / 40% 40% 40% 40%; transform: translate(-50%, -50%) rotate(180deg); }
+    75% { border-radius: 30% 30% 30% 30% / 30% 30% 30% 30%; transform: translate(-50%, -50%) rotate(270deg); }
+    100% { border-radius: 20% 20% 20% 20% / 20% 20% 20% 20%; transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.journey-card--mahjong.swipe-right .card-blob {
+    animation: mahjongSpin 8s linear infinite, blobSwipeRight 0.4s ease-out forwards;
+    left: calc(50% + 20px);
+}
+
+.journey-card--mahjong.swipe-left .card-blob {
+    animation: mahjongSpin 8s linear infinite, blobSwipeLeft 0.4s ease-out forwards;
+    left: calc(50% - 20px);
+}
+
+/* Digital Mahjong 悬浮时的互补色倒灌效果（橙黄流光） */
+.journey-card--mahjong:hover {
+    background: 
+        linear-gradient(0deg, rgba(255, 160, 80, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(255, 200, 120, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(255, 220, 150, 0.3) 0%, transparent 60%),
+        #000000;
+    background-size: 200% 200%;
+    animation: mahjongFlowingLight 3.8s ease-in-out infinite;
+}
+
+@keyframes mahjongFlowingLight {
+    0% { 
+        background-position: 0% 0%, 100% 0%, 0% 100%;
+    }
+    50% { 
+        background-position: 100% 100%, 0% 100%, 100% 0%;
+    }
+    100% { 
+        background-position: 0% 0%, 100% 0%, 0% 100%;
+    }
+}
+
+.journey-card--mahjong.swipe-right,
+.journey-card--mahjong.swipe-left {
+    background-image: none !important;
+    /* 保留白色边框高亮效果 */
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Mahjong 悬停+切换时：保留炫彩流光，隐藏blob */
+.journey-card--mahjong.swipe-right:hover,
+.journey-card--mahjong.swipe-left:hover {
+    background: 
+        linear-gradient(0deg, rgba(255, 160, 80, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(255, 200, 120, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(255, 220, 150, 0.3) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200% !important;
+    animation: mahjongFlowingLight 3.8s ease-in-out infinite !important;
+}
+
+.journey-card--mahjong.swipe-right:hover .card-blob,
+.journey-card--mahjong.swipe-left:hover .card-blob {
+    opacity: 0 !important;
+}
+
+/* Digital Mahjong 在中心位置时的深蓝浅蓝棱镜反射（白边+彩色外光晕+白色内反光） */
+.journey-card--mahjong.center {
+    border-color: rgba(255, 255, 255, 0.25);
+    overflow: visible;
+    position: relative;
+}
+
+.journey-card--mahjong.center::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        -50px -30px 60px 10px rgba(80, 130, 200, 0.25),
+        50px -30px 60px 10px rgba(150, 200, 255, 0.25),
+        -80px -30px 100px 15px rgba(110, 160, 220, 0.18),
+        80px -30px 100px 15px rgba(130, 180, 230, 0.18),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+    clip-path: inset(0 -150px 0 -150px);
+}
+
+/* =====================
+   Parrot Ordering - 羽毛形状（黄色/橙色）- 缩小版
+===================== */
+.journey-card--parrot .card-blob {
+    background: 
+        radial-gradient(ellipse at 35% 45%, rgba(255, 220, 60, 0.5), transparent 55%),
+        radial-gradient(ellipse at 65% 55%, rgba(255, 150, 50, 0.45), transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(255, 185, 100, 0.3), transparent 65%);
+    border-radius: 60% 40% 30% 70% / 40% 60% 70% 30%;
+    filter: blur(0.5px);
+    animation: featherFloat 5s ease-in-out infinite alternate;
+    width: 120px;
+    height: 120px;
+}
+
+@keyframes featherFloat {
+    0% { border-radius: 60% 40% 30% 70% / 40% 60% 70% 30%; transform: translate(-50%, -50%) rotate(-5deg); }
+    50% { border-radius: 40% 60% 70% 30% / 60% 40% 30% 70%; transform: translate(-50%, -50%) rotate(5deg); }
+    100% { border-radius: 30% 70% 40% 60% / 70% 30% 60% 40%; transform: translate(-50%, -50%) rotate(-5deg); }
+}
+
+.journey-card--parrot.swipe-right .card-blob {
+    animation: featherFloat 5s ease-in-out infinite alternate, blobSwipeRight 0.4s ease-out forwards;
+    left: calc(50% + 20px);
+}
+
+.journey-card--parrot.swipe-left .card-blob {
+    animation: featherFloat 5s ease-in-out infinite alternate, blobSwipeLeft 0.4s ease-out forwards;
+    left: calc(50% - 20px);
+}
+
+/* Parrot Ordering 悬浮时的互补色倒灌效果（蓝紫流光） */
+.journey-card--parrot:hover {
+    background: 
+        linear-gradient(0deg, rgba(100, 120, 255, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(150, 140, 255, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(180, 160, 255, 0.3) 0%, transparent 60%),
+        #000000;
+    background-size: 200% 200%;
+    animation: parrotFlowingLight 3.4s ease-in-out infinite;
+}
+
+@keyframes parrotFlowingLight {
+    0% { 
+        background-position: 0% 50%, 50% 0%, 100% 50%;
+    }
+    50% { 
+        background-position: 100% 50%, 50% 100%, 0% 50%;
+    }
+    100% { 
+        background-position: 0% 50%, 50% 0%, 100% 50%;
+    }
+}
+
+.journey-card--parrot.swipe-right,
+.journey-card--parrot.swipe-left {
+    background-image: none !important;
+    /* 保留白色边框高亮效果 */
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Parrot 悬停+切换时：保留炫彩流光，隐藏blob */
+.journey-card--parrot.swipe-right:hover,
+.journey-card--parrot.swipe-left:hover {
+    background: 
+        linear-gradient(0deg, rgba(100, 120, 255, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(150, 140, 255, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(180, 160, 255, 0.3) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200% !important;
+    animation: parrotFlowingLight 3.4s ease-in-out infinite !important;
+}
+
+.journey-card--parrot.swipe-right:hover .card-blob,
+.journey-card--parrot.swipe-left:hover .card-blob {
+    opacity: 0 !important;
+}
+
+/* Parrot Ordering 在中心位置时的金黄色棱镜反射（白边+彩色外光晕+白色内反光） */
+.journey-card--parrot.center {
+    border-color: rgba(255, 255, 255, 0.25);
+    overflow: visible;
+    position: relative;
+}
+
+.journey-card--parrot.center::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        -50px -30px 60px 10px rgba(255, 220, 60, 0.25),
+        50px -30px 60px 10px rgba(255, 150, 50, 0.25),
+        -80px -30px 100px 15px rgba(255, 150, 50, 0.18),
+        80px -30px 100px 15px rgba(255, 220, 60, 0.18),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+    clip-path: inset(0 -150px 0 -150px);
+}
+
+/* =====================
+   Event Management - 星形脉冲（粉色/白色）
+===================== */
+.journey-card--event .card-blob {
+    background: 
+        radial-gradient(circle at 40% 45%, rgba(255, 160, 200, 0.5), transparent 50%),
+        radial-gradient(circle at 60% 55%, rgba(255, 220, 240, 0.45), transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(255, 190, 220, 0.35), transparent 65%);
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    filter: blur(0.5px);
+    animation: starPulse 3s ease-in-out infinite;
+}
+
+@keyframes starPulse {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+}
+
+.journey-card--event.swipe-right .card-blob {
+    animation: starPulse 3s ease-in-out infinite, blobSwipeRight 0.4s ease-out forwards;
+    left: calc(50% + 20px);
+}
+
+.journey-card--event.swipe-left .card-blob {
+    animation: starPulse 3s ease-in-out infinite, blobSwipeLeft 0.4s ease-out forwards;
+    left: calc(50% - 20px);
+}
+
+/* Event Management 悬浮时的互补色倒灌效果（青绿流光） */
+.journey-card--event:hover {
+    background: 
+        linear-gradient(0deg, rgba(100, 255, 200, 0.45) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(150, 255, 220, 0.35) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(180, 255, 235, 0.25) 0%, transparent 60%),
+        #000000;
+    background-size: 200% 200%;
+    animation: eventFlowingLight 3.3s ease-in-out infinite;
+}
+
+@keyframes eventFlowingLight {
+    0% { 
+        background-position: 50% 0%, 0% 50%, 100% 100%;
+    }
+    50% { 
+        background-position: 50% 100%, 100% 50%, 0% 0%;
+    }
+    100% { 
+        background-position: 50% 0%, 0% 50%, 100% 100%;
+    }
+}
+
+.journey-card--event.swipe-right,
+.journey-card--event.swipe-left {
+    background-image: none !important;
+    /* 保留白色边框高亮效果 */
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Event 悬停+切换时：保留炫彩流光，隐藏blob */
+.journey-card--event.swipe-right:hover,
+.journey-card--event.swipe-left:hover {
+    background: 
+        linear-gradient(0deg, rgba(100, 255, 200, 0.45) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(150, 255, 220, 0.35) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(180, 255, 235, 0.25) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200% !important;
+    animation: eventFlowingLight 3.3s ease-in-out infinite !important;
+}
+
+.journey-card--event.swipe-right:hover .card-blob,
+.journey-card--event.swipe-left:hover .card-blob {
+    opacity: 0 !important;
+}
+
+/* Event Management 在中心位置时的粉白色棱镜反射（白边+彩色外光晕+白色内反光） */
+.journey-card--event.center {
+    border-color: rgba(255, 255, 255, 0.25);
+    overflow: visible;
+    position: relative;
+}
+
+.journey-card--event.center::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        -50px -30px 60px 10px rgba(255, 160, 200, 0.25),
+        50px -30px 60px 10px rgba(255, 220, 240, 0.25),
+        -80px -30px 100px 15px rgba(255, 190, 220, 0.18),
+        80px -30px 100px 15px rgba(255, 210, 230, 0.18),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+    clip-path: inset(0 -150px 0 -150px);
+}
+
+/* =====================
+   Frankenstories - 不规则变形（薄荷绿/浅蓝）
+===================== */
+.journey-card--franken .card-blob {
+    background: 
+        radial-gradient(ellipse at 35% 45%, rgba(130, 240, 200, 0.45), transparent 60%),
+        radial-gradient(ellipse at 65% 55%, rgba(160, 220, 255, 0.4), transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(145, 230, 225, 0.3), transparent 70%);
+    border-radius: 65% 35% 45% 55% / 55% 65% 35% 45%;
+    filter: blur(0.5px);
+    animation: frankenMorph 7s ease-in-out infinite alternate;
+}
+
+@keyframes frankenMorph {
+    0% { border-radius: 65% 35% 45% 55% / 55% 65% 35% 45%; transform: translate(-50%, -50%) rotate(0deg); }
+    33% { border-radius: 35% 65% 55% 45% / 45% 35% 65% 55%; transform: translate(-50%, -50%) rotate(120deg); }
+    66% { border-radius: 55% 45% 35% 65% / 65% 55% 45% 35%; transform: translate(-50%, -50%) rotate(240deg); }
+    100% { border-radius: 45% 55% 65% 35% / 35% 45% 55% 65%; transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.journey-card--franken.swipe-right .card-blob {
+    animation: frankenMorph 7s ease-in-out infinite alternate, blobSwipeRight 0.4s ease-out forwards;
+    left: calc(50% + 20px);
+}
+
+.journey-card--franken.swipe-left .card-blob {
+    animation: frankenMorph 7s ease-in-out infinite alternate, blobSwipeLeft 0.4s ease-out forwards;
+    left: calc(50% - 20px);
+}
+
+/* Frankenstories 悬浮时的互补色倒灌效果（粉橙流光） */
+.journey-card--franken:hover {
+    background: 
+        linear-gradient(0deg, rgba(255, 140, 160, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(255, 180, 140, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(255, 200, 170, 0.3) 0%, transparent 60%),
+        #000000;
+    background-size: 200% 200%;
+    animation: frankenFlowingLight 3.6s ease-in-out infinite;
+}
+
+@keyframes frankenFlowingLight {
+    0% { 
+        background-position: 100% 0%, 0% 0%, 50% 100%;
+    }
+    50% { 
+        background-position: 0% 100%, 100% 100%, 50% 0%;
+    }
+    100% { 
+        background-position: 100% 0%, 0% 0%, 50% 100%;
+    }
+}
+
+.journey-card--franken.swipe-right,
+.journey-card--franken.swipe-left {
+    background-image: none !important;
+    /* 保留白色边框高亮效果 */
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Franken 悬停+切换时：保留炫彩流光，隐藏blob */
+.journey-card--franken.swipe-right:hover,
+.journey-card--franken.swipe-left:hover {
+    background: 
+        linear-gradient(0deg, rgba(255, 140, 160, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(255, 180, 140, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(255, 200, 170, 0.3) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200% !important;
+    animation: frankenFlowingLight 3.6s ease-in-out infinite !important;
+}
+
+.journey-card--franken.swipe-right:hover .card-blob,
+.journey-card--franken.swipe-left:hover .card-blob {
+    opacity: 0 !important;
+}
+
+/* Frankenstories 在中心位置时的薄荷绿浅蓝棱镜反射（白边+彩色外光晕+白色内反光） */
+.journey-card--franken.center {
+    border-color: rgba(255, 255, 255, 0.25);
+    overflow: visible;
+    position: relative;
+}
+
+.journey-card--franken.center::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        -50px -30px 60px 10px rgba(130, 240, 200, 0.25),
+        50px -30px 60px 10px rgba(160, 220, 255, 0.25),
+        -80px -30px 100px 15px rgba(145, 230, 225, 0.18),
+        80px -30px 100px 15px rgba(150, 210, 240, 0.18),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+    clip-path: inset(0 -150px 0 -150px);
+}
+
+/* =====================
+   Dwen Dwen's Neighbor 专属样式
+   目标：彩色动态图案
+===================== */
+.journey-project-name {
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.journey-year {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 交互时的文字效果 */
+.journey-card.swipe-right ~ .journey-card-wrapper .journey-project-name,
+.journey-card.swipe-left ~ .journey-card-wrapper .journey-project-name {
+    transform: translateY(-5px);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.journey-card.swipe-right ~ .journey-card-wrapper .journey-year,
+.journey-card.swipe-left ~ .journey-card-wrapper .journey-year {
+    transform: translateY(3px);
+    opacity: 0.3;
+}
+
+/* Journey 导航 - 黑白风格 */
+.journey-nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    gap: 1rem;
+    gap: 2rem;
+    margin-top: 3rem;
 }
 
-.detail-tech {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: rgba(0, 217, 255, 0.1);
-    border: 1px solid var(--neon-blue);
-    border-radius: 20px;
-    color: var(--neon-blue);
-    font-size: 0.85rem;
-    font-weight: 600;
+.journey-nav-btn {
+    width: 45px;
+    height: 45px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.02);
+    color: #ffffff;
+    font-size: 1.3rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 200;
+    position: relative;
+    overflow: hidden;
 }
 
-.detail-github {
-    color: var(--neon-purple);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.9rem;
+.journey-nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.journey-nav-btn:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.08);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.journey-nav-btn:hover::before {
+    width: 100%;
+    height: 100%;
+}
+
+.journey-nav-btn:active {
+    transform: scale(0.9);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+.journey-indicators {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.journey-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.journey-indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
     transition: all 0.3s ease;
 }
 
-.detail-github:hover {
-    color: var(--neon-pink);
-    transform: translateX(5px);
+.journey-indicator:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-.detail-content {
-    background: rgba(0, 217, 255, 0.03);
-    border-left: 4px solid var(--neon-blue);
-    border-radius: 8px;
-    padding: 2rem;
-    transition: all 0.3s ease;
+.journey-indicator:hover::after {
+    width: 16px;
+    height: 16px;
+    opacity: 0;
 }
 
-.detail-content:hover {
-    background: rgba(0, 217, 255, 0.08);
-    border-left-color: var(--neon-purple);
-    transform: translateX(10px);
+.journey-indicator.active {
+    background: #ffffff;
+    border-color: #ffffff;
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    animation: indicatorPulse 2s ease-in-out infinite;
 }
 
-.detail-content p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.7;
-    margin-bottom: 1rem;
+@keyframes indicatorPulse {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+    }
 }
 
-.detail-content p:last-child {
-    margin-bottom: 0;
-}
-
-.detail-content strong {
-    color: var(--text-primary);
-    font-weight: 600;
-}
 
 /* Old timeline styles (kept for backwards compatibility) */
 .timeline-horizontal {
@@ -916,7 +1992,7 @@ html, body {
     background: var(--bg-card);
     padding: 1.5rem;
     border-radius: 15px;
-    border: 1px solid rgba(0, 217, 255, 0.2);
+    border: 1px solid rgba(76, 201, 240, 0.2);
     transition: all 0.3s ease;
 }
 
@@ -980,7 +2056,7 @@ html, body {
     background: var(--bg-card);
     border-radius: 20px;
     position: relative;
-    border: 1px solid rgba(0, 217, 255, 0.2);
+    border: 1px solid rgba(76, 201, 240, 0.2);
 }
 
 /* 装饰边框 */
@@ -1107,8 +2183,8 @@ html, body {
 
 .tag {
     padding: 0.4rem 1rem;
-    background: rgba(0, 217, 255, 0.1);
-    border: 1px solid rgba(0, 217, 255, 0.3);
+    background: rgba(76, 201, 240, 0.1);
+    border: 1px solid rgba(76, 201, 240, 0.3);
     border-radius: 20px;
     font-size: 0.8rem;
     color: var(--neon-blue);
@@ -1146,7 +2222,7 @@ html, body {
     transition: all 0.3s ease;
     border: 2px solid rgba(255, 255, 255, 0.2);
     box-shadow: 
-        0 0 25px rgba(0, 245, 255, 0.5),
+        0 0 25px rgba(76, 201, 240, 0.5),
         0 0 50px rgba(255, 0, 234, 0.3),
         0 5px 15px rgba(0, 0, 0, 0.3);
     z-index: 100;
@@ -1171,7 +2247,7 @@ html, body {
 .btn-explore:hover {
     transform: translateX(5px) scale(1.05);
     box-shadow: 
-        0 0 40px rgba(0, 245, 255, 0.6),
+        0 0 40px rgba(76, 201, 240, 0.6),
         0 8px 25px rgba(0, 0, 0, 0.4);
     border-color: rgba(255, 255, 255, 0.3);
 }
@@ -1230,14 +2306,14 @@ html, body {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: rgba(0, 217, 255, 0.2);
-    border: 2px solid rgba(0, 217, 255, 0.4);
+    background: rgba(76, 201, 240, 0.2);
+    border: 2px solid rgba(76, 201, 240, 0.4);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .project-indicator:hover {
-    background: rgba(0, 217, 255, 0.5);
+    background: rgba(76, 201, 240, 0.5);
     transform: scale(1.2);
 }
 
@@ -1326,7 +2402,7 @@ html, body {
     justify-content: center;
     align-items: center;
     padding: 1.5rem;
-    border: 1px solid rgba(0, 217, 255, 0.2);
+    border: 1px solid rgba(76, 201, 240, 0.2);
 }
 
 .flip-card-front {
@@ -1334,7 +2410,7 @@ html, body {
 }
 
 .flip-card-back {
-    background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(167, 139, 250, 0.1));
+    background: linear-gradient(135deg, rgba(76, 201, 240, 0.1), rgba(167, 139, 250, 0.1));
     transform: rotateY(180deg);
 }
 
@@ -1370,7 +2446,7 @@ html, body {
     background: var(--bg-card);
     border-radius: 20px;
     padding: 3rem;
-    border: 1px solid rgba(0, 217, 255, 0.2);
+    border: 1px solid rgba(76, 201, 240, 0.2);
 }
 
 .about-text h3 {
@@ -1399,164 +2475,246 @@ html, body {
 }
 
 /* ============================================
-   Contact Section - 简化版本
+   Connect Section (About + Contact 合并)
    ============================================ */
-.contact-header {
+.connect-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    align-items: start;
+}
+
+.connect-left {
+    padding-right: 2rem;
+    border-right: 2px solid rgba(76, 201, 240, 0.2);
+}
+
+.connect-header {
+    margin-bottom: 2rem;
+}
+
+.connect-header .section-title {
+    margin-bottom: 0.5rem;
+}
+
+.title-underline {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+    box-shadow: 0 0 10px var(--accent-glow);
+    border-radius: 2px;
+}
+
+/* About Brief 部分 */
+.about-brief {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.philosophy-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(76, 201, 240, 0.05);
+    border-left: 3px solid var(--neon-blue);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.philosophy-box:hover {
+    background: rgba(76, 201, 240, 0.1);
+    transform: translateX(5px);
+}
+
+.philosophy-icon {
+    font-size: 2rem;
+}
+
+.philosophy-text {
+    flex: 1;
+}
+
+.philosophy-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+}
+
+.philosophy-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.design-quote {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.7;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--neon-pink);
+    margin: 0;
+}
+
+/* Contact Cards 部分 */
+.connect-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid rgba(76, 201, 240, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    border-color: var(--neon-blue);
+    background: rgba(76, 201, 240, 0.05);
+    transform: translateX(5px);
+    box-shadow: 0 5px 20px rgba(76, 201, 240, 0.2);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.decorative-line {
-    width: 80px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
-    box-shadow: 0 0 10px var(--accent-glow);
-}
-
-/* 联系方式网格 */
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    max-width: 900px;
-    margin: 3rem auto;
-}
-
-.contact-item {
-    text-align: center;
-    padding: 2.5rem 2rem;
-    background: var(--bg-card);
-    border-radius: 15px;
-    border: 2px solid var(--neon-blue);
+    background: rgba(76, 201, 240, 0.1);
+    border-radius: 10px;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 
-        0 0 20px rgba(0, 217, 255, 0.3),
-        inset 0 0 30px rgba(0, 217, 255, 0.05);
 }
 
-.contact-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--neon-blue), #ff00ea);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-    box-shadow: 0 0 15px rgba(0, 217, 255, 0.6);
+.contact-card:hover .card-icon {
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(76, 201, 240, 0.2);
 }
 
-.contact-item:hover::before {
-    transform: scaleX(1);
+.contact-card h4 {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-.contact-item:hover {
-    border-color: #ff00ea;
-    transform: translateY(-8px);
-    box-shadow: 
-        0 0 40px rgba(0, 217, 255, 0.5),
-        0 0 60px rgba(255, 0, 234, 0.3),
-        0 10px 30px rgba(0, 0, 0, 0.3);
+.contact-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
 }
 
-.contact-icon-wrapper {
+.contact-card:hover .contact-link {
+    color: var(--neon-blue);
+}
+
+/* CTA Button */
+.connect-cta {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(76, 201, 240, 0.03);
+    border: 1px solid rgba(76, 201, 240, 0.2);
+    border-radius: 12px;
+}
+
+.connect-cta p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
     margin-bottom: 1.5rem;
 }
 
-.contact-icon-large {
-    font-size: 3.5rem;
-    display: inline-block;
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(76, 201, 240, 0.3);
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(76, 201, 240, 0.5);
+}
+
+.cta-button .arrow {
+    font-size: 1.2rem;
     transition: transform 0.3s ease;
 }
 
-.contact-item:hover .contact-icon-large {
-    transform: scale(1.2) rotate(10deg);
-}
-
-.contact-item h4 {
-    font-size: 1.3rem;
-    color: white;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
-}
-
-.contact-item a {
-    color: white;
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-    font-weight: 500;
-}
-
-.contact-item:hover a {
-    color: #ff00ea;
-    text-shadow: 0 0 15px rgba(255, 0, 234, 0.8);
-}
-
-.item-line {
-    width: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--neon-blue), #ff00ea);
-    margin: 1rem auto 0;
-    transition: width 0.3s ease;
-    box-shadow: 0 0 15px rgba(0, 217, 255, 0.6);
-}
-
-.contact-item:hover .item-line {
-    width: 70%;
-    box-shadow: 
-        0 0 20px rgba(0, 217, 255, 0.8),
-        0 0 30px rgba(255, 0, 234, 0.5);
-}
-
-/* 引用区域 */
-.contact-quote {
-    max-width: 700px;
-    margin: 3rem auto 0;
-    text-align: center;
-    position: relative;
-    padding: 2rem 1rem;
-}
-
-.quote-mark {
-    font-size: 3rem;
-    color: var(--neon-blue);
-    opacity: 0.25;
-    font-family: Georgia, serif;
-    line-height: 0;
-    position: absolute;
-    top: 0;
-    left: 20px;
-}
-
-.quote-mark.closing {
-    bottom: 0;
-    right: 20px;
-    top: auto;
-    left: auto;
-}
-
-.contact-quote p {
-    font-size: 1.3rem;
-    color: var(--text-secondary);
-    font-style: italic;
-    line-height: 1.8;
-    position: relative;
-    z-index: 1;
+.cta-button:hover .arrow {
+    transform: translateX(5px);
 }
 
 /* ============================================
    动画
    ============================================ */
+
+/* Blob通用交互动画 */
+@keyframes blobSwipeRight {
+    0% { 
+        filter: blur(0.2px) brightness(1); 
+        opacity: 1;
+    }
+    50% { 
+        filter: blur(3px) brightness(1.3); 
+        opacity: 0.85;
+    }
+    100% { 
+        filter: blur(1px) brightness(1.15); 
+        opacity: 0.95;
+    }
+}
+
+@keyframes blobSwipeLeft {
+    0% { 
+        filter: blur(0.2px) brightness(1); 
+        opacity: 1;
+    }
+    50% { 
+        filter: blur(3px) brightness(1.3); 
+        opacity: 0.85;
+    }
+    100% { 
+        filter: blur(1px) brightness(1.15); 
+        opacity: 0.95;
+    }
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -1585,6 +2743,18 @@ html, body {
 @media (max-width: 1024px) {
     .cards-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .connect-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .connect-left {
+        padding-right: 0;
+        border-right: none;
+        border-bottom: 2px solid rgba(76, 201, 240, 0.2);
+        padding-bottom: 2rem;
     }
 }
 
@@ -1618,79 +2788,27 @@ html, body {
     }
     
     /* Journey页面响应式 */
-    .journey-intro {
-        font-size: 0.95rem;
-        padding: 0 1rem;
-        white-space: normal;
-    }
-    
-    .projects-timeline {
-        flex-direction: column;
+    .journey-slider-container {
         gap: 2rem;
-        padding: 1rem 0;
-        max-width: 100%;
-        align-items: center;
     }
     
-    .timeline-line {
-        left: 50%;
-        top: 0;
-        bottom: 0;
-        width: 3px;
-        height: 100%;
-        background: linear-gradient(180deg, 
-            var(--neon-blue) 0%, 
-            var(--neon-purple) 25%,
-            var(--neon-pink) 50%,
-            #ffd700 75%,
-            var(--neon-blue) 100%);
+    .journey-card {
+        width: 200px;
+        height: 300px;
     }
     
-    .timeline-project {
-        display: flex;
-        align-items: center;
-        text-align: left;
-        gap: 1rem;
-        padding: 1rem;
-        background: rgba(0, 217, 255, 0.03);
-        border-radius: 8px;
-        margin-bottom: 1rem;
-        flex-direction: row;
-        width: 100%;
-        max-width: 400px;
+    .journey-project-name {
+        font-size: 0.95rem;
     }
     
-    .project-dot {
-        flex-shrink: 0;
-        margin-bottom: 0;
-        margin-right: 1rem;
+    .journey-year {
+        font-size: 0.6rem;
     }
     
-    .project-label,
-    .project-year {
-        text-align: left;
-    }
-    
-    .project-label {
-        font-size: 0.9rem;
-        margin-bottom: 0.2rem;
-    }
-    
-    .project-year {
-        font-size: 0.75rem;
-    }
-    
-    .detail-title {
-        font-size: 1.5rem;
-    }
-    
-    .detail-meta {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .detail-content {
-        padding: 1.5rem;
+    .journey-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
     }
     
     .detail-content p {
@@ -1748,35 +2866,20 @@ html, body {
         text-align: center;
     }
     
-    /* 联系页面响应式 */
-    .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        margin: 2rem auto;
-    }
-    
-    .contact-header {
-        gap: 0.8rem;
-    }
-    
-    .decorative-line {
-        width: 40px;
-    }
-    
-    .contact-item {
-        padding: 2rem 1.5rem;
-    }
-    
-    .contact-icon-large {
-        font-size: 3rem;
-    }
-    
-    .contact-item h4 {
-        font-size: 1.1rem;
-    }
-    
-    .contact-quote {
+    /* Connect 页面响应式 */
+    .connect-container {
         padding: 1rem;
+        gap: 2rem;
+    }
+    
+    .philosophy-box {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .design-quote {
+        font-size: 0.9rem;
+        padding-left: 1rem;
         margin: 2rem auto 0;
     }
     
