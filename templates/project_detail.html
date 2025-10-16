@@ -53,63 +53,42 @@
         <div class="project-content-wrapper">
             {% if project.id == 'franken' %}
                 <!-- Frankenstories 特殊布局 -->
-                <div class="franken-layout">
+                <div class="dwen-layout">
                     <!-- 标题区 -->
-                    <div class="franken-hero">
-                        <h1 class="franken-title">FrankenStories</h1>
-                        <p class="franken-subtitle">Story Generation from Reusable Parts</p>
-                        <div class="franken-meta">
-                            <span class="meta-item">Final Year Project (In Progress)</span>
-                            <span class="meta-divider">·</span>
-                            <span class="meta-item">Supervisor: Assoc. Prof. Tony Veale</span>
+                    <div class="dwen-hero">
+                        <h1 class="dwen-title" data-text="FRANKENSTORIES">FRANKENSTORIES</h1>
+                        <p class="dwen-subtitle">
+                            <span class="subtitle-decorator">◆</span>
+                            Story Generation from Reusable Parts
+                            <span class="subtitle-decorator">◆</span>
+                        </p>
+                        <div class="dwen-meta-info">
+                            <span class="meta-date">Final Year Project (In Progress)</span>
+                            <span class="meta-divider-thick">|</span>
+                            <span class="tech-stack">Computational Creativity · Multimodal Narrative · LLM Story Generation · ComiXML</span>
                         </div>
-                        <div class="franken-keywords">
-                            <span class="keyword">Computational Creativity</span>
-                            <span class="keyword">Multimodal Narrative</span>
-                            <span class="keyword">LLM Story Generation</span>
+                        <div class="dwen-supervisor">
+                            <p>Supervisor: Assoc. Prof. Tony Veale</p>
                         </div>
                     </div>
 
                     <!-- 内容区块 -->
-                    <div class="franken-sections">
-                        <!-- 01 Project Overview -->
-                        <section class="franken-section" data-number="01">
-                            <div class="section-number">01</div>
+                    <div class="dwen-sections">
+                        <!-- PROJECT OVERVIEW -->
+                        <section class="dwen-section">
                             <h2 class="section-title">Project Overview</h2>
-                            <div class="section-content">
+                            <div class="section-content project-overview-box">
                                 <p>FrankenStory explores the intersection of AI-generated storytelling and visual narrative composition.</p>
                                 <p>The system builds stories by recombining reusable comic elements — text, panels, and visual cues — stored in a structured ComiXML repository. The project investigates how large language models (LLMs) can guide narrative synthesis while maintaining coherence, integration, and thematic consistency across panels.</p>
                                 <p class="highlight">The ultimate goal is to design an automated creative system capable of generating complete, visually grounded stories that feel intentional rather than fragmented.</p>
                             </div>
                         </section>
 
-                        <!-- 02 Background & Motivation -->
-                        <section class="franken-section" data-number="02">
-                            <div class="section-number">02</div>
-                            <h2 class="section-title">Background & Motivation</h2>
+                        <!-- RESEARCH CHALLENGES -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Research Challenges</h2>
                             <div class="section-content">
                                 <p>Traditional AI storytelling models often produce fluent sentences but lack continuity and visual logic when applied to comics or sequential art.</p>
-                                <p>Using ComiXML, a data structure developed by our supervisor, this project aims to bridge that gap by experimenting with two main generation methods:</p>
-                                <div class="generation-methods">
-                                    <div class="method-highlight">
-                                        <h4>Direct XML-driven generation</h4>
-                                        <p>Prompting the model to synthesize stories from structured comic metadata.</p>
-                                    </div>
-                                    <div class="method-highlight">
-                                        <h4>Dialogue-based refinement</h4>
-                                        <p>Iteratively co-creating stories via conversational prompts that clarify context and structure before composition.</p>
-                                    </div>
-                                </div>
-                                <p>This comparison helps identify which approach better supports narrative cohesion and character consistency.</p>
-                            </div>
-                        </section>
-
-                        <!-- 03 Research Focus -->
-                        <section class="franken-section" data-number="03">
-                            <div class="section-number">03</div>
-                            <h2 class="section-title">Research Focus</h2>
-                            <div class="section-content">
-                                <p>The study centers on three major challenges observed in current ComiXML outputs:</p>
                                 <div class="challenge-grid">
                                     <div class="challenge-item">
                                         <h3>Hallucination</h3>
@@ -124,57 +103,64 @@
                                         <p>Weak alignment between text, image cues, and underlying theme.</p>
                                     </div>
                                 </div>
+                                <p>Using ComiXML, a data structure developed by our supervisor, this project aims to bridge that gap by experimenting with two main generation methods.</p>
+                            </div>
+                        </section>
+
+                        <!-- METHODOLOGY & APPROACH -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Methodology & Approach</h2>
+                            <div class="section-content">
+                                <div class="architecture-grid">
+                                    <div class="architecture-item">
+                                        <h3>Framework</h3>
+                                        <p>Python-based LLM interface + ComiXML repository for structured comic data management</p>
+                                    </div>
+                                    <div class="architecture-item">
+                                        <h3>Data Sources</h3>
+                                        <p>Curated visual-textual assets from existing comics with metadata annotation</p>
+                                    </div>
+                                    <div class="architecture-item">
+                                        <h3>Evaluation Method</h3>
+                                        <p>Human preference testing + narrative consistency metrics for quality assessment</p>
+                                    </div>
+                                    <div class="architecture-item">
+                                        <h3>Generation Pipeline</h3>
+                                        <p>Story concept → Panel retrieval → Scene synthesis → XML rendering</p>
+                                    </div>
+                                </div>
                                 <p>Through systematic evaluation and qualitative analysis, the project will propose new metrics for assessing story coherence, panel linkage, and creative fidelity in multimodal generation.</p>
                             </div>
                         </section>
 
-                        <!-- 04 Methodology -->
-                        <section class="franken-section" data-number="04">
-                            <div class="section-number">04</div>
-                            <h2 class="section-title">Methodology & Implementation</h2>
+                        <!-- EXPECTED OUTCOMES -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Expected Outcomes</h2>
                             <div class="section-content">
-                                <div class="methodology-list">
-                                    <div class="method-item">
-                                        <span class="method-label">Framework</span>
-                                        <span class="method-value">Python-based LLM interface + ComiXML repository</span>
+                                <div class="achievement-highlights">
+                                    <div class="achievement-item">
+                                        <span class="achievement-icon">🤖</span>
+                                        <div class="achievement-content">
+                                            <h3>AI Storytelling Engine</h3>
+                                            <p>A functional AI-assisted storytelling engine combining structured XML logic and generative creativity</p>
+                                        </div>
                                     </div>
-                                    <div class="method-item">
-                                        <span class="method-label">Data</span>
-                                        <span class="method-value">Curated visual-textual assets from existing comics</span>
+                                    <div class="achievement-item">
+                                        <span class="achievement-icon">📊</span>
+                                        <div class="achievement-content">
+                                            <h3>Evaluation Framework</h3>
+                                            <p>An evaluation framework for narrative coherence in multimodal generation</p>
+                                        </div>
                                     </div>
-                                    <div class="method-item">
-                                        <span class="method-label">Evaluation</span>
-                                        <span class="method-value">Human preference testing + narrative consistency metrics</span>
-                                    </div>
-                                    <div class="method-item">
-                                        <span class="method-label">Pipeline</span>
-                                        <span class="method-value">Story concept → Panel retrieval → Scene synthesis → XML rendering</span>
+                                    <div class="achievement-item">
+                                        <span class="achievement-icon">📚</span>
+                                        <div class="achievement-content">
+                                            <h3>Curated Dataset</h3>
+                                            <p>A curated dataset of sample stories demonstrating different synthesis strategies</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <p>The current stage involves implementing and comparing both generation pipelines, refining prompt design, and testing output quality through user evaluations.</p>
-                            </div>
-                        </section>
-
-                        <!-- 05 Expected Outcome -->
-                        <section class="franken-section" data-number="05">
-                            <div class="section-number">05</div>
-                            <h2 class="section-title">Expected Outcome</h2>
-                            <div class="section-content">
-                                <p>FrankenStory aims to produce:</p>
-                                <ul class="outcome-list">
-                                    <li>A functional AI-assisted storytelling engine combining structured XML logic and generative creativity.</li>
-                                    <li>An evaluation framework for narrative coherence in multimodal generation.</li>
-                                    <li>A curated dataset of sample stories demonstrating different synthesis strategies.</li>
-                                </ul>
-                            </div>
-                        </section>
-
-                        <!-- 06 Reflection -->
-                        <section class="franken-section" data-number="06">
-                            <div class="section-number">06</div>
-                            <h2 class="section-title">Reflection</h2>
-                            <div class="section-content">
-                                <p class="reflection-text">This project deepens my understanding of computational creativity, AI narrative control, and the balance between structured representation and open-ended generation. It also strengthens my interdisciplinary thinking—bridging software engineering, language modeling, and digital storytelling design.</p>
+                                <p class="highlight">This project deepens my understanding of computational creativity, AI narrative control, and the balance between structured representation and open-ended generation. It also strengthens my interdisciplinary thinking—bridging software engineering, language modeling, and digital storytelling design.</p>
                             </div>
                         </section>
                     </div>
@@ -689,18 +675,21 @@
                 </div>
             {% elif project.id == 'medicine' %}
                 <!-- Chinese Medicine 特殊布局 -->
-                <div class="franken-layout">
+                <div class="dwen-layout">
                     <!-- 标题区 -->
-                    <div class="franken-hero">
-                        <h1 class="franken-title">HUAXIA TCM</h1>
-                        <p class="franken-subtitle">Digital Preservation and Education System for Traditional Chinese Medicine Culture</p>
-                        <div class="franken-keywords">
-                            <span class="keyword-date">Feb. 2025 - Jun. 2025</span>
-                            <span class="keyword">Vue.js + Flask</span>
-                            <span class="keyword">Cultural Preservation</span>
-                            <span class="keyword">AI Integration</span>
+                    <div class="dwen-hero">
+                        <h1 class="dwen-title" data-text="HUAXIA TCM">HUAXIA TCM</h1>
+                        <p class="dwen-subtitle">
+                            <span class="subtitle-decorator">◆</span>
+                            Digital Preservation and Education System for Traditional Chinese Medicine Culture
+                            <span class="subtitle-decorator">◆</span>
+                        </p>
+                        <div class="dwen-meta-info">
+                            <span class="meta-date">Feb. 2025 - Jun. 2025</span>
+                            <span class="meta-divider-thick">|</span>
+                            <span class="tech-stack">Vue.js · Flask · SQLAlchemy · JWT · AI Integration · Bilingual Support</span>
                         </div>
-                        <div class="franken-github">
+                        <div class="dwen-github">
                             <a href="https://github.com/sukikatte/Chinese_traditional_medicine" target="_blank" class="github-link">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -711,118 +700,155 @@
                     </div>
 
                     <!-- 内容区块 -->
-                    <div class="franken-sections">
-                        <!-- 01 Project Overview -->
-                        <section class="franken-section" data-number="01">
-                            <div class="section-number">01</div>
+                    <div class="dwen-sections">
+                        <!-- PROJECT OVERVIEW -->
+                        <section class="dwen-section">
                             <h2 class="section-title">Project Overview</h2>
-                            <div class="section-content">
+                            <div class="section-content project-overview-box">
                                 <p>Huaxia TCM Platform is a comprehensive full-stack web application designed to preserve and promote Traditional Chinese Medicine culture through modern digital technology.</p>
                                 <p>The system integrates educational resources, interactive learning experiences, and AI-powered consultation services, making ancient medical knowledge accessible to contemporary learners worldwide.</p>
                                 <p class="highlight">Built with Vue.js and Flask, the platform features bilingual support (Chinese/English) and combines herb encyclopedia, prescription management, gamified learning, geographic visualization, and interactive storytelling into a unified educational ecosystem.</p>
                             </div>
                         </section>
 
-                        <!-- 02 Demo Video -->
-                        <section class="franken-section" data-number="02">
-                            <div class="section-number">02</div>
-                            <h2 class="section-title">Demo Video</h2>
+                        <!-- CORE FUNCTIONS -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Core Functions</h2>
                             <div class="section-content">
-                                <div class="video-container">
-                                    <div class="video-placeholder">
-                                        <p>📹 Demo Video Coming Soon</p>
+                                <div class="core-functions-grid">
+                                    <!-- 01. Herb Encyclopedia -->
+                                    <div class="core-function-item">
+                                        <div class="core-function-content">
+                                            <h3>01. Herb Encyclopedia</h3>
+                                            <p>Comprehensive database of 180+ medicinal herbs with bilingual descriptions, visual identification, and detailed properties</p>
+                                        </div>
+                                        <div class="core-function-video">
+                                            <div class="video-placeholder">
+                                                <p>📚 Herb Encyclopedia Demo</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 02. Prescription System -->
+                                    <div class="core-function-item">
+                                        <div class="core-function-content">
+                                            <h3>02. Prescription System</h3>
+                                            <p>Intelligent formula management with 260+ traditional prescriptions and fuzzy matching algorithm</p>
+                                        </div>
+                                        <div class="core-function-video">
+                                            <div class="video-placeholder">
+                                                <p>💊 Prescription Demo</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 03. Geographic Map -->
+                                    <div class="core-function-item">
+                                        <div class="core-function-content">
+                                            <h3>03. Geographic Map</h3>
+                                            <p>Interactive visualization of medicinal plant distributions across different regions and climates</p>
+                                        </div>
+                                        <div class="core-function-video">
+                                            <div class="video-placeholder">
+                                                <p>🗺️ Geographic Demo</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 04. Story Mode -->
+                                    <div class="core-function-item">
+                                        <div class="core-function-content">
+                                            <h3>04. Story Mode</h3>
+                                            <p>Branching narratives that embed TCM knowledge in engaging gameplay experiences</p>
+                                        </div>
+                                        <div class="core-function-video">
+                                            <div class="video-placeholder">
+                                                <p>📖 Story Mode Demo</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 05. Quiz System -->
+                                    <div class="core-function-item">
+                                        <div class="core-function-content">
+                                            <h3>05. Quiz System</h3>
+                                            <p>Gamified learning with leaderboard, performance tracking, and adaptive difficulty</p>
+                                        </div>
+                                        <div class="core-function-video">
+                                            <div class="video-placeholder">
+                                                <p>🎯 Quiz Demo</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 06. AI Consultation -->
+                                    <div class="core-function-item">
+                                        <div class="core-function-content">
+                                            <h3>06. AI Consultation</h3>
+                                            <p>Personalized health advice via OpenAI and Coze integration with safety protocols</p>
+                                        </div>
+                                        <div class="core-function-video">
+                                            <div class="video-placeholder">
+                                                <p>🤖 AI Consultation Demo</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </section>
 
-                        <!-- 03 System Architecture -->
-                        <section class="franken-section" data-number="03">
-                            <div class="section-number">03</div>
-                            <h2 class="section-title">System Architecture</h2>
+                        <!-- TECHNICAL ARCHITECTURE -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Technical Architecture</h2>
                             <div class="section-content">
-                                <p>The platform follows a modular full-stack architecture designed for scalability and maintainability:</p>
-                                <div class="generation-methods">
-                                    <div class="method-highlight">
-                                        <h4>Backend Infrastructure</h4>
+                                <div class="architecture-grid">
+                                    <div class="architecture-item">
+                                        <h3>Backend Infrastructure</h3>
                                         <p>Flask 3.1.0 with Blueprint modules, SQLAlchemy ORM, JWT authentication, and Gunicorn deployment with 11 RESTful API modules.</p>
                                     </div>
-                                    <div class="method-highlight">
-                                        <h4>Frontend Framework</h4>
+                                    <div class="architecture-item">
+                                        <h3>Frontend Framework</h3>
                                         <p>Vue.js with Vite, Vue Router, i18n internationalization, and responsive mobile-first design approach.</p>
                                     </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- 04 Core Features -->
-                        <section class="franken-section" data-number="04">
-                            <div class="section-number">04</div>
-                            <h2 class="section-title">Core Features</h2>
-                            <div class="section-content">
-                                <p>Six integrated modules working together to deliver a comprehensive TCM learning experience:</p>
-                                <div class="challenge-grid">
-                                    <div class="challenge-item">
-                                        <h3>Herb Encyclopedia</h3>
-                                        <p>180+ herbs with bilingual descriptions and visual identification.</p>
+                                    <div class="architecture-item">
+                                        <h3>AI Integration</h3>
+                                        <p>OpenAI API and Coze platform integration for intelligent consultation with safety protocols and response filtering.</p>
                                     </div>
-                                    <div class="challenge-item">
-                                        <h3>Prescription System</h3>
-                                        <p>260+ formulas with intelligent fuzzy matching algorithm.</p>
-                                    </div>
-                                    <div class="challenge-item">
-                                        <h3>Geographic Map</h3>
-                                        <p>Interactive visualization of medicinal plant distributions.</p>
-                                    </div>
-                                    <div class="challenge-item">
-                                        <h3>Story Mode</h3>
-                                        <p>Branching narratives embedding TCM knowledge in gameplay.</p>
-                                    </div>
-                                    <div class="challenge-item">
-                                        <h3>Quiz System</h3>
-                                        <p>Gamified learning with leaderboard and performance tracking.</p>
-                                    </div>
-                                    <div class="challenge-item">
-                                        <h3>AI Consultation</h3>
-                                        <p>Personalized health advice via OpenAI and Coze integration.</p>
+                                    <div class="architecture-item">
+                                        <h3>Data Management</h3>
+                                        <p>440+ database records (180 herbs + 260 prescriptions) across 50+ RESTful API endpoints with comprehensive logging.</p>
                                     </div>
                                 </div>
                             </div>
                         </section>
 
-                        <!-- 05 Technical Highlights -->
-                        <section class="franken-section" data-number="05">
-                            <div class="section-number">05</div>
-                            <h2 class="section-title">Technical Highlights</h2>
+                        <!-- ACHIEVEMENTS & IMPACT -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Achievements & Impact</h2>
                             <div class="section-content">
-                                <div class="methodology-list">
-                                    <div class="method-item">
-                                        <span class="method-label">Fuzzy Search Algorithm</span>
-                                        <span class="method-value">Levenshtein distance-based matching for intelligent prescription recommendations</span>
+                                <div class="achievement-highlights">
+                                    <div class="achievement-item">
+                                        <span class="achievement-icon">🏆</span>
+                                        <div class="achievement-content">
+                                            <h3>Third Prize</h3>
+                                            <p>"Gongda Cup" Innovation and Entrepreneurship Competition at Beijing University of Technology</p>
+                                        </div>
                                     </div>
-                                    <div class="method-item">
-                                        <span class="method-label">Geographic Processing</span>
-                                        <span class="method-value">Real-time OSM polygon extraction using OSMnx and GeoPandas</span>
+                                    <div class="achievement-item">
+                                        <span class="achievement-icon">🌐</span>
+                                        <div class="achievement-content">
+                                            <h3>Bilingual Support</h3>
+                                            <p>Complete Chinese/English localization making TCM knowledge accessible globally</p>
+                                        </div>
                                     </div>
-                                    <div class="method-item">
-                                        <span class="method-label">Gamification Engine</span>
-                                        <span class="method-value">Dynamic scoring: accuracy - 0.03 × time with persistent ranking</span>
-                                    </div>
-                                    <div class="method-item">
-                                        <span class="method-label">Modular Design</span>
-                                        <span class="method-value">11 independent Blueprint modules with comprehensive logging</span>
+                                    <div class="achievement-item">
+                                        <span class="achievement-icon">🎯</span>
+                                        <div class="achievement-content">
+                                            <h3>Educational Impact</h3>
+                                            <p>Gamified learning system with adaptive difficulty and performance tracking</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <p>The system manages 440+ database records (180 herbs + 260 prescriptions) across 50+ RESTful API endpoints, with production-ready deployment using Gunicorn WSGI server.</p>
-                            </div>
-                        </section>
-
-                        <!-- 06 Reflection -->
-                        <section class="franken-section" data-number="06">
-                            <div class="section-number">06</div>
-                            <h2 class="section-title">Reflection</h2>
-                            <div class="section-content">
-                                <p class="reflection-text">This project deepened my understanding of full-stack development, cultural heritage digitization, and the application of AI in traditional knowledge systems. It strengthened my skills in building scalable web architectures, implementing complex algorithms, and designing engaging user experiences that bridge ancient wisdom with modern technology. The project was awarded Third Prize in the "Gongda Cup" Innovation and Entrepreneurship Competition at Beijing University of Technology.</p>
                             </div>
                         </section>
                     </div>
