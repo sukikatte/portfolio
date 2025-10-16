@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星空效果测试</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        
+        .test-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        .test-text {
+            color: white;
+            font-size: 2rem;
+            text-align: center;
+            z-index: 10;
+        }
+        
+        .stars-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            background: transparent;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-text">
+            <h1>星空效果测试</h1>
+            <p>如果看到旋转的星星，说明Three.js工作正常</p>
+        </div>
+    </div>
+    <canvas id="starsCanvas" class="stars-canvas"></canvas>
+    
+    <script>
+        // 简单的星空测试
+        function initTestStars() {
+            console.log('开始测试星空效果...');
+            
+            if (typeof THREE === 'undefined') {
+                console.error('Three.js库未加载');
+                return;
+            }
+            
+            const canvas = document.getElementById('starsCanvas');
+            if (!canvas) {
+                console.error('找不到canvas元素');
+                return;
+            }
+            
+            console.log('创建Three.js场景...');
+            
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ 
+                canvas: canvas, 
+                alpha: true 
+            });
+
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0);
+
+            // 创建星星
+            const starCount = 1000;
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(starCount * 3);
+
+            for (let i = 0; i < starCount * 3; i++) {
+                positions[i] = (Math.random() - 0.5) * 2000;
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+            const material = new THREE.PointsMaterial({
+                color: 0xffffff,
+                size: 2
+            });
+
+            const stars = new THREE.Points(geometry, material);
+            scene.add(stars);
+
+            camera.position.z = 1000;
+
+            function animate() {
+                requestAnimationFrame(animate);
+                stars.rotation.x += 0.001;
+                stars.rotation.y += 0.002;
+                renderer.render(scene, camera);
+            }
+
+            animate();
+            
+            console.log('星空测试完成！');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                initTestStars();
+            }, 500);
+        });
+    </script>
+</body>
+</html>
+
+
+
+
