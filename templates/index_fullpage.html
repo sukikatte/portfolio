@@ -8,10 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
     <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
+    <!-- 背景图片 -->
+    <div class="bg-image"></div>
+    
     <!-- 网格星空背景画布 -->
     <canvas id="bgCanvas" class="bg-canvas"></canvas>
     
@@ -24,20 +29,22 @@
                 <span class="logo-portfolio">Portfolio</span>
             </a>
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link" data-section="0">Home</a></li>
-                <li><a href="#journey" class="nav-link" data-section="1">Journey</a></li>
-                <li><a href="#projects" class="nav-link" data-section="2">Projects</a></li>
-                <li><a href="#connect" class="nav-link" data-section="3">Connect</a></li>
+                <li><a href="#home" class="nav-link home-icon-link" data-section="0">
+                    <i class="fa-solid fa-star-of-david"></i>
+                </a></li>
+                <li><a href="#projects" class="nav-link" data-section="1">Project</a></li>
+                <li><a href="#experiments" class="nav-link" data-section="2">Creative Experiments</a></li>
+                <li><a href="#connect" class="nav-link" data-section="3">contact</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- 侧边导航点 -->
     <div class="side-nav">
-        <div class="nav-dot active" data-section="0" title="Home"></div>
-        <div class="nav-dot" data-section="1" title="Journey"></div>
-        <div class="nav-dot" data-section="2" title="Projects"></div>
-        <div class="nav-dot" data-section="3" title="Connect"></div>
+        <div class="nav-dot active" data-section="0" title="🌍 Home"></div>
+        <div class="nav-dot" data-section="1" title="Project"></div>
+        <div class="nav-dot" data-section="2" title="Creative Experiments"></div>
+        <div class="nav-dot" data-section="3" title="contact"></div>
     </div>
 
     <!-- 键盘提示（只在首页显示） -->
@@ -60,210 +67,144 @@
         
         <!-- Section 0: Home / Hero -->
         <section class="fullpage-section active" id="home">
-            <div class="section-content">
-                <div class="hero-name-container">
-                    <h1 class="hero-name">Portfolio</h1>
-                </div>
-            </div>
             <!-- Three.js 星空背景画布 -->
             <canvas id="starsCanvas" class="stars-canvas"></canvas>
         </section>
 
-        <!-- Section 1: Journey / Timeline -->
-        <section class="fullpage-section" id="journey">
+        <!-- Section 1: Projects -->
+        <section class="fullpage-section" id="projects">
+            <!-- Three.js 星空背景画布 -->
+            <canvas id="projectsCanvas" class="stars-canvas"></canvas>
             <div class="section-content">
                 <!-- 横向滑动项目展示 -->
-                <div class="journey-slider-wrapper">
-                    <div class="journey-slider-container">
+                <div class="projects-slider-wrapper">
+                    <div class="projects-slider-container">
                         <!-- Project 1: Dwen Dwen's Neighbor -->
-                        <div class="journey-slide">
-                            <div class="journey-card-wrapper">
-                                <div class="journey-card journey-card--dwen"><span class="dwen-blob" aria-hidden="true"></span></div>
-                                <h3 class="journey-project-name">Dwen Dwen's Neighbor</h3>
-                                <p class="journey-year">Junior</p>
+                        <div class="projects-slide" data-project-id="dwen">
+                            <div class="projects-card-wrapper">
+                                <div class="projects-card projects-card--dwen"><span class="dwen-blob" aria-hidden="true"></span></div>
+                                <h3 class="projects-project-name">Dwen Dwen's Neighbor</h3>
+                                <p class="projects-year">WEB · Interactive</p>
                             </div>
                         </div>
                         
                         <!-- Project 2: Chinese Medicine -->
-                        <div class="journey-slide">
-                            <div class="journey-card-wrapper">
-                                <div class="journey-card journey-card--medicine"><span class="card-blob" aria-hidden="true"></span></div>
-                                <h3 class="journey-project-name">Chinese Medicine</h3>
-                                <p class="journey-year">Senior</p>
+                        <div class="projects-slide" data-project-id="medicine">
+                            <div class="projects-card-wrapper">
+                                <div class="projects-card projects-card--medicine"><span class="card-blob" aria-hidden="true"></span></div>
+                                <h3 class="projects-project-name">Chinese Medicine</h3>
+                                <p class="projects-year">WEB · Intelligent</p>
                             </div>
                         </div>
                         
                         <!-- Project 3: Guess Songs -->
-                        <div class="journey-slide">
-                            <div class="journey-card-wrapper">
-                                <div class="journey-card journey-card--songs"><span class="card-blob" aria-hidden="true"></span></div>
-                                <h3 class="journey-project-name">Guess Songs</h3>
-                                <p class="journey-year">Junior</p>
+                        <div class="projects-slide" data-project-id="songs">
+                            <div class="projects-card-wrapper">
+                                <div class="projects-card projects-card--songs"><span class="card-blob" aria-hidden="true"></span></div>
+                                <h3 class="projects-project-name">Guess Songs</h3>
+                                <p class="projects-year">MOBILE · Android</p>
                             </div>
                         </div>
                         
                         <!-- Project 4: Digital Mahjong -->
-                        <div class="journey-slide">
-                            <div class="journey-card-wrapper">
-                                <div class="journey-card journey-card--mahjong"><span class="card-blob" aria-hidden="true"></span></div>
-                                <h3 class="journey-project-name">Digital Mahjong</h3>
-                                <p class="journey-year">Sophomore</p>
+                        <div class="projects-slide" data-project-id="mahjong">
+                            <div class="projects-card-wrapper">
+                                <div class="projects-card projects-card--mahjong"><span class="card-blob" aria-hidden="true"></span></div>
+                                <h3 class="projects-project-name">Digital Mahjong</h3>
+                                <p class="projects-year">GAME · Logic</p>
                             </div>
                         </div>
                         
                         <!-- Project 5: Parrot Ordering -->
-                        <div class="journey-slide">
-                            <div class="journey-card-wrapper">
-                                <div class="journey-card journey-card--parrot"><span class="card-blob" aria-hidden="true"></span></div>
-                                <h3 class="journey-project-name">Parrot Ordering</h3>
-                                <p class="journey-year">Senior</p>
+                        <div class="projects-slide" data-project-id="parrot">
+                            <div class="projects-card-wrapper">
+                                <div class="projects-card projects-card--parrot"><span class="card-blob" aria-hidden="true"></span></div>
+                                <h3 class="projects-project-name">Parrot Ordering</h3>
+                                <p class="projects-year">WEB · Workflow</p>
                             </div>
                         </div>
                         
                         <!-- Project 6: Event Management -->
-                        <div class="journey-slide">
-                            <div class="journey-card-wrapper">
-                                <div class="journey-card journey-card--event"><span class="card-blob" aria-hidden="true"></span></div>
-                                <h3 class="journey-project-name">Event Management</h3>
-                                <p class="journey-year">Senior</p>
+                        <div class="projects-slide" data-project-id="event">
+                            <div class="projects-card-wrapper">
+                                <div class="projects-card projects-card--event"><span class="card-blob" aria-hidden="true"></span></div>
+                                <h3 class="projects-project-name">Event Management</h3>
+                                <p class="projects-year">SYSTEM · Architecture</p>
                             </div>
                         </div>
                         
                         <!-- Project 7: Frankenstories -->
-                        <div class="journey-slide">
-                            <div class="journey-card-wrapper">
-                                <div class="journey-card journey-card--franken"><span class="card-blob" aria-hidden="true"></span></div>
-                                <h3 class="journey-project-name">Frankenstories</h3>
-                                <p class="journey-year">Senior</p>
+                        <div class="projects-slide" data-project-id="franken">
+                            <div class="projects-card-wrapper">
+                                <div class="projects-card projects-card--franken"><span class="card-blob" aria-hidden="true"></span></div>
+                                <h3 class="projects-project-name">Frankenstories</h3>
+                                <p class="projects-year">AI · Creative</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- 导航控制 -->
-                    <div class="journey-nav">
-                        <button class="journey-nav-btn prev">‹</button>
-                        <div class="journey-indicators">
-                            <span class="journey-indicator active" data-index="0"></span>
-                            <span class="journey-indicator" data-index="1"></span>
-                            <span class="journey-indicator" data-index="2"></span>
-                            <span class="journey-indicator" data-index="3"></span>
-                            <span class="journey-indicator" data-index="4"></span>
-                            <span class="journey-indicator" data-index="5"></span>
-                            <span class="journey-indicator" data-index="6"></span>
-                        </div>
-                        <button class="journey-nav-btn next">›</button>
+                </div>
+                
+                <!-- 导航控制 - 独立居中 -->
+                <div class="projects-nav">
+                    <button class="projects-nav-btn prev">‹</button>
+                    <div class="projects-indicators">
+                        <span class="projects-indicator active" data-index="0"></span>
+                        <span class="projects-indicator" data-index="1"></span>
+                        <span class="projects-indicator" data-index="2"></span>
+                        <span class="projects-indicator" data-index="3"></span>
+                        <span class="projects-indicator" data-index="4"></span>
+                        <span class="projects-indicator" data-index="5"></span>
+                        <span class="projects-indicator" data-index="6"></span>
                     </div>
+                    <button class="projects-nav-btn next">›</button>
                 </div>
             </div>
         </section>
 
-        <!-- Section 2: Projects (横向切换) -->
-        <section class="fullpage-section" id="projects">
+        <!-- Section 2: Creative Experiments -->
+        <section class="fullpage-section" id="experiments">
             <div class="section-content">
-                <div class="projects-slider-wrapper">
-                    <div class="projects-slider-container">
-                        {% for project in projects %}
-                        <div class="project-slide">
-                            <div class="project-overview-card">
-                                <div class="project-icon-section">
-                                    <span class="project-icon-mega">{{ project.icon }}</span>
-                                </div>
-                                <div class="project-info-section">
-                                    <h2>{{ project.title }}</h2>
-                                    <p class="subtitle">{{ project.subtitle }}</p>
-                                    
-                                    <div class="project-tags">
-                                        {% for tag in project.tags %}
-                                        <span class="tag">{{ tag }}</span>
-                                        {% endfor %}
-                                    </div>
-                                    
-                                    <p class="project-brief">{{ project.description }}</p>
-                                    
-                                    <div class="project-actions">
-                                        <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn-explore">
-                                            <span class="btn-text">Explore Project</span>
-                                            <span class="btn-icon">→</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-
-                    <!-- 项目导航 -->
-                    <div class="project-nav">
-                        <button class="project-nav-btn prev">‹</button>
-                        <div class="project-indicators">
-                            {% for project in projects %}
-                            <span class="project-indicator {% if loop.index0 == 0 %}active{% endif %}" data-index="{{ loop.index0 }}"></span>
-                            {% endfor %}
-                        </div>
-                        <button class="project-nav-btn next">›</button>
-                    </div>
-                </div>
+                <h2 class="section-title">Creative Experiments</h2>
+                <p class="section-subtitle">探索与创新的实验空间</p>
             </div>
         </section>
 
-        <!-- Section 3: Connect (About + Contact 合并) -->
+        <!-- Section 3: Contact -->
         <section class="fullpage-section" id="connect">
+            <!-- Three.js 星空背景画布 -->
+            <canvas id="contactCanvas" class="stars-canvas"></canvas>
             <div class="section-content">
-                <div class="connect-container">
-                    <!-- 左侧：About -->
-                    <div class="connect-left">
-                        <div class="connect-header">
-                            <h2 class="section-title">Let's Connect</h2>
-                            <div class="title-underline"></div>
-                        </div>
-                        
-                        <div class="about-brief">
-                            <p class="intro-text">
-                                I'm a software engineer passionate about creating technology that truly resonates with people.
-                            </p>
-                            
-                            <div class="philosophy-box">
-                                <div class="philosophy-icon">💫</div>
-                                <div class="philosophy-text">
-                                    <p class="philosophy-title">功能为基、体验为魂</p>
-                                    <p class="philosophy-subtitle">Functionality is the foundation, experience is the soul</p>
-                                </div>
-                            </div>
-                            
-                            <blockquote class="design-quote">
-                                "Years of playing music taught me how timing shapes emotion — a principle I now apply to designing intuitive user flows."
-                            </blockquote>
-                        </div>
+                <div class="contact-layout">
+                    <!-- 标题区域 -->
+                    <div class="contact-header">
+                        <h2 class="contact-title">Let's Connect</h2>
+                        <div class="contact-subtitle">Ready to bring ideas to life?</div>
                     </div>
                     
-                    <!-- 右侧：Contact -->
-                    <div class="connect-right">
-                        <div class="contact-cards">
-                            <div class="contact-card">
-                                <div class="card-icon">📧</div>
-                                <h4>Email</h4>
+                    <!-- 联系方式网格 -->
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-info">
+                                <h3>Email</h3>
                                 <a href="mailto:zitong.wang@ucdconnect.ie" class="contact-link">zitong.wang@ucdconnect.ie</a>
                             </div>
-                            
-                            <div class="contact-card">
-                                <div class="card-icon">💻</div>
-                                <h4>GitHub</h4>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">💻</div>
+                            <div class="contact-info">
+                                <h3>GitHub</h3>
                                 <a href="https://github.com/sukikatte" target="_blank" class="contact-link">@sukikatte</a>
-                            </div>
-                            
-                            <div class="contact-card">
-                                <div class="card-icon">📄</div>
-                                <h4>Resume</h4>
-                                <a href="{{ url_for('static', filename='documents/CV.pdf') }}" download="Zitong_Wang_CV.pdf" class="contact-link">Download CV</a>
                             </div>
                         </div>
                         
-                        <div class="connect-cta">
-                            <p>Ready to bring ideas to life?</p>
-                            <a href="mailto:zitong.wang@ucdconnect.ie" class="cta-button">
-                                <span>Get in Touch</span>
-                                <span class="arrow">→</span>
-                            </a>
+                        <div class="contact-item">
+                            <div class="contact-icon">📄</div>
+                            <div class="contact-info">
+                                <h3>Resume</h3>
+                                <a href="{{ url_for('static', filename='documents/CV.pdf') }}" download="Zitong_Wang_CV.pdf" class="contact-link">Download CV</a>
+                            </div>
                         </div>
                     </div>
                 </div>

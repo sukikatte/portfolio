@@ -3,152 +3,838 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ project.title }} - Zitong Wang</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/project_detail.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>{{ project.title }} - Project Detail</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fullpage.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
+    <style>
+        /* 详情页特殊样式：允许滚动 */
+        html, body {
+            overflow: auto !important;
+            height: auto !important;
+        }
+        
+        /* 隐藏滚动条但保持滚动功能 */
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar,
+        .project-detail-page::-webkit-scrollbar {
+            display: none;
+        }
+        
+        html,
+        body,
+        .project-detail-page {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
 </head>
 <body>
-    <!-- 返回按钮 -->
-    <a href="{{ url_for('home') }}" class="back-button">
-        <span class="back-arrow">←</span>
-        <span class="back-text">BACK TO PORTFOLIO</span>
-    </a>
+    <!-- 网格背景画布 -->
+    <canvas id="bgCanvas" class="bg-canvas"></canvas>
     
-    <!-- 项目头部 -->
-    <header class="project-header">
-        <div class="header-content">
-            <span class="project-icon-huge">{{ project.icon }}</span>
-            <h1>{{ project.title }}</h1>
-            <p class="project-subtitle">{{ project.subtitle }}</p>
-            
-            <div class="project-meta">
-                {% for tag in project.tags %}
-                <span class="meta-tag">{{ tag }}</span>
-                {% endfor %}
-            </div>
-            
-            <div class="project-links">
-                {% if project.github and project.github != '#' %}
-                <a href="{{ project.github }}" class="link-btn" target="_blank">
-                    <span>💻</span> View on GitHub
-                </a>
-                {% endif %}
-            </div>
+    <!-- Dwen Dwen背景图片 -->
+    <div class="dwen-bg-image"></div>
+    
+    <!-- 项目详情页面 -->
+    <div class="project-detail-page">
+        <!-- 返回按钮 -->
+        <div class="back-button">
+            <a href="/#projects" class="back-link">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>RETURN</span>
+            </a>
         </div>
-    </header>
-    
-    <!-- 内容区域 -->
-    <main class="project-content">
         
-        <!-- Part 1: Problem / Context -->
-        <section class="content-section">
-            <div class="section-number">01</div>
-            <div class="section-inner">
-                <h2>{{ project.problem.title }}</h2>
-                <p class="section-desc">{{ project.problem.content }}</p>
-                <div class="highlights-list">
-                    {% for item in project.problem.highlights %}
-                    <div class="highlight-item">
-                        <span class="highlight-dot"></span>
-                        <span>{{ item }}</span>
+        <!-- 项目内容 -->
+        <div class="project-content-wrapper">
+            {% if project.id == 'franken' %}
+                <!-- Frankenstories 特殊布局 -->
+                <div class="franken-layout">
+                    <!-- 标题区 -->
+                    <div class="franken-hero">
+                        <h1 class="franken-title">FrankenStories</h1>
+                        <p class="franken-subtitle">Story Generation from Reusable Parts</p>
+                        <div class="franken-meta">
+                            <span class="meta-item">Final Year Project (In Progress)</span>
+                            <span class="meta-divider">·</span>
+                            <span class="meta-item">Supervisor: Assoc. Prof. Tony Veale</span>
+                        </div>
+                        <div class="franken-keywords">
+                            <span class="keyword">Computational Creativity</span>
+                            <span class="keyword">Multimodal Narrative</span>
+                            <span class="keyword">LLM Story Generation</span>
+                        </div>
                     </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
-        
-        <!-- Part 2: Ideation & Design Thinking -->
-        <section class="content-section alt">
-            <div class="section-number">02</div>
-            <div class="section-inner">
-                <h2>{{ project.ideation.title }}</h2>
-                <p class="section-desc">{{ project.ideation.content }}</p>
-                <div class="highlights-list">
-                    {% for item in project.ideation.highlights %}
-                    <div class="highlight-item">
-                        <span class="highlight-dot"></span>
-                        <span>{{ item }}</span>
+
+                    <!-- 内容区块 -->
+                    <div class="franken-sections">
+                        <!-- 01 Project Overview -->
+                        <section class="franken-section" data-number="01">
+                            <div class="section-number">01</div>
+                            <h2 class="section-title">Project Overview</h2>
+                            <div class="section-content">
+                                <p>FrankenStory explores the intersection of AI-generated storytelling and visual narrative composition.</p>
+                                <p>The system builds stories by recombining reusable comic elements — text, panels, and visual cues — stored in a structured ComiXML repository. The project investigates how large language models (LLMs) can guide narrative synthesis while maintaining coherence, integration, and thematic consistency across panels.</p>
+                                <p class="highlight">The ultimate goal is to design an automated creative system capable of generating complete, visually grounded stories that feel intentional rather than fragmented.</p>
+                            </div>
+                        </section>
+
+                        <!-- 02 Background & Motivation -->
+                        <section class="franken-section" data-number="02">
+                            <div class="section-number">02</div>
+                            <h2 class="section-title">Background & Motivation</h2>
+                            <div class="section-content">
+                                <p>Traditional AI storytelling models often produce fluent sentences but lack continuity and visual logic when applied to comics or sequential art.</p>
+                                <p>Using ComiXML, a data structure developed by our supervisor, this project aims to bridge that gap by experimenting with two main generation methods:</p>
+                                <div class="generation-methods">
+                                    <div class="method-highlight">
+                                        <h4>Direct XML-driven generation</h4>
+                                        <p>Prompting the model to synthesize stories from structured comic metadata.</p>
+                                    </div>
+                                    <div class="method-highlight">
+                                        <h4>Dialogue-based refinement</h4>
+                                        <p>Iteratively co-creating stories via conversational prompts that clarify context and structure before composition.</p>
+                                    </div>
+                                </div>
+                                <p>This comparison helps identify which approach better supports narrative cohesion and character consistency.</p>
+                            </div>
+                        </section>
+
+                        <!-- 03 Research Focus -->
+                        <section class="franken-section" data-number="03">
+                            <div class="section-number">03</div>
+                            <h2 class="section-title">Research Focus</h2>
+                            <div class="section-content">
+                                <p>The study centers on three major challenges observed in current ComiXML outputs:</p>
+                                <div class="challenge-grid">
+                                    <div class="challenge-item">
+                                        <h3>Hallucination</h3>
+                                        <p>Inaccurate or irrelevant panel generation beyond source context.</p>
+                                    </div>
+                                    <div class="challenge-item">
+                                        <h3>Cohesion</h3>
+                                        <p>Lack of logical or emotional flow between sequential panels.</p>
+                                    </div>
+                                    <div class="challenge-item">
+                                        <h3>Integration</h3>
+                                        <p>Weak alignment between text, image cues, and underlying theme.</p>
+                                    </div>
+                                </div>
+                                <p>Through systematic evaluation and qualitative analysis, the project will propose new metrics for assessing story coherence, panel linkage, and creative fidelity in multimodal generation.</p>
+                            </div>
+                        </section>
+
+                        <!-- 04 Methodology -->
+                        <section class="franken-section" data-number="04">
+                            <div class="section-number">04</div>
+                            <h2 class="section-title">Methodology & Implementation</h2>
+                            <div class="section-content">
+                                <div class="methodology-list">
+                                    <div class="method-item">
+                                        <span class="method-label">Framework</span>
+                                        <span class="method-value">Python-based LLM interface + ComiXML repository</span>
+                                    </div>
+                                    <div class="method-item">
+                                        <span class="method-label">Data</span>
+                                        <span class="method-value">Curated visual-textual assets from existing comics</span>
+                                    </div>
+                                    <div class="method-item">
+                                        <span class="method-label">Evaluation</span>
+                                        <span class="method-value">Human preference testing + narrative consistency metrics</span>
+                                    </div>
+                                    <div class="method-item">
+                                        <span class="method-label">Pipeline</span>
+                                        <span class="method-value">Story concept → Panel retrieval → Scene synthesis → XML rendering</span>
+                                    </div>
+                                </div>
+                                <p>The current stage involves implementing and comparing both generation pipelines, refining prompt design, and testing output quality through user evaluations.</p>
+                            </div>
+                        </section>
+
+                        <!-- 05 Expected Outcome -->
+                        <section class="franken-section" data-number="05">
+                            <div class="section-number">05</div>
+                            <h2 class="section-title">Expected Outcome</h2>
+                            <div class="section-content">
+                                <p>FrankenStory aims to produce:</p>
+                                <ul class="outcome-list">
+                                    <li>A functional AI-assisted storytelling engine combining structured XML logic and generative creativity.</li>
+                                    <li>An evaluation framework for narrative coherence in multimodal generation.</li>
+                                    <li>A curated dataset of sample stories demonstrating different synthesis strategies.</li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <!-- 06 Reflection -->
+                        <section class="franken-section" data-number="06">
+                            <div class="section-number">06</div>
+                            <h2 class="section-title">Reflection</h2>
+                            <div class="section-content">
+                                <p class="reflection-text">This project deepens my understanding of computational creativity, AI narrative control, and the balance between structured representation and open-ended generation. It also strengthens my interdisciplinary thinking—bridging software engineering, language modeling, and digital storytelling design.</p>
+                            </div>
+                        </section>
                     </div>
-                    {% endfor %}
                 </div>
-            </div>
-        </section>
-        
-        <!-- Part 3: Solution & Technical Implementation -->
-        <section class="content-section">
-            <div class="section-number">03</div>
-            <div class="section-inner">
-                <h2>{{ project.solution.title }}</h2>
-                <p class="section-desc">{{ project.solution.content }}</p>
-                <div class="tech-stack-display">
-                    {% for tech in project.tech_stack %}
-                    <span class="tech-badge-large">{{ tech }}</span>
-                    {% endfor %}
-                </div>
-                <div class="highlights-list">
-                    {% for item in project.solution.highlights %}
-                    <div class="highlight-item">
-                        <span class="highlight-dot"></span>
-                        <span>{{ item }}</span>
+                {% elif project.id == 'event' %}
+                <!-- Event Management 项目详情页面 -->
+                <div class="event-layout">
+                    <!-- 标题区 -->
+                    <div class="event-hero">
+                        <h1 class="event-title">EVENT MANAGEMENT</h1>
+                        <p class="event-subtitle">Enterprise-Grade Event Management System</p>
+                        
+                        <div class="event-meta">
+                            <span class="meta-item">8-Person Team Project</span>
+                            <span class="meta-divider">·</span>
+                            <span class="meta-item">Spring Boot 3.3.6</span>
+                            <span class="meta-divider">·</span>
+                            <span class="meta-item">70+ UML Diagrams</span>
+                        </div>
+                        
+                        <div class="event-keywords">
+                            <span class="keyword">Spring Boot</span>
+                            <span class="keyword">Spring Security</span>
+                            <span class="keyword">JPA + MySQL</span>
+                            <span class="keyword">Thymeleaf</span>
+                            <span class="keyword">Docker</span>
+                        </div>
+                        
+                        <div class="event-github">
+                            <a href="{{ project.github }}" target="_blank" class="github-link">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                <span>GitHub Repository</span>
+                            </a>
+                        </div>
                     </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
-        
-        <!-- Part 4: User Experience & Interface Design -->
-        <section class="content-section alt">
-            <div class="section-number">04</div>
-            <div class="section-inner">
-                <h2>{{ project.ux.title }}</h2>
-                <p class="section-desc">{{ project.ux.content }}</p>
-                <div class="highlights-list">
-                    {% for item in project.ux.highlights %}
-                    <div class="highlight-item">
-                        <span class="highlight-dot"></span>
-                        <span>{{ item }}</span>
+
+                    <!-- UML Diagrams 区域 -->
+                    <div class="event-uml-section">
+                        <h2 class="section-title">UML Design Diagrams</h2>
+                        <div class="uml-grid">
+                            <div class="uml-item">
+                            <div class="uml-placeholder">
+                                <div class="uml-icon">📊</div>
+                                <h3>Class Diagram</h3>
+                                <p>30+ Java entities with JPA relationships: User, Event, Registration, Role, Notification</p>
+                            </div>
+                        </div>
+                        <div class="uml-item">
+                            <div class="uml-placeholder">
+                                <div class="uml-icon">👥</div>
+                                <h3>Use Case Diagram</h3>
+                                <p>19 detailed use cases with 4 actor roles: Admin, Organizer, Participant, Guest</p>
+                            </div>
+                        </div>
+                        <div class="uml-item">
+                            <div class="uml-placeholder">
+                                <div class="uml-icon">🔄</div>
+                                <h3>Sequence Diagram</h3>
+                                <p>Authentication flows, event registration, and notification delivery workflows</p>
+                            </div>
+                        </div>
+                        <div class="uml-item">
+                            <div class="uml-placeholder">
+                                <div class="uml-icon">📋</div>
+                                <h3>Component Diagram</h3>
+                                <p>Spring Boot layered architecture: Controller → Service → Repository → Database</p>
+                            </div>
+                            </div>
+                        </div>
                     </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
-        
-        <!-- Part 5: Outcome & Impact -->
-        <section class="content-section highlight-section">
-            <div class="section-number">05</div>
-            <div class="section-inner">
-                <h2>{{ project.outcome.title }}</h2>
-                <p class="section-desc">{{ project.outcome.content }}</p>
-                <div class="outcome-grid">
-                    {% for item in project.outcome.highlights %}
-                    <div class="outcome-card">
-                        <p>{{ item }}</p>
+
+                    <!-- System Architecture 区域 -->
+                    <div class="event-arch-section">
+                        <h2 class="section-title">System Architecture</h2>
+                        <div class="arch-diagram">
+                            <div class="arch-placeholder">
+                                <div class="arch-icon">🏗️</div>
+                                <h3>Spring Boot Layered Architecture</h3>
+                                <p>Thymeleaf Templates → Spring MVC Controllers → Service Layer → JPA Repositories → MySQL Database</p>
+                                <div class="arch-layers">
+                                    <div class="layer">Presentation Layer (Thymeleaf + HTML5/CSS3)</div>
+                                    <div class="layer">Controller Layer (Spring MVC + Security)</div>
+                                    <div class="layer">Service Layer (Business Logic)</div>
+                                    <div class="layer">Repository Layer (JPA + MySQL)</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
-        
-        <!-- Part 6: Reflection -->
-        <section class="content-section">
-            <div class="section-number">06</div>
-            <div class="section-inner">
-                <h2>{{ project.reflection.title }}</h2>
-                <p class="section-desc">{{ project.reflection.content }}</p>
-                <div class="learnings-list">
-                    {% for learning in project.reflection.learnings %}
-                    <div class="learning-item">
-                        <span class="learning-icon">💡</span>
-                        <span>{{ learning }}</span>
+
+                    <!-- Interface Screenshots 区域 -->
+                    <div class="event-screens-section">
+                        <h2 class="section-title">Interface Screenshots</h2>
+                        <div class="screens-grid">
+                            <div class="screen-item">
+                                <div class="screen-placeholder">
+                                    <div class="screen-icon">🔐</div>
+                                    <p>Authentication System</p>
+                                    <span class="screen-desc">Spring Security login with role-based access</span>
+                                </div>
+                            </div>
+                            <div class="screen-item">
+                                <div class="screen-placeholder">
+                                    <div class="screen-icon">📊</div>
+                                    <p>Admin Dashboard</p>
+                                    <span class="screen-desc">Event management and user administration interface</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    {% endfor %}
+
+                    <!-- 内容区块 -->
+                    <div class="event-sections">
+                        <!-- 01 Project Overview -->
+                        <section class="event-section" data-number="01">
+                            <div class="section-number">01</div>
+                            <h2 class="section-title">Project Overview</h2>
+                            <div class="section-content">
+                                <p>A comprehensive enterprise-grade event management system built with Spring Boot, featuring multi-role authentication, complete CRUD operations, and extensive UML documentation. This 8-person team project demonstrates full-stack development capabilities with modern Java technologies.</p>
+                                <div class="key-features">
+                                    <div class="feature-item">
+                                        <h4>Multi-Role Authentication</h4>
+                                        <p>Spring Security implementation with Admin, Organizer, Participant, and Guest roles</p>
+                                    </div>
+                                    <div class="feature-item">
+                                        <h4>Event Lifecycle Management</h4>
+                                        <p>Complete CRUD operations for events with registration and notification systems</p>
+                                    </div>
+                                    <div class="feature-item">
+                                        <h4>Database Design</h4>
+                                        <p>30+ JPA entities with MySQL database and comprehensive relationship mapping</p>
+                                    </div>
+                                    <div class="feature-item">
+                                        <h4>UML Documentation</h4>
+                                        <p>70+ UML diagrams including class, use case, sequence, and component diagrams</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 02 Problem Context -->
+                        <section class="event-section" data-number="02">
+                            <div class="section-number">02</div>
+                            <h2 class="section-title">Problem & Context</h2>
+                            <div class="section-content">
+                                <p>Traditional event management systems lack comprehensive role-based access control, scalable architecture, and detailed documentation. Organizations need a robust platform that supports multiple user types with different permissions while maintaining security and providing clear system documentation.</p>
+                                <div class="challenge-grid">
+                                    <div class="challenge-item">
+                                        <h3>Multi-role access control with different permission levels</h3>
+                                    </div>
+                                    <div class="challenge-item">
+                                        <h3>Scalable architecture supporting enterprise-level operations</h3>
+                                    </div>
+                                    <div class="challenge-item">
+                                        <h3>Comprehensive system documentation for maintainability</h3>
+                                    </div>
+                                    <div class="challenge-item">
+                                        <h3>Team coordination in large-scale development project</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 03 Technical Implementation -->
+                        <section class="event-section" data-number="03">
+                            <div class="section-number">03</div>
+                            <h2 class="section-title">Technical Implementation</h2>
+                            <div class="section-content">
+                                <p>Built using Spring Boot 3.3.6 with a layered architecture pattern, implementing Spring Security for authentication, JPA for database operations, and Thymeleaf for templating. The system features 30+ Java classes, comprehensive database relationships, and Docker containerization for deployment.</p>
+                                <div class="tech-stack">
+                                    <div class="tech-item">
+                                        <div class="tech-label">Backend Framework</div>
+                                        <div class="tech-value">Spring Boot 3.3.6 + Spring Security + JPA</div>
+                                    </div>
+                                    <div class="tech-item">
+                                        <div class="tech-label">Database</div>
+                                        <div class="tech-value">MySQL with 30+ JPA entities and relationship mapping</div>
+                                    </div>
+                                    <div class="tech-item">
+                                        <div class="tech-label">Frontend</div>
+                                        <div class="tech-value">Thymeleaf + HTML5/CSS3 + JavaScript</div>
+                                    </div>
+                                    <div class="tech-item">
+                                        <div class="tech-label">Deployment</div>
+                                        <div class="tech-value">Docker + Docker Compose for containerization</div>
+                                    </div>
+                                    <div class="tech-item">
+                                        <div class="tech-label">Documentation</div>
+                                        <div class="tech-value">70+ UML diagrams using PlantUML</div>
+                                    </div>
+                                    <div class="tech-item">
+                                        <div class="tech-label">Build Tool</div>
+                                        <div class="tech-value">Maven + Lombok for code generation</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 04 Design Principles -->
+                        <section class="event-section" data-number="04">
+                            <div class="section-number">04</div>
+                            <h2 class="section-title">Design Principles</h2>
+                            <div class="section-content">
+                                <p>Following software engineering best practices, the system implements layered architecture, separation of concerns, and comprehensive documentation. The design emphasizes scalability, maintainability, and security through proper abstraction and modular design patterns.</p>
+                                <div class="principles-grid">
+                                    <div class="principle-item">
+                                        <h3>Layered Architecture Pattern</h3>
+                                    </div>
+                                    <div class="principle-item">
+                                        <h3>Separation of Concerns</h3>
+                                    </div>
+                                    <div class="principle-item">
+                                        <h3>Role-Based Access Control</h3>
+                                    </div>
+                                    <div class="principle-item">
+                                        <h3>Comprehensive Documentation</h3>
+                                    </div>
+                                    <div class="principle-item">
+                                        <h3>Scalable Database Design</h3>
+                                    </div>
+                                    <div class="principle-item">
+                                        <h3>Security-First Approach</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 05 User Experience -->
+                        <section class="event-section" data-number="05">
+                            <div class="section-number">05</div>
+                            <h2 class="section-title">User Experience Design</h2>
+                            <div class="section-content">
+                                <p>The system provides an intuitive interface for different user roles with role-specific dashboards and functionality. Admin users have comprehensive management capabilities, while participants enjoy streamlined registration and event interaction features.</p>
+                                <div class="ux-highlights">
+                                    <div class="ux-item">
+                                        <h4>Role-based Dashboard Interfaces</h4>
+                                    </div>
+                                    <div class="ux-item">
+                                        <h4>Responsive Design for Multiple Devices</h4>
+                                    </div>
+                                    <div class="ux-item">
+                                        <h4>Intuitive Event Registration Flow</h4>
+                                    </div>
+                                    <div class="ux-item">
+                                        <h4>Real-time Notifications and Updates</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 06 Impact & Reflection -->
+                        <section class="event-section" data-number="06">
+                            <div class="section-number">06</div>
+                            <h2 class="section-title">Impact & Reflection</h2>
+                            <div class="section-content">
+                                <div class="impact-highlights">
+                                    <div class="impact-item">Successfully implemented enterprise-grade authentication and authorization system</div>
+                                    <div class="impact-item">Created comprehensive documentation with 70+ UML diagrams</div>
+                                    <div class="impact-item">Demonstrated large-scale team collaboration and project management</div>
+                                    <div class="impact-item">Applied modern Java technologies and Spring ecosystem</div>
+                                </div>
+                                <div class="reflection-text">
+                                    <p>This project was instrumental in developing my understanding of enterprise software development, team collaboration, and system design. Working with Spring Boot, Spring Security, and JPA provided hands-on experience with modern Java frameworks. The extensive UML documentation process taught me the importance of thorough system design and documentation in large-scale projects.</p>
+                                </div>
+                                <div class="learnings-list">
+                                    <div class="learning-item">Mastered Spring Boot ecosystem and enterprise Java development</div>
+                                    <div class="learning-item">Gained experience in multi-role authentication and security implementation</div>
+                                    <div class="learning-item">Learned large-scale team coordination and project management</div>
+                                    <div class="learning-item">Developed skills in comprehensive system documentation and UML modeling</div>
+                                    <div class="learning-item">Applied containerization and DevOps practices with Docker</div>
+                                </div>
+                                <div class="achievement-badge">
+                                    <span class="achievement-text">Course Design Excellence Award</span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
                 </div>
-            </div>
-        </section>
-        
-    </main>
+
+                {% elif project.id == 'songs' %}
+                <!-- Guess Songs 项目详情页面 -->
+                <div class="songs-layout">
+                    <!-- 标题区域 -->
+                    <div class="songs-hero">
+                        <h1 class="songs-title">GUESS SONGS</h1>
+                        <p class="songs-subtitle">Real-time Multiplayer Music Game</p>
+                        
+                        <div class="songs-meta">
+                            <span class="meta-item">Solo Project</span>
+                            <span class="meta-divider">·</span>
+                            <span class="meta-item">Cloud + Realtime DB</span>
+                            <span class="meta-divider">·</span>
+                            <span class="meta-item">Game + Interaction</span>
+                        </div>
+                        
+                        <div class="songs-keywords">
+                            <span class="keyword">Firebase</span>
+                            <span class="keyword">Real-time Database</span>
+                            <span class="keyword">JavaScript</span>
+                            <span class="keyword">Cloud Storage</span>
+                        </div>
+                    </div>
+
+                    <!-- 演示视频区域 -->
+                    <div class="songs-video-section">
+                        <h2 class="section-title">Demo Video</h2>
+                        <div class="video-container">
+                            <div class="video-placeholder">
+                                <div class="video-icon">🎵</div>
+                                <p>Game Demo Video</p>
+                                <span class="video-duration">2:30</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 内容卡片网格 -->
+                    <div class="songs-cards-grid">
+                        <!-- 01 Problem -->
+                        <div class="songs-card">
+                            <div class="card-number">01</div>
+                            <h3 class="card-title">Problem & Context</h3>
+                            <p class="card-content">{{ project.problem.content }}</p>
+                            <div class="card-highlights">
+                                {% for highlight in project.problem.highlights %}
+                                <div class="highlight-item">{{ highlight }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- 02 Solution -->
+                        <div class="songs-card">
+                            <div class="card-number">02</div>
+                            <h3 class="card-title">Technical Solution</h3>
+                            <p class="card-content">{{ project.solution.content }}</p>
+                            <div class="card-highlights">
+                                {% for highlight in project.solution.highlights %}
+                                <div class="highlight-item">{{ highlight }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- 03 UX Design -->
+                        <div class="songs-card">
+                            <div class="card-number">03</div>
+                            <h3 class="card-title">UX & Interface Design</h3>
+                            <p class="card-content">{{ project.ux.content }}</p>
+                            <div class="card-highlights">
+                                {% for highlight in project.ux.highlights %}
+                                <div class="highlight-item">{{ highlight }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- 04 Outcome -->
+                        <div class="songs-card">
+                            <div class="card-number">04</div>
+                            <h3 class="card-title">Outcome & Impact</h3>
+                            <p class="card-content">{{ project.outcome.content }}</p>
+                            <div class="card-highlights">
+                                {% for highlight in project.outcome.highlights %}
+                                <div class="highlight-item">{{ highlight }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- 05 Reflection -->
+                        <div class="songs-card">
+                            <div class="card-number">05</div>
+                            <h3 class="card-title">Reflection</h3>
+                            <p class="card-content">{{ project.reflection.content }}</p>
+                            <div class="card-highlights">
+                                {% for learning in project.reflection.learnings %}
+                                <div class="highlight-item">{{ learning }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% elif project.id == 'dwen' %}
+                <!-- Dwen Dwen's Neighbor 特殊布局 -->
+                <div class="dwen-layout">
+                    <!-- 标题区 -->
+                    <div class="dwen-hero">
+                        <h1 class="dwen-title" data-text="DWEN DWEN'S NEIGHBOR">DWEN DWEN'S NEIGHBOR</h1>
+                        <p class="dwen-subtitle">
+                            <span class="subtitle-decorator">◆</span>
+                            Interactive Educational Platform for Wildlife Awareness
+                            <span class="subtitle-decorator">◆</span>
+                        </p>
+                        <div class="dwen-meta-info">
+                            <span class="meta-date">Feb. 2025 - June. 2025</span>
+                            <span class="meta-divider-thick">|</span>
+                            <span class="tech-stack">Python · Flask · Firebase · Web Crawler · ECharts · Layered SVG</span>
+                        </div>
+                    </div>
+
+                    <!-- 内容区块 -->
+                    <div class="dwen-sections">
+                        <!-- PROJECT OVERVIEW -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Project Overview</h2>
+                            <div class="section-content project-overview-box">
+                                <!-- PROBLEM STATEMENT -->
+                                <div class="bg-video-container">
+                                    <h3>Problem Statement</h3>
+                                    <p>Understanding customer requirements and our innovative approach to wildlife conservation education</p>
+                                    <video controls class="bg-video">
+                                        <source src="{{ url_for('static', filename='media/dwendwen/videos/bg/bg.mp4') }}" type="video/mp4">
+                                        Problem Statement Overview
+                                    </video>
+                                </div>
+                                
+                <p>Dwen Dwen's Neighbor is an interactive educational platform raising awareness about wildlife conservation through engaging digital experiences.</p>
+                            </div>
+                        </section>
+
+                        <!-- CORE FUNCTIONS -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Core Functions</h2>
+                            <div class="section-content">
+                                <div class="core-functions-grid">
+                                    <!-- 01. Index & Account -->
+                                    <div class="core-function-item">
+                                        <div class="core-function-content">
+                                            <h3>01. Index & Account</h3>
+                                            <p>User authentication, registration, and personalized dashboard with bilingual support</p>
+                                        </div>
+                                        <div class="core-function-video">
+                                            <video controls>
+                                                <source src="{{ url_for('static', filename='media/dwendwen/videos/index-account/index_account_demo.mp4') }}" type="video/mp4">
+                                                Index & Account Demo
+                                            </video>
+                                        </div>
+                                    </div>
+
+                                    <!-- 02. Encyclopedia -->
+                                    <div class="core-function-item">
+                                        <div class="core-function-content">
+                                            <h3>02. Encyclopedia</h3>
+                                            <p>Comprehensive wildlife knowledge base with web-scraped content and interactive learning</p>
+                                        </div>
+                                        <div class="core-function-video">
+                                            <video controls>
+                                                <source src="{{ url_for('static', filename='media/dwendwen/videos/encyclopedia/encyclopedia_demo.mp4') }}" type="video/mp4">
+                                                Encyclopedia Demo
+                                            </video>
+                                        </div>
+                                    </div>
+
+                                    <!-- 03. Games -->
+                                    <div class="core-function-item">
+                                        <div class="core-function-content">
+                                            <h3>03. Games</h3>
+                                            <p>Educational mini-games designed to enhance wildlife awareness through interactive gameplay</p>
+                                        </div>
+                                        <div class="core-function-video">
+                                            <video controls>
+                                                <source src="{{ url_for('static', filename='media/dwendwen/videos/games/games_demo.mp4') }}" type="video/mp4">
+                                                Games Demo
+                                            </video>
+                                        </div>
+                                    </div>
+
+                                    <!-- 04. Virtual Panda -->
+                                    <div class="core-function-item">
+                                        <div class="core-function-content">
+                                            <h3>04. Virtual Panda</h3>
+                                            <p>SVG-based virtual panda care system with layered animations and user interaction</p>
+                                        </div>
+                                        <div class="core-function-video">
+                                            <video controls>
+                                                <source src="{{ url_for('static', filename='media/dwendwen/videos/virtual-panda/virtual_panda_demo.mp4') }}" type="video/mp4">
+                                                Virtual Panda Demo
+                                            </video>
+                                        </div>
+                                    </div>
+
+                                    <!-- 05. Community -->
+                                    <div class="core-function-item">
+                                        <div class="core-function-content">
+                                            <h3>05. Community</h3>
+                                            <p>Forum discussions and community features to foster wildlife conservation awareness</p>
+                                        </div>
+                                        <div class="core-function-video">
+                                            <video controls>
+                                                <source src="{{ url_for('static', filename='media/dwendwen/videos/community/community_demo.mp4') }}" type="video/mp4">
+                                                Community Demo
+                                            </video>
+                                        </div>
+                                    </div>
+
+                                    <!-- 06. Donation -->
+                                    <div class="core-function-item">
+                                        <div class="core-function-content">
+                                            <h3>06. Donation</h3>
+                                            <p>Donation system to support wildlife conservation organizations and initiatives</p>
+                                        </div>
+                                        <div class="core-function-video">
+                                            <video controls>
+                                                <source src="{{ url_for('static', filename='media/dwendwen/videos/donation/donation_demo.mp4') }}" type="video/mp4">
+                                                Donation Demo
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+            {% elif project.id == 'medicine' %}
+                <!-- Chinese Medicine 特殊布局 -->
+                <div class="franken-layout">
+                    <!-- 标题区 -->
+                    <div class="franken-hero">
+                        <h1 class="franken-title">HUAXIA TCM</h1>
+                        <p class="franken-subtitle">Digital Preservation and Education System for Traditional Chinese Medicine Culture</p>
+                        <div class="franken-keywords">
+                            <span class="keyword-date">Feb. 2025 - Jun. 2025</span>
+                            <span class="keyword">Vue.js + Flask</span>
+                            <span class="keyword">Cultural Preservation</span>
+                            <span class="keyword">AI Integration</span>
+                        </div>
+                        <div class="franken-github">
+                            <a href="https://github.com/sukikatte/Chinese_traditional_medicine" target="_blank" class="github-link">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                <span>GitHub Repository</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 内容区块 -->
+                    <div class="franken-sections">
+                        <!-- 01 Project Overview -->
+                        <section class="franken-section" data-number="01">
+                            <div class="section-number">01</div>
+                            <h2 class="section-title">Project Overview</h2>
+                            <div class="section-content">
+                                <p>Huaxia TCM Platform is a comprehensive full-stack web application designed to preserve and promote Traditional Chinese Medicine culture through modern digital technology.</p>
+                                <p>The system integrates educational resources, interactive learning experiences, and AI-powered consultation services, making ancient medical knowledge accessible to contemporary learners worldwide.</p>
+                                <p class="highlight">Built with Vue.js and Flask, the platform features bilingual support (Chinese/English) and combines herb encyclopedia, prescription management, gamified learning, geographic visualization, and interactive storytelling into a unified educational ecosystem.</p>
+                            </div>
+                        </section>
+
+                        <!-- 02 Demo Video -->
+                        <section class="franken-section" data-number="02">
+                            <div class="section-number">02</div>
+                            <h2 class="section-title">Demo Video</h2>
+                            <div class="section-content">
+                                <div class="video-container">
+                                    <div class="video-placeholder">
+                                        <p>📹 Demo Video Coming Soon</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 03 System Architecture -->
+                        <section class="franken-section" data-number="03">
+                            <div class="section-number">03</div>
+                            <h2 class="section-title">System Architecture</h2>
+                            <div class="section-content">
+                                <p>The platform follows a modular full-stack architecture designed for scalability and maintainability:</p>
+                                <div class="generation-methods">
+                                    <div class="method-highlight">
+                                        <h4>Backend Infrastructure</h4>
+                                        <p>Flask 3.1.0 with Blueprint modules, SQLAlchemy ORM, JWT authentication, and Gunicorn deployment with 11 RESTful API modules.</p>
+                                    </div>
+                                    <div class="method-highlight">
+                                        <h4>Frontend Framework</h4>
+                                        <p>Vue.js with Vite, Vue Router, i18n internationalization, and responsive mobile-first design approach.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 04 Core Features -->
+                        <section class="franken-section" data-number="04">
+                            <div class="section-number">04</div>
+                            <h2 class="section-title">Core Features</h2>
+                            <div class="section-content">
+                                <p>Six integrated modules working together to deliver a comprehensive TCM learning experience:</p>
+                                <div class="challenge-grid">
+                                    <div class="challenge-item">
+                                        <h3>Herb Encyclopedia</h3>
+                                        <p>180+ herbs with bilingual descriptions and visual identification.</p>
+                                    </div>
+                                    <div class="challenge-item">
+                                        <h3>Prescription System</h3>
+                                        <p>260+ formulas with intelligent fuzzy matching algorithm.</p>
+                                    </div>
+                                    <div class="challenge-item">
+                                        <h3>Geographic Map</h3>
+                                        <p>Interactive visualization of medicinal plant distributions.</p>
+                                    </div>
+                                    <div class="challenge-item">
+                                        <h3>Story Mode</h3>
+                                        <p>Branching narratives embedding TCM knowledge in gameplay.</p>
+                                    </div>
+                                    <div class="challenge-item">
+                                        <h3>Quiz System</h3>
+                                        <p>Gamified learning with leaderboard and performance tracking.</p>
+                                    </div>
+                                    <div class="challenge-item">
+                                        <h3>AI Consultation</h3>
+                                        <p>Personalized health advice via OpenAI and Coze integration.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 05 Technical Highlights -->
+                        <section class="franken-section" data-number="05">
+                            <div class="section-number">05</div>
+                            <h2 class="section-title">Technical Highlights</h2>
+                            <div class="section-content">
+                                <div class="methodology-list">
+                                    <div class="method-item">
+                                        <span class="method-label">Fuzzy Search Algorithm</span>
+                                        <span class="method-value">Levenshtein distance-based matching for intelligent prescription recommendations</span>
+                                    </div>
+                                    <div class="method-item">
+                                        <span class="method-label">Geographic Processing</span>
+                                        <span class="method-value">Real-time OSM polygon extraction using OSMnx and GeoPandas</span>
+                                    </div>
+                                    <div class="method-item">
+                                        <span class="method-label">Gamification Engine</span>
+                                        <span class="method-value">Dynamic scoring: accuracy - 0.03 × time with persistent ranking</span>
+                                    </div>
+                                    <div class="method-item">
+                                        <span class="method-label">Modular Design</span>
+                                        <span class="method-value">11 independent Blueprint modules with comprehensive logging</span>
+                                    </div>
+                                </div>
+                                <p>The system manages 440+ database records (180 herbs + 260 prescriptions) across 50+ RESTful API endpoints, with production-ready deployment using Gunicorn WSGI server.</p>
+                            </div>
+                        </section>
+
+                        <!-- 06 Reflection -->
+                        <section class="franken-section" data-number="06">
+                            <div class="section-number">06</div>
+                            <h2 class="section-title">Reflection</h2>
+                            <div class="section-content">
+                                <p class="reflection-text">This project deepened my understanding of full-stack development, cultural heritage digitization, and the application of AI in traditional knowledge systems. It strengthened my skills in building scalable web architectures, implementing complex algorithms, and designing engaging user experiences that bridge ancient wisdom with modern technology. The project was awarded Third Prize in the "Gongda Cup" Innovation and Entrepreneurship Competition at Beijing University of Technology.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            {% else %}
+                <!-- 其他项目的默认布局 -->
+                <div class="project-header">
+                    <h1 class="project-title">{{ project.title }}</h1>
+                </div>
+            {% endif %}
+        </div>
+    </div>
     
     <script src="{{ url_for('static', filename='js/project_detail.js') }}"></script>
 </body>

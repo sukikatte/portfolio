@@ -42,6 +42,41 @@ html, body {
     position: relative;
 }
 
+/* 背景图片 */
+.bg-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/static/images/bg6.png');
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s ease-in-out;
+}
+
+/* 背景图片显示时的状态 */
+.bg-image.visible {
+    opacity: 1.0;
+    visibility: visible;
+}
+
+/* Dwen Dwen详情页背景 */
+.dwen-bg-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000; /* 纯黑色背景 */
+    z-index: 2; /* 位于黑色背景之上 */
+    pointer-events: none;
+}
+
 /* 动态背景画布 */
 .bg-canvas {
     position: fixed;
@@ -49,9 +84,10 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
-    opacity: 0.6;
+    z-index: 5;
+    opacity: 1;
     pointer-events: none;
+    transition: opacity 0.8s ease;
 }
 
 /* Three.js 星空画布 */
@@ -63,6 +99,8 @@ html, body {
     height: 100%;
     z-index: 1;
     pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.8s ease;
 }
 
 ::selection {
@@ -70,18 +108,18 @@ html, body {
     color: var(--bg-primary);
 }
 
-/* 滚动条样式 */
+/* 隐藏滚动条 */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 0px;
+    background: transparent;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--neon-blue);
-    border-radius: 5px;
+    background: transparent;
 }
 
 /* ============================================
@@ -93,9 +131,9 @@ html, body {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(8, 8, 15, 0.85);
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(76, 201, 240, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     transition: all 0.3s ease;
 }
 
@@ -110,26 +148,21 @@ html, body {
 
 .nav-logo {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 300;
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    font-family: 'Courier New', monospace;
+    font-family: 'Cormorant Garamond', Georgia, serif;
     letter-spacing: 0.05em;
+    transition: transform 0.3s ease;
 }
 
 .logo-name {
-    color: var(--text-primary);
-    font-weight: 700;
-    overflow: hidden;
-    border-right: 2px solid var(--neon-blue);
-    white-space: nowrap;
-    width: 0;
-    animation: 
-        typeWriter 1.5s steps(12) 0.5s forwards,
-        blinkCursor 0.75s step-end infinite;
-    animation-fill-mode: forwards;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: 0.1em;
 }
 
 @keyframes blinkCursor {
@@ -139,68 +172,16 @@ html, body {
 }
 
 .logo-separator {
-    color: var(--neon-blue);
+    color: rgba(255, 255, 255, 0.5);
     font-weight: 300;
-    opacity: 0;
-    animation: fadeIn 0.3s ease 1.5s forwards;
 }
 
 .logo-portfolio {
-    background: linear-gradient(90deg, 
-        #00f5ff 0%, 
-        #00d4ff 25%, 
-        #ff00ea 50%, 
-        #ff0090 75%, 
-        #00f5ff 100%
-    );
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 800;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
     letter-spacing: 0.15em;
+    font-family: 'Cormorant Garamond', Georgia, serif;
     text-transform: uppercase;
-    opacity: 0;
-    animation: 
-        fadeIn 0.5s ease 1.8s forwards,
-        neonFlow 3s linear 2.3s infinite;
-    position: relative;
-}
-
-/* 霓虹灯外发光效果 */
-.logo-portfolio::before {
-    content: 'PORTFOLIO';
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: linear-gradient(90deg, 
-        #00f5ff 0%, 
-        #00d4ff 25%, 
-        #ff00ea 50%, 
-        #ff0090 75%, 
-        #00f5ff 100%
-    );
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: blur(4px);
-    opacity: 0.7;
-    animation: neonFlow 3s linear infinite;
-}
-
-/* 霓虹灯内发光 */
-.logo-portfolio::after {
-    content: 'PORTFOLIO';
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: white;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    opacity: 0.3;
-    filter: blur(1px);
 }
 
 /* 打字机动画 */
@@ -248,9 +229,13 @@ html, body {
     }
 }
 
-.nav-logo:hover .logo-name {
-    color: var(--neon-blue);
-    text-shadow: 0 0 20px var(--accent-glow);
+.nav-logo:hover {
+    transform: scale(1.02);
+}
+
+.nav-logo:hover .logo-name,
+.nav-logo:hover .logo-portfolio {
+    color: rgba(255, 255, 255, 1);
 }
 
 .nav-menu {
@@ -261,14 +246,17 @@ html, body {
 }
 
 .nav-link {
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 300;
     font-size: 0.95rem;
     transition: all 0.3s ease;
     position: relative;
     padding: 0.5rem 0;
     cursor: pointer;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .nav-link::after {
@@ -277,20 +265,51 @@ html, body {
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
-    background: var(--neon-blue);
+    height: 1px;
+    background: rgba(255, 255, 255, 0.8);
     transition: width 0.3s ease;
-    box-shadow: 0 0 10px var(--accent-glow);
 }
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--neon-blue);
+    color: rgba(255, 255, 255, 1);
 }
 
 .nav-link:hover::after,
 .nav-link.active::after {
     width: 100%;
+}
+
+/* Home图标特殊样式 */
+.home-icon-link {
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.home-icon-link i,
+.home-icon-link svg {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+    transform: translateY(2px);
+}
+
+.home-icon-link:hover i,
+.home-icon-link:hover svg {
+    color: rgba(255, 255, 255, 0.7);
+    transform: translateY(2px) rotate(360deg);
+}
+
+.home-icon-link.active i,
+.home-icon-link.active svg {
+    color: rgba(255, 255, 255, 0.7);
+    transform: translateY(2px) rotate(15deg);
+    filter: none;
+}
+
+.home-icon-link.active::after {
+    display: none;
 }
 
 /* ============================================
@@ -311,20 +330,22 @@ html, body {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: rgba(76, 201, 240, 0.2);
-    border: 2px solid rgba(76, 201, 240, 0.4);
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .nav-dot:hover {
-    background: rgba(76, 201, 240, 0.5);
+    background: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.6);
     transform: scale(1.2);
 }
 
 .nav-dot.active {
-    background: var(--neon-blue);
-    box-shadow: 0 0 20px var(--accent-glow);
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
     transform: scale(1.3);
 }
 
@@ -355,28 +376,27 @@ html, body {
     min-width: 35px;
     height: 35px;
     padding: 0.3rem 0.6rem;
-    background: var(--bg-card);
-    border: 2px solid var(--neon-blue);
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
-    color: var(--neon-blue);
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: 1rem;
-    font-weight: 600;
-    box-shadow: 
-        0 0 15px rgba(76, 201, 240, 0.2),
-        inset 0 -2px 5px rgba(76, 201, 240, 0.1);
+    font-weight: 300;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 }
 
 .key:hover {
     transform: translateY(-2px);
-    box-shadow: 
-        0 0 25px rgba(76, 201, 240, 0.4),
-        inset 0 -2px 5px rgba(76, 201, 240, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .hint-text {
     font-size: 0.85rem;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Cormorant Garamond', Georgia, serif;
     letter-spacing: 0.5px;
 }
 
@@ -390,19 +410,20 @@ html, body {
     transform: translateX(-50%);
     z-index: 998;
     text-align: center;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: 0.9rem;
 }
 
 .scroll-text {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.5);
     margin-bottom: 0.5rem;
 }
 
 .scroll-arrow {
     font-size: 1.5rem;
-    color: var(--neon-blue);
+    color: rgba(255, 255, 255, 0.7);
     animation: bounce 2s ease-in-out infinite;
 }
 
@@ -428,8 +449,8 @@ html, body {
     align-items: center;
     justify-content: center;
     position: relative;
-    opacity: 0.3;
-    transition: opacity 0.8s ease;
+    opacity: 0;
+    transition: opacity 0.6s ease;
     z-index: 1;
 }
 
@@ -643,63 +664,1823 @@ html, body {
     font-size: clamp(2rem, 4vw, 3rem);
     text-align: center;
     margin-bottom: 2rem;
-    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
 .section-subtitle {
     text-align: center;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: 1.1rem;
+    font-weight: 300;
     margin-bottom: 2rem;
 }
 
 /* ============================================
    Timeline - Horizontal
    ============================================ */
-/* ========== Journey Page Styles - 项目时间轴 ========== */
-
-/* Header */
-/* Journey 页面特殊背景 */
-#journey {
+/* Home 页面特殊背景 - 纯黑色+粒子旋转 */
+#home {
     background: #000000;
+    overflow: hidden;
 }
 
-#journey::before {
+#home::before {
     display: none;
 }
 
-/* Journey 滑动效果 - 无限循环 */
-.journey-slider-wrapper {
+/* ============================================
+   首页 Hero Section
+   ============================================ */
+
+/* 主标题 - 3D效果 */
+.hero-title {
     position: relative;
-    width: 100%;
-    overflow: hidden;
+    margin: 0;
     padding: 0;
-    margin-top: 5rem;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 8rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+    text-stroke: 1px rgba(255, 255, 255, 0.8);
+    transition: transform 0.3s ease-out;
+    will-change: transform;
 }
 
-.journey-slider-container {
+.hero-title-main {
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(180deg, 
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0.8) 50%,
+        rgba(255, 255, 255, 0.6) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: heroGlow 4s ease-in-out infinite;
+}
+
+@keyframes heroGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))
+                drop-shadow(0 0 40px rgba(255, 255, 255, 0.2));
+    }
+    50% {
+        filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.4))
+                drop-shadow(0 0 60px rgba(255, 255, 255, 0.3));
+    }
+}
+
+/* 副标题容器 */
+.hero-subtitle-container {
+    margin-bottom: 1.5rem;
+    min-height: 2.5rem;
     display: flex;
-    gap: 4.5rem; /* 原 3rem → 4.5rem，避免相邻卡牌覆盖右侧弧线 */
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.3rem;
+}
+
+/* 打字效果文字 */
+.hero-subtitle {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* 光标 */
+.cursor {
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    animation: blink 1s step-end infinite;
+    font-weight: 300;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* 标签行 */
+.hero-tagline {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    opacity: 1;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tagline-item {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.tagline-item:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.tagline-separator {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.8rem;
+}
+
+
+/* 响应式 */
+@media (max-width: 768px) {
+}
+
+/* Projects 页面特殊背景 - 黑色+粒子旋转 */
+#projects {
+    background: #000000;
+}
+
+
+#projects::before {
+    display: none;
+}
+
+/* ========== Projects Page Styles - 复用Journey样式 + 入场动画 ========== */
+
+/* Projects 滑动效果 */
+.projects-slider-wrapper {
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+    padding: 4rem 0; /* 移除左侧10%的padding，恢复左右对称 */
+    margin-top: calc(9rem - 80px); /* 上移80px (30px + 50px) */
+    /* 移除向左平移，让容器左右居中 */
+    /* 向左偏移，补偿右侧导航圆点的空间 */
+    margin-left: -1rem; /* 侧边导航在right: 2rem，向左偏移1rem来平衡 */
+}
+
+/* 左右渐变遮罩 - 调整右侧宽度，使其与左侧对称 */
+.projects-slider-wrapper::before,
+.projects-slider-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.projects-slider-wrapper::before {
+    left: 0;
+    width: 5%; /* 左侧5% */
+    background: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, transparent 100%);
+}
+
+.projects-slider-wrapper::after {
+    right: 0;
+    width: 3%; /* 右侧3%，减少遮罩宽度，让右侧显示更多内容 */
+    background: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, transparent 100%);
+}
+
+.projects-slider-container {
+    display: flex;
+    gap: 4.5rem;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
 }
 
-.journey-slide {
+.projects-slide {
     flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* 固定宽度确保无限循环计算正确 */
+    min-width: 240px;
+    opacity: 0;
+    transform: scale(0.3) rotateY(180deg);
+    filter: blur(10px);
+    transition: 
+        opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+        transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+        filter 0.8s ease;
 }
 
-.journey-card-wrapper {
+/* 当Projects页面激活时，卡片从粒子中凝聚 */
+#projects.active .projects-slide {
+    opacity: 1;
+    transform: scale(1) rotateY(0);
+    filter: blur(0px);
+}
+
+#projects.active .projects-slide:nth-child(1) { transition-delay: 0.1s; }
+#projects.active .projects-slide:nth-child(2) { transition-delay: 0.15s; }
+#projects.active .projects-slide:nth-child(3) { transition-delay: 0.2s; }
+#projects.active .projects-slide:nth-child(4) { transition-delay: 0.25s; }
+#projects.active .projects-slide:nth-child(5) { transition-delay: 0.3s; }
+#projects.active .projects-slide:nth-child(6) { transition-delay: 0.35s; }
+#projects.active .projects-slide:nth-child(7) { transition-delay: 0.4s; }
+#projects.active .projects-slide:nth-child(8) { transition-delay: 0.1s; }
+#projects.active .projects-slide:nth-child(9) { transition-delay: 0.4s; }
+
+.projects-card-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.2rem;
+    position: relative;
 }
+
+
+
+
+/* Projects卡片 - 复用Journey样式（移除入场动画，保证稳定显示） */
+.projects-card {
+    width: 240px;
+    height: 360px;
+    background-color: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        0 0 30px rgba(255, 255, 255, 0.12),
+        0 0 60px rgba(255, 255, 255, 0.08),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+    /* 默认可见状态，确保切换时不会消失 */
+    opacity: 1;
+    transform: scale(1) rotateY(0deg) translateZ(0px);
+}
+
+
+.projects-card:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* 通用card-blob样式（用于所有projects卡片） */
+.projects-card .card-blob,
+.projects-card .dwen-blob {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+    filter: blur(0px);
+    transition: opacity 0.5s ease;
+    /* 使用CSS变量的径向渐变背景 */
+    background: radial-gradient(circle,
+        var(--blob-color-1, rgba(255, 255, 255, 0.4)) 0%,
+        var(--blob-color-2, rgba(255, 255, 255, 0.3)) 30%,
+        var(--blob-color-3, rgba(255, 255, 255, 0.15)) 60%,
+        transparent 100%
+    );
+}
+
+/* 复用所有journey的卡片样式 - DWEN复制MEDICINE */
+.projects-card--dwen { 
+    background: #000000; 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+.projects-card--dwen .dwen-blob {
+    width: 150px;
+    height: 150px;
+    background:
+        /* 主要渐变层 - 紫色到蓝色 */
+        radial-gradient(ellipse 130px 110px at 25% 35%, rgba(150, 100, 255, 0.6), transparent 65%),
+        radial-gradient(ellipse 110px 90px at 75% 65%, rgba(120, 150, 255, 0.5), transparent 70%),
+        /* 高光层 - 青色和白色 */
+        radial-gradient(ellipse 90px 70px at 45% 25%, rgba(100, 200, 255, 0.4), transparent 60%),
+        radial-gradient(ellipse 70px 50px at 85% 85%, rgba(200, 220, 255, 0.3), transparent 55%),
+        /* 纹理层 - 粉色和淡紫 */
+        radial-gradient(ellipse 50px 40px at 15% 75%, rgba(255, 150, 200, 0.3), transparent 50%),
+        radial-gradient(ellipse 30px 25px at 55% 15%, rgba(220, 180, 255, 0.2), transparent 45%);
+    border-radius: 50% 50% 45% 55% / 45% 55% 50% 50%;
+    filter: blur(0.3px) contrast(1.2) brightness(1.1);
+    animation: medicineBlobMorph 7s ease-in-out infinite alternate, medicineBlobShimmer 5s ease-in-out infinite;
+}
+
+.projects-card--dwen .dwen-blob { background: radial-gradient(ellipse at 35% 40%, rgba(180, 120, 255, 0.35), transparent 60%), radial-gradient(ellipse at 65% 55%, rgba(100, 180, 255, 0.4), transparent 65%), radial-gradient(circle at 50% 50%, rgba(140, 150, 255, 0.25), transparent 70%); border-radius: 45% 55% 50% 50% / 50% 50% 50% 50%; filter: blur(1px); animation: medicineFloat 6s ease-in-out infinite alternate; }
+.projects-card--dwen:hover .dwen-blob { opacity: 0; transform: translate(-50%, -50%) scale(1.3); filter: blur(15px); transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease; }
+.projects-card--dwen:hover { background: linear-gradient(0deg, rgba(255, 200, 100, 0.5) 0%, transparent 40%), linear-gradient(45deg, rgba(255, 180, 120, 0.4) 0%, transparent 50%), linear-gradient(90deg, rgba(255, 220, 150, 0.3) 0%, transparent 60%), #000000; background-size: 200% 200%; animation: medicineFlowingLight 6.99s ease-in-out infinite; }
+.projects-card--dwen.center { border-color: rgba(255, 255, 255, 0.25); overflow: visible; position: relative; }
+.projects-card--dwen.center::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), -17px 0 23px 1px rgba(180, 120, 255, 0.22), 17px 0 23px 1px rgba(100, 180, 255, 0.22), -23px 0 33px 1.7px rgba(140, 150, 255, 0.1), 23px 0 33px 1.7px rgba(120, 200, 255, 0.1), -30px 0 43px 1.7px rgba(140, 150, 255, 0.03), 30px 0 43px 1.7px rgba(120, 200, 255, 0.03), -35px 0 53px 7px rgba(140, 150, 255, 0.008), 35px 0 53px 7px rgba(120, 200, 255, 0.008), -39px 0 63px 23px rgba(140, 150, 255, 0.002), 39px 0 63px 23px rgba(120, 200, 255, 0.002), inset 0 2px 8px rgba(255, 255, 255, 0.25), inset 2px 0 8px rgba(255, 255, 255, 0.2), inset -2px 0 8px rgba(255, 255, 255, 0.2); clip-path: inset(0 -40px 0 -40px); }
+
+.projects-card--medicine .card-blob {
+    width: 150px;
+    height: 150px;
+    background:
+        /* 主要渐变层 - 紫色到蓝色 */
+        radial-gradient(ellipse 130px 110px at 25% 35%, rgba(150, 100, 255, 0.6), transparent 65%),
+        radial-gradient(ellipse 110px 90px at 75% 65%, rgba(120, 150, 255, 0.5), transparent 70%),
+        /* 高光层 - 青色和白色 */
+        radial-gradient(ellipse 90px 70px at 45% 25%, rgba(100, 200, 255, 0.4), transparent 60%),
+        radial-gradient(ellipse 70px 50px at 85% 85%, rgba(200, 220, 255, 0.3), transparent 55%),
+        /* 纹理层 - 粉色和淡紫 */
+        radial-gradient(ellipse 50px 40px at 15% 75%, rgba(255, 150, 200, 0.3), transparent 50%),
+        radial-gradient(ellipse 30px 25px at 55% 15%, rgba(220, 180, 255, 0.2), transparent 45%);
+    border-radius: 50% 50% 45% 55% / 45% 55% 50% 50%;
+    filter: blur(0.3px) contrast(1.2) brightness(1.1);
+    animation: medicineBlobMorph 7s ease-in-out infinite alternate, medicineBlobShimmer 5s ease-in-out infinite;
+}
+
+.projects-card--songs .card-blob {
+    width: 155px;
+    height: 155px;
+    background:
+        /* 主要渐变层 - 绿色到黄色 */
+        radial-gradient(ellipse 135px 115px at 30% 40%, rgba(200, 255, 100, 0.6), transparent 65%),
+        radial-gradient(ellipse 115px 95px at 70% 60%, rgba(220, 255, 150, 0.5), transparent 70%),
+        /* 高光层 - 青色和白色 */
+        radial-gradient(ellipse 95px 75px at 50% 30%, rgba(100, 255, 200, 0.4), transparent 60%),
+        radial-gradient(ellipse 75px 55px at 80% 80%, rgba(150, 255, 220, 0.3), transparent 55%),
+        /* 纹理层 - 橙色和粉色 */
+        radial-gradient(ellipse 55px 45px at 20% 70%, rgba(255, 200, 100, 0.3), transparent 50%),
+        radial-gradient(ellipse 35px 30px at 60% 20%, rgba(255, 150, 180, 0.2), transparent 45%);
+    border-radius: 40% 60% 55% 45% / 55% 45% 60% 40%;
+    filter: blur(0.3px) contrast(1.2) brightness(1.1);
+    animation: songsBlobMorph 6.5s ease-in-out infinite alternate, songsBlobShimmer 4.5s ease-in-out infinite;
+}
+
+.projects-card--mahjong .card-blob {
+    width: 145px;
+    height: 145px;
+    background:
+        /* 主要渐变层 - 橙色到黄色 */
+        radial-gradient(ellipse 125px 105px at 25% 35%, rgba(255, 160, 80, 0.6), transparent 65%),
+        radial-gradient(ellipse 105px 85px at 75% 65%, rgba(255, 200, 120, 0.5), transparent 70%),
+        /* 高光层 - 粉色和白色 */
+        radial-gradient(ellipse 85px 65px at 45% 25%, rgba(255, 180, 200, 0.4), transparent 60%),
+        radial-gradient(ellipse 65px 45px at 85% 85%, rgba(255, 220, 180, 0.3), transparent 55%),
+        /* 纹理层 - 红色和紫色 */
+        radial-gradient(ellipse 45px 35px at 15% 75%, rgba(255, 100, 150, 0.3), transparent 50%),
+        radial-gradient(ellipse 25px 20px at 55% 15%, rgba(200, 120, 255, 0.2), transparent 45%);
+    border-radius: 55% 45% 50% 50% / 40% 60% 45% 55%;
+    filter: blur(0.3px) contrast(1.2) brightness(1.1);
+    animation: mahjongBlobMorph 7.5s ease-in-out infinite alternate, mahjongBlobShimmer 5.5s ease-in-out infinite;
+}
+
+.projects-card--parrot .card-blob {
+    width: 150px;
+    height: 150px;
+    background:
+        /* 主要渐变层 - 蓝色到紫色 */
+        radial-gradient(ellipse 130px 110px at 30% 40%, rgba(100, 120, 255, 0.6), transparent 65%),
+        radial-gradient(ellipse 110px 90px at 70% 60%, rgba(150, 140, 255, 0.5), transparent 70%),
+        /* 高光层 - 青色和白色 */
+        radial-gradient(ellipse 90px 70px at 50% 30%, rgba(100, 200, 255, 0.4), transparent 60%),
+        radial-gradient(ellipse 70px 50px at 80% 80%, rgba(180, 200, 255, 0.3), transparent 55%),
+        /* 纹理层 - 粉色和橙色 */
+        radial-gradient(ellipse 50px 40px at 20% 70%, rgba(255, 150, 200, 0.3), transparent 50%),
+        radial-gradient(ellipse 30px 25px at 60% 20%, rgba(255, 200, 150, 0.2), transparent 45%);
+    border-radius: 50% 50% 45% 55% / 55% 45% 50% 50%;
+    filter: blur(0.3px) contrast(1.2) brightness(1.1);
+    animation: parrotBlobMorph 6s ease-in-out infinite alternate, parrotBlobShimmer 4s ease-in-out infinite;
+}
+
+.projects-card--event .card-blob {
+    width: 155px;
+    height: 155px;
+    background:
+        /* 主要渐变层 - 青色到绿色 */
+        radial-gradient(ellipse 135px 115px at 25% 35%, rgba(100, 255, 200, 0.6), transparent 65%),
+        radial-gradient(ellipse 115px 95px at 75% 65%, rgba(150, 255, 220, 0.5), transparent 70%),
+        /* 高光层 - 蓝色和白色 */
+        radial-gradient(ellipse 95px 75px at 45% 25%, rgba(100, 150, 255, 0.4), transparent 60%),
+        radial-gradient(ellipse 75px 55px at 85% 85%, rgba(180, 220, 255, 0.3), transparent 55%),
+        /* 纹理层 - 紫色和粉色 */
+        radial-gradient(ellipse 55px 45px at 15% 75%, rgba(200, 100, 255, 0.3), transparent 50%),
+        radial-gradient(ellipse 35px 30px at 55% 15%, rgba(255, 150, 200, 0.2), transparent 45%);
+    border-radius: 45% 55% 50% 50% / 60% 40% 55% 45%;
+    filter: blur(0.3px) contrast(1.2) brightness(1.1);
+    animation: eventBlobMorph 8.5s ease-in-out infinite alternate, eventBlobShimmer 6.5s ease-in-out infinite;
+}
+
+.projects-card--franken .card-blob {
+    width: 160px;
+    height: 160px;
+    background:
+        /* 主要渐变层 - 紫色到粉色 */
+        radial-gradient(ellipse 140px 120px at 30% 40%, rgba(180, 100, 255, 0.6), transparent 65%),
+        radial-gradient(ellipse 120px 100px at 70% 60%, rgba(200, 120, 255, 0.5), transparent 70%),
+        /* 高光层 - 蓝色和青色 */
+        radial-gradient(ellipse 100px 80px at 50% 30%, rgba(100, 150, 255, 0.4), transparent 60%),
+        radial-gradient(ellipse 80px 60px at 80% 80%, rgba(150, 200, 255, 0.3), transparent 55%),
+        /* 纹理层 - 橙色和黄色 */
+        radial-gradient(ellipse 60px 50px at 20% 70%, rgba(255, 180, 100, 0.3), transparent 50%),
+        radial-gradient(ellipse 40px 30px at 60% 20%, rgba(255, 220, 150, 0.2), transparent 45%);
+    border-radius: 40% 60% 55% 45% / 50% 50% 60% 40%;
+    filter: blur(0.3px) contrast(1.2) brightness(1.1);
+    animation: frankenBlobMorph 7.2s ease-in-out infinite alternate, frankenBlobShimmer 5.2s ease-in-out infinite;
+}
+
+.projects-card--medicine .card-blob { background: radial-gradient(ellipse at 35% 40%, rgba(150, 220, 180, 0.35), transparent 60%), radial-gradient(ellipse at 65% 55%, rgba(255, 180, 120, 0.4), transparent 65%), radial-gradient(circle at 50% 50%, rgba(180, 200, 160, 0.25), transparent 70%); border-radius: 45% 55% 50% 50% / 50% 50% 50% 50%; filter: blur(1px); animation: medicineFloat 6s ease-in-out infinite alternate; }
+.projects-card--medicine:hover .card-blob { opacity: 0; transform: translate(-50%, -50%) scale(1.3); filter: blur(15px); transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease; }
+.projects-card--medicine:hover { background: linear-gradient(0deg, rgba(150, 100, 255, 0.5) 0%, transparent 40%), linear-gradient(45deg, rgba(120, 150, 255, 0.4) 0%, transparent 50%), linear-gradient(90deg, rgba(180, 200, 255, 0.3) 0%, transparent 60%), #000000; background-size: 200% 200%; animation: medicineFlowingLight 6.99s ease-in-out infinite; }
+.projects-card--medicine.center { border-color: rgba(255, 255, 255, 0.25); overflow: visible; position: relative; }
+.projects-card--medicine.center::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), -17px 0 23px 1px rgba(150, 220, 180, 0.22), 17px 0 23px 1px rgba(255, 180, 120, 0.22), -23px 0 33px 1.7px rgba(180, 200, 160, 0.1), 23px 0 33px 1.7px rgba(255, 200, 140, 0.1), -30px 0 43px 1.7px rgba(180, 200, 160, 0.03), 30px 0 43px 1.7px rgba(255, 200, 140, 0.03), -35px 0 53px 7px rgba(180, 200, 160, 0.008), 35px 0 53px 7px rgba(255, 200, 140, 0.008), -39px 0 63px 23px rgba(180, 200, 160, 0.002), 39px 0 63px 23px rgba(255, 200, 140, 0.002), inset 0 2px 8px rgba(255, 255, 255, 0.25), inset 2px 0 8px rgba(255, 255, 255, 0.2), inset -2px 0 8px rgba(255, 255, 255, 0.2); clip-path: inset(0 -40px 0 -40px); }
+
+.projects-card--songs .card-blob { background: radial-gradient(ellipse at 35% 45%, rgba(255, 140, 200, 0.4), transparent 60%), radial-gradient(ellipse at 65% 55%, rgba(200, 140, 255, 0.45), transparent 65%), radial-gradient(circle at 50% 50%, rgba(220, 160, 230, 0.3), transparent 70%); border-radius: 30% 70% 70% 30% / 50% 50% 50% 50%; filter: blur(0.5px); animation: soundWave 4s ease-in-out infinite; }
+.projects-card--songs:hover .card-blob { opacity: 0; transform: translate(-50%, -50%) scale(1.3); filter: blur(15px); transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease; }
+.projects-card--songs:hover { background: linear-gradient(0deg, rgba(200, 255, 100, 0.5) 0%, transparent 40%), linear-gradient(45deg, rgba(220, 255, 150, 0.4) 0%, transparent 50%), linear-gradient(90deg, rgba(180, 255, 180, 0.3) 0%, transparent 60%), #000000; background-size: 200% 200%; animation: songsFlowingLight 6.39s ease-in-out infinite; }
+.projects-card--songs.center { border-color: rgba(255, 255, 255, 0.25); overflow: visible; position: relative; }
+.projects-card--songs.center::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), -17px 0 23px 1px rgba(255, 140, 200, 0.22), 17px 0 23px 1px rgba(200, 140, 255, 0.22), -23px 0 33px 1.7px rgba(220, 160, 230, 0.1), 23px 0 33px 1.7px rgba(235, 150, 215, 0.1), -30px 0 43px 1.7px rgba(220, 160, 230, 0.03), 30px 0 43px 1.7px rgba(235, 150, 215, 0.03), -35px 0 53px 7px rgba(220, 160, 230, 0.008), 35px 0 53px 7px rgba(235, 150, 215, 0.008), -39px 0 63px 23px rgba(220, 160, 230, 0.002), 39px 0 63px 23px rgba(235, 150, 215, 0.002), inset 0 2px 8px rgba(255, 255, 255, 0.25), inset 2px 0 8px rgba(255, 255, 255, 0.2), inset -2px 0 8px rgba(255, 255, 255, 0.2); clip-path: inset(0 -40px 0 -40px); }
+
+.projects-card--mahjong .card-blob { background: radial-gradient(circle at 40% 45%, rgba(80, 130, 200, 0.45), transparent 55%), radial-gradient(circle at 60% 55%, rgba(150, 200, 255, 0.4), transparent 65%), radial-gradient(circle at 50% 50%, rgba(110, 160, 220, 0.3), transparent 70%); border-radius: 20% 20% 20% 20% / 20% 20% 20% 20%; filter: blur(0.5px); animation: mahjongSpin 8s linear infinite; }
+.projects-card--mahjong:hover .card-blob { opacity: 0; transform: translate(-50%, -50%) scale(1.3); filter: blur(15px); transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease; }
+.projects-card--mahjong:hover { background: linear-gradient(0deg, rgba(255, 160, 80, 0.5) 0%, transparent 40%), linear-gradient(45deg, rgba(255, 200, 120, 0.4) 0%, transparent 50%), linear-gradient(90deg, rgba(255, 220, 150, 0.3) 0%, transparent 60%), #000000; background-size: 200% 200%; animation: mahjongFlowingLight 7.59s ease-in-out infinite; }
+.projects-card--mahjong.center { border-color: rgba(255, 255, 255, 0.25); overflow: visible; position: relative; }
+.projects-card--mahjong.center::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), -17px 0 23px 1px rgba(80, 130, 200, 0.22), 17px 0 23px 1px rgba(150, 200, 255, 0.22), -23px 0 33px 1.7px rgba(110, 160, 220, 0.1), 23px 0 33px 1.7px rgba(130, 180, 230, 0.1), -30px 0 43px 1.7px rgba(110, 160, 220, 0.03), 30px 0 43px 1.7px rgba(130, 180, 230, 0.03), -35px 0 53px 7px rgba(110, 160, 220, 0.008), 35px 0 53px 7px rgba(130, 180, 230, 0.008), -39px 0 63px 23px rgba(110, 160, 220, 0.002), 39px 0 63px 23px rgba(130, 180, 230, 0.002), inset 0 2px 8px rgba(255, 255, 255, 0.25), inset 2px 0 8px rgba(255, 255, 255, 0.2), inset -2px 0 8px rgba(255, 255, 255, 0.2); clip-path: inset(0 -40px 0 -40px); }
+
+.projects-card--parrot .card-blob { background: radial-gradient(ellipse at 35% 45%, rgba(255, 220, 60, 0.5), transparent 55%), radial-gradient(ellipse at 65% 55%, rgba(255, 150, 50, 0.45), transparent 60%), radial-gradient(circle at 50% 50%, rgba(255, 185, 100, 0.3), transparent 65%); border-radius: 60% 40% 30% 70% / 40% 60% 70% 30%; filter: blur(0.5px); animation: featherFloat 5s ease-in-out infinite alternate; width: 120px; height: 120px; }
+.projects-card--parrot:hover .card-blob { opacity: 0; transform: translate(-50%, -50%) scale(1.3); filter: blur(15px); transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease; }
+.projects-card--parrot:hover { background: linear-gradient(0deg, rgba(100, 120, 255, 0.5) 0%, transparent 40%), linear-gradient(45deg, rgba(150, 140, 255, 0.4) 0%, transparent 50%), linear-gradient(90deg, rgba(180, 160, 255, 0.3) 0%, transparent 60%), #000000; background-size: 200% 200%; animation: parrotFlowingLight 6.81s ease-in-out infinite; }
+.projects-card--parrot.center { border-color: rgba(255, 255, 255, 0.25); overflow: visible; position: relative; }
+.projects-card--parrot.center::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), -17px 0 23px 1px rgba(255, 220, 60, 0.22), 17px 0 23px 1px rgba(255, 150, 50, 0.22), -23px 0 33px 1.7px rgba(255, 150, 50, 0.1), 23px 0 33px 1.7px rgba(255, 220, 60, 0.1), -30px 0 43px 1.7px rgba(255, 185, 100, 0.03), 30px 0 43px 1.7px rgba(255, 185, 100, 0.03), -35px 0 53px 7px rgba(255, 185, 100, 0.008), 35px 0 53px 7px rgba(255, 185, 100, 0.008), -39px 0 63px 23px rgba(255, 185, 100, 0.002), 39px 0 63px 23px rgba(255, 185, 100, 0.002), inset 0 2px 8px rgba(255, 255, 255, 0.25), inset 2px 0 8px rgba(255, 255, 255, 0.2), inset -2px 0 8px rgba(255, 255, 255, 0.2); clip-path: inset(0 -40px 0 -40px); }
+
+.projects-card--event .card-blob {
+    width: 155px;
+    height: 155px;
+    background: radial-gradient(circle at 40% 45%, rgba(255, 160, 200, 0.5), transparent 50%), 
+                radial-gradient(circle at 60% 55%, rgba(255, 220, 240, 0.45), transparent 60%), 
+                radial-gradient(circle at 50% 50%, rgba(255, 190, 220, 0.35), transparent 65%);
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    filter: blur(0.5px);
+    animation: starPulse 3s ease-in-out infinite;
+    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
+.projects-card--event:hover .card-blob {
+    opacity: 0 !important;
+    transform: translate(-50%, -50%) scale(1.3) !important;
+    filter: blur(15px) !important;
+    visibility: hidden !important;
+    display: none !important;
+}
+
+.projects-card--event:hover {
+    background: linear-gradient(0deg, rgba(100, 255, 200, 0.45) 0%, transparent 40%), 
+                linear-gradient(45deg, rgba(150, 255, 220, 0.35) 0%, transparent 50%), 
+                linear-gradient(90deg, rgba(180, 255, 235, 0.25) 0%, transparent 60%), 
+                #000000;
+    background-size: 200% 200%;
+    animation: eventFlowingLight 6.6s ease-in-out infinite;
+}
+
+.projects-card--event.center {
+    border-color: rgba(255, 255, 255, 0.25);
+    overflow: visible;
+    position: relative;
+}
+
+.projects-card--event.center::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), 
+                -17px 0 23px 1px rgba(255, 160, 200, 0.22), 
+                17px 0 23px 1px rgba(255, 220, 240, 0.22), 
+                -23px 0 33px 1.7px rgba(255, 190, 220, 0.1), 
+                23px 0 33px 1.7px rgba(255, 210, 230, 0.1), 
+                -30px 0 43px 1.7px rgba(255, 190, 220, 0.03), 
+                30px 0 43px 1.7px rgba(255, 210, 230, 0.03), 
+                -35px 0 53px 7px rgba(255, 190, 220, 0.008), 
+                35px 0 53px 7px rgba(255, 210, 230, 0.008), 
+                -39px 0 63px 23px rgba(255, 190, 220, 0.002), 
+                39px 0 63px 23px rgba(255, 210, 230, 0.002), 
+                inset 0 2px 8px rgba(255, 255, 255, 0.25), 
+                inset 2px 0 8px rgba(255, 255, 255, 0.2), 
+                inset -2px 0 8px rgba(255, 255, 255, 0.2);
+    clip-path: inset(0 -40px 0 -40px);
+}
+
+.projects-card--franken .card-blob { background: radial-gradient(ellipse at 35% 45%, rgba(130, 240, 200, 0.45), transparent 60%), radial-gradient(ellipse at 65% 55%, rgba(160, 220, 255, 0.4), transparent 65%), radial-gradient(circle at 50% 50%, rgba(145, 230, 225, 0.3), transparent 70%); border-radius: 65% 35% 45% 55% / 55% 65% 35% 45%; filter: blur(0.5px); animation: frankenMorph 7s ease-in-out infinite alternate; }
+.projects-card--franken:hover .card-blob { opacity: 0; transform: translate(-50%, -50%) scale(1.3); filter: blur(15px); transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease; }
+.projects-card--franken:hover { background: linear-gradient(0deg, rgba(255, 140, 160, 0.5) 0%, transparent 40%), linear-gradient(45deg, rgba(255, 180, 140, 0.4) 0%, transparent 50%), linear-gradient(90deg, rgba(255, 200, 170, 0.3) 0%, transparent 60%), #000000; background-size: 200% 200%; animation: frankenFlowingLight 7.2s ease-in-out infinite; }
+.projects-card--franken.center { border-color: rgba(255, 255, 255, 0.25); overflow: visible; position: relative; }
+.projects-card--franken.center::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), -17px 0 23px 1px rgba(130, 240, 200, 0.22), 17px 0 23px 1px rgba(160, 220, 255, 0.22), -23px 0 33px 1.7px rgba(145, 230, 225, 0.1), 23px 0 33px 1.7px rgba(150, 210, 240, 0.1), -30px 0 43px 1.7px rgba(145, 230, 225, 0.03), 30px 0 43px 1.7px rgba(150, 210, 240, 0.03), -35px 0 53px 7px rgba(145, 230, 225, 0.008), 35px 0 53px 7px rgba(150, 210, 240, 0.008), -39px 0 63px 23px rgba(145, 230, 225, 0.002), 39px 0 63px 23px rgba(150, 210, 240, 0.002), inset 0 2px 8px rgba(255, 255, 255, 0.25), inset 2px 0 8px rgba(255, 255, 255, 0.2), inset -2px 0 8px rgba(255, 255, 255, 0.2); clip-path: inset(0 -40px 0 -40px); }
+
+.projects-project-name { 
+    font-size: 1.1rem; 
+    font-weight: 300; 
+    letter-spacing: 0.15em; 
+    color: #ffffff; 
+    margin: 0; 
+    text-align: center; 
+    text-transform: uppercase; 
+    font-family: 'Cormorant Garamond', Georgia, serif; 
+    transition: all 0.4s cubic-bezier(0.4, 0.2, 1);
+    /* 默认可见状态，确保切换时不会消失 */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.projects-year { 
+    font-size: 0.65rem; 
+    color: rgba(255, 255, 255, 0.5); 
+    font-weight: 300; 
+    letter-spacing: 0.3em; 
+    text-transform: uppercase; 
+    text-align: center; 
+    margin: 0; 
+    font-family: 'Inter', sans-serif; 
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* 默认可见状态，确保切换时不会消失 */
+    opacity: 1;
+    transform: translateY(0);
+    position: relative;
+    z-index: 2;
+}
+
+
+
+/* ============================================
+   Event Management 项目详情页面样式
+   ============================================ */
+.event-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    animation: pageSimpleFadeIn 0.6s ease-out forwards;
+}
+
+.event-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.event-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 20px rgba(255, 182, 193, 0.3);
+}
+
+.event-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.event-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.event-keywords {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.event-keywords .keyword {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 182, 193, 0.1);
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    border-radius: 20px;
+    color: #FFB6C1;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.event-keywords .keyword:hover {
+    background: rgba(255, 182, 193, 0.2);
+    border-color: #FFB6C1;
+    box-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
+}
+
+.event-github {
+    margin-top: 1rem;
+}
+
+.event-github .github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 182, 193, 0.05);
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.event-github .github-link:hover {
+    background: rgba(255, 182, 193, 0.1);
+    border-color: #FFB6C1;
+    box-shadow: 0 0 15px rgba(255, 182, 193, 0.2);
+}
+
+/* UML Diagrams 区域 */
+.event-uml-section {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.event-uml-section .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.uml-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.uml-item {
+    position: relative;
+}
+
+.uml-placeholder {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #1a1f3a 0%, #2d3748 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed rgba(255, 182, 193, 0.3);
+    border-radius: 15px;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 1.5rem;
+}
+
+.uml-placeholder:hover {
+    border-color: #FFB6C1;
+    box-shadow: 0 0 30px rgba(255, 182, 193, 0.2);
+    transform: translateY(-5px);
+}
+
+.uml-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+}
+
+.uml-placeholder h3 {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.uml-placeholder p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* System Architecture 区域 */
+.event-arch-section {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.event-arch-section .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.arch-diagram {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.arch-placeholder {
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 182, 193, 0.1);
+    transition: all 0.4s ease;
+}
+
+.arch-placeholder:hover {
+    border-color: #FFB6C1;
+    box-shadow: 0 20px 60px rgba(255, 182, 193, 0.2);
+    transform: translateY(-5px);
+}
+
+.arch-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+}
+
+.arch-placeholder h3 {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.arch-placeholder p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.arch-layers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.layer {
+    padding: 0.8rem 1.2rem;
+    background: rgba(255, 182, 193, 0.1);
+    border: 1px solid rgba(255, 182, 193, 0.2);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Interface Screenshots 区域 */
+.event-screens-section {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.event-screens-section .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.screens-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.screen-item {
+    position: relative;
+}
+
+.screen-placeholder {
+    aspect-ratio: 16/10;
+    background: linear-gradient(135deg, #1a1f3a 0%, #2d3748 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed rgba(255, 182, 193, 0.3);
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.screen-placeholder:hover {
+    border-color: #FFB6C1;
+    box-shadow: 0 0 25px rgba(255, 182, 193, 0.2);
+    transform: translateY(-5px);
+}
+
+.screen-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+}
+
+.screen-placeholder p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.screen-desc {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* 内容区块样式 */
+.event-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.event-section {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.event-section:nth-child(1) { animation-delay: 0.2s; }
+.event-section:nth-child(2) { animation-delay: 0.4s; }
+.event-section:nth-child(3) { animation-delay: 0.6s; }
+.event-section:nth-child(4) { animation-delay: 0.8s; }
+.event-section:nth-child(5) { animation-delay: 1.0s; }
+.event-section:nth-child(6) { animation-delay: 1.2s; }
+
+.event-section .section-number {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #FFB6C1;
+    min-width: 3rem;
+    text-align: right;
+    padding-top: 0.2rem;
+}
+
+.event-section .section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(255, 182, 193, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.event-section .section-content {
+    flex: 1;
+}
+
+.event-section .section-content p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+/* 关键功能特色 */
+.key-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.feature-item {
+    padding: 1.5rem;
+    background: rgba(255, 182, 193, 0.05);
+    border: 1px solid rgba(255, 182, 193, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.feature-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #FFB6C1;
+    border-radius: 2px 0 0 2px;
+}
+
+.feature-item:hover {
+    background: rgba(255, 182, 193, 0.1);
+    border-color: #FFB6C1;
+    box-shadow: 0 0 20px rgba(255, 182, 193, 0.2);
+}
+
+.feature-item h4 {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.feature-item p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* 网格布局样式 */
+.challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.challenge-item {
+    padding: 1.5rem;
+    background: rgba(255, 182, 193, 0.05);
+    border: 1px solid rgba(255, 182, 193, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.challenge-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #FFB6C1;
+    border-radius: 2px 0 0 2px;
+}
+
+.challenge-item:hover {
+    background: rgba(255, 182, 193, 0.1);
+    border-color: #FFB6C1;
+    box-shadow: 0 0 20px rgba(255, 182, 193, 0.2);
+}
+
+.challenge-item h3 {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+/* 技术栈展示 */
+.tech-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.tech-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 182, 193, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid #FFB6C1;
+}
+
+.tech-label {
+    min-width: 140px;
+    color: #FFB6C1;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.tech-value {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* 设计原则网格 */
+.principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.principle-item {
+    padding: 1.5rem;
+    background: rgba(255, 182, 193, 0.05);
+    border: 1px solid rgba(255, 182, 193, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.principle-item:hover {
+    background: rgba(255, 182, 193, 0.1);
+    border-color: #FFB6C1;
+    box-shadow: 0 0 20px rgba(255, 182, 193, 0.2);
+}
+
+.principle-item h3 {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+/* UX 亮点 */
+.ux-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.ux-item {
+    padding: 1.5rem;
+    background: rgba(255, 182, 193, 0.05);
+    border: 1px solid rgba(255, 182, 193, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.ux-item:hover {
+    background: rgba(255, 182, 193, 0.1);
+    border-color: #FFB6C1;
+    box-shadow: 0 0 20px rgba(255, 182, 193, 0.2);
+}
+
+.ux-item h4 {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+/* 影响亮点 */
+.impact-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.impact-item {
+    padding: 1rem;
+    background: rgba(255, 182, 193, 0.05);
+    border-left: 4px solid #FFB6C1;
+    border-radius: 0 8px 8px 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.reflection-text {
+    background: rgba(255, 182, 193, 0.05);
+    border: 1px solid rgba(255, 182, 193, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.reflection-text p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.learnings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.learning-item {
+    padding: 1rem;
+    background: rgba(255, 182, 193, 0.05);
+    border-left: 4px solid #FFB6C1;
+    border-radius: 0 8px 8px 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.achievement-badge {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.achievement-text {
+    color: #FFB6C1;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    background: rgba(255, 182, 193, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    display: inline-block;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .event-title {
+        font-size: 2.5rem;
+    }
+    
+    .event-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .uml-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .screens-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .event-section {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .key-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .challenge-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .principles-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   Guess Songs 项目详情页面样式
+   ============================================ */
+.songs-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    animation: pageSimpleFadeIn 0.6s ease-out forwards;
+}
+
+.songs-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.songs-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+}
+
+.songs-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.songs-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.meta-divider {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.9rem;
+}
+
+.songs-keywords {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.keyword {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    border-radius: 20px;
+    color: #FF6B6B;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.keyword:hover {
+    background: rgba(255, 107, 107, 0.2);
+    border-color: #FF6B6B;
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+}
+
+/* 演示视频区域 */
+.songs-video-section {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.songs-video-section .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.video-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.video-placeholder {
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #1a1f3a 0%, #2d3748 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed rgba(255, 107, 107, 0.3);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.video-placeholder:hover {
+    border-color: #FF6B6B;
+    box-shadow: 0 0 30px rgba(255, 107, 107, 0.2);
+}
+
+.video-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+}
+
+.video-placeholder p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.video-duration {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* 内容卡片网格 */
+.songs-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.songs-card {
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 107, 107, 0.1);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.songs-card:nth-child(1) { animation-delay: 0.1s; }
+.songs-card:nth-child(2) { animation-delay: 0.2s; }
+.songs-card:nth-child(3) { animation-delay: 0.3s; }
+.songs-card:nth-child(4) { animation-delay: 0.4s; }
+.songs-card:nth-child(5) { animation-delay: 0.5s; }
+
+.songs-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #FF6B6B, #FF8E8E);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.songs-card:hover::before {
+    transform: scaleX(1);
+}
+
+.songs-card:hover {
+    border-color: #FF6B6B;
+    box-shadow: 0 20px 60px rgba(255, 107, 107, 0.2);
+    transform: translateY(-10px);
+}
+
+.card-number {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #FF6B6B;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.card-content {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.card-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.highlight-item {
+    padding: 0.8rem 1rem;
+    background: rgba(255, 107, 107, 0.05);
+    border-left: 3px solid #FF6B6B;
+    border-radius: 0 8px 8px 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+}
+
+.highlight-item:hover {
+    background: rgba(255, 107, 107, 0.1);
+    border-left-color: #FF8E8E;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .songs-title {
+        font-size: 2.5rem;
+    }
+    
+    .songs-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .songs-keywords {
+        gap: 0.5rem;
+    }
+    
+    .songs-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .songs-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Projects 导航 - 黑白风格（移除入场动画，保证稳定显示） */
+.projects-nav { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 2rem; 
+    margin-top: calc(-3.875rem + 10px); /* 下移10px (20px - 10px) */
+    opacity: 0;
+    transform: scale(0.9);
+    transition: 
+        opacity 0.6s ease 1.2s,
+        transform 0.6s ease 1.2s;
+    /* 独立定位，不受slider-wrapper的transform影响 */
+    position: relative;
+    width: 100%;
+    left: 0;
+}
+
+/* 当Projects页面激活时，导航控件淡入 */
+#projects.active .projects-nav {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+.projects-nav-btn { width: 45px; height: 45px; border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.02); color: #ffffff; font-size: 1.3rem; border-radius: 50%; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; justify-content: center; font-weight: 200; position: relative; overflow: hidden; }
+.projects-nav-btn::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: rgba(255, 255, 255, 0.2); transform: translate(-50%, -50%); transition: width 0.4s ease, height 0.4s ease; }
+.projects-nav-btn:hover { border-color: rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.08); transform: scale(1.1); box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); }
+.projects-nav-btn:hover::before { width: 100%; height: 100%; }
+.projects-nav-btn:active { transform: scale(0.9); box-shadow: 0 0 30px rgba(255, 255, 255, 0.4); }
+.projects-indicators { display: flex; gap: 0.6rem; }
+.projects-indicator { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; }
+.projects-indicator::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0; height: 0; border-radius: 50%; background: rgba(255, 255, 255, 0.4); transition: all 0.3s ease; }
+.projects-indicator:hover { background: rgba(255, 255, 255, 0.4); transform: scale(1.3); box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+.projects-indicator:hover::after { width: 16px; height: 16px; opacity: 0; }
+.projects-indicator.active { background: #ffffff; border-color: #ffffff; width: 8px; height: 8px; box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); animation: indicatorPulse 2s ease-in-out infinite; }
+
+/* ========== Projects 交互效果 - 复用Journey的swipe逻辑 ========== */
+
+/* 交互时为卡牌填充方向性高亮 + 动态效果 */
+.projects-card.swipe-right {
+    background-image: linear-gradient(90deg,
+        rgba(255,255,255,0.15) 0%,
+        rgba(255,255,255,0.08) 40%,
+        rgba(255,255,255,0.02) 100%
+    );
+    transform: perspective(1000px) rotateY(-8deg) scale(0.95);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.projects-card.swipe-left {
+    background-image: linear-gradient(270deg,
+        rgba(255,255,255,0.15) 0%,
+        rgba(255,255,255,0.08) 40%,
+        rgba(255,255,255,0.02) 100%
+    );
+    transform: perspective(1000px) rotateY(8deg) scale(0.95);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 切换时保持白色边框，添加微光效果 */
+.projects-card.swipe-left,
+.projects-card.swipe-right {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        0 0 60px rgba(255, 255, 255, 0.08),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+}
+
+/* 文字在切换时的动画效果 */
+.projects-slide:has(.projects-card.swipe-right) .projects-project-name,
+.projects-slide:has(.projects-card.swipe-right) .projects-year {
+    transform: translateX(5px);
+    opacity: 0.7;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.projects-slide:has(.projects-card.swipe-left) .projects-project-name,
+.projects-slide:has(.projects-card.swipe-left) .projects-year {
+    transform: translateX(-5px);
+    opacity: 0.7;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dwen Dwen 交互效果 - 复制MEDICINE */
+.projects-card--dwen.swipe-right .dwen-blob {
+    animation: medicineFloat 6s ease-in-out infinite alternate;
+}
+
+.projects-card--dwen.swipe-left .dwen-blob {
+    animation: medicineFloat 6s ease-in-out infinite alternate;
+}
+
+.projects-card--dwen.swipe-right,
+.projects-card--dwen.swipe-left {
+    background-image: none !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.projects-card--dwen.swipe-right:hover,
+.projects-card--dwen.swipe-left:hover {
+    background:
+        linear-gradient(0deg, rgba(255, 200, 100, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(255, 180, 120, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(255, 220, 150, 0.3) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200%;
+    animation: medicineFlowingLight 6.99s ease-in-out infinite;
+}
+
+.projects-card--dwen.swipe-right:hover .dwen-blob,
+.projects-card--dwen.swipe-left:hover .dwen-blob {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.3);
+    filter: blur(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
+/* Medicine 交互效果 */
+.projects-card--medicine.swipe-right .card-blob {
+    animation: medicineFloat 6s ease-in-out infinite alternate;
+}
+
+.projects-card--medicine.swipe-left .card-blob {
+    animation: medicineFloat 6s ease-in-out infinite alternate;
+}
+
+.projects-card--medicine.swipe-right,
+.projects-card--medicine.swipe-left {
+    background-image: none !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.projects-card--medicine.swipe-right:hover,
+.projects-card--medicine.swipe-left:hover {
+    background:
+        linear-gradient(0deg, rgba(150, 100, 255, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(120, 150, 255, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(180, 200, 255, 0.3) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200%;
+    animation: medicineFlowingLight 6.99s ease-in-out infinite;
+}
+
+.projects-card--medicine.swipe-right:hover .card-blob,
+.projects-card--medicine.swipe-left:hover .card-blob {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.3);
+    filter: blur(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
+/* Songs 交互效果 */
+.projects-card--songs.swipe-right .card-blob {
+    animation: soundWave 4s ease-in-out infinite;
+}
+
+.projects-card--songs.swipe-left .card-blob {
+    animation: soundWave 4s ease-in-out infinite;
+}
+
+.projects-card--songs.swipe-right,
+.projects-card--songs.swipe-left {
+    background-image: none !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.projects-card--songs.swipe-right:hover,
+.projects-card--songs.swipe-left:hover {
+    background:
+        linear-gradient(0deg, rgba(200, 255, 100, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(220, 255, 150, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(180, 255, 180, 0.3) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200%;
+    animation: songsFlowingLight 6.39s ease-in-out infinite;
+}
+
+.projects-card--songs.swipe-right:hover .card-blob,
+.projects-card--songs.swipe-left:hover .card-blob {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.3);
+    filter: blur(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
+/* Mahjong 交互效果 */
+.projects-card--mahjong.swipe-right .card-blob {
+    animation: mahjongSpin 8s linear infinite;
+}
+
+.projects-card--mahjong.swipe-left .card-blob {
+    animation: mahjongSpin 8s linear infinite;
+}
+
+.projects-card--mahjong.swipe-right,
+.projects-card--mahjong.swipe-left {
+    background-image: none !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.projects-card--mahjong.swipe-right:hover,
+.projects-card--mahjong.swipe-left:hover {
+    background:
+        linear-gradient(0deg, rgba(255, 160, 80, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(255, 200, 120, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(255, 220, 150, 0.3) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200%;
+    animation: mahjongFlowingLight 7.59s ease-in-out infinite;
+}
+
+.projects-card--mahjong.swipe-right:hover .card-blob,
+.projects-card--mahjong.swipe-left:hover .card-blob {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.3);
+    filter: blur(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
+/* Parrot 交互效果 */
+.projects-card--parrot.swipe-right .card-blob {
+    animation: featherFloat 5s ease-in-out infinite alternate;
+}
+
+.projects-card--parrot.swipe-left .card-blob {
+    animation: featherFloat 5s ease-in-out infinite alternate;
+}
+
+.projects-card--parrot.swipe-right,
+.projects-card--parrot.swipe-left {
+    background-image: none !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.projects-card--parrot.swipe-right:hover,
+.projects-card--parrot.swipe-left:hover {
+    background:
+        linear-gradient(0deg, rgba(100, 120, 255, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(150, 140, 255, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(180, 160, 255, 0.3) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200%;
+    animation: parrotFlowingLight 6.81s ease-in-out infinite;
+}
+
+.projects-card--parrot.swipe-right:hover .card-blob,
+.projects-card--parrot.swipe-left:hover .card-blob {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.3);
+    filter: blur(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
+/* Event 交互效果 */
+.projects-card--event.swipe-right .card-blob {
+    animation: starPulse 3s ease-in-out infinite;
+}
+
+.projects-card--event.swipe-left .card-blob {
+    animation: starPulse 3s ease-in-out infinite;
+}
+
+.projects-card--event.swipe-right,
+.projects-card--event.swipe-left {
+    background-image: none !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.projects-card--event.swipe-right:hover,
+.projects-card--event.swipe-left:hover {
+    background:
+        linear-gradient(0deg, rgba(100, 255, 200, 0.45) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(150, 255, 220, 0.35) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(180, 255, 235, 0.25) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200%;
+    animation: eventFlowingLight 6.6s ease-in-out infinite;
+}
+
+.projects-card--event.swipe-right .card-blob,
+.projects-card--event.swipe-left .card-blob {
+    opacity: 1;
+    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+    display: block;
+}
+
+.projects-card--event.swipe-right:hover .card-blob,
+.projects-card--event.swipe-left:hover .card-blob {
+    opacity: 0 !important;
+    transform: translate(-50%, -50%) scale(1.3) !important;
+    filter: blur(15px) !important;
+    visibility: hidden !important;
+    display: none !important;
+}
+
+/* Franken 交互效果 */
+.projects-card--franken.swipe-right .card-blob {
+    animation: frankenMorph 7s ease-in-out infinite alternate;
+}
+
+.projects-card--franken.swipe-left .card-blob {
+    animation: frankenMorph 7s ease-in-out infinite alternate;
+}
+
+.projects-card--franken.swipe-right,
+.projects-card--franken.swipe-left {
+    background-image: none !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.projects-card--franken.swipe-right:hover,
+.projects-card--franken.swipe-left:hover {
+    background:
+        linear-gradient(0deg, rgba(255, 140, 160, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(255, 180, 140, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(255, 200, 170, 0.3) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200%;
+    animation: frankenFlowingLight 7.2s ease-in-out infinite;
+}
+
+.projects-card--franken.swipe-right:hover .card-blob,
+.projects-card--franken.swipe-left:hover .card-blob {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.3);
+    filter: blur(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
 
 .journey-card {
     width: 240px;
@@ -749,7 +2530,7 @@ html, body {
 .journey-card.swipe-right {
     /* 保持所有边框的白色效果 + 保留高亮 */
     border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 
+    box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.25),
         0 0 30px rgba(255, 255, 255, 0.15),
         0 0 60px rgba(255, 255, 255, 0.1),
@@ -886,216 +2667,106 @@ html, body {
    Dwen Dwen's Neighbor 专属样式
    目标：彩色动态图案 + 粉蓝色棱镜光晕
 ===================== */
-.journey-card--dwen {
-    /* 背景改为黑色，边框改为白色 */
-    background: #000000;
-    background-repeat: no-repeat;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
 
-/* Dwen Dwen 在中心位置时的浅粉蓝色棱镜反射（白边+彩色外光晕+白色内反光） */
-.journey-card--dwen.center {
-    border-color: rgba(255, 255, 255, 0.25); /* 保持白色边框 */
-    overflow: visible;
-    position: relative;
-}
-
-.journey-card--dwen.center::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: -1;
-    box-shadow: 
-        0 0 0 1px rgba(255, 255, 255, 0.25),
-        -50px -30px 60px 10px rgba(255, 180, 210, 0.25),
-        50px -30px 60px 10px rgba(76, 201, 240, 0.25),
-        -80px -30px 100px 15px rgba(220, 140, 180, 0.18),
-        80px -30px 100px 15px rgba(100, 210, 230, 0.18),
-        inset 0 2px 8px rgba(255, 255, 255, 0.25),
-        inset 2px 0 8px rgba(255, 255, 255, 0.2),
-        inset -2px 0 8px rgba(255, 255, 255, 0.2);
-    clip-path: inset(0 -150px 0 -150px);
-}
-
-@keyframes dwenBgShift {
-    0% {
-        background-position:
-            20% 25%,
-            80% 20%,
-            30% 80%,
-            65% 70%,
-            0% 0%;
-    }
-    50% {
-        background-position:
-            25% 30%,
-            77% 23%,
-            34% 76%,
-            62% 72%,
-            0% 0%;
-    }
-    100% {
-        background-position:
-            18% 28%,
-            83% 18%,
-            28% 82%,
-            68% 68%,
-            0% 0%;
-    }
-}
-
-.journey-card--dwen .dwen-blob {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 140px;
-    height: 140px;
-    transform: translate(-50%, -50%);
-    background:
-        radial-gradient(120px 110px at 35% 45%, rgba(255, 180, 210, 0.35), transparent 70%),
-        radial-gradient(140px 120px at 60% 55%, rgba(0, 210, 255, 0.30), transparent 72%),
-        radial-gradient(100px 90px at 50% 55%, rgba(0, 138, 110, 0.35), transparent 80%);
-    border-radius: 42% 58% 48% 52% / 55% 45% 55% 45%; /* 更自由的8值椭圆 */
-    filter: blur(0.2px);
-    animation: dwenBlobMorph 7.5s ease-in-out infinite alternate, dwenBlobDrift 9s ease-in-out infinite alternate;
-    z-index: 2; /* 位于填充上方，弧线(3)下方 */
-    pointer-events: none;
-    transition: opacity 0.5s ease, left 1.6s cubic-bezier(0.23, 1, 0.32, 1), top 1.6s cubic-bezier(0.23, 1, 0.32, 1); /* 超平滑的躲避过渡，easeOutExpo缓动 */
-    will-change: left, top, border-radius, transform;
-}
-
-/* 悬浮时blob消散 - 增强消散效果 */
-.journey-card--dwen:hover .dwen-blob {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1.3);
-    filter: blur(15px);
-    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
-}
 
 /* 椭圆形态缓慢形变：保持接近椭圆 */
-@keyframes dwenBlobMorph {
-    0%   { border-radius: 42% 58% 48% 52% / 55% 45% 55% 45%; transform: translate(-50%, -50%) scale(1.00, 0.94) rotate(0deg); }
-    20%  { border-radius: 60% 40% 52% 48% / 48% 52% 46% 54%; transform: translate(-50%, -50%) scale(1.08, 0.92) rotate(10deg); }
-    40%  { border-radius: 55% 45% 60% 40% / 58% 42% 60% 40%; transform: translate(-50%, -50%) scale(0.92, 1.06) rotate(18deg); }
-    60%  { border-radius: 48% 52% 44% 56% / 40% 60% 42% 58%; transform: translate(-50%, -50%) scale(1.10, 0.90) rotate(8deg); }
-    80%  { border-radius: 62% 38% 50% 50% / 52% 48% 58% 42%; transform: translate(-50%, -50%) scale(0.96, 1.04) rotate(-6deg); }
-    100% { border-radius: 42% 58% 48% 52% / 55% 45% 55% 45%; transform: translate(-50%, -50%) scale(1.00, 0.94) rotate(0deg); }
+@keyframes medicineBlobMorph {
+    0%   { border-radius: 50% 50% 45% 55% / 45% 55% 50% 50%; transform: translate(-50%, -50%) scale(1.00, 0.96) rotate(0deg); }
+    25%  { border-radius: 45% 55% 50% 50% / 50% 50% 45% 55%; transform: translate(-50%, -50%) scale(1.06, 0.94) rotate(12deg); }
+    50%  { border-radius: 55% 45% 50% 50% / 45% 55% 50% 50%; transform: translate(-50%, -50%) scale(0.94, 1.04) rotate(20deg); }
+    75%  { border-radius: 50% 50% 55% 45% / 50% 50% 45% 55%; transform: translate(-50%, -50%) scale(1.08, 0.92) rotate(6deg); }
+    100% { border-radius: 50% 50% 45% 55% / 45% 55% 50% 50%; transform: translate(-50%, -50%) scale(1.00, 0.96) rotate(0deg); }
 }
 
-/* 位置轻微漂移：避免剧烈移动，营造“活着”的微动感 */
-@keyframes dwenBlobDrift {
-    0%   { left: 50%; top: 50%; }
-    25%  { left: 53%; top: 48%; }
-    50%  { left: 49%; top: 53%; }
-    75%  { left: 47%; top: 51%; }
-    100% { left: 50%; top: 50%; }
+@keyframes medicineBlobShimmer {
+    0%   { filter: blur(0.3px) contrast(1.2) brightness(1.1); }
+    50%  { filter: blur(0.4px) contrast(1.3) brightness(1.2); }
+    100% { filter: blur(0.3px) contrast(1.2) brightness(1.1); }
 }
 
-/* =====================
-   Dwen "回避"效果：切换时反方向轻移 + 强化动效
-   右切 → 向右回避；左切 → 向左回避
-   仅在 swipe 态下临时取消位移动画（保留形变动画）
-===================== */
-.journey-card--dwen.swipe-right .dwen-blob {
-    /* 暂停位移动画，仅保留形变动画 + 添加交互动画 */
-    animation: dwenBlobMorph 7.5s ease-in-out infinite alternate, dwenSwipeRight 0.4s ease-out forwards;
-    left: calc(50% + 20px);
-    top: calc(50% - 3px);
+@keyframes songsBlobMorph {
+    0%   { border-radius: 40% 60% 55% 45% / 55% 45% 60% 40%; transform: translate(-50%, -50%) scale(1.00, 0.95) rotate(0deg); }
+    30%  { border-radius: 55% 45% 50% 50% / 40% 60% 55% 45%; transform: translate(-50%, -50%) scale(1.05, 0.95) rotate(15deg); }
+    60%  { border-radius: 50% 50% 40% 60% / 55% 45% 50% 50%; transform: translate(-50%, -50%) scale(0.95, 1.05) rotate(25deg); }
+    90%  { border-radius: 45% 55% 50% 50% / 50% 50% 60% 40%; transform: translate(-50%, -50%) scale(1.07, 0.93) rotate(5deg); }
+    100% { border-radius: 40% 60% 55% 45% / 55% 45% 60% 40%; transform: translate(-50%, -50%) scale(1.00, 0.95) rotate(0deg); }
 }
 
-.journey-card--dwen.swipe-left .dwen-blob {
-    animation: dwenBlobMorph 7.5s ease-in-out infinite alternate, dwenSwipeLeft 0.4s ease-out forwards;
-    left: calc(50% - 20px);
-    top: calc(50% + 3px);
+@keyframes songsBlobShimmer {
+    0%   { filter: blur(0.3px) contrast(1.2) brightness(1.1); }
+    50%  { filter: blur(0.6px) contrast(1.5) brightness(1.4); }
+    100% { filter: blur(0.3px) contrast(1.2) brightness(1.1); }
 }
 
-@keyframes dwenSwipeRight {
-    0% { filter: blur(0.2px) brightness(1); }
-    50% { filter: blur(3px) brightness(1.3); }
-    100% { filter: blur(1px) brightness(1.1); }
+@keyframes mahjongBlobMorph {
+    0%   { border-radius: 55% 45% 50% 50% / 40% 60% 45% 55%; transform: translate(-50%, -50%) scale(1.00, 0.97) rotate(0deg); }
+    20%  { border-radius: 45% 55% 45% 55% / 50% 50% 40% 60%; transform: translate(-50%, -50%) scale(1.09, 0.91) rotate(8deg); }
+    40%  { border-radius: 50% 50% 55% 45% / 45% 55% 50% 50%; transform: translate(-50%, -50%) scale(0.91, 1.09) rotate(16deg); }
+    60%  { border-radius: 40% 60% 50% 50% / 50% 50% 55% 45%; transform: translate(-50%, -50%) scale(1.11, 0.89) rotate(4deg); }
+    80%  { border-radius: 50% 50% 40% 60% / 40% 60% 50% 50%; transform: translate(-50%, -50%) scale(0.93, 1.07) rotate(-8deg); }
+    100% { border-radius: 55% 45% 50% 50% / 40% 60% 45% 55%; transform: translate(-50%, -50%) scale(1.00, 0.97) rotate(0deg); }
 }
 
-@keyframes dwenSwipeLeft {
-    0% { filter: blur(0.2px) brightness(1); }
-    50% { filter: blur(3px) brightness(1.3); }
-    100% { filter: blur(1px) brightness(1.1); }
+@keyframes mahjongBlobShimmer {
+    0%   { filter: blur(0.3px) contrast(1.2) brightness(1.1); }
+    50%  { filter: blur(0.5px) contrast(1.3) brightness(1.25); }
+    100% { filter: blur(0.3px) contrast(1.2) brightness(1.1); }
 }
+
+@keyframes parrotBlobMorph {
+    0%   { border-radius: 50% 50% 45% 55% / 55% 45% 50% 50%; transform: translate(-50%, -50%) scale(1.00, 0.98) rotate(0deg); }
+    25%  { border-radius: 45% 55% 50% 50% / 50% 50% 45% 55%; transform: translate(-50%, -50%) scale(1.04, 0.96) rotate(10deg); }
+    50%  { border-radius: 55% 45% 50% 50% / 45% 55% 50% 50%; transform: translate(-50%, -50%) scale(0.96, 1.04) rotate(18deg); }
+    75%  { border-radius: 50% 50% 55% 45% / 50% 50% 45% 55%; transform: translate(-50%, -50%) scale(1.06, 0.94) rotate(6deg); }
+    100% { border-radius: 50% 50% 45% 55% / 55% 45% 50% 50%; transform: translate(-50%, -50%) scale(1.00, 0.98) rotate(0deg); }
+}
+
+@keyframes parrotBlobShimmer {
+    0%   { filter: blur(0.3px) contrast(1.2) brightness(1.1); }
+    50%  { filter: blur(0.4px) contrast(1.4) brightness(1.3); }
+    100% { filter: blur(0.3px) contrast(1.2) brightness(1.1); }
+}
+
+@keyframes eventBlobMorph {
+    0%   { border-radius: 45% 55% 50% 50% / 60% 40% 55% 45%; transform: translate(-50%, -50%) scale(1.00, 0.93) rotate(0deg); }
+    20%  { border-radius: 50% 50% 45% 55% / 45% 55% 60% 40%; transform: translate(-50%, -50%) scale(1.07, 0.93) rotate(12deg); }
+    40%  { border-radius: 55% 45% 50% 50% / 40% 60% 50% 50%; transform: translate(-50%, -50%) scale(0.93, 1.07) rotate(22deg); }
+    60%  { border-radius: 40% 60% 55% 45% / 50% 50% 45% 55%; transform: translate(-50%, -50%) scale(1.09, 0.91) rotate(8deg); }
+    80%  { border-radius: 50% 50% 40% 60% / 55% 45% 50% 50%; transform: translate(-50%, -50%) scale(0.95, 1.05) rotate(-6deg); }
+    100% { border-radius: 45% 55% 50% 50% / 60% 40% 55% 45%; transform: translate(-50%, -50%) scale(1.00, 0.93) rotate(0deg); }
+}
+
+@keyframes eventBlobShimmer {
+    0%   { filter: blur(0.3px) contrast(1.2) brightness(1.1); }
+    50%  { filter: blur(0.5px) contrast(1.3) brightness(1.2); }
+    100% { filter: blur(0.3px) contrast(1.2) brightness(1.1); }
+}
+
+@keyframes frankenBlobMorph {
+    0%   { border-radius: 40% 60% 55% 45% / 50% 50% 60% 40%; transform: translate(-50%, -50%) scale(1.00, 0.94) rotate(0deg); }
+    25%  { border-radius: 55% 45% 50% 50% / 45% 55% 50% 50%; transform: translate(-50%, -50%) scale(1.08, 0.92) rotate(14deg); }
+    50%  { border-radius: 50% 50% 40% 60% / 50% 50% 45% 55%; transform: translate(-50%, -50%) scale(0.92, 1.08) rotate(24deg); }
+    75%  { border-radius: 45% 55% 50% 50% / 60% 40% 50% 50%; transform: translate(-50%, -50%) scale(1.10, 0.90) rotate(4deg); }
+    100% { border-radius: 40% 60% 55% 45% / 50% 50% 60% 40%; transform: translate(-50%, -50%) scale(1.00, 0.94) rotate(0deg); }
+}
+
+@keyframes frankenBlobShimmer {
+    0%   { filter: blur(0.3px) contrast(1.2) brightness(1.1); }
+    50%  { filter: blur(0.6px) contrast(1.5) brightness(1.4); }
+    100% { filter: blur(0.3px) contrast(1.2) brightness(1.1); }
+}
+
+/* 位置轻微漂移：避免剧烈移动，营造"活着"的微动感 */
+
 
 /* 保持交互态下的弧线填充与线条在 blob 之上可见 */
-/* Dwen 交互态：用 ::before 绘制浅绿色“弧线边界”封闭填充 */
-.journey-card--dwen.swipe-right::before {
-    opacity: 0; /* 禁用交互时的弧形填充背景 */
-}
-.journey-card--dwen.swipe-left::before {
-    opacity: 0; /* 禁用交互时的弧形填充背景 */
-}
-
-/* Dwen Dwen 悬浮时的互补色倒灌效果（橙黄紫流光） */
-.journey-card--dwen:hover {
-    background: 
-        linear-gradient(0deg, rgba(255, 150, 50, 0.5) 0%, transparent 40%),
-        linear-gradient(45deg, rgba(255, 200, 100, 0.4) 0%, transparent 50%),
-        linear-gradient(90deg, rgba(180, 100, 255, 0.3) 0%, transparent 60%),
-        #000000;
-    background-size: 200% 200%;
-    animation: dwenFlowingLight 3s ease-in-out infinite;
-}
-
-@keyframes dwenFlowingLight {
-    0% { 
-        background-position: 0% 0%, 0% 100%, 0% 50%;
-    }
-    33% { 
-        background-position: 50% 50%, 100% 0%, 50% 100%;
-    }
-    66% { 
-        background-position: 100% 100%, 50% 50%, 100% 0%;
-    }
-    100% { 
-        background-position: 0% 0%, 0% 100%, 0% 50%;
-    }
-}
-
-/* Dwen Dwen 交互时保持白色边框高亮 */
-.journey-card--dwen.swipe-right,
-.journey-card--dwen.swipe-left {
-    background-image: none !important;
-    /* 保留白色边框高亮效果 */
-    box-shadow: 
-        0 0 0 1px rgba(255, 255, 255, 0.25),
-        0 0 30px rgba(255, 255, 255, 0.15),
-        inset 0 2px 8px rgba(255, 255, 255, 0.25),
-        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
-        inset 2px 0 8px rgba(255, 255, 255, 0.2),
-        inset -2px 0 8px rgba(255, 255, 255, 0.2) !important;
-}
-
-/* Dwen Dwen 悬停+切换时：保留炫彩流光，隐藏blob */
-.journey-card--dwen.swipe-right:hover,
-.journey-card--dwen.swipe-left:hover {
-    background: 
-        linear-gradient(0deg, rgba(255, 150, 50, 0.5) 0%, transparent 40%),
-        linear-gradient(45deg, rgba(255, 200, 100, 0.4) 0%, transparent 50%),
-        linear-gradient(90deg, rgba(180, 100, 255, 0.3) 0%, transparent 60%),
-        #000000 !important;
-    background-size: 200% 200% !important;
-    animation: dwenFlowingLight 3s ease-in-out infinite !important;
-}
-
-.journey-card--dwen.swipe-right:hover .dwen-blob,
-.journey-card--dwen.swipe-left:hover .dwen-blob {
-    opacity: 0 !important;
-}
+/* Dwen 交互态：用 ::before 绘制浅绿色"弧线边界"封闭填充 */
 
 /* =====================
    Chinese Medicine - 绿色+橘色雾面草药形状
 ===================== */
 .journey-card--medicine .card-blob {
-    background: 
+    background:
         radial-gradient(ellipse at 35% 40%, rgba(150, 220, 180, 0.35), transparent 60%),
         radial-gradient(ellipse at 65% 55%, rgba(255, 180, 120, 0.4), transparent 65%),
         radial-gradient(circle at 50% 50%, rgba(180, 200, 160, 0.25), transparent 70%);
@@ -1121,54 +2792,76 @@ html, body {
 }
 
 @keyframes medicineSwipeRight {
-    0% { 
-        filter: blur(1px) brightness(1); 
+    0% {
+        filter: blur(0.5px) brightness(1);
         opacity: 1;
+        transform: scale(1);
     }
-    50% { 
-        filter: blur(4px) brightness(1.2); 
-        opacity: 0.8;
-    }
-    100% { 
-        filter: blur(2px) brightness(1.15); 
+    30% {
+        filter: blur(2px) brightness(1.1);
         opacity: 0.9;
+        transform: scale(1.05);
+    }
+    70% {
+        filter: blur(1.5px) brightness(1.08);
+        opacity: 0.95;
+        transform: scale(1.02);
+    }
+    100% {
+        filter: blur(1px) brightness(1.05);
+        opacity: 0.98;
+        transform: scale(1);
     }
 }
 
 @keyframes medicineSwipeLeft {
-    0% { 
-        filter: blur(1px) brightness(1); 
+    0% {
+        filter: blur(0.5px) brightness(1);
         opacity: 1;
+        transform: scale(1);
     }
-    50% { 
-        filter: blur(4px) brightness(1.2); 
-        opacity: 0.8;
-    }
-    100% { 
-        filter: blur(2px) brightness(1.15); 
+    30% {
+        filter: blur(2px) brightness(1.1);
         opacity: 0.9;
+        transform: scale(1.05);
+    }
+    70% {
+        filter: blur(1.5px) brightness(1.08);
+        opacity: 0.95;
+        transform: scale(1.02);
+    }
+    100% {
+        filter: blur(1px) brightness(1.05);
+        opacity: 0.98;
+        transform: scale(1);
     }
 }
 
 /* Chinese Medicine 悬浮时的互补色倒灌效果（紫蓝流光） */
 .journey-card--medicine:hover {
-    background: 
+    background:
         linear-gradient(0deg, rgba(150, 100, 255, 0.5) 0%, transparent 40%),
         linear-gradient(45deg, rgba(120, 150, 255, 0.4) 0%, transparent 50%),
         linear-gradient(90deg, rgba(180, 200, 255, 0.3) 0%, transparent 60%),
         #000000;
     background-size: 200% 200%;
-    animation: medicineFlowingLight 3.5s ease-in-out infinite;
+    animation: medicineFlowingLight 6.99s ease-in-out infinite;
 }
 
 @keyframes medicineFlowingLight {
-    0% { 
+    0% {
         background-position: 0% 0%, 0% 100%, 0% 50%;
     }
-    50% { 
+    25% {
+        background-position: 50% 25%, 25% 75%, 75% 25%;
+    }
+    50% {
         background-position: 100% 100%, 100% 0%, 100% 100%;
     }
-    100% { 
+    75% {
+        background-position: 75% 75%, 75% 25%, 25% 75%;
+    }
+    100% {
         background-position: 0% 0%, 0% 100%, 0% 50%;
     }
 }
@@ -1177,7 +2870,7 @@ html, body {
 .journey-card--medicine.swipe-left {
     background-image: none !important;
     /* 保留白色边框高亮效果 */
-    box-shadow: 
+    box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.25),
         0 0 30px rgba(255, 255, 255, 0.15),
         inset 0 2px 8px rgba(255, 255, 255, 0.25),
@@ -1189,7 +2882,7 @@ html, body {
 /* Medicine 悬停+切换时：保留炫彩流光，隐藏blob */
 .journey-card--medicine.swipe-right:hover,
 .journey-card--medicine.swipe-left:hover {
-    background: 
+    background:
         linear-gradient(0deg, rgba(150, 100, 255, 0.5) 0%, transparent 40%),
         linear-gradient(45deg, rgba(120, 150, 255, 0.4) 0%, transparent 50%),
         linear-gradient(90deg, rgba(180, 200, 255, 0.3) 0%, transparent 60%),
@@ -1235,7 +2928,7 @@ html, body {
    Guess Songs - 音波形状（粉紫色）
 ===================== */
 .journey-card--songs .card-blob {
-    background: 
+    background:
         radial-gradient(ellipse at 35% 45%, rgba(255, 140, 200, 0.4), transparent 60%),
         radial-gradient(ellipse at 65% 55%, rgba(200, 140, 255, 0.45), transparent 65%),
         radial-gradient(circle at 50% 50%, rgba(220, 160, 230, 0.3), transparent 70%);
@@ -1264,23 +2957,29 @@ html, body {
 
 /* Guess Songs 悬浮时的互补色倒灌效果（黄绿流光） */
 .journey-card--songs:hover {
-    background: 
+    background:
         linear-gradient(0deg, rgba(200, 255, 100, 0.5) 0%, transparent 40%),
         linear-gradient(45deg, rgba(220, 255, 150, 0.4) 0%, transparent 50%),
         linear-gradient(90deg, rgba(180, 255, 180, 0.3) 0%, transparent 60%),
         #000000;
     background-size: 200% 200%;
-    animation: songsFlowingLight 3.2s ease-in-out infinite;
+    animation: songsFlowingLight 6.39s ease-in-out infinite;
 }
 
 @keyframes songsFlowingLight {
-    0% { 
+    0% {
         background-position: 0% 0%, 100% 100%, 50% 0%;
     }
-    50% { 
+    25% {
+        background-position: 25% 50%, 75% 50%, 25% 50%;
+    }
+    50% {
         background-position: 100% 100%, 0% 0%, 0% 100%;
     }
-    100% { 
+    75% {
+        background-position: 75% 25%, 25% 75%, 75% 75%;
+    }
+    100% {
         background-position: 0% 0%, 100% 100%, 50% 0%;
     }
 }
@@ -1289,7 +2988,7 @@ html, body {
 .journey-card--songs.swipe-left {
     background-image: none !important;
     /* 保留白色边框高亮效果 */
-    box-shadow: 
+    box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.25),
         0 0 30px rgba(255, 255, 255, 0.15),
         inset 0 2px 8px rgba(255, 255, 255, 0.25),
@@ -1301,7 +3000,7 @@ html, body {
 /* Songs 悬停+切换时：保留炫彩流光，隐藏blob */
 .journey-card--songs.swipe-right:hover,
 .journey-card--songs.swipe-left:hover {
-    background: 
+    background:
         linear-gradient(0deg, rgba(200, 255, 100, 0.5) 0%, transparent 40%),
         linear-gradient(45deg, rgba(220, 255, 150, 0.4) 0%, transparent 50%),
         linear-gradient(90deg, rgba(180, 255, 180, 0.3) 0%, transparent 60%),
@@ -1347,7 +3046,7 @@ html, body {
    Digital Mahjong - 方形旋转（深蓝浅蓝）
 ===================== */
 .journey-card--mahjong .card-blob {
-    background: 
+    background:
         radial-gradient(circle at 40% 45%, rgba(80, 130, 200, 0.45), transparent 55%),
         radial-gradient(circle at 60% 55%, rgba(150, 200, 255, 0.4), transparent 65%),
         radial-gradient(circle at 50% 50%, rgba(110, 160, 220, 0.3), transparent 70%);
@@ -1376,23 +3075,29 @@ html, body {
 
 /* Digital Mahjong 悬浮时的互补色倒灌效果（橙黄流光） */
 .journey-card--mahjong:hover {
-    background: 
+    background:
         linear-gradient(0deg, rgba(255, 160, 80, 0.5) 0%, transparent 40%),
         linear-gradient(45deg, rgba(255, 200, 120, 0.4) 0%, transparent 50%),
         linear-gradient(90deg, rgba(255, 220, 150, 0.3) 0%, transparent 60%),
         #000000;
     background-size: 200% 200%;
-    animation: mahjongFlowingLight 3.8s ease-in-out infinite;
+    animation: mahjongFlowingLight 7.59s ease-in-out infinite;
 }
 
 @keyframes mahjongFlowingLight {
-    0% { 
+    0% {
         background-position: 0% 0%, 100% 0%, 0% 100%;
     }
-    50% { 
+    25% {
+        background-position: 50% 25%, 50% 75%, 50% 25%;
+    }
+    50% {
         background-position: 100% 100%, 0% 100%, 100% 0%;
     }
-    100% { 
+    75% {
+        background-position: 25% 75%, 75% 25%, 25% 75%;
+    }
+    100% {
         background-position: 0% 0%, 100% 0%, 0% 100%;
     }
 }
@@ -1401,7 +3106,7 @@ html, body {
 .journey-card--mahjong.swipe-left {
     background-image: none !important;
     /* 保留白色边框高亮效果 */
-    box-shadow: 
+    box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.25),
         0 0 30px rgba(255, 255, 255, 0.15),
         inset 0 2px 8px rgba(255, 255, 255, 0.25),
@@ -1413,7 +3118,7 @@ html, body {
 /* Mahjong 悬停+切换时：保留炫彩流光，隐藏blob */
 .journey-card--mahjong.swipe-right:hover,
 .journey-card--mahjong.swipe-left:hover {
-    background: 
+    background:
         linear-gradient(0deg, rgba(255, 160, 80, 0.5) 0%, transparent 40%),
         linear-gradient(45deg, rgba(255, 200, 120, 0.4) 0%, transparent 50%),
         linear-gradient(90deg, rgba(255, 220, 150, 0.3) 0%, transparent 60%),
@@ -1459,7 +3164,7 @@ html, body {
    Parrot Ordering - 羽毛形状（黄色/橙色）- 缩小版
 ===================== */
 .journey-card--parrot .card-blob {
-    background: 
+    background:
         radial-gradient(ellipse at 35% 45%, rgba(255, 220, 60, 0.5), transparent 55%),
         radial-gradient(ellipse at 65% 55%, rgba(255, 150, 50, 0.45), transparent 60%),
         radial-gradient(circle at 50% 50%, rgba(255, 185, 100, 0.3), transparent 65%);
@@ -1488,23 +3193,29 @@ html, body {
 
 /* Parrot Ordering 悬浮时的互补色倒灌效果（蓝紫流光） */
 .journey-card--parrot:hover {
-    background: 
+    background:
         linear-gradient(0deg, rgba(100, 120, 255, 0.5) 0%, transparent 40%),
         linear-gradient(45deg, rgba(150, 140, 255, 0.4) 0%, transparent 50%),
         linear-gradient(90deg, rgba(180, 160, 255, 0.3) 0%, transparent 60%),
         #000000;
     background-size: 200% 200%;
-    animation: parrotFlowingLight 3.4s ease-in-out infinite;
+    animation: parrotFlowingLight 6.81s ease-in-out infinite;
 }
 
 @keyframes parrotFlowingLight {
-    0% { 
+    0% {
         background-position: 0% 50%, 50% 0%, 100% 50%;
     }
-    50% { 
+    25% {
+        background-position: 25% 25%, 25% 75%, 75% 25%;
+    }
+    50% {
         background-position: 100% 50%, 50% 100%, 0% 50%;
     }
-    100% { 
+    75% {
+        background-position: 75% 75%, 75% 25%, 25% 75%;
+    }
+    100% {
         background-position: 0% 50%, 50% 0%, 100% 50%;
     }
 }
@@ -1513,7 +3224,7 @@ html, body {
 .journey-card--parrot.swipe-left {
     background-image: none !important;
     /* 保留白色边框高亮效果 */
-    box-shadow: 
+    box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.25),
         0 0 30px rgba(255, 255, 255, 0.15),
         inset 0 2px 8px rgba(255, 255, 255, 0.25),
@@ -1525,7 +3236,7 @@ html, body {
 /* Parrot 悬停+切换时：保留炫彩流光，隐藏blob */
 .journey-card--parrot.swipe-right:hover,
 .journey-card--parrot.swipe-left:hover {
-    background: 
+    background:
         linear-gradient(0deg, rgba(100, 120, 255, 0.5) 0%, transparent 40%),
         linear-gradient(45deg, rgba(150, 140, 255, 0.4) 0%, transparent 50%),
         linear-gradient(90deg, rgba(180, 160, 255, 0.3) 0%, transparent 60%),
@@ -1571,7 +3282,7 @@ html, body {
    Event Management - 星形脉冲（粉色/白色）
 ===================== */
 .journey-card--event .card-blob {
-    background: 
+    background:
         radial-gradient(circle at 40% 45%, rgba(255, 160, 200, 0.5), transparent 50%),
         radial-gradient(circle at 60% 55%, rgba(255, 220, 240, 0.45), transparent 60%),
         radial-gradient(circle at 50% 50%, rgba(255, 190, 220, 0.35), transparent 65%);
@@ -1598,23 +3309,29 @@ html, body {
 
 /* Event Management 悬浮时的互补色倒灌效果（青绿流光） */
 .journey-card--event:hover {
-    background: 
+    background:
         linear-gradient(0deg, rgba(100, 255, 200, 0.45) 0%, transparent 40%),
         linear-gradient(45deg, rgba(150, 255, 220, 0.35) 0%, transparent 50%),
         linear-gradient(90deg, rgba(180, 255, 235, 0.25) 0%, transparent 60%),
         #000000;
     background-size: 200% 200%;
-    animation: eventFlowingLight 3.3s ease-in-out infinite;
+    animation: eventFlowingLight 6.6s ease-in-out infinite;
 }
 
 @keyframes eventFlowingLight {
-    0% { 
+    0% {
         background-position: 50% 0%, 0% 50%, 100% 100%;
     }
-    50% { 
+    25% {
+        background-position: 25% 25%, 75% 25%, 25% 75%;
+    }
+    50% {
         background-position: 50% 100%, 100% 50%, 0% 0%;
     }
-    100% { 
+    75% {
+        background-position: 75% 75%, 25% 75%, 75% 25%;
+    }
+    100% {
         background-position: 50% 0%, 0% 50%, 100% 100%;
     }
 }
@@ -1623,7 +3340,7 @@ html, body {
 .journey-card--event.swipe-left {
     background-image: none !important;
     /* 保留白色边框高亮效果 */
-    box-shadow: 
+    box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.25),
         0 0 30px rgba(255, 255, 255, 0.15),
         inset 0 2px 8px rgba(255, 255, 255, 0.25),
@@ -1635,7 +3352,7 @@ html, body {
 /* Event 悬停+切换时：保留炫彩流光，隐藏blob */
 .journey-card--event.swipe-right:hover,
 .journey-card--event.swipe-left:hover {
-    background: 
+    background:
         linear-gradient(0deg, rgba(100, 255, 200, 0.45) 0%, transparent 40%),
         linear-gradient(45deg, rgba(150, 255, 220, 0.35) 0%, transparent 50%),
         linear-gradient(90deg, rgba(180, 255, 235, 0.25) 0%, transparent 60%),
@@ -1681,7 +3398,7 @@ html, body {
    Frankenstories - 不规则变形（薄荷绿/浅蓝）
 ===================== */
 .journey-card--franken .card-blob {
-    background: 
+    background:
         radial-gradient(ellipse at 35% 45%, rgba(130, 240, 200, 0.45), transparent 60%),
         radial-gradient(ellipse at 65% 55%, rgba(160, 220, 255, 0.4), transparent 65%),
         radial-gradient(circle at 50% 50%, rgba(145, 230, 225, 0.3), transparent 70%);
@@ -1709,23 +3426,29 @@ html, body {
 
 /* Frankenstories 悬浮时的互补色倒灌效果（粉橙流光） */
 .journey-card--franken:hover {
-    background: 
+    background:
         linear-gradient(0deg, rgba(255, 140, 160, 0.5) 0%, transparent 40%),
         linear-gradient(45deg, rgba(255, 180, 140, 0.4) 0%, transparent 50%),
         linear-gradient(90deg, rgba(255, 200, 170, 0.3) 0%, transparent 60%),
         #000000;
     background-size: 200% 200%;
-    animation: frankenFlowingLight 3.6s ease-in-out infinite;
+    animation: frankenFlowingLight 7.2s ease-in-out infinite;
 }
 
 @keyframes frankenFlowingLight {
-    0% { 
+    0% {
         background-position: 100% 0%, 0% 0%, 50% 100%;
     }
-    50% { 
+    25% {
+        background-position: 75% 25%, 25% 75%, 25% 25%;
+    }
+    50% {
         background-position: 0% 100%, 100% 100%, 50% 0%;
     }
-    100% { 
+    75% {
+        background-position: 25% 75%, 75% 25%, 75% 75%;
+    }
+    100% {
         background-position: 100% 0%, 0% 0%, 50% 100%;
     }
 }
@@ -1734,7 +3457,7 @@ html, body {
 .journey-card--franken.swipe-left {
     background-image: none !important;
     /* 保留白色边框高亮效果 */
-    box-shadow: 
+    box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.25),
         0 0 30px rgba(255, 255, 255, 0.15),
         inset 0 2px 8px rgba(255, 255, 255, 0.25),
@@ -1746,7 +3469,7 @@ html, body {
 /* Franken 悬停+切换时：保留炫彩流光，隐藏blob */
 .journey-card--franken.swipe-right:hover,
 .journey-card--franken.swipe-left:hover {
-    background: 
+    background:
         linear-gradient(0deg, rgba(255, 140, 160, 0.5) 0%, transparent 40%),
         linear-gradient(45deg, rgba(255, 180, 140, 0.4) 0%, transparent 50%),
         linear-gradient(90deg, rgba(255, 200, 170, 0.3) 0%, transparent 60%),
@@ -2022,30 +3745,8 @@ html, body {
 }
 
 /* ============================================
-   Projects Slider (横向切换)
+   Projects Slider (横向切换) - 旧定义已删除，使用上方的新定义
    ============================================ */
-.projects-slider-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.projects-slider-container {
-    display: flex;
-    transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
-    will-change: transform;
-}
-
-.project-slide {
-    min-width: 100%;
-    flex-shrink: 0;
-    padding: 0 2rem;
-}
 
 .project-overview-card {
     display: flex;
@@ -2071,9 +3772,7 @@ html, body {
     padding: 2px;
     background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), #FFD700, var(--neon-blue));
     background-size: 300% 300%;
-    -webkit-mask: 
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     animation: borderFlow 4s ease infinite;
@@ -2466,16 +4165,61 @@ html, body {
 }
 
 .about-text blockquote {
-    border-left: 4px solid var(--neon-blue);
+    border-left: 3px solid rgba(255, 255, 255, 0.3);
     padding-left: 1.5rem;
     margin: 2rem 0;
     font-style: italic;
-    color: var(--neon-blue);
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
     font-size: 1.1rem;
 }
 
 /* ============================================
+   Creative Experiments Section
+   ============================================ */
+#experiments {
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#experiments::before {
+    display: none;
+}
+
+#experiments .section-content {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#experiments .section-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+#experiments .section-subtitle {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ============================================
    Connect Section (About + Contact 合并)
+   ============================================ */
+#connect {
+    background: transparent;
+}
+
+/* ============================================
+   Connect Section Content
    ============================================ */
 .connect-container {
     display: grid;
@@ -2489,7 +4233,7 @@ html, body {
 
 .connect-left {
     padding-right: 2rem;
-    border-right: 2px solid rgba(76, 201, 240, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .connect-header {
@@ -2502,9 +4246,8 @@ html, body {
 
 .title-underline {
     width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
-    box-shadow: 0 0 10px var(--accent-glow);
+    height: 2px;
+    background: rgba(255, 255, 255, 0.6);
     border-radius: 2px;
 }
 
@@ -2515,7 +4258,9 @@ html, body {
 
 .intro-text {
     font-size: 1.1rem;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
     line-height: 1.8;
     margin-bottom: 2rem;
 }
@@ -2525,15 +4270,16 @@ html, body {
     align-items: center;
     gap: 1rem;
     padding: 1.5rem;
-    background: rgba(76, 201, 240, 0.05);
-    border-left: 3px solid var(--neon-blue);
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     margin-bottom: 2rem;
     transition: all 0.3s ease;
 }
 
 .philosophy-box:hover {
-    background: rgba(76, 201, 240, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: rgba(255, 255, 255, 0.5);
     transform: translateX(5px);
 }
 
@@ -2547,24 +4293,28 @@ html, body {
 
 .philosophy-title {
     font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
+    font-weight: 300;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 0.3rem;
 }
 
 .philosophy-subtitle {
     font-size: 0.85rem;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Cormorant Garamond', Georgia, serif;
     font-style: italic;
 }
 
 .design-quote {
     font-size: 1rem;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Cormorant Garamond', Georgia, serif;
     font-style: italic;
+    font-weight: 300;
     line-height: 1.7;
     padding-left: 1.5rem;
-    border-left: 3px solid var(--neon-pink);
+    border-left: 2px solid rgba(255, 255, 255, 0.3);
     margin: 0;
 }
 
@@ -2586,17 +4336,17 @@ html, body {
     align-items: center;
     gap: 1.5rem;
     padding: 1.5rem;
-    background: var(--bg-card);
-    border: 1px solid rgba(76, 201, 240, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     transition: all 0.3s ease;
 }
 
 .contact-card:hover {
-    border-color: var(--neon-blue);
-    background: rgba(76, 201, 240, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
     transform: translateX(5px);
-    box-shadow: 0 5px 20px rgba(76, 201, 240, 0.2);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 .card-icon {
@@ -2606,48 +4356,52 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(76, 201, 240, 0.1);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     transition: all 0.3s ease;
 }
 
 .contact-card:hover .card-icon {
     transform: scale(1.1) rotate(5deg);
-    background: rgba(76, 201, 240, 0.2);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .contact-card h4 {
     font-size: 1rem;
-    color: var(--text-primary);
-    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
     margin-bottom: 0.3rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
 }
 
 .contact-link {
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Cormorant Garamond', Georgia, serif;
     text-decoration: none;
     font-size: 0.9rem;
     transition: all 0.3s ease;
 }
 
 .contact-card:hover .contact-link {
-    color: var(--neon-blue);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* CTA Button */
 .connect-cta {
     text-align: center;
     padding: 2rem;
-    background: rgba(76, 201, 240, 0.03);
-    border: 1px solid rgba(76, 201, 240, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
 }
 
 .connect-cta p {
     font-size: 1.1rem;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
     margin-bottom: 1.5rem;
 }
 
@@ -2656,19 +4410,24 @@ html, body {
     align-items: center;
     gap: 0.8rem;
     padding: 1rem 2.5rem;
-    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
-    font-weight: 600;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
     font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     border-radius: 50px;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 20px rgba(76, 201, 240, 0.3);
 }
 
 .cta-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(76, 201, 240, 0.5);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .cta-button .arrow {
@@ -2686,32 +4445,48 @@ html, body {
 
 /* Blob通用交互动画 */
 @keyframes blobSwipeRight {
-    0% { 
-        filter: blur(0.2px) brightness(1); 
+    0% {
+        filter: blur(0.3px) brightness(1);
         opacity: 1;
+        transform: scale(1);
     }
-    50% { 
-        filter: blur(3px) brightness(1.3); 
-        opacity: 0.85;
+    30% {
+        filter: blur(1.8px) brightness(1.12);
+        opacity: 0.92;
+        transform: scale(1.04);
     }
-    100% { 
-        filter: blur(1px) brightness(1.15); 
-        opacity: 0.95;
+    70% {
+        filter: blur(1.2px) brightness(1.08);
+        opacity: 0.96;
+        transform: scale(1.02);
+    }
+    100% {
+        filter: blur(0.8px) brightness(1.05);
+        opacity: 0.98;
+        transform: scale(1);
     }
 }
 
 @keyframes blobSwipeLeft {
-    0% { 
-        filter: blur(0.2px) brightness(1); 
+    0% {
+        filter: blur(0.3px) brightness(1);
         opacity: 1;
+        transform: scale(1);
     }
-    50% { 
-        filter: blur(3px) brightness(1.3); 
-        opacity: 0.85;
+    30% {
+        filter: blur(1.8px) brightness(1.12);
+        opacity: 0.92;
+        transform: scale(1.04);
     }
-    100% { 
-        filter: blur(1px) brightness(1.15); 
-        opacity: 0.95;
+    70% {
+        filter: blur(1.2px) brightness(1.08);
+        opacity: 0.96;
+        transform: scale(1.02);
+    }
+    100% {
+        filter: blur(0.8px) brightness(1.05);
+        opacity: 0.98;
+        transform: scale(1);
     }
 }
 
@@ -2871,6 +4646,1099 @@ html, body {
         padding: 1rem;
         gap: 2rem;
     }
+}
+
+/* ============================================
+   Contact Section - 新设计
+   ============================================ */
+.contact-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    text-align: center;
+}
+
+.contact-header {
+    margin-bottom: 4rem;
+}
+
+.contact-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+    background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.contact-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    width: 100%;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.contact-icon {
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+.contact-info h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 0.5rem 0;
+}
+
+.contact-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Contact页面响应式设计 */
+@media (max-width: 768px) {
+    .contact-title {
+        font-size: 2.5rem;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .contact-item {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+    
+    .contact-icon {
+        font-size: 2rem;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* ============================================
+   Dwen Dwen's Neighbor 详情页面样式
+   ============================================ */
+
+/* 炫酷黑白风格Return按钮 */
+.back-button {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 1000;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #ffffff;
+    border-radius: 50px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.back-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.back-link:hover::before {
+    left: 100%;
+}
+
+.back-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.back-link svg {
+    transition: transform 0.3s ease;
+}
+
+.back-link:hover svg {
+    transform: translateX(-3px);
+}
+
+/* 
+字体选择方案 - 请选择一种：
+
+方案1 - 现代无衬线 (推荐)
+font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+font-weight: 300;
+letter-spacing: 4px;
+
+方案2 - 优雅衬线
+font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+font-weight: 400;
+letter-spacing: 2px;
+
+方案3 - 工业风格
+font-family: 'Roboto Mono', 'Courier New', monospace;
+font-weight: 300;
+letter-spacing: 6px;
+
+方案4 - 几何现代
+font-family: 'Montserrat', 'Arial', sans-serif;
+font-weight: 200;
+letter-spacing: 5px;
+
+方案5 - 经典优雅
+font-family: 'Playfair Display', 'Georgia', serif;
+font-weight: 400;
+letter-spacing: 1px;
+
+方案6 - 简约现代
+font-family: 'Poppins', 'Arial', sans-serif;
+font-weight: 300;
+letter-spacing: 3px;
+
+方案7 - 技术风格
+font-family: 'Source Code Pro', 'Monaco', monospace;
+font-weight: 300;
+letter-spacing: 4px;
+
+方案8 - 时尚衬线
+font-family: 'Lora', 'Georgia', serif;
+font-weight: 400;
+letter-spacing: 2px;
+*/
+
+/* 记号笔标记效果 - 水平放置 */
+.dwen-title {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-size: 4rem;
+    font-weight: 400;
+    color: #000000;
+    text-align: center;
+    margin: 0 0 1rem 0;
+    position: relative;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 0.3rem 2rem;
+    background: linear-gradient(0deg, 
+        rgba(255, 255, 255, 0.9) 0%, 
+        rgba(240, 240, 240, 0.95) 20%, 
+        rgba(220, 220, 220, 0.9) 40%, 
+        rgba(200, 200, 200, 0.85) 60%, 
+        rgba(180, 180, 180, 0.8) 80%, 
+        rgba(160, 160, 160, 0.75) 100%);
+    border-radius: 8px;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    transform: none;
+}
+
+.dwen-title::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.15);
+    z-index: -1;
+    transform: translate(4px, 4px);
+    filter: blur(1px);
+}
+
+.dwen-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.08);
+    z-index: -2;
+    transform: translate(8px, 8px);
+    filter: blur(2px);
+}
+
+/* Dwen页面布局 */
+.dwen-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: transparent;
+    min-height: 100vh;
+    position: relative;
+    z-index: 10;
+}
+
+/* PROJECT OVERVIEW 背景框 */
+.project-overview-box {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-overview-box .bg-video-container {
+    margin-top: 0;
+    margin-bottom: 3rem;
+}
+
+.project-overview-box .bg-video-container h3 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.project-overview-box .bg-video-container p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.project-overview-box .bg-video {
+    width: 100%;
+    height: 400px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Core Functions - Single Column Layout */
+.core-functions-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.core-function-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.core-function-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.core-function-content {
+    flex: 1;
+}
+
+.core-function-item h3 {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 0.5px;
+}
+
+.core-function-item p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.core-function-video {
+    flex: 0 0 300px;
+    height: 200px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.core-function-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive adjustments for Core Functions */
+@media (max-width: 768px) {
+    .core-function-item {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.2rem;
+    }
+    
+    .core-function-video {
+        flex: none;
+        width: 100%;
+        height: 180px;
+    }
+    
+    .core-function-item h3 {
+        font-size: 1.2rem;
+    }
+    
+    .core-function-item p {
+        font-size: 0.95rem;
+    }
+}
+
+.dwen-hero {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 3rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dwen-subtitle {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-family: 'Cormorant Garamond', serif;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.subtitle-decorator {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 0 0.5rem;
+}
+
+/* 横向元信息布局 */
+.dwen-meta-info {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    margin-top: -0.5rem;
+    flex-wrap: nowrap;
+    max-width: 100%;
+}
+
+.meta-date {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
+.meta-divider-thick {
+    display: inline-flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0 0.5rem;
+}
+
+.meta-divider {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.tech-stack {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
+
+.dwen-meta-info .github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.95);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.dwen-meta-info .github-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+    color: #ffffff;
+}
+
+.dwen-meta-info .github-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Dwen内容区块 */
+.dwen-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 0 2rem;
+}
+
+.dwen-sections .dwen-section:first-child {
+    margin-top: -8rem;
+}
+
+.dwen-section {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.dwen-section .section-number {
+    position: absolute;
+    left: 0;
+    top: 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 2px;
+}
+
+.dwen-section .section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    padding-left: 3rem;
+    position: relative;
+}
+
+.dwen-section .section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 30px;
+    background: linear-gradient(180deg, #ffffff, transparent);
+}
+
+.dwen-section .section-content {
+    padding-left: 3rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+}
+
+.dwen-section .section-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.dwen-section .section-content .highlight {
+    color: #ffffff;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-left: 3px solid #ffffff;
+    border-radius: 0 8px 8px 0;
+}
+
+/* 视频网格 */
+.dwen-video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.video-item {
+    position: relative;
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.video-item:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.video-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.video-placeholder small {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 0.5rem;
+}
+
+.demo-video {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.demo-video:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 视频播放器样式自定义 */
+.demo-video::-webkit-media-controls {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 0 0 12px 12px;
+}
+
+.demo-video::-webkit-media-controls-panel {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* 文档展示 */
+.dwen-docs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.doc-item {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+.doc-item h3 {
+    color: #ffffff;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.doc-screenshots {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.screenshot-placeholder {
+    flex: 1;
+    aspect-ratio: 3/4;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.doc-download {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.doc-download:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* 技术栈展示 */
+.tech-stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.tech-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tech-value {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+}
+
+/* 反思文本 */
+.reflection-text {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    font-style: italic;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0 8px 8px 0;
+}
+
+/* 背景视频部分样式 */
+.dwen-bg-section {
+    min-height: 70vh;
+    padding: 3rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 100;
+}
+
+.bg-video-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    z-index: 101;
+}
+
+.bg-video {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+}
+
+.bg-video-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 2rem;
+    color: white;
+    z-index: 102;
+}
+
+.bg-video-overlay h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.bg-video-overlay p {
+    font-size: 1rem;
+    margin: 0;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+/* 模块布局样式 */
+.dwen-module-section {
+    min-height: 80vh;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.module-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.module-number {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.module-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.module-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.module-content .module-demo {
+    width: 100%;
+    max-width: 800px;
+}
+
+.module-demo {
+    position: relative;
+}
+
+.module-demo-video {
+    width: 100%;
+    height: 500px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.module-demo-video:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
+}
+
+.module-details {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+}
+
+.module-details h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.feature-list li {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.feature-list li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.tech-tag {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.tech-tag:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* 架构概览样式 */
+.architecture-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.arch-layer {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.arch-layer h3 {
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.arch-layer p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .dwen-title {
+        font-size: 3rem;
+        letter-spacing: 2px;
+    }
+    
+    .dwen-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        gap: 0.8rem;
+    }
+    
+    .subtitle-decorator {
+        font-size: 1.2rem;
+        margin: 0 0.3rem;
+    }
+    
+    .dwen-meta-info {
+        flex-wrap: nowrap;
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+        margin-top: -0.3rem;
+        overflow-x: auto;
+        justify-content: flex-start;
+        align-items: baseline;
+    }
+    
+    .meta-date {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.9rem;
+    }
+    
+    .meta-divider-thick {
+        display: inline-flex;
+        align-items: center;
+        font-size: 1.2rem;
+        margin: 0 0.4rem;
+    }
+    
+    .tech-stack {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.9rem;
+    }
+    
+    .dwen-meta-info .github-link {
+        font-size: 0.9rem;
+        padding: 0.15rem 0.4rem;
+    }
+    
+    .dwen-meta-info .github-link svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    
+    .bg-video {
+        height: 300px;
+    }
+    
+    .bg-video-overlay {
+        padding: 1.5rem;
+    }
+    
+    .bg-video-overlay h3 {
+        font-size: 1.2rem;
+    }
+    
+    .bg-video-overlay p {
+        font-size: 0.9rem;
+    }
+    
+    .dwen-layout {
+        padding: 1rem;
+    }
+    
+    .dwen-hero {
+        padding: 2rem 0;
+    }
+    
+    .module-title {
+        font-size: 2.5rem;
+    }
+    
+    .module-content {
+        flex-direction: column;
+    }
+    
+    .module-content .module-demo {
+        max-width: 100%;
+    }
+    
+    .module-demo-video {
+        height: 300px;
+    }
+    
+    .module-details {
+        padding: 1rem;
+    }
+    
+    .dwen-video-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .dwen-docs {
+        grid-template-columns: 1fr;
+    }
+    
+    .doc-screenshots {
+        flex-direction: column;
+    }
+    
+    .tech-stack {
+        grid-template-columns: 1fr;
+    }
+    
+    .architecture-overview {
+        grid-template-columns: 1fr;
+    }
+    
+    .dwen-section .section-title,
+    .dwen-section .section-content {
+        padding-left: 2rem;
+    }
+}
     
     .philosophy-box {
         flex-direction: column;
@@ -2891,4 +5759,735 @@ html, body {
         font-size: 1.1rem;
     }
 }
+
+/* ===== 项目详情页面样式 ===== */
+.project-detail-page {
+    min-height: 100vh;
+    background: #000000;
+    position: relative;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+    animation: pageSimpleFadeIn 0.6s ease-out forwards;
+}
+
+/* 简单淡入动画 */
+@keyframes pageSimpleFadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* 返回按钮 */
+.back-button {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 1000;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 0.8rem 1.8rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    animation: backButtonSlideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+@keyframes backButtonSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.back-link:hover {
+    color: #000000;
+    background: #ffffff;
+    transform: translateX(-3px);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4), 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+.back-link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.back-link:hover svg {
+    transform: translateX(-2px);
+}
+
+/* 项目标题 */
+.project-header {
+    text-align: center;
+}
+
+.project-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 4rem;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: projectTitleFadeIn 1s ease-out 0.5s forwards;
+}
+
+/* 动画 */
+@keyframes projectTitleFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .project-detail-page {
+        padding: 1rem;
+    }
+    
+    .back-button {
+        top: 1rem;
+        left: 1rem;
+    }
+    
+    .back-link {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .project-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* ===== Frankenstories 特殊样式 ===== */
+.franken-layout {
+    max-width: 1400px;
+    width: 100%;
+    padding: 1.5rem 3rem 3rem 3rem;
+    animation: frankenFadeIn 1s ease-out 0.4s both;
+    position: relative;
+    --franken-mint: #ffffff;
+    --franken-cyan: rgba(255, 255, 255, 0.9);
+    --franken-mint-light: rgba(255, 255, 255, 0.08);
+    --franken-cyan-light: rgba(255, 255, 255, 0.08);
+}
+
+@keyframes frankenFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 标题区 */
+.franken-hero {
+    text-align: center;
+    margin-bottom: 1.8rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    animation: heroSlideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both;
+}
+
+@keyframes heroSlideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.franken-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin: 0 0 0.8rem 0;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    text-shadow: none;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 4px solid rgba(255, 255, 255, 0.8);
+    animation: 
+        frankenTypewriter 2s steps(15) 0.5s both,
+        frankenBlink 0.75s step-end infinite 2.5s;
+}
+
+@keyframes frankenTypewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes frankenBlink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.franken-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        transparent 100%);
+    animation: frankenScanline 3s linear infinite;
+    mix-blend-mode: screen;
+}
+
+@keyframes frankenScanline {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.franken-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 0.8rem 0;
+    letter-spacing: 0.12em;
+    animation: frankenSubtitleZoom 1.5s ease-out 0.4s both;
+}
+
+@keyframes frankenSubtitleZoom {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-2deg);
+        filter: blur(3px);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1) rotate(1deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+        filter: blur(0);
+    }
+}
+
+.franken-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 1rem;
+    animation: frankenMetaFade 1s ease-out 0.6s both;
+}
+
+.meta-item {
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+.meta-divider {
+    margin: 0 1rem;
+    opacity: 0.3;
+}
+
+@keyframes frankenMetaFade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.franken-keywords {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: frankenKeywordsFade 1s ease-out 0.8s both;
+}
+
+.keyword {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid var(--franken-mint);
+    border-radius: 6px;
+    letter-spacing: 0.08em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    background: var(--franken-mint-light);
+    backdrop-filter: blur(10px);
+}
+
+.keyword:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--franken-mint);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* 日期标签 - 右侧带竖线 */
+.keyword-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 0.5rem 1.5rem 0.5rem 0;
+    letter-spacing: 0.05em;
+    position: relative;
+}
+
+.keyword-date::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 1.2rem;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes frankenKeywordsFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* GitHub链接 */
+.franken-github {
+    margin-top: 1rem;
+    text-align: center;
+    animation: frankenGithubFade 1s ease-out 1s both;
+}
+
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.github-link:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+.github-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+@keyframes frankenGithubFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 视频容器 */
+.video-container {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.video-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+}
+
+.video-placeholder p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+/* 内容区块 */
+.franken-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.franken-section {
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: frankenSectionFade 0.8s ease-out forwards;
+    z-index: 1;
+}
+
+.franken-section::after {
+    content: '✦';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.2);
+    opacity: 0.3;
+}
+
+.franken-section:nth-child(1) { animation-delay: 1.2s; }
+.franken-section:nth-child(2) { animation-delay: 1.35s; }
+.franken-section:nth-child(3) { animation-delay: 1.5s; }
+.franken-section:nth-child(4) { animation-delay: 1.65s; }
+.franken-section:nth-child(5) { animation-delay: 1.8s; }
+.franken-section:nth-child(6) { animation-delay: 1.95s; }
+
+@keyframes frankenSectionFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-number {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 10rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.05);
+    position: absolute;
+    top: -3rem;
+    left: -2rem;
+    line-height: 1;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+    letter-spacing: 0.08em;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.section-content {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+}
+
+.section-content p {
+    margin: 0 0 1.2rem 0;
+}
+
+.section-content p:last-child {
+    margin-bottom: 0;
+}
+
+.highlight {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    font-style: italic;
+    padding: 1.2rem 1.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    margin: 1.5rem 0;
+    display: block;
+    position: relative;
+    border-radius: 8px;
+}
+
+/* 列表样式 */
+.method-list,
+.outcome-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.method-list li,
+.outcome-list li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.method-list li,
+.outcome-list li {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.method-list li::before,
+.outcome-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 700;
+}
+
+/* 挑战网格 */
+.challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.challenge-item {
+    padding: 1.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.challenge-item::before {
+    content: '★';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    background: #000000;
+    padding: 0 0.3rem;
+}
+
+.challenge-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+.challenge-item h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.8rem 0;
+    letter-spacing: 0.08em;
+}
+
+.challenge-item p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* 方法论列表 */
+.methodology-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 1.5rem 0;
+}
+
+.method-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border-left: 3px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    position: relative;
+    border-radius: 0 8px 8px 0;
+}
+
+.method-label {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.08em;
+}
+
+.method-value {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+/* 生成方法高亮 */
+.generation-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin: 1.5rem 0;
+}
+
+.method-highlight {
+    padding: 1.5rem;
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    position: relative;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.method-highlight:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+.method-highlight h4 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.8rem 0;
+    letter-spacing: 0.08em;
+}
+
+.method-highlight p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* 反思文本 */
+.reflection-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .franken-layout {
+        padding: 1.5rem 1rem 2.5rem 1rem;
+        max-width: 100%;
+    }
+    
+    .franken-title {
+        font-size: 3rem;
+    }
+    
+    .franken-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .section-number {
+        font-size: 5rem;
+        top: -1rem;
+        left: -0.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-content {
+        font-size: 1rem;
+    }
+    
+    .challenge-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .franken-sections {
+        gap: 1.5rem;
+    }
+}
+
 

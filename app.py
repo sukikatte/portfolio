@@ -1,12 +1,12 @@
-from flask import Flask, render_template, send_from_directory
 import os
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 # 项目数据
 PROJECTS = [
     {
-        'id': 'dwen-dwen',
+        'id': 'dwen',
         'title': "Dwen Dwen's Neighbor",
         'subtitle': 'Designing for Conservation Awareness',
         'tags': ['Team Project', 'System Architecture + UX', 'Firebase + Animation'],
@@ -79,7 +79,7 @@ PROJECTS = [
     }
 ,
     {
-        'id': 'chinese-medicine',
+        'id': 'medicine',
         'title': 'Chinese Medicine Recommendation',
         'subtitle': 'Technology in Everyday Life',
         'tags': ['AI + Recommendation', 'Database'],
@@ -150,7 +150,7 @@ PROJECTS = [
     }
 ,
     {
-        'id': 'guess-songs',
+        'id': 'songs',
         'title': 'Guess Songs',
         'subtitle': 'Real-time Multiplayer Music Game',
         'tags': ['Solo Project', 'Cloud + Realtime DB', 'Game + Interaction'],
@@ -292,7 +292,7 @@ PROJECTS = [
     }
 ,
     {
-        'id': 'parrot-ordering',
+        'id': 'parrot',
         'title': 'Parrot Ordering System',
         'subtitle': 'Designing Seamless Workflows',
         'tags': ['Full-Stack', 'Web + Database + UX'],
@@ -360,6 +360,139 @@ PROJECTS = [
                 '下一步：添加数据分析，帮助商家决策'
             ]
         }
+    },
+    {
+        'id': 'event',
+        'title': 'Event Management',
+        'subtitle': 'Streamlining Event Coordination',
+        'tags': ['Full-Stack', 'Web + Database + UX'],
+        'icon': '📅',
+        'color': '#FFB6C1',
+        'description': '一个综合性活动管理平台，支持活动创建、报名、签到和反馈收集',
+        'achievement': '课程设计优秀作品',
+        'tech_stack': ['Python', 'Flask', 'SQLite', 'JavaScript', 'Bootstrap'],
+        'github': 'https://github.com/sukikatte/event-management',
+        
+        'problem': {
+            'title': 'Problem / Context',
+            'content': '传统活动管理方式效率低下，缺乏统一平台。组织者需要手动处理报名、签到等繁琐工作，参与者体验不佳。',
+            'highlights': [
+                '目标用户：活动组织者、参与者',
+                '核心需求：简化活动管理流程',
+                '用户痛点：流程繁琐、信息不透明'
+            ]
+        },
+        'ideation': {
+            'title': 'Ideation & Design Thinking',
+            'content': '采用用户中心设计，简化活动管理流程。通过清晰的界面设计和自动化功能，提升用户体验。',
+            'highlights': [
+                '用户旅程：创建活动 → 发布报名 → 管理参与者 → 活动执行',
+                '设计原则：简洁、高效、用户友好'
+            ]
+        },
+        'solution': {
+            'title': 'Solution & Technical Implementation',
+            'content': 'Flask 后端 + SQLite 数据库 + Bootstrap 前端。实现活动CRUD、用户管理、报名系统等功能。',
+            'highlights': [
+                '后端：Flask + SQLAlchemy',
+                '数据库：SQLite',
+                '前端：Bootstrap + JavaScript'
+            ]
+        },
+        'ux': {
+            'title': 'User Experience & Interface Design',
+            'content': '简洁的界面设计，清晰的信息层次。采用卡片式布局，便于快速浏览和管理。',
+            'highlights': [
+                '卡片式活动展示',
+                '直观的管理界面',
+                '响应式设计'
+            ]
+        },
+        'impact': {
+            'title': 'Impact & Results',
+            'content': '成功简化了活动管理流程，提升了组织效率和参与者体验。',
+            'highlights': [
+                '流程简化60%',
+                '用户满意度提升',
+                '功能完整性验证'
+            ]
+        },
+        'reflection': {
+            'title': 'Reflection',
+            'content': '学会了如何设计实用的管理系统，理解了用户需求的重要性。',
+            'learnings': [
+                '用户需求分析的重要性',
+                '系统设计的复杂性',
+                '用户体验的关键作用'
+            ]
+        }
+    },
+    {
+        'id': 'franken',
+        'title': 'Frankenstories',
+        'subtitle': 'Collaborative Storytelling Platform',
+        'tags': ['Full-Stack', 'Web + Database + UX'],
+        'icon': '📚',
+        'color': '#98FB98',
+        'description': '一个协作式故事创作平台，用户可以共同创作和分享故事',
+        'achievement': '创新项目展示',
+        'tech_stack': ['Python', 'Flask', 'SQLite', 'JavaScript', 'CSS'],
+        'github': 'https://github.com/sukikatte/frankenstories',
+        
+        'problem': {
+            'title': 'Problem / Context',
+            'content': '传统故事创作缺乏协作性，创作者难以获得反馈和灵感。需要一个平台让多人共同创作故事。',
+            'highlights': [
+                '目标用户：故事创作者、读者',
+                '核心需求：协作创作',
+                '用户痛点：创作孤独、缺乏灵感'
+            ]
+        },
+        'ideation': {
+            'title': 'Ideation & Design Thinking',
+            'content': '设计协作式创作流程，让多个用户可以共同参与故事创作。采用分支式故事结构，支持多种创作模式。',
+            'highlights': [
+                '协作创作模式',
+                '分支式故事结构',
+                '实时编辑功能'
+            ]
+        },
+        'solution': {
+            'title': 'Solution & Technical Implementation',
+            'content': 'Flask 后端 + SQLite 数据库 + 实时编辑功能。实现故事管理、用户协作、版本控制等功能。',
+            'highlights': [
+                '后端：Flask + SQLAlchemy',
+                '数据库：SQLite',
+                '前端：JavaScript + CSS'
+            ]
+        },
+        'ux': {
+            'title': 'User Experience & Interface Design',
+            'content': '直观的创作界面，支持实时协作。采用时间线式故事展示，便于理解故事发展。',
+            'highlights': [
+                '直观的创作界面',
+                '实时协作功能',
+                '时间线式展示'
+            ]
+        },
+        'impact': {
+            'title': 'Impact & Results',
+            'content': '成功创建了协作式故事创作平台，提升了创作体验和作品质量。',
+            'highlights': [
+                '协作效率提升',
+                '创作质量改善',
+                '用户参与度增加'
+            ]
+        },
+        'reflection': {
+            'title': 'Reflection',
+            'content': '学会了如何设计协作式平台，理解了实时编辑的技术挑战。',
+            'learnings': [
+                '协作设计的复杂性',
+                '实时编辑的技术挑战',
+                '用户体验的重要性'
+            ]
+        }
     }
     ]
 
@@ -409,6 +542,7 @@ def project_detail(project_id):
     if not project:
         return "项目不存在", 404
     return render_template('project_detail.html', project=project)
+
 
 @app.route('/about')
 def about():

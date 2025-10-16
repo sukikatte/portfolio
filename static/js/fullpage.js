@@ -36,8 +36,9 @@ class FullPageScroll {
     }
     
     setupInfiniteScroll() {
-        // 克隆第一个和最后一个项目以实现无限循环
-        if (this.projectSlides.length > 0) {
+        // 旧的项目滑动器逻辑 - 已禁用，使用新的initProjectsSlider()替代
+        // 查找旧的.project-slide元素（不是新的.projects-slide）
+        if (this.projectSlides.length > 0 && this.projectSlides[0] && !this.projectSlides[0].classList.contains('projects-slide')) {
             const firstSlide = this.projectSlides[0].cloneNode(true);
             const lastSlide = this.projectSlides[this.projectSlides.length - 1].cloneNode(true);
             
@@ -53,6 +54,7 @@ class FullPageScroll {
             this.projectsContainer.style.transform = `translateX(-${this.currentProject * 100}%)`;
             this.projectsContainer.style.transition = 'none';
         }
+        // 如果是新的.projects-slide，不做任何处理，由initProjectsSlider()处理
     }
     
     addEventListeners() {
@@ -74,7 +76,12 @@ class FullPageScroll {
             
             if (Math.abs(diff) > 50) {
                 if (diff > 0) {
-                    this.goToSection(this.currentSection + 1);
+                    // 从首页向下滑动时，触发立方体拆解
+                    if (this.currentSection === 0) {
+                        this.triggerCubeDissolveAndNavigate();
+                    } else {
+                        this.goToSection(this.currentSection + 1);
+                    }
                 } else {
                     this.goToSection(this.currentSection - 1);
                 }
@@ -107,7 +114,12 @@ class FullPageScroll {
         if (Math.abs(e.deltaY) < threshold) return;
         
         if (e.deltaY > 0) {
-            this.goToSection(this.currentSection + 1);
+            // 从首页向下滚动时，触发立方体拆解
+            if (this.currentSection === 0) {
+                this.triggerCubeDissolveAndNavigate();
+            } else {
+                this.goToSection(this.currentSection + 1);
+            }
         } else {
             this.goToSection(this.currentSection - 1);
         }
@@ -118,7 +130,12 @@ class FullPageScroll {
         
         if (e.key === 'ArrowDown' || e.key === 'PageDown') {
             e.preventDefault();
-            this.goToSection(this.currentSection + 1);
+            // 从首页向下时，触发立方体拆解
+            if (this.currentSection === 0) {
+                this.triggerCubeDissolveAndNavigate();
+            } else {
+                this.goToSection(this.currentSection + 1);
+            }
         } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
             e.preventDefault();
             this.goToSection(this.currentSection - 1);
@@ -131,6 +148,14 @@ class FullPageScroll {
         }
     }
     
+    // 触发立方体拆解并导航到Projects
+    triggerCubeDissolveAndNavigate() {
+        if (this.isScrolling) return;
+        
+        console.log('🎯 直接跳转到Projects页面');
+        this.goToSection(1);
+    }
+    
     goToSection(index) {
         if (index < 0 || index >= this.totalSections || index === this.currentSection) {
             return;
@@ -138,6 +163,15 @@ class FullPageScroll {
         
         this.isScrolling = true;
         this.currentSection = index;
+        
+        // 星空加速效果
+        if (window.starsController) {
+            window.starsController.accelerate();
+            // 0.8秒后减速
+            setTimeout(() => {
+                window.starsController.decelerate();
+            }, 800);
+        }
         
         // 移动容器
         const offset = -index * 100;
@@ -151,6 +185,21 @@ class FullPageScroll {
         this.updateActiveDot();
         this.updateActiveNav();
         
+        // 触发页面切换事件
+        window.dispatchEvent(new CustomEvent('sectionChange', { detail: { index } }));
+        
+        // 控制背景图片显示/隐藏（只在首页显示）
+        const bgImage = document.querySelector('.bg-image');
+        if (bgImage) {
+            if (index === 0) {
+                bgImage.classList.add('visible');
+                console.log('背景图片已显示 - bg6');
+            } else {
+                bgImage.classList.remove('visible');
+                console.log('背景图片已隐藏');
+            }
+        }
+
         // 控制键盘提示显示/隐藏（只在首页显示）
         const keyboardHint = document.querySelector('.keyboard-hint');
         if (keyboardHint) {
@@ -167,39 +216,86 @@ class FullPageScroll {
             }
         }
         
-        // 控制滚动箭头方向（最后一页向上，其他页向下）
+        // 控制滚动提示显示
+        const scrollHint = document.querySelector('.scroll-hint');
         const scrollArrow = document.querySelector('.scroll-arrow');
         const scrollText = document.querySelector('.scroll-text');
-        if (scrollArrow && scrollText) {
-            if (index === this.totalSections - 1) {
-                scrollArrow.textContent = '↑';
-                scrollText.textContent = 'Scroll up';
-            } else {
-                scrollArrow.textContent = '↓';
-                scrollText.textContent = 'Scroll to explore';
+        
+        if (scrollHint) {
+            scrollHint.style.opacity = '1';
+            scrollHint.style.visibility = 'visible';
+            
+            if (scrollArrow && scrollText) {
+                if (index === this.totalSections - 1) {
+                    scrollArrow.textContent = '↑';
+                    scrollText.textContent = 'Scroll up';
+                } else {
+                    scrollArrow.textContent = '↓';
+                    scrollText.textContent = 'Scroll to explore';
+                }
             }
         }
         
-        // 控制背景显示：首页显示Three.js星空，其他页面显示网格星空
+        // 控制背景显示：Home和Projects有各自的星空，其他页面显示网格背景
         const bgCanvas = document.getElementById('bgCanvas');
         const starsCanvas = document.getElementById('starsCanvas');
+        const projectsCanvas = document.getElementById('projectsCanvas');
+        const contactCanvas = document.getElementById('contactCanvas');
         
         if (index === 0) {
-            // 首页：隐藏网格背景，显示Three.js星空
+            // Home页面：显示Home星空
             if (bgCanvas) bgCanvas.style.display = 'none';
             if (starsCanvas) starsCanvas.style.display = 'block';
-        } else {
-            // 其他页面：显示网格背景，隐藏Three.js星空
-            if (bgCanvas) bgCanvas.style.display = 'block';
+            if (projectsCanvas) projectsCanvas.style.display = 'none';
+            if (contactCanvas) contactCanvas.style.display = 'none';
+        } else if (index === 1) {
+            // Projects页面：显示Projects星空
+            if (bgCanvas) bgCanvas.style.display = 'none';
             if (starsCanvas) starsCanvas.style.display = 'none';
+            if (projectsCanvas) projectsCanvas.style.display = 'block';
+            if (contactCanvas) contactCanvas.style.display = 'none';
+            
+            // 启动Projects粒子动画
+            if (window.projectsParticles) {
+                window.projectsParticles.start();
+            }
+            
+            if (window.resetProjectsSlider) {
+                window.resetProjectsSlider();
+            }
+        } else if (index === 3) {
+            // Contact页面：显示Contact星空背景
+            if (bgCanvas) bgCanvas.style.display = 'none';
+            if (starsCanvas) starsCanvas.style.display = 'none';
+            if (projectsCanvas) projectsCanvas.style.display = 'none';
+            if (contactCanvas) contactCanvas.style.display = 'block';
+            
+            // 启动Contact粒子动画
+            if (window.contactParticles) {
+                window.contactParticles.start();
+            }
+        } else {
+            // 其他页面：显示星空
+            if (bgCanvas) bgCanvas.style.display = 'none';
+            if (starsCanvas) starsCanvas.style.display = 'block';
+            if (projectsCanvas) projectsCanvas.style.display = 'none';
+            if (contactCanvas) contactCanvas.style.display = 'none';
+            
+            if (window.projectsParticles) {
+                window.projectsParticles.stop();
+            }
+            if (window.contactParticles) {
+                window.contactParticles.stop();
+            }
         }
         
-        // 如果进入项目页面（index = 2），启动自动播放
-        if (index === 2) {
-            this.startAutoPlay();
-        } else {
-            this.stopAutoPlay();
-        }
+        // 禁用自动播放，避免干扰新的projects滑动器
+        // if (index === 2) {
+        //     this.startAutoPlay();
+        // } else {
+        //     this.stopAutoPlay();
+        // }
+        this.stopAutoPlay(); // 始终停止自动播放
         
         // 延迟后允许下次滚动
         setTimeout(() => {
@@ -250,19 +346,19 @@ class FullPageScroll {
             });
         });
         
-        // 鼠标悬停在项目区域时暂停自动播放
-        const projectsSection = document.querySelector('#projects');
-        if (projectsSection) {
-            projectsSection.addEventListener('mouseenter', () => {
-                this.stopAutoPlay();
-            });
-            
-            projectsSection.addEventListener('mouseleave', () => {
-                if (this.currentSection === 2) {
-                    this.startAutoPlay();
-                }
-            });
-        }
+        // 禁用鼠标悬停自动播放逻辑（已改用新的projects滑动器）
+        // const projectsSection = document.querySelector('#projects');
+        // if (projectsSection) {
+        //     projectsSection.addEventListener('mouseenter', () => {
+        //         this.stopAutoPlay();
+        //     });
+        //     
+        //     projectsSection.addEventListener('mouseleave', () => {
+        //         if (this.currentSection === 2) {
+        //             this.startAutoPlay();
+        //         }
+        //     });
+        // }
     }
     
     goToProject(index) {
@@ -359,15 +455,23 @@ class FullPageScroll {
 // ============================================
 // 初始化
 // ============================================
-document.addEventListener('DOMContentLoaded', () => {
-    new FullPageScroll();
+function initializeApp() {
+    console.log('初始化应用...');
     
-    // 页面加载动画
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    }, 100);
+    // 确保页面内容可见
+    document.body.style.opacity = '1';
+    document.body.style.transition = 'opacity 0.5s ease';
+    
+    // 初始化全页滚动
+    if (window.fullPageScroll) {
+        try {
+            window.fullPageScroll.destroy();
+        } catch (e) {
+            console.log('清理旧实例时出错:', e);
+        }
+    }
+    window.fullPageScroll = new FullPageScroll();
+    
     
     // 初始化背景显示状态（首页显示Three.js星空，隐藏网格背景）
     const bgCanvas = document.getElementById('bgCanvas');
@@ -375,15 +479,40 @@ document.addEventListener('DOMContentLoaded', () => {
     if (bgCanvas) bgCanvas.style.display = 'none'; // 首页默认隐藏网格背景
     if (starsCanvas) starsCanvas.style.display = 'block'; // 首页显示Three.js星空
     
-    // 初始化动态背景（即使初始隐藏也要初始化，以便切换时能正常显示）
-    initDynamicBackground();
+    // 初始化背景图片显示状态（首页显示bg6图片）
+    const bgImage = document.querySelector('.bg-image');
+    if (bgImage) {
+        bgImage.classList.add('visible');
+        console.log('背景图片已设置为可见 - bg6');
+    } else {
+        console.error('未找到.bg-image元素');
+    }
     
-    // 项目卡片3D效果
-    initProjectCardEffects();
+    // 延迟初始化项目滑动器，确保DOM完全加载
+    setTimeout(() => {
+        console.log('初始化项目滑动器...');
+        initProjectsSlider();
+        console.log('项目滑动器初始化完成');
+    }, 100);
     
-    // 初始化Journey时间轴交互
-    initJourneyTimeline();
-});
+    console.log('应用初始化完成');
+}
+
+// 页面加载时初始化
+document.addEventListener('DOMContentLoaded', initializeApp);
+
+// 如果页面已经加载完成，立即初始化
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+    initializeApp();
+}
+
+// 初始化动态背景（即使初始隐藏也要初始化，以便切换时能正常显示）
+initDynamicBackground();
+
+// 项目卡片3D效果
+initProjectCardEffects();
 
 // ============================================
 // 项目卡片3D悬停效果
@@ -494,11 +623,11 @@ function initDynamicBackground() {
         draw() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(76, 201, 240, ${this.opacity})`;
+            ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
             ctx.fill();
             
             ctx.shadowBlur = 10;
-            ctx.shadowColor = 'rgba(76, 201, 240, 0.5)';
+            ctx.shadowColor = 'rgba(255, 255, 255, 0.5)';
             ctx.fill();
             ctx.shadowBlur = 0;
         }
@@ -510,7 +639,7 @@ function initDynamicBackground() {
     
     // 绘制网格线
     function drawGrid() {
-        ctx.strokeStyle = 'rgba(76, 201, 240, 0.08)';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
         ctx.lineWidth = 1;
         
         for (let x = 0; x < canvas.width; x += gridSize) {
@@ -537,9 +666,9 @@ function initDynamicBackground() {
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
                 if (distance < 150) {
-                    const opacity = (1 - distance / 150) * 0.4;
-                    ctx.strokeStyle = `rgba(76, 201, 240, ${opacity})`;
-                    ctx.lineWidth = 1;
+                    const opacity = (1 - distance / 150) * 0.7;
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+                    ctx.lineWidth = 1.5;
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
@@ -559,9 +688,9 @@ function initDynamicBackground() {
         
         // 径向渐变背景
         const bgGradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, radius);
-        bgGradient.addColorStop(0, 'rgba(76, 201, 240, 0.12)');
-        bgGradient.addColorStop(0.5, 'rgba(76, 201, 240, 0.06)');
-        bgGradient.addColorStop(1, 'rgba(76, 201, 240, 0)');
+        bgGradient.addColorStop(0, 'rgba(255, 255, 255, 0.12)');
+        bgGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.06)');
+        bgGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
         
         ctx.fillStyle = bgGradient;
         ctx.beginPath();
@@ -578,9 +707,9 @@ function initDynamicBackground() {
             const distTop = Math.abs((gridY - gridSize) - centerY);
             const distBottom = Math.abs((gridY + gridSize * 2) - centerY);
             
-            gradient.addColorStop(0, `rgba(76, 201, 240, ${Math.max(0, 1 - distTop / radius) * 0.4})`);
-            gradient.addColorStop(0.5, `rgba(76, 201, 240, ${opacity})`);
-            gradient.addColorStop(1, `rgba(76, 201, 240, ${Math.max(0, 1 - distBottom / radius) * 0.4})`);
+            gradient.addColorStop(0, `rgba(255, 255, 255, ${Math.max(0, 1 - distTop / radius) * 0.4})`);
+            gradient.addColorStop(0.5, `rgba(255, 255, 255, ${opacity})`);
+            gradient.addColorStop(1, `rgba(255, 255, 255, ${Math.max(0, 1 - distBottom / radius) * 0.4})`);
             
             ctx.strokeStyle = gradient;
             ctx.lineWidth = 1.5;
@@ -599,9 +728,9 @@ function initDynamicBackground() {
             const distLeft = Math.abs((gridX - gridSize) - centerX);
             const distRight = Math.abs((gridX + gridSize * 2) - centerX);
             
-            gradient.addColorStop(0, `rgba(76, 201, 240, ${Math.max(0, 1 - distLeft / radius) * 0.4})`);
-            gradient.addColorStop(0.5, `rgba(76, 201, 240, ${opacity})`);
-            gradient.addColorStop(1, `rgba(76, 201, 240, ${Math.max(0, 1 - distRight / radius) * 0.4})`);
+            gradient.addColorStop(0, `rgba(255, 255, 255, ${Math.max(0, 1 - distLeft / radius) * 0.4})`);
+            gradient.addColorStop(0.5, `rgba(255, 255, 255, ${opacity})`);
+            gradient.addColorStop(1, `rgba(255, 255, 255, ${Math.max(0, 1 - distRight / radius) * 0.4})`);
             
             ctx.strokeStyle = gradient;
             ctx.lineWidth = 1.5;
@@ -634,14 +763,14 @@ function initDynamicBackground() {
 }
 
 // ============================================
-// Journey 项目时间轴交互
+// Projects 项目滑动器交互
 // ============================================
-function initJourneyTimeline() {
-    const container = document.querySelector('.journey-slider-container');
-    const originalSlides = document.querySelectorAll('.journey-slide');
-    const prevBtn = document.querySelector('.journey-nav-btn.prev');
-    const nextBtn = document.querySelector('.journey-nav-btn.next');
-    const indicators = document.querySelectorAll('.journey-indicator');
+function initProjectsSlider() {
+    const container = document.querySelector('.projects-slider-container');
+    const originalSlides = document.querySelectorAll('.projects-slide');
+    const prevBtn = document.querySelector('.projects-nav-btn.prev');
+    const nextBtn = document.querySelector('.projects-nav-btn.next');
+    const indicators = document.querySelectorAll('.projects-indicator');
     
     if (!container || originalSlides.length === 0) {
         return;
@@ -667,41 +796,63 @@ function initJourneyTimeline() {
     }
     
     // 重新获取所有幻灯片（包括克隆的）
-    const allSlides = container.querySelectorAll('.journey-slide');
+    const allSlides = container.querySelectorAll('.projects-slide');
     let currentIndex = cloneCount; // 从第一个真实项目开始（跳过克隆的）
     let isTransitioning = false;
     
     // 计算每个卡片的宽度（包括间距）
     function getSlideWidth() {
         const slide = allSlides[0];
+        if (!slide) return 240 + 72; // 默认值：卡片240px + gap 72px (4.5rem)
         const slideWidth = slide.offsetWidth;
         // 从CSS中读取gap值
         const computedStyle = getComputedStyle(container);
-        const gap = parseFloat(computedStyle.gap) || 48;
+        const gap = parseFloat(computedStyle.gap) || 72; // 4.5rem = 72px
         return slideWidth + gap;
     }
     
     // 更新滑块位置
     function updateSlider(animate = true) {
         const slideWidth = getSlideWidth();
-        const wrapper = document.querySelector('.journey-slider-wrapper');
-        const wrapperWidth = wrapper.offsetWidth;
+        const wrapper = document.querySelector('.projects-slider-wrapper');
+        if (!wrapper) return;
         
-        // 获取实际gap值
-        const computedStyle = getComputedStyle(container);
-        const gap = parseFloat(computedStyle.gap) || 48;
+        // 确保currentIndex在有效范围内
+        if (currentIndex < 0) currentIndex = 0;
+        if (currentIndex >= allSlides.length) currentIndex = allSlides.length - 1;
         
-        // 计算居中偏移量
-        const centerOffset = (wrapperWidth - slideWidth + gap) / 2;
-        const offset = -(currentIndex * slideWidth) + centerOffset;
+        // 获取当前中心卡牌
+        const currentCard = allSlides[currentIndex];
+        if (!currentCard) return;
+        
+        // 获取wrapper的位置
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const wrapperLeftEdge = wrapperRect.left;
+        
+        // 屏幕中心位置
+        const screenCenter = window.innerWidth / 2;
+        
+        // 计算当前卡牌的中心位置
+        const cardRect = currentCard.getBoundingClientRect();
+        const cardCenter = cardRect.left + cardRect.width / 2;
+        
+        // 计算需要移动的距离，让卡牌中心对齐屏幕中心
+        const offsetNeeded = screenCenter - cardCenter;
+        
+        // 计算容器需要移动的距离
+        const currentTransform = container.style.transform;
+        const currentOffset = currentTransform ? parseFloat(currentTransform.match(/-?\d+\.?\d*/)[0]) : 0;
+        const newOffset = currentOffset + offsetNeeded;
         
         if (!animate) {
             container.style.transition = 'none';
+            // 强制浏览器重排，确保transition: none生效
+            void container.offsetWidth;
         } else {
             container.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
         }
         
-        container.style.transform = `translateX(${offset}px)`;
+        container.style.transform = `translateX(${newOffset}px)`;
         
         // 更新指示器（映射到真实索引）
         const realIndex = (currentIndex - cloneCount + totalSlides) % totalSlides;
@@ -711,7 +862,7 @@ function initJourneyTimeline() {
         
         // 更新中心卡片的高亮状态（添加center类）
         allSlides.forEach((slide, index) => {
-            const card = slide.querySelector('.journey-card');
+            const card = slide.querySelector('.projects-card');
             if (card) {
                 if (index === currentIndex) {
                     card.classList.add('center');
@@ -737,23 +888,19 @@ function initJourneyTimeline() {
     
     // 添加/移除卡牌变形效果
     function addSwipeEffect(direction) {
-        const allCards = document.querySelectorAll('.journey-card');
-        console.log('🎴 添加圆弧效果:', direction, '- 找到', allCards.length, '个卡牌');
+        const allCards = document.querySelectorAll('.projects-card');
         allCards.forEach(card => {
             card.classList.remove('swipe-left', 'swipe-right');
             if (direction === 'left') {
                 card.classList.add('swipe-left');
-                console.log('  → 添加 swipe-left 类');
             } else if (direction === 'right') {
                 card.classList.add('swipe-right');
-                console.log('  → 添加 swipe-right 类');
             }
         });
     }
     
     function removeSwipeEffect() {
-        const allCards = document.querySelectorAll('.journey-card');
-        console.log('🔄 移除圆弧效果 - 共', allCards.length, '个卡牌');
+        const allCards = document.querySelectorAll('.projects-card');
         allCards.forEach(card => {
             card.classList.remove('swipe-left', 'swipe-right');
         });
@@ -805,8 +952,17 @@ function initJourneyTimeline() {
         }, 600);
     }
     
-    // 初始化位置
+    // 初始化位置（确保无动画，防止自动滑动）
+    // 先关闭过渡效果
+    container.style.transition = 'none';
+    // 强制浏览器重排
+    container.offsetHeight;
+    // 设置初始位置
     updateSlider(false);
+    // 延迟重新启用过渡效果
+    setTimeout(() => {
+        container.style.transition = '';
+    }, 50);
     
     // 添加事件监听
     if (prevBtn) prevBtn.addEventListener('click', goToPrev);
@@ -816,10 +972,21 @@ function initJourneyTimeline() {
         indicator.addEventListener('click', () => goToSlide(index));
     });
     
+    // 添加项目卡牌点击事件
+    allSlides.forEach((slide, index) => {
+        slide.addEventListener('click', () => {
+            const projectId = slide.dataset.projectId;
+            if (projectId) {
+                // 跳转到详情页面
+                window.location.href = `/project/${projectId}`;
+            }
+        });
+    });
+    
     // 键盘控制
     document.addEventListener('keydown', (e) => {
-        const journeySection = document.getElementById('journey');
-        if (journeySection && journeySection.classList.contains('active')) {
+        const projectsSection = document.getElementById('projects');
+        if (projectsSection && projectsSection.classList.contains('active')) {
             if (e.key === 'ArrowLeft') {
                 e.preventDefault();
                 goToPrev();
@@ -839,6 +1006,38 @@ function initJourneyTimeline() {
         }, 100);
     });
     
-    console.log('Journey 无限循环滑动已初始化 ✨ - 共', totalSlides, '个项目');
+    console.log('Projects 无限循环滑动已初始化 ✨ - 共', totalSlides, '个项目（含', allSlides.length, '个包括克隆）');
+    
+    
+    
+    // 暴露重置函数到全局，用于页面切换时重置显示
+    window.resetProjectsSlider = function() {
+        currentIndex = cloneCount; // 重置到第一张卡片
+        container.style.transition = 'none';
+        void container.offsetWidth;
+        updateSlider(false);
+        setTimeout(() => {
+            container.style.transition = '';
+        }, 50);
+        console.log('Projects滑动器已重置到第一张卡片');
+    };
+    
+    // 销毁方法
+    this.destroy = function() {
+        // 移除事件监听器
+        if (prevBtn) prevBtn.removeEventListener('click', goToPrev);
+        if (nextBtn) nextBtn.removeEventListener('click', goToNext);
+        
+        indicators.forEach((indicator, index) => {
+            indicator.removeEventListener('click', () => goToSlide(index));
+        });
+        
+        // 清理定时器
+        if (resizeTimer) clearTimeout(resizeTimer);
+        
+        console.log('Projects滑动器已销毁');
+    };
 }
+
+
 
