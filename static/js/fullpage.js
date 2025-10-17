@@ -32,6 +32,7 @@ class FullPageScroll {
         this.updateActiveDot();
         this.updateActiveNav();
         this.initProjectSlider();
+        this.initBackgroundImage();
         console.log(`Full-page scrolling initialized ✨ - ${this.totalSections} sections`);
     }
     
@@ -55,6 +56,19 @@ class FullPageScroll {
             this.projectsContainer.style.transition = 'none';
         }
         // 如果是新的.projects-slide，不做任何处理，由initProjectsSlider()处理
+    }
+    
+    // 初始化背景图片淡入效果
+    initBackgroundImage() {
+        const bgImage = document.querySelector('.bg-image');
+        if (bgImage && this.currentSection === 0) {
+            // 页面首次加载时，延迟触发淡入效果
+            setTimeout(() => {
+                bgImage.classList.remove('fade-out');
+                bgImage.classList.add('visible');
+                console.log('首次加载 - 背景图片显示');
+            }, 500); // 延迟500ms，让页面先加载完成
+        }
     }
     
     addEventListeners() {
@@ -192,11 +206,15 @@ class FullPageScroll {
         const bgImage = document.querySelector('.bg-image');
         if (bgImage) {
             if (index === 0) {
+                // 在首页时，确保背景图片显示
+                bgImage.classList.remove('fade-out');
                 bgImage.classList.add('visible');
-                console.log('背景图片已显示 - bg6');
+                console.log('背景图片显示 - 首页');
             } else {
+                // 离开首页时，添加淡出效果
+                bgImage.classList.add('fade-out');
                 bgImage.classList.remove('visible');
-                console.log('背景图片已隐藏');
+                console.log('背景图片淡出 - 离开首页');
             }
         }
 

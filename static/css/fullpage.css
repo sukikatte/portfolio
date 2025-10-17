@@ -1,4 +1,4 @@
-/* ============================================
+ /* ============================================
    Full-Page Scrolling Portfolio
    Tech Minimalism Theme
    ============================================ */
@@ -56,13 +56,23 @@ html, body {
     z-index: 1;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 1.5s ease-in-out;
+    transform: scale(1.05) translateY(20px);
+    transition: opacity 1.5s ease-out, visibility 1.5s ease-out, transform 1.5s ease-out;
 }
 
 /* 背景图片显示时的状态 */
 .bg-image.visible {
     opacity: 1.0;
     visibility: visible;
+    transform: scale(1.0) translateY(0);
+}
+
+/* 背景图片淡出效果 */
+.bg-image.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1) translateY(-20px);
+    transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out, transform 1.5s ease-in-out;
 }
 
 /* Dwen Dwen详情页背景 */
