@@ -442,103 +442,238 @@
                 </div>
 
                 {% elif project.id == 'songs' %}
-                <!-- Guess Songs 项目详情页面 -->
-                <div class="songs-layout">
-                    <!-- 标题区域 -->
-                    <div class="songs-hero">
-                        <h1 class="songs-title">GUESS SONGS</h1>
-                        <p class="songs-subtitle">Real-time Multiplayer Music Game</p>
-                        
-                        <div class="songs-meta">
-                            <span class="meta-item">Solo Project</span>
-                            <span class="meta-divider">·</span>
-                            <span class="meta-item">Cloud + Realtime DB</span>
-                            <span class="meta-divider">·</span>
-                            <span class="meta-item">Game + Interaction</span>
-                        </div>
-                        
-                        <div class="songs-keywords">
-                            <span class="keyword">Firebase</span>
-                            <span class="keyword">Real-time Database</span>
-                            <span class="keyword">JavaScript</span>
-                            <span class="keyword">Cloud Storage</span>
+                <!-- Guess Songs 特殊布局 -->
+                <div class="dwen-layout">
+                    <!-- 标题区 -->
+                    <div class="dwen-hero">
+                        <h1 class="dwen-title" data-text="GUESS SONGS">GUESS SONGS</h1>
+                        <p class="dwen-subtitle">
+                            <span class="subtitle-decorator">◆</span>
+                            Interactive Music Guessing Game
+                            <span class="subtitle-decorator">◆</span>
+                        </p>
+                        <div class="dwen-meta-info">
+                            <span class="meta-date">Sept. 2024 - Jan. 2025</span>
+                            <span class="meta-divider-thick">|</span>
+                            <span class="tech-stack">Android Studio · Java · Firebase · MediaPlayer API</span>
                         </div>
                     </div>
 
-                    <!-- 演示视频区域 -->
-                    <div class="songs-video-section">
-                        <h2 class="section-title">Demo Video</h2>
-                        <div class="video-container">
-                            <div class="video-placeholder">
-                                <div class="video-icon">🎵</div>
-                                <p>Game Demo Video</p>
-                                <span class="video-duration">2:30</span>
+                    <!-- 内容区块 -->
+                    <div class="dwen-sections">
+                        <!-- PROBLEM STATEMENT -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Problem Statement</h2>
+                            <div class="section-content">
+                                <!-- Problem Statement 子容器 -->
+                                <div class="function-container problem-statement-container">
+                                    <p>Developed as a learning output of Mobile Computing, Guess Songs is a lightweight Android app that integrates a music guessing game with a built-in player. The project explores interactive mobile entertainment by combining audio playback, real-time feedback, and user-driven gameplay. It was developed using Java, Firebase, and the Android SDK, demonstrating full-stack mobile development capability. It supports both single-player and multiplayer modes, enabling users to compete, discover songs, and enjoy an engaging social experience within a compact mobile environment.</p>
+                                </div>
                             </div>
-                        </div>
+                        </section>
+
+                        <!-- DEMO VIDEO -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Demo Video</h2>
+                            <div class="section-content">
+                                <div class="function-container">
+                                    <p style="margin-bottom: 1rem; color: #fff;">This is the demonstration video I recorded for the Mobile Computing Project final version.</p>
+                                    <video controls class="container-video" id="demoVideo">
+                                        <source src="{{ url_for('static', filename='media/guesssong/final_video.mp4') }}" type="video/mp4">
+                                        Final Project Demo
+                                    </video>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- CORE FEATURES -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Core Features</h2>
+                            <div class="section-content">
+                                <div class="features-grid">
+                                    <!-- Game Modes -->
+                                    <div class="game-modes-container">
+                                        <h3 class="feature-title">Game Modes</h3>
+                                        <div class="modes-grid">
+                                            <div class="mode-card">
+                                                <p><strong>Classic Mode:</strong> Single-player 10-question challenge with scoring based on speed and accuracy.</p>
+                                            </div>
+                                            <div class="mode-card">
+                                                <p><strong>Endless Mode:</strong> 3-minute challenge. This leaderboard records each player's highest score and ranks all players.</p>
+                                            </div>
+                                            <div class="mode-card">
+                                                <p><strong>Competitive Mode:</strong> Real-time multiplayer battles (3 players are needed) in a game room with live score tracking.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Music Library -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Music Library</h3>
+                                        <div class="feature-content">
+                                            <p>Browse, search, and manage songs.</p>
+                                            <p>Support for user-uploaded tracks integrated into the game database.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Room Management -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Room Management</h3>
+                                        <div class="feature-content">
+                                            <p>Create and join game rooms with real-time status and score updates.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- TECHNICAL IMPLEMENTATION -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Technical Implementation</h2>
+                            <div class="section-content">
+                                <div class="features-grid">
+                                    <!-- Audio Playback System -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Audio Playback System</h3>
+                                        <div class="feature-content">
+                                            <p>Built using Android MediaPlayer API with asynchronous network streaming, error handling, and custom playback controls.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Firebase Integration -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Firebase Integration</h3>
+                                        <div class="feature-content">
+                                            <p><strong>Realtime Database:</strong> Manages song metadata, user progress, and real-time updates.</p>
+                                            <p><strong>Authentication:</strong> Handles user registration, login, and session management securely.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Intelligent Scoring System -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Intelligent Scoring System</h3>
+                                        <div class="feature-content">
+                                            <p>Java backend processes game states and player scores with time- and accuracy-based dynamic algorithms.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- UI & Navigation Design -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">UI & Navigation Design</h3>
+                                        <div class="feature-content">
+                                            <p>Implemented with Material Design principles, gradient visual style, and smooth activity transitions for consistent user experience.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- DOCUMENTATION -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Documentation</h2>
+                            <div class="section-content">
+                                <!-- Documentation 子容器 1 - Project Statement -->
+                                <div class="function-container doc-container">
+                                    <h3 class="container-title">Project Statement</h3>
+                                    <p>Comprehensive project description and requirements analysis document outlining the project scope, objectives, and technical specifications.</p>
+                                    <a href="{{ url_for('static', filename='media/guesssong/ProjectStatement.pdf') }}" class="download-link" download>
+                                        Download Project Statement
+                                    </a>
+                                </div>
+
+                                <!-- Documentation 子容器 2 - Development Process -->
+                                <div class="function-container doc-container">
+                                    <h3 class="container-title">Development Process</h3>
+                                    <p>Complete project development timeline including Alpha, Beta, and Final phases with detailed progress tracking and milestone achievements.</p>
+                                    <a href="{{ url_for('static', filename='media/guesssong/guess_songs.pptx') }}" class="download-link" download>
+                                        Download Development Process PPT
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- PROJECT OUTCOMES -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Project Outcomes</h2>
+                            <div class="section-content">
+                                <!-- Lessons Learned -->
+                                <div class="function-container">
+                                    <h3 class="container-title">Lessons Learned</h3>
+                                    <div class="doc-content">
+                                        <p>This project was independently designed and developed, encompassing the full stack of Android application development—from frontend interface design to backend integration. It combines intuitive UI, efficient gameplay logic, and Firebase-based data management to deliver a seamless and interactive user experience. Through this process, I gained hands-on experience in system architecture, real-time synchronization, and mobile software optimization.</p>
+                                    </div>
+                                </div>
+
+                                <!-- GitHub Link -->
+                                <div class="function-container">
+                                    <h3 class="container-title">Source Code</h3>
+                                    <div class="doc-content">
+                                        <p>View the project source code and implementation details on GitHub (excluding sensitive API keys).</p>
+                                        <a href="https://github.com/sukikatte/guess_songs" class="download-link github-link" target="_blank" rel="noopener noreferrer">
+                                            View on GitHub
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
 
-                    <!-- 内容卡片网格 -->
-                    <div class="songs-cards-grid">
-                        <!-- 01 Problem -->
-                        <div class="songs-card">
-                            <div class="card-number">01</div>
-                            <h3 class="card-title">Problem & Context</h3>
-                            <p class="card-content">{{ project.problem.content }}</p>
-                            <div class="card-highlights">
-                                {% for highlight in project.problem.highlights %}
-                                <div class="highlight-item">{{ highlight }}</div>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                        <!-- 02 Solution -->
-                        <div class="songs-card">
-                            <div class="card-number">02</div>
-                            <h3 class="card-title">Technical Solution</h3>
-                            <p class="card-content">{{ project.solution.content }}</p>
-                            <div class="card-highlights">
-                                {% for highlight in project.solution.highlights %}
-                                <div class="highlight-item">{{ highlight }}</div>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                        <!-- 03 UX Design -->
-                        <div class="songs-card">
-                            <div class="card-number">03</div>
-                            <h3 class="card-title">UX & Interface Design</h3>
-                            <p class="card-content">{{ project.ux.content }}</p>
-                            <div class="card-highlights">
-                                {% for highlight in project.ux.highlights %}
-                                <div class="highlight-item">{{ highlight }}</div>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                        <!-- 04 Outcome -->
-                        <div class="songs-card">
-                            <div class="card-number">04</div>
-                            <h3 class="card-title">Outcome & Impact</h3>
-                            <p class="card-content">{{ project.outcome.content }}</p>
-                            <div class="card-highlights">
-                                {% for highlight in project.outcome.highlights %}
-                                <div class="highlight-item">{{ highlight }}</div>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                        <!-- 05 Reflection -->
-                        <div class="songs-card">
-                            <div class="card-number">05</div>
-                            <h3 class="card-title">Reflection</h3>
-                            <p class="card-content">{{ project.reflection.content }}</p>
-                            <div class="card-highlights">
-                                {% for learning in project.reflection.learnings %}
-                                <div class="highlight-item">{{ learning }}</div>
-                                {% endfor %}
-                            </div>
-                        </div>
+                    <!-- 图片放大模态框 -->
+                    <div id="imageModal" class="image-modal">
+                        <span class="modal-close">&times;</span>
+                        <img class="modal-content" id="modalImage">
                     </div>
+
+                    <!-- 设置视频默认音量 -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // 设置所有视频的默认音量为50%
+                            const videoIds = ['demoVideo'];
+                            videoIds.forEach(function(id) {
+                                const video = document.getElementById(id);
+                                if (video) {
+                                    video.volume = 0.5;
+                                }
+                            });
+                        });
+
+                        // 图片放大功能
+                        function openImageModal(src) {
+                            const modal = document.getElementById('imageModal');
+                            const modalImg = document.getElementById('modalImage');
+                            modal.style.display = 'flex';
+                            modalImg.src = src;
+                            document.body.style.overflow = 'hidden';
+                        }
+
+                        // 关闭模态框
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const modal = document.getElementById('imageModal');
+                            const closeBtn = document.querySelector('.modal-close');
+
+                            // 点击关闭按钮
+                            closeBtn.onclick = function() {
+                                modal.style.display = 'none';
+                                document.body.style.overflow = 'auto';
+                            }
+
+                            // 点击模态框背景
+                            modal.onclick = function(event) {
+                                if (event.target === modal) {
+                                    modal.style.display = 'none';
+                                    document.body.style.overflow = 'auto';
+                                }
+                            }
+
+                            // ESC键关闭
+                            document.addEventListener('keydown', function(event) {
+                                if (event.key === 'Escape' && modal.style.display === 'flex') {
+                                    modal.style.display = 'none';
+                                    document.body.style.overflow = 'auto';
+                                }
+                            });
+                        });
+                    </script>
                 </div>
 
                 {% elif project.id == 'dwen' %}
@@ -769,7 +904,7 @@
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
                             // 设置所有视频的默认音量为50%
-                            const videoIds = ['problemStatementVideo', 'video01', 'video02', 'video03', 'video04', 'video05', 'video06'];
+                            const videoIds = ['demoVideo'];
                             videoIds.forEach(function(id) {
                                 const video = document.getElementById(id);
                                 if (video) {
