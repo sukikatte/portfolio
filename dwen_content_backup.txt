@@ -1,0 +1,70 @@
+DWEN DWEN'S NEIGHBOR 项目内容备份
+===========================================
+
+标题区：
+- 标题：DWEN DWEN'S NEIGHBOR
+- 副标题：Interactive Educational Platform for Wildlife Awareness
+- 日期：Feb. 2025 - June. 2025
+- 技术栈：Python · Flask · Firebase · Web Crawler · ECharts · Layered SVG
+
+===========================================
+
+PROBLEM STATEMENT：
+- 标题：Problem Statement
+- 文字1：Understanding customer requirements and our innovative approach to wildlife conservation education.
+- 文字2：Dwen Dwen's Neighbor addresses these needs as an interactive educational platform that raises awareness about wildlife conservation through engaging digital experiences.
+- 视频：media/dwendwen/videos/bg/bg.mp4
+
+===========================================
+
+CORE FUNCTIONS：
+
+01. Index & Account
+- 标题：01. Index & Account
+- 描述：Website preview page and user registration login
+- 视频：media/dwendwen/videos/index-account/index_account_demo.mp4
+- 技术标题：Database Technology
+- 技术描述：Firebase Firestore provides real-time data synchronization and scalable cloud storage for user profiles, authentication, and application data.
+- 图片：media/dwendwen/videos/index-account/img.png
+
+02. Encyclopedia
+- 标题：02. Encyclopedia
+- 描述：Comprehensive wildlife knowledge base with web-scraped content and interactive learning
+- 视频：media/dwendwen/videos/encyclopedia/encyclopedia_demo.mp4
+- 技术标题：Web Scraping Technology
+- 技术描述：Advanced web scraping techniques collect comprehensive wildlife data from authoritative sources, ensuring accurate and up-to-date information for educational purposes.
+- 图片：media/dwendwen/videos/encyclopedia/img.png
+
+03. Games
+- 标题：03. Games
+- 描述：Educational mini-games designed to enhance wildlife awareness through interactive gameplay
+- 视频：media/dwendwen/videos/games/games_demo.mp4
+- 技术标题：Game Development
+- 技术描述：Interactive game engine with HTML5 Canvas and JavaScript provides engaging educational experiences through gamified learning approaches.
+- 图片：media/dwendwen/videos/games/img.png
+
+04. Virtual Panda
+- 标题：04. Virtual Panda
+- 描述：SVG-based virtual panda care system with layered animations and user interaction
+- 视频：media/dwendwen/videos/virtual-panda/virtual_panda_demo.mp4
+- 技术标题：Layered SVG Technology
+- 技术描述：Advanced layered SVG graphics create dynamic visual representations of animal growth stages, enabling smooth animations and interactive visual feedback for user engagement.
+- 图片：media/dwendwen/videos/virtual-panda/sketch.jpg
+
+05. Community
+- 标题：05. Community
+- 描述：Forum discussions and community features to foster wildlife conservation awareness
+- 视频：media/dwendwen/videos/community/community_demo.mp4
+- 技术标题：Real-time Communication
+- 技术描述：WebSocket-based real-time messaging system enables instant community interactions, fostering collaborative learning and knowledge sharing among wildlife conservation enthusiasts.
+- 图片：media/dwendwen/videos/community/img.png
+
+06. Donation
+- 标题：06. Donation
+- 描述：Donation system to support wildlife conservation organizations and initiatives
+- 视频：media/dwendwen/videos/donation/donation_demo.mp4
+- 技术标题：Payment Integration
+- 技术描述：Secure payment gateway integration with Stripe API ensures safe and reliable transaction processing, supporting multiple payment methods for global accessibility.
+- 图片：media/dwendwen/videos/donation/img.png
+
+

@@ -80,7 +80,7 @@
                             <div class="section-content project-overview-box">
                                 <p>FrankenStory explores the intersection of AI-generated storytelling and visual narrative composition.</p>
                                 <p>The system builds stories by recombining reusable comic elements — text, panels, and visual cues — stored in a structured ComiXML repository. The project investigates how large language models (LLMs) can guide narrative synthesis while maintaining coherence, integration, and thematic consistency across panels.</p>
-                                <p class="highlight">The ultimate goal is to design an automated creative system capable of generating complete, visually grounded stories that feel intentional rather than fragmented.</p>
+                                <p>The ultimate goal is to design an automated creative system capable of generating complete, visually grounded stories that feel intentional rather than fragmented.</p>
                             </div>
                         </section>
 
@@ -160,7 +160,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="highlight">This project deepens my understanding of computational creativity, AI narrative control, and the balance between structured representation and open-ended generation. It also strengthens my interdisciplinary thinking—bridging software engineering, language modeling, and digital storytelling design.</p>
+                                <p>This project deepens my understanding of computational creativity, AI narrative control, and the balance between structured representation and open-ended generation. It also strengthens my interdisciplinary thinking—bridging software engineering, language modeling, and digital storytelling design.</p>
                             </div>
                         </section>
                     </div>
@@ -561,117 +561,260 @@
 
                     <!-- 内容区块 -->
                     <div class="dwen-sections">
-                        <!-- PROJECT OVERVIEW -->
+                        <!-- PROBLEM STATEMENT -->
                         <section class="dwen-section">
-                            <h2 class="section-title">Project Overview</h2>
-                            <div class="section-content project-overview-box">
-                                <!-- PROBLEM STATEMENT -->
-                                <div class="bg-video-container">
-                                    <h3>Problem Statement</h3>
-                                    <p>Understanding customer requirements and our innovative approach to wildlife conservation education</p>
-                                    <video controls class="bg-video">
-                                        <source src="{{ url_for('static', filename='media/dwendwen/videos/bg/bg.mp4') }}" type="video/mp4">
-                                        Problem Statement Overview
-                                    </video>
+                            <h2 class="section-title">Problem Statement</h2>
+                            <div class="section-content">
+                                <!-- Problem Statement 子容器 -->
+                                <div class="function-container problem-statement-container">
+                                    <div class="container-layout">
+                                        <!-- 左侧视频区域 - 占6.5 -->
+                                        <div class="container-left">
+                                            <video controls class="container-video" id="problemStatementVideo">
+                                                <source src="{{ url_for('static', filename='media/dwendwen/videos/bg/bg.mp4') }}" type="video/mp4">
+                                                Problem Statement Overview
+                                            </video>
+                                        </div>
+                                        <!-- 右侧文字区域 - 占3.5 -->
+                                        <div class="container-right">
+                                            <p>Our customer, <em>Chinese Animal Guardians</em>, required a comprehensive solution for wildlife conservation education.</p>
+                                            <p>Understanding their requirements and our innovative approach, <em>Dwen Dwen's Neighbor</em> was developed as an interactive educational platform that raises awareness about wildlife conservation through engaging digital experiences.</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                
-                <p>Dwen Dwen's Neighbor is an interactive educational platform raising awareness about wildlife conservation through engaging digital experiences.</p>
                             </div>
                         </section>
 
-                        <!-- CORE FUNCTIONS -->
+                        <!-- FUNCTION IMPLEMENTATION -->
                         <section class="dwen-section">
-                            <h2 class="section-title">Core Functions</h2>
+                            <h2 class="section-title">Function Implementation</h2>
                             <div class="section-content">
-                                <div class="core-functions-grid">
-                                    <!-- 01. Index & Account -->
-                                    <div class="core-function-item">
-                                        <div class="core-function-content">
-                                            <h3>01. Index & Account</h3>
-                                            <p>User authentication, registration, and personalized dashboard with bilingual support</p>
-                                        </div>
-                                        <div class="core-function-video">
-                                            <video controls>
+                                <!-- Function Implementation 子容器 1 -->
+                                <div class="function-container">
+                                    <h3 class="container-title">01. Index & Account</h3>
+                                    <div class="container-layout">
+                                        <div class="container-left">
+                                            <video controls class="container-video" id="video01">
                                                 <source src="{{ url_for('static', filename='media/dwendwen/videos/index-account/index_account_demo.mp4') }}" type="video/mp4">
                                                 Index & Account Demo
                                             </video>
                                         </div>
-                                    </div>
-
-                                    <!-- 02. Encyclopedia -->
-                                    <div class="core-function-item">
-                                        <div class="core-function-content">
-                                            <h3>02. Encyclopedia</h3>
-                                            <p>Comprehensive wildlife knowledge base with web-scraped content and interactive learning</p>
+                                        <div class="container-right">
+                                            <p><em>Firebase Firestore</em> provides real-time data synchronization and scalable cloud storage for user profiles and authentication.</p>
+                                            <div class="tech-image">
+                                                <img src="{{ url_for('static', filename='media/dwendwen/videos/index-account/img.png') }}" alt="Firebase Database Technology" onclick="openImageModal(this.src)" style="cursor: pointer;">
+                                            </div>
                                         </div>
-                                        <div class="core-function-video">
-                                            <video controls>
+                                    </div>
+                                </div>
+
+                                <!-- Function Implementation 子容器 2 -->
+                                <div class="function-container">
+                                    <h3 class="container-title">02. Encyclopedia</h3>
+                                    <div class="container-layout">
+                                        <div class="container-left">
+                                            <video controls class="container-video" id="video02">
                                                 <source src="{{ url_for('static', filename='media/dwendwen/videos/encyclopedia/encyclopedia_demo.mp4') }}" type="video/mp4">
                                                 Encyclopedia Demo
                                             </video>
                                         </div>
-                                    </div>
-
-                                    <!-- 03. Games -->
-                                    <div class="core-function-item">
-                                        <div class="core-function-content">
-                                            <h3>03. Games</h3>
-                                            <p>Educational mini-games designed to enhance wildlife awareness through interactive gameplay</p>
+                                        <div class="container-right">
+                                            <p>Using open-source <em>SVG maps</em> as prototypes for interactive wildlife data visualization.</p>
+                                            <div class="tech-image">
+                                                <img src="{{ url_for('static', filename='media/dwendwen/videos/encyclopedia/img.jpg') }}" alt="SVG Maps Technology" onclick="openImageModal(this.src)" style="cursor: pointer;">
+                                            </div>
                                         </div>
-                                        <div class="core-function-video">
-                                            <video controls>
+                                    </div>
+                                </div>
+
+                                <!-- Function Implementation 子容器 3 -->
+                                <div class="function-container">
+                                    <h3 class="container-title">03. Games</h3>
+                                    <div class="container-layout">
+                                        <div class="container-left">
+                                            <video controls class="container-video" id="video03">
                                                 <source src="{{ url_for('static', filename='media/dwendwen/videos/games/games_demo.mp4') }}" type="video/mp4">
                                                 Games Demo
                                             </video>
                                         </div>
-                                    </div>
-
-                                    <!-- 04. Virtual Panda -->
-                                    <div class="core-function-item">
-                                        <div class="core-function-content">
-                                            <h3>04. Virtual Panda</h3>
-                                            <p>SVG-based virtual panda care system with layered animations and user interaction</p>
+                                        <div class="container-right">
+                                            <p>Page content is crawled from <em>Wikipedia</em> (English version) for comprehensive wildlife information.</p>
+                                            <div class="tech-image">
+                                                <img src="{{ url_for('static', filename='media/dwendwen/videos/games/img.png') }}" alt="Web Scraping Technology" onclick="openImageModal(this.src)" style="cursor: pointer;">
+                                            </div>
                                         </div>
-                                        <div class="core-function-video">
-                                            <video controls>
+                                    </div>
+                                </div>
+
+                                <!-- Function Implementation 子容器 4 -->
+                                <div class="function-container">
+                                    <h3 class="container-title">04. My Red Panda</h3>
+                                    <div class="container-layout">
+                                        <div class="container-left">
+                                            <video controls class="container-video" id="video04">
                                                 <source src="{{ url_for('static', filename='media/dwendwen/videos/virtual-panda/virtual_panda_demo.mp4') }}" type="video/mp4">
-                                                Virtual Panda Demo
+                                                My Red Panda Demo
                                             </video>
                                         </div>
-                                    </div>
-
-                                    <!-- 05. Community -->
-                                    <div class="core-function-item">
-                                        <div class="core-function-content">
-                                            <h3>05. Community</h3>
-                                            <p>Forum discussions and community features to foster wildlife conservation awareness</p>
+                                        <div class="container-right">
+                                            <p>Using <em>Sketch</em> to draw layered SVG for achieving Live2D effects with dynamic animations.</p>
+                                            <div class="tech-image">
+                                                <img src="{{ url_for('static', filename='media/dwendwen/videos/virtual-panda/sketch.jpg') }}" alt="Layered SVG Technology" onclick="openImageModal(this.src)" style="cursor: pointer;">
+                                            </div>
                                         </div>
-                                        <div class="core-function-video">
-                                            <video controls>
+                                    </div>
+                                </div>
+
+                                <!-- Function Implementation 子容器 5 -->
+                                <div class="function-container">
+                                    <h3 class="container-title">05. Community</h3>
+                                    <div class="container-layout">
+                                        <div class="container-left">
+                                            <video controls class="container-video" id="video05">
                                                 <source src="{{ url_for('static', filename='media/dwendwen/videos/community/community_demo.mp4') }}" type="video/mp4">
                                                 Community Demo
                                             </video>
                                         </div>
-                                    </div>
-
-                                    <!-- 06. Donation -->
-                                    <div class="core-function-item">
-                                        <div class="core-function-content">
-                                            <h3>06. Donation</h3>
-                                            <p>Donation system to support wildlife conservation organizations and initiatives</p>
+                                        <div class="container-right">
+                                            <p><strong>Community and Friends System</strong><br>Community layout design inspired by Xiaohongshu web interface for enhanced user engagement.</p>
+                                            <p><em>Firebase Realtime Database</em> enables instant messaging and social interactions with real-time synchronization across all connected users.</p>
                                         </div>
-                                        <div class="core-function-video">
-                                            <video controls>
+                                    </div>
+                                </div>
+
+                                <!-- Function Implementation 子容器 6 -->
+                                <div class="function-container">
+                                    <h3 class="container-title">06. Donation & Profile</h3>
+                                    <div class="container-layout">
+                                        <div class="container-left">
+                                            <video controls class="container-video" id="video06">
                                                 <source src="{{ url_for('static', filename='media/dwendwen/videos/donation/donation_demo.mp4') }}" type="video/mp4">
                                                 Donation Demo
                                             </video>
+                                        </div>
+                                        <div class="container-right">
+                                            <p><strong>Donation Section</strong><br>Integrated reward system with Firebase backend processes donation transactions and automatically distributes tiered gifts based on contribution amounts.</p>
+                                            <p><strong>Profile Section</strong><br>Dynamic content aggregation combines Firebase data streams with responsive web design for personalized user experience and real-time updates.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </section>
 
+                        <!-- DOCUMENTATION -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Documentation</h2>
+                            <div class="section-content">
+                                <!-- Documentation 子容器 1 - System Documentation -->
+                                <div class="function-container doc-container">
+                                    <h3 class="container-title">System Documentation</h3>
+                                    <p>Comprehensive technical documentation for system architecture, database design, and API specifications.</p>
+                                    <a href="{{ url_for('static', filename='documents/system.pdf') }}" class="download-link" download>
+                                        Download System Documentation
+                                    </a>
+                                </div>
+
+                                <!-- Documentation 子容器 2 - User Documentation -->
+                                <div class="function-container doc-container">
+                                    <h3 class="container-title">User Documentation</h3>
+                                    <p>User guides and tutorials for platform features, including step-by-step instructions and best practices.</p>
+                                    <a href="{{ url_for('static', filename='documents/user.pdf') }}" class="download-link" download>
+                                        Download User Documentation
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- PROJECT OUTCOMES -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Project Outcomes</h2>
+                            <div class="section-content">
+                                <!-- Awards -->
+                                <div class="function-container">
+                                    <h3 class="container-title">Competition Achievement</h3>
+                                    <div class="doc-content">
+                                        <p><strong>Third Prize</strong> - Beijing University of Technology Innovation and Entrepreneurship Competition</p>
+                                    </div>
+                                </div>
+
+                                <!-- Personal Contribution -->
+                                <div class="function-container">
+                                    <h3 class="container-title">Personal Contribution</h3>
+                                    <div class="doc-content">
+                                        <p>As team leader, implemented full-stack development including frontend design, backend architecture, database integration, and deployment. Led data visualization and interactive features using Python Flask framework.</p>
+                                    </div>
+                                </div>
+
+                                <!-- GitHub Link -->
+                                <div class="function-container">
+                                    <h3 class="container-title">Source Code</h3>
+                                    <div class="doc-content">
+                                        <p>View the project source code and implementation details on GitHub (excluding sensitive configuration files).</p>
+                                        <a href="https://github.com/sukikatte/dwen_dwens_neighbour" class="download-link github-link" target="_blank" rel="noopener noreferrer">
+                                            View on GitHub
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
+
+                    <!-- 图片放大模态框 -->
+                    <div id="imageModal" class="image-modal">
+                        <span class="modal-close">&times;</span>
+                        <img class="modal-content" id="modalImage">
+                    </div>
+
+                    <!-- 设置视频默认音量 -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // 设置所有视频的默认音量为50%
+                            const videoIds = ['problemStatementVideo', 'video01', 'video02', 'video03', 'video04', 'video05', 'video06'];
+                            videoIds.forEach(function(id) {
+                                const video = document.getElementById(id);
+                                if (video) {
+                                    video.volume = 0.5;
+                                }
+                            });
+                        });
+
+                        // 图片放大功能
+                        function openImageModal(src) {
+                            const modal = document.getElementById('imageModal');
+                            const modalImg = document.getElementById('modalImage');
+                            modal.style.display = 'flex';
+                            modalImg.src = src;
+                            document.body.style.overflow = 'hidden';
+                        }
+
+                        // 关闭模态框
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const modal = document.getElementById('imageModal');
+                            const closeBtn = document.querySelector('.modal-close');
+
+                            // 点击关闭按钮
+                            closeBtn.onclick = function() {
+                                modal.style.display = 'none';
+                                document.body.style.overflow = 'auto';
+                            }
+
+                            // 点击模态框背景
+                            modal.onclick = function(event) {
+                                if (event.target === modal) {
+                                    modal.style.display = 'none';
+                                    document.body.style.overflow = 'auto';
+                                }
+                            }
+
+                            // ESC键关闭
+                            document.addEventListener('keydown', function(event) {
+                                if (event.key === 'Escape' && modal.style.display === 'flex') {
+                                    modal.style.display = 'none';
+                                    document.body.style.overflow = 'auto';
+                                }
+                            });
+                        });
+                    </script>
                 </div>
             {% elif project.id == 'medicine' %}
                 <!-- Chinese Medicine 特殊布局 -->
@@ -707,7 +850,7 @@
                             <div class="section-content project-overview-box">
                                 <p>Huaxia TCM Platform is a comprehensive full-stack web application designed to preserve and promote Traditional Chinese Medicine culture through modern digital technology.</p>
                                 <p>The system integrates educational resources, interactive learning experiences, and AI-powered consultation services, making ancient medical knowledge accessible to contemporary learners worldwide.</p>
-                                <p class="highlight">Built with Vue.js and Flask, the platform features bilingual support (Chinese/English) and combines herb encyclopedia, prescription management, gamified learning, geographic visualization, and interactive storytelling into a unified educational ecosystem.</p>
+                                <p>Built with Vue.js and Flask, the platform features bilingual support (Chinese/English) and combines herb encyclopedia, prescription management, gamified learning, geographic visualization, and interactive storytelling into a unified educational ecosystem.</p>
                             </div>
                         </section>
 
@@ -863,5 +1006,36 @@
     </div>
     
     <script src="{{ url_for('static', filename='js/project_detail.js') }}"></script>
+    
+    <script>
+    // 图片放大功能
+    function openImageModal(src) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        modal.style.display = 'block';
+        modalImg.src = src;
+    }
+
+    function closeImageModal() {
+        const modal = document.getElementById('imageModal');
+        modal.style.display = 'none';
+    }
+
+    // 点击模态框背景关闭
+    window.onclick = function(event) {
+        const modal = document.getElementById('imageModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    // ESC键关闭模态框
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+    });
+    </script>
 </body>
 </html>

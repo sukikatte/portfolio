@@ -258,6 +258,7 @@ class FullPageScroll {
         const bgCanvas = document.getElementById('bgCanvas');
         const starsCanvas = document.getElementById('starsCanvas');
         const projectsCanvas = document.getElementById('projectsCanvas');
+        const experimentsCanvas = document.getElementById('experimentsCanvas');
         const contactCanvas = document.getElementById('contactCanvas');
         
         if (index === 0) {
@@ -281,11 +282,24 @@ class FullPageScroll {
             if (window.resetProjectsSlider) {
                 window.resetProjectsSlider();
             }
+        } else if (index === 2) {
+            // Creative Works页面：显示Creative Works星空背景
+            if (bgCanvas) bgCanvas.style.display = 'none';
+            if (starsCanvas) starsCanvas.style.display = 'none';
+            if (projectsCanvas) projectsCanvas.style.display = 'none';
+            if (experimentsCanvas) experimentsCanvas.style.display = 'block';
+            if (contactCanvas) contactCanvas.style.display = 'none';
+            
+            // 启动Creative Works粒子动画
+            if (window.creativeWorksParticles) {
+                window.creativeWorksParticles.start();
+            }
         } else if (index === 3) {
             // Contact页面：显示Contact星空背景
             if (bgCanvas) bgCanvas.style.display = 'none';
             if (starsCanvas) starsCanvas.style.display = 'none';
             if (projectsCanvas) projectsCanvas.style.display = 'none';
+            if (experimentsCanvas) experimentsCanvas.style.display = 'none';
             if (contactCanvas) contactCanvas.style.display = 'block';
             
             // 启动Contact粒子动画
@@ -297,10 +311,14 @@ class FullPageScroll {
             if (bgCanvas) bgCanvas.style.display = 'none';
             if (starsCanvas) starsCanvas.style.display = 'block';
             if (projectsCanvas) projectsCanvas.style.display = 'none';
+            if (experimentsCanvas) experimentsCanvas.style.display = 'none';
             if (contactCanvas) contactCanvas.style.display = 'none';
             
             if (window.projectsParticles) {
                 window.projectsParticles.stop();
+            }
+            if (window.creativeWorksParticles) {
+                window.creativeWorksParticles.stop();
             }
             if (window.contactParticles) {
                 window.contactParticles.stop();
