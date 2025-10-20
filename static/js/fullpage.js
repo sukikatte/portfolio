@@ -217,6 +217,40 @@ class FullPageScroll {
                 console.log('背景图片淡出 - 离开首页');
             }
         }
+        
+        // 控制Creative Dimension背景图片和立方体动画
+        const creativeBg = document.querySelector('.creative-bg-image');
+        const cubeWrapper = document.querySelector('.cube-wrapper');
+        
+        if (creativeBg && cubeWrapper) {
+            if (index === 2) {
+                // 在Creative Dimension页面时，确保背景图片显示并重置动画
+                creativeBg.classList.remove('fade-out');
+                cubeWrapper.classList.remove('fade-out');
+                
+                // 重置背景动画
+                creativeBg.style.animation = 'none';
+                creativeBg.offsetHeight; // 触发重排
+                creativeBg.style.animation = 'bgFadeInAndColorShift 4s ease-in-out forwards';
+                
+                // 重置立方体动画
+                cubeWrapper.style.animation = 'none';
+                cubeWrapper.offsetHeight; // 触发重排
+                cubeWrapper.style.animation = 'creativeCubeRotate 4s ease-in-out forwards';
+                
+                // 4秒后开始循环动画
+                setTimeout(() => {
+                    cubeWrapper.style.animation = 'creativeCubeLoop 24s ease-in-out infinite';
+                }, 4000);
+                
+                console.log('Creative Dimension背景和立方体动画显示');
+            } else {
+                // 离开Creative Dimension页面时，添加淡出效果
+                creativeBg.classList.add('fade-out');
+                cubeWrapper.classList.add('fade-out');
+                console.log('Creative Dimension背景和立方体动画淡出');
+            }
+        }
 
         // 控制键盘提示显示/隐藏（只在首页显示）
         const keyboardHint = document.querySelector('.keyboard-hint');

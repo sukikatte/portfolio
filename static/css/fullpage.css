@@ -1,4 +1,4 @@
- /* ============================================
+/* ============================================
    Full-Page Scrolling Portfolio
    Tech Minimalism Theme
    ============================================ */
@@ -6492,7 +6492,6 @@ letter-spacing: 2px;
     .dwen-section .section-content {
         padding-left: 2rem;
     }
-}
     
     .philosophy-box {
         flex-direction: column;
@@ -7241,6 +7240,1425 @@ letter-spacing: 2px;
     
     .franken-sections {
         gap: 1.5rem;
+    }
+}
+
+/* Add design elements to book container */
+.book-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* Hanging Creative Dimension */
+.hanging-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 0;
+    min-height: 100vh;
+    position: relative;
+    padding-top: 100px;
+}
+
+/* Hanging rope */
+.hanging-rope {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 2px;
+    background: #000;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hanging-rope::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #000;
+    opacity: 0.3;
+}
+
+.hanging-rope::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #000;
+    opacity: 0.6;
+}
+
+/* Clips */
+.clip {
+    position: absolute;
+    top: 60px;
+    z-index: 15;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clip:hover {
+    transform: scale(1.1);
+}
+
+.clip-1 {
+    left: calc(50% - 200px);
+}
+
+.clip-2 {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.clip-3 {
+    left: calc(50% + 200px);
+}
+
+.clip-body {
+    width: 20px;
+    height: 30px;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 0 0 10px 10px;
+    position: relative;
+}
+
+.clip-body::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    height: 8px;
+    background: #000;
+    border-radius: 10px 10px 0 0;
+}
+
+.clip-handle {
+    width: 8px;
+    height: 15px;
+    background: #000;
+    margin: 0 auto;
+    border-radius: 0 0 4px 4px;
+    position: relative;
+    top: -2px;
+}
+
+.clip-handle::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 4px;
+    background: #000;
+    border-radius: 2px;
+}
+
+.folder-page {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #000;
+    border-radius: 0;
+    backdrop-filter: none;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+}
+
+/* Add geometric design elements */
+.folder-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #000 0%, #333 50%, #000 100%);
+}
+
+.folder-page::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    background: transparent;
+}
+
+/* Bookmark styles - 现代极简风格 */
+.bookmark {
+    position: absolute;
+    top: 20%;
+    right: -8px;
+    width: 20px;
+    height: 60px;
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    box-shadow: 
+        4px 0 12px rgba(0, 0, 0, 0.15),
+        2px 0 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+}
+
+/* Hanging bookmark positioning */
+.hanging-page-1 .bookmark {
+    top: 0;
+}
+
+.hanging-page-2 .bookmark {
+    top: 80px;
+}
+
+.hanging-page-3 .bookmark {
+    top: 160px;
+}
+
+.bookmark-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: none;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.8px;
+    line-height: 1.2;
+}
+
+.bookmark-opengl {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.bookmark-art {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.bookmark-music {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Hanging animation effects */
+@keyframes gentle-sway {
+    0%, 100% { transform: translateX(-50%) rotate(0deg); }
+    25% { transform: translateX(-50%) rotate(1deg); }
+    75% { transform: translateX(-50%) rotate(-1deg); }
+}
+
+@keyframes rope-sway {
+    0%, 100% { transform: translateX(-50%) rotate(0deg); }
+    50% { transform: translateX(-50%) rotate(0.5deg); }
+}
+
+.hanging-page-1 {
+    top: 120px;
+    left: calc(50% - 200px);
+    z-index: 5;
+    animation: gentle-sway 8s ease-in-out infinite;
+    animation-delay: 0s;
+}
+
+.hanging-page-2 {
+    top: 140px;
+    left: 50%;
+    z-index: 4;
+    animation: gentle-sway 6s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+.hanging-page-3 {
+    top: 160px;
+    left: calc(50% + 200px);
+    z-index: 3;
+    animation: gentle-sway 7s ease-in-out infinite;
+    animation-delay: 4s;
+}
+
+.hanging-rope {
+    animation: rope-sway 10s ease-in-out infinite;
+}
+
+/* Hanging animation */
+.hanging-page-1:hover,
+.hanging-page-2:hover,
+.hanging-page-3:hover {
+    transform: translateX(-50%) translateY(-10px) rotate(2deg);
+    z-index: 20;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.folder-page:hover {
+    transform: translateY(-20px) rotate(0deg) scale(1.02);
+    z-index: 10;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.folder-page:hover .bookmark {
+    transform: scale(1.1);
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced stacking effect */
+.folder-page:nth-child(1) {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.folder-page:nth-child(2) {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+}
+
+.folder-page:nth-child(3) {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive hanging design */
+@media (max-width: 768px) {
+    .hanging-container {
+        padding-top: 80px;
+    }
+    
+    .hanging-rope {
+        width: 400px;
+        top: 60px;
+    }
+    
+    .clip-1 {
+        left: calc(50% - 120px);
+    }
+    
+    .clip-3 {
+        left: calc(50% + 120px);
+    }
+    
+    .hanging-page-1 {
+        left: calc(50% - 120px);
+        top: 100px;
+    }
+    
+    .hanging-page-2 {
+        top: 120px;
+    }
+    
+    .hanging-page-3 {
+        left: calc(50% + 120px);
+        top: 140px;
+    }
+    
+    .folder-page {
+        max-width: 300px;
+        padding: 1.5rem;
+    }
+    
+    .bookmark {
+        width: 25px;
+        height: 50px;
+        right: -12px;
+    }
+    
+    .hanging-page-1 .bookmark {
+        top: 0;
+    }
+    
+    .hanging-page-2 .bookmark {
+        top: 60px;
+    }
+    
+    .hanging-page-3 .bookmark {
+        top: 120px;
+    }
+    
+    .bookmark-text {
+        font-size: 0.6rem;
+    }
+}
+
+.folder-header {
+    text-align: left;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #000;
+    position: relative;
+}
+
+.folder-header::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 20px;
+    height: 2px;
+    background: #000;
+}
+
+.folder-title {
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.3px;
+}
+
+.folder-subtitle {
+    color: #666;
+    font-size: 0.7rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.folder-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* File Items */
+.file-item {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 0;
+    background: #f8f8f8;
+    border: 2px solid #000;
+    min-width: 150px;
+}
+
+.file-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    border-color: #333;
+}
+
+.file-icon {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid #000;
+    padding: 0.3rem 0.8rem;
+    background: #fff;
+}
+
+.file-title {
+    color: #000;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* File Hover Info */
+.file-hover-info {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    color: #000;
+    padding: 1.5rem;
+    border-radius: 0;
+    min-width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+    border: 2px solid #000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.file-hover-info::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: #000;
+}
+
+.file-item:hover .file-hover-info {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-8px);
+}
+
+.file-hover-info h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.file-hover-info p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.file-year {
+    font-size: 0.8rem;
+    color: #666;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Specific File Types - All use same black/white styling */
+.ticket-file,
+.book-file,
+.vinyl-file {
+    background: #f8f8f8;
+    border-color: #000;
+}
+
+/* Creative Dimension 背景图片 */
+.creative-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/bg4.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 1;
+    animation: bgFadeInAndColorShift 4s ease-in-out forwards;
+    filter: grayscale(100%);
+    transition: opacity 2s ease-in-out;
+}
+
+/* 背景淡出效果 */
+.creative-bg-image.fade-out {
+    opacity: 0 !important;
+    animation: none !important;
+}
+
+/* 背景淡入和颜色变化组合动画 - 三段式 */
+@keyframes bgFadeInAndColorShift {
+    0% {
+        opacity: 0;
+        filter: grayscale(100%);
+    }
+    50% {
+        opacity: 0.6;
+        filter: grayscale(100%);
+    }
+    100% {
+        opacity: 1;
+        filter: grayscale(0%);
+    }
+}
+
+/* Creative Dimension 3D立方体动画 */
+.cube-animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    perspective: 1200px;
+    perspective-origin: center center;
+}
+
+.cube-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    transform-style: preserve-3d;
+    animation: creativeCubeRotate 4s ease-in-out forwards;
+}
+
+.cube {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg) rotateY(0deg);
+}
+
+.cube .face {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 0 30px rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cube .face:hover {
+    box-shadow: 
+        0 0 50px rgba(255, 255, 255, 0.3),
+        inset 0 0 50px rgba(255, 255, 255, 0.1);
+}
+
+/* 悬浮文字效果 - 对应创作方向 */
+.cube .front::after {
+    content: 'GRAPHIC';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.cube .back::after {
+    content: 'GRAPHIC';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.cube .right::after {
+    content: 'PAINTING';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.cube .left::after {
+    content: 'PAINTING';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.cube .top::after {
+    content: 'MUSIC';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.cube .bottom::after {
+    content: 'MUSIC';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.cube .face:hover::after {
+    opacity: 1;
+}
+
+/* 三个创作方向的面 - 对应Graphic、Art、Music */
+.cube .front {
+    background: linear-gradient(135deg, 
+        rgba(255, 100, 100, 0.3) 0%, 
+        rgba(255, 100, 100, 0.1) 50%, 
+        rgba(255, 100, 100, 0.2) 100%);
+}
+
+.cube .back {
+    background: linear-gradient(135deg, 
+        rgba(100, 255, 100, 0.3) 0%, 
+        rgba(100, 255, 100, 0.1) 50%, 
+        rgba(100, 255, 100, 0.2) 100%);
+}
+
+.cube .right {
+    background: linear-gradient(135deg, 
+        rgba(100, 100, 255, 0.3) 0%, 
+        rgba(100, 100, 255, 0.1) 50%, 
+        rgba(100, 100, 255, 0.2) 100%);
+}
+
+.cube .left {
+    background: linear-gradient(135deg, 
+        rgba(255, 200, 100, 0.3) 0%, 
+        rgba(255, 200, 100, 0.1) 50%, 
+        rgba(255, 200, 100, 0.2) 100%);
+}
+
+.cube .top {
+    background: linear-gradient(135deg, 
+        rgba(200, 100, 255, 0.3) 0%, 
+        rgba(200, 100, 255, 0.1) 50%, 
+        rgba(200, 100, 255, 0.2) 100%);
+}
+
+.cube .bottom {
+    background: linear-gradient(135deg, 
+        rgba(100, 255, 200, 0.3) 0%, 
+        rgba(100, 255, 200, 0.1) 50%, 
+        rgba(100, 255, 200, 0.2) 100%);
+}
+
+
+/* 立方体弹窗样式 */
+.cube-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.cube-modal-content {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    margin: 15% auto;
+    padding: 2rem;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.cube-modal h2 {
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.cube-modal p {
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.cube-modal-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0.8rem 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cube-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* 立方体面的3D变换 */
+.cube .front {
+    transform: rotateY(0deg) translateZ(150px);
+}
+
+.cube .back {
+    transform: rotateY(180deg) translateZ(150px);
+}
+
+.cube .right {
+    transform: rotateY(90deg) translateZ(150px);
+}
+
+.cube .left {
+    transform: rotateY(-90deg) translateZ(150px);
+}
+
+.cube .top {
+    transform: rotateX(90deg) translateZ(150px);
+}
+
+.cube .bottom {
+    transform: rotateX(-90deg) translateZ(150px);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* 3D立方体旋转动画 - 4秒初始动画 */
+@keyframes creativeCubeRotate {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: rotateX(15deg) rotateY(45deg);
+        opacity: 1;
+    }
+}
+
+/* 立方体循环旋转动画 - 每隔6秒旋转到新角度 */
+@keyframes creativeCubeLoop {
+    0% {
+        transform: rotateX(15deg) rotateY(45deg);
+    }
+    20% {
+        transform: rotateX(15deg) rotateY(45deg);
+    }
+    25% {
+        transform: rotateX(30deg) rotateY(135deg);
+    }
+    45% {
+        transform: rotateX(30deg) rotateY(135deg);
+    }
+    50% {
+        transform: rotateX(45deg) rotateY(225deg);
+    }
+    70% {
+        transform: rotateX(45deg) rotateY(225deg);
+    }
+    75% {
+        transform: rotateX(15deg) rotateY(315deg);
+    }
+    95% {
+        transform: rotateX(15deg) rotateY(315deg);
+    }
+    100% {
+        transform: rotateX(15deg) rotateY(45deg);
+    }
+}
+
+/* 立方体淡出效果 */
+.cube-wrapper.fade-out {
+    opacity: 0 !important;
+    animation: none !important;
+    transition: opacity 2s ease-in-out;
+}
+
+/* 衣架线样式 - 适应新宽度 */
+.clothesline {
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 5px;
+    z-index: 4;
+}
+
+.clothesline div {
+    height: 3px;
+    background: linear-gradient(to right,
+        transparent 0%,
+        transparent 10%,
+        #000 20%,
+        #000 80%,
+        transparent 90%,
+        transparent 100%);
+    border-radius: 2px;
+}
+
+/* 创意卡片容器 - 固定宽度布局，无需滚动 */
+#creativeList {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    margin-top: -40px;
+    min-height: 300px;
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+}
+
+/* 创意卡片样式 - 极简现代风格 */
+.creative-card {
+    flex: 0 0 auto;
+    width: 180px;
+    height: 240px;
+    max-width: 90vw;
+    margin-right: 0;
+    margin-top: 50px;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    padding: 0;
+    cursor: pointer;
+    animation: gentle-sway 6s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.creative-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 16px 48px rgba(0, 0, 0, 0.16),
+        0 4px 16px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Creative card center label - 现代极简风格 */
+.card-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+/* 调整夹子位置以适应更小的卡片 */
+.creative-card::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: calc(50% + var(--clip-offset, 0px));
+    transform: translateX(-50%);
+    width: 6px;
+    height: 50px;
+    background: linear-gradient(to bottom, #000, #555, #777, #666);
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.creative-card::after {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: calc(50% + var(--clip-offset, 0px));
+    transform: translateX(-50%);
+    width: 16px;
+    height: 5px;
+    background: #000;
+    z-index: 3;
+}
+
+.creative-card:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.creative-card:nth-child(2) {
+    animation-delay: 2s;
+}
+
+.creative-card:nth-child(3) {
+    animation-delay: 4s;
+}
+
+/* 添加左右摇摆效果 */
+@keyframes gentle-sway {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(1deg); }
+    75% { transform: rotate(-1deg); }
+}
+
+/* 添加滑动时的摇摆效果 */
+.creative-card.swinging {
+    animation: swing 1s ease-in-out;
+}
+
+@keyframes swing {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-2deg); }
+    75% { transform: rotate(2deg); }
+}
+
+/* 创建从衣架线到卡片的夹子 */
+.creative-card::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: calc(50% + var(--clip-offset, 0px));
+    transform: translateX(-50%);
+    width: 8px;
+    height: 50px;
+    background: linear-gradient(to bottom, #000, #555, #777, #666);
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* 创建夹子顶部的扁平部分，紧贴衣架线 */
+.creative-card::after {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: calc(50% + var(--clip-offset, 0px));
+    transform: translateX(-50%);
+    width: 20px;
+    height: 5px;
+    background: #000;
+    z-index: 3;
+}
+
+/* 添加左右摇摆效果 */
+@keyframes gentle-sway {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(1deg); }
+    75% { transform: rotate(-1deg); }
+}
+
+.circle-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.circle-section:nth-child(1) .circle-content {
+    transform: translate(-30%, -60%);
+}
+
+.circle-section:nth-child(2) .circle-content {
+    transform: translate(30%, 20%);
+}
+
+.circle-section:nth-child(3) .circle-content {
+    transform: translate(-30%, 20%);
+}
+
+.circle-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.circle-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    font-family: 'Inter', sans-serif;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.circle-description {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-family: 'Inter', sans-serif;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.circle-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+.circle-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+}
+
+.preview-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    transform: rotate(90deg);
+}
+
+.preview-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: rotate(90deg) scale(1.05);
+}
+
+/* Hover Effects */
+.circle-section:hover {
+    transform: scale(1.1);
+    z-index: 10;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.circle-section:hover .circle-content {
+    opacity: 0.3;
+    transform: scale(0.9);
+}
+
+.circle-section:nth-child(1):hover .circle-content {
+    transform: translate(-30%, -60%) scale(0.9);
+}
+
+.circle-section:nth-child(2):hover .circle-content {
+    transform: translate(30%, 20%) scale(0.9);
+}
+
+.circle-section:nth-child(3):hover .circle-content {
+    transform: translate(-30%, 20%) scale(0.9);
+}
+
+.circle-section:hover .circle-preview {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.circle-section:hover .preview-overlay {
+    opacity: 1;
+}
+
+/* Click Animation */
+.circle-section:active {
+    transform: scale(1.05) translateZ(10px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .creative-circle {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .circle-icon {
+        font-size: 2rem;
+    }
+    
+    .circle-title {
+        font-size: 1rem;
+    }
+    
+    .circle-description {
+        font-size: 0.8rem;
+    }
+    
+    .preview-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+.gallery-item {
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: galleryFadeIn 0.8s ease forwards;
+}
+
+.gallery-item:nth-child(1) { animation-delay: 0.2s; }
+.gallery-item:nth-child(2) { animation-delay: 0.4s; }
+.gallery-item:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes galleryFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gallery-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.gallery-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.gallery-image {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.gallery-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-card:hover .gallery-image img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 2rem 1.5rem 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+}
+
+.gallery-card:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+.gallery-overlay h3 {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.gallery-overlay p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.gallery-media-controls {
+    margin-top: 1rem;
+}
+
+.media-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.media-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: lightboxZoomIn 0.3s ease;
+}
+
+@keyframes lightboxZoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+    font-size: 3rem;
+    font-weight: 300;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10001;
+    line-height: 1;
+    user-select: none;
+}
+
+.lightbox-close:hover {
+    color: #ccc;
+    transform: scale(1.1);
+}
+
+/* Creative Dimension 响应式设计 */
+@media (max-width: 768px) {
+    .creative-gallery {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .gallery-image {
+        height: 200px;
+    }
+    
+    .gallery-overlay {
+        padding: 1.5rem 1rem 1rem;
+    }
+    
+    .gallery-overlay h3 {
+        font-size: 1.1rem;
+    }
+    
+    .gallery-overlay p {
+        font-size: 0.9rem;
     }
 }
 

@@ -33,7 +33,7 @@
                     <i class="fa-solid fa-star-of-david"></i>
                 </a></li>
                 <li><a href="#projects" class="nav-link" data-section="1">Project</a></li>
-                <li><a href="#experiments" class="nav-link" data-section="2">Creative Works</a></li>
+                <li><a href="#experiments" class="nav-link" data-section="2">Creative Dimension</a></li>
                 <li><a href="#connect" class="nav-link" data-section="3">contact</a></li>
             </ul>
         </div>
@@ -43,7 +43,7 @@
     <div class="side-nav">
         <div class="nav-dot active" data-section="0" title="🌍 Home"></div>
         <div class="nav-dot" data-section="1" title="Project"></div>
-        <div class="nav-dot" data-section="2" title="Creative Works"></div>
+        <div class="nav-dot" data-section="2" title="Creative Dimension"></div>
         <div class="nav-dot" data-section="3" title="contact"></div>
     </div>
 
@@ -161,13 +161,29 @@
             </div>
         </section>
 
-        <!-- Section 2: Creative Works -->
+        <!-- Section 2: Creative Dimension -->
         <section class="fullpage-section" id="experiments">
+            <!-- 背景图片 -->
+            <div class="creative-bg-image"></div>
             <!-- Three.js 星空背景画布 -->
             <canvas id="experimentsCanvas" class="stars-canvas"></canvas>
             <div class="section-content">
-                <h2 class="section-title">Creative Works</h2>
-                <p class="section-subtitle">探索与创新的实验空间</p>
+                <!-- Creative Dimension - 立方体动画 -->
+                <div id="creativeContainer" class="relative mt-20 mb-8 pt-10">
+                    <!-- 立方体动画容器 -->
+                    <div class="cube-animation-container">
+                        <div class="cube-wrapper">
+                            <div class="cube">
+                                <div class="face front"></div>
+                                <div class="face back"></div>
+                                <div class="face right"></div>
+                                <div class="face left"></div>
+                                <div class="face top"></div>
+                                <div class="face bottom"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -215,7 +231,160 @@
 
     </div>
 
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImage" src="" alt="">
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="lightbox-modal">
+        <span class="lightbox-close">&times;</span>
+        <video class="lightbox-content" id="lightboxVideo" controls>
+            <source src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- 立方体弹窗 -->
+    <div id="cubeModal" class="cube-modal">
+        <div class="cube-modal-content">
+            <h2>立方体交互</h2>
+            <p>您点击了立方体的一个面！这是一个3D立方体，展示了不同的创作维度。</p>
+            <button class="cube-modal-close" onclick="closeCubeModal()">关闭</button>
+        </div>
+    </div>
+
     <script src="{{ url_for('static', filename='js/fullpage.js') }}"></script>
     <script src="{{ url_for('static', filename='js/stars.js') }}"></script>
+    
+    <!-- Creative Dimension Book-style Script -->
+    <script>
+        // Book-style Creative Dimension functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // 确保背景动画正常播放
+            const creativeBg = document.querySelector('.creative-bg-image');
+            if (creativeBg) {
+                // 移除可能存在的内联样式，让CSS动画正常工作
+                creativeBg.style.animation = '';
+            }
+            
+            const fileItems = document.querySelectorAll('.file-item');
+            const lightboxModal = document.getElementById('lightboxModal');
+            const videoModal = document.getElementById('videoModal');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxVideo = document.getElementById('lightboxVideo');
+            const lightboxClose = document.querySelectorAll('.lightbox-close');
+
+            // Handle file item clicks
+            fileItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    const type = this.dataset.type;
+                    const file = this.dataset.file;
+                    
+                    if (type === 'opengl') {
+                        if (file === 'terrain') {
+                            // Open OpenGL image
+                            lightboxImage.src = "{{ url_for('static', filename='media/creative-dimension/opengl/1.PNG') }}";
+                            lightboxImage.alt = "Procedural Terrain Generation";
+                            lightboxModal.style.display = 'flex';
+                            document.body.style.overflow = 'hidden';
+                        }
+                    } else if (type === 'art') {
+                        if (file === 'watercolor') {
+                            // Open Art image
+                            lightboxImage.src = "{{ url_for('static', filename='media/creative-dimension/art/art-preview.jpg') }}";
+                            lightboxImage.alt = "Watercolor Illustrations";
+                            lightboxModal.style.display = 'flex';
+                            document.body.style.overflow = 'hidden';
+                        }
+                    } else if (type === 'music') {
+                        if (file === 'performance') {
+                            // Open Music video
+                            lightboxVideo.src = "{{ url_for('static', filename='media/creative-dimension/opengl/2.mp4') }}";
+                            videoModal.style.display = 'flex';
+                            document.body.style.overflow = 'hidden';
+                        }
+                    }
+                });
+            });
+
+            // Close modals
+            lightboxClose.forEach(closeBtn => {
+                closeBtn.addEventListener('click', function() {
+                    lightboxModal.style.display = 'none';
+                    videoModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    // Pause video when closing
+                    lightboxVideo.pause();
+                });
+            });
+
+            // Close on background click
+            [lightboxModal, videoModal].forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                        lightboxVideo.pause();
+                    }
+                });
+            });
+
+            // ESC key to close
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    if (lightboxModal.style.display === 'flex') {
+                        lightboxModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                    if (videoModal.style.display === 'flex') {
+                        videoModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                        lightboxVideo.pause();
+                    }
+                }
+            });
+
+            // Initialize creative cards animation effects
+            const creativeCards = document.querySelectorAll('.creative-card');
+            creativeCards.forEach((card, index) => {
+                // 为每个卡片设置稍微不同的动画延迟，创造自然摆动效果
+                card.style.animationDelay = `${index * 0.2}s`;
+
+                // 轻微随机调整夹子位置，使其看起来更自然
+                const randomOffset = (Math.random() * 6) - 3; // -3px 到 +3px 的随机偏移
+                card.style.setProperty('--clip-offset', `${randomOffset}px`);
+            });
+            
+            // 立方体面点击交互
+            const cubeFaces = document.querySelectorAll('.cube .face');
+            cubeFaces.forEach(face => {
+                face.addEventListener('click', function() {
+                    console.log('点击了立方体面');
+                    openCubeModal();
+                });
+            });
+            
+            // 弹窗功能
+            window.openCubeModal = function() {
+                const modal = document.getElementById('cubeModal');
+                modal.style.display = 'block';
+            };
+            
+            window.closeCubeModal = function() {
+                const modal = document.getElementById('cubeModal');
+                modal.style.display = 'none';
+            };
+            
+            // 点击弹窗外部关闭
+            window.onclick = function(event) {
+                const modal = document.getElementById('cubeModal');
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            };
+        });
+    </script>
 </body>
 </html>
