@@ -357,19 +357,72 @@
                 card.style.setProperty('--clip-offset', `${randomOffset}px`);
             });
             
-            // 立方体面点击交互
+            // 立方体面点击交互（根据面类型显示不同文案）
             const cubeFaces = document.querySelectorAll('.cube .face');
+            const cubeModal = document.getElementById('cubeModal');
+            const cubeModalContent = cubeModal.querySelector('.cube-modal-content');
             cubeFaces.forEach(face => {
                 face.addEventListener('click', function() {
-                    console.log('点击了立方体面');
+                    // 缺省内容（painting/music）
+                    let defaultHTML = `
+                        <h2 style="margin-top:0">立方体交互</h2>
+                        <p>您点击了立方体的一个面！这是一个3D立方体，展示了不同的创作维度。</p>
+                    `;
+
+                    // GRAPHIC（front/back）：第一行文字，第二行左右为图片与视频
+                    if (face.classList.contains('front') || face.classList.contains('back')) {
+                        cubeModal.classList.add('graphic');
+                        cubeModalContent.innerHTML = `
+                            <div class="graphic-modal-body">
+                                <div class="graphic-desc">
+                                    <p>My personal practice from the Computer Graphics, using OpenGL to draw graphics and simple animations.</p>
+                                </div>
+                                <div class="graphic-media">
+                                    <div class="graphic-item">
+                                        <img src="{{ url_for('static', filename='media/creative-dimension/opengl/1.PNG') }}" alt="OpenGL Practice Image" class="graphic-image" />
+                                        <div class="graphic-link">
+                                            <a href="https://github.com/sukikatte/graphic" target="_blank" class="github-link">
+                                                <i class="fab fa-github"></i> View Graphics Code
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="graphic-item">
+                                        <video class="graphic-video" controls>
+                                            <source src="{{ url_for('static', filename='media/creative-dimension/opengl/2.mp4') }}" type="video/mp4" />
+                                            Your browser does not support the video tag.
+                                        </video>
+                                        <div class="graphic-link">
+                                            <a href="https://github.com/sukikatte/graphic_ani" target="_blank" class="github-link">
+                                                <i class="fab fa-github"></i> View Animation Code
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        `;
+                    } else {
+                        cubeModal.classList.remove('graphic');
+                        // Painting/Music：显示对应中文文案
+                        let msg = '';
+                        if (face.classList.contains('left') || face.classList.contains('right')) {
+                            msg = '这是painting页面';
+                        } else if (face.classList.contains('top') || face.classList.contains('bottom')) {
+                            msg = '这是music页面';
+                        } else {
+                            msg = '';
+                        }
+                        cubeModalContent.innerHTML = defaultHTML;
+                        const p = cubeModalContent.querySelector('p');
+                        if (p && msg) p.textContent = msg;
+                    }
                     openCubeModal();
                 });
             });
-            
+
             // 弹窗功能
             window.openCubeModal = function() {
-                const modal = document.getElementById('cubeModal');
-                modal.style.display = 'block';
+                cubeModal.style.display = 'block';
             };
             
             window.closeCubeModal = function() {
