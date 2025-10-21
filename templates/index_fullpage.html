@@ -229,9 +229,9 @@
                     
                     <!-- 结语 -->
                     <div class="contact-footer">
-                        <div class="contact-closing">
-                            <span class="typewriter-text">Thank you for your time and consideration.</span>
-                        </div>
+                <div class="contact-closing">
+                    Thank you for your time and consideration.
+                </div>
                     </div>
                 </div>
             </div>
@@ -288,26 +288,10 @@
                 experimentsCanvas.style.opacity = '1';
             }
             
-            // 确保立方体初始动画正常播放
+            // 确保立方体初始状态正确 - 让IntersectionObserver处理所有显示逻辑
             const cubeWrapper = document.querySelector('.cube-wrapper');
             if (cubeWrapper) {
-                // 确保立方体有正确的初始状态
-                cubeWrapper.style.opacity = '1';
-                cubeWrapper.style.visibility = 'visible';
-                
-                // 强制重置动画，确保初始动画稳定播放
-                cubeWrapper.style.animation = 'none';
-                setTimeout(() => {
-                    cubeWrapper.style.animation = 'creativeCubeRotate 4s ease-in-out forwards';
-                    console.log('Cube initial animation started');
-                }, 50);
-                
-                // 确保初始动画结束后开始循环动画
-                setTimeout(() => {
-                    // 4秒后强制切换到循环动画
-                    cubeWrapper.style.animation = 'creativeCubeLoop 40s ease-in-out infinite';
-                    console.log('Switched to loop animation');
-                }, 4000);
+                console.log('Cube wrapper found, letting IntersectionObserver handle display');
             } else {
                 console.error('Cube wrapper not found!');
             }
@@ -332,6 +316,63 @@
                     }, 4000);
                 }
             }
+            
+            // Music预览功能
+            window.openMusicPreview = function(src, title, description, type = 'image') {
+                const modal = document.getElementById('musicPreviewModal');
+                const mediaContainer = modal.querySelector('.music-preview-media');
+                const titleElement = modal.querySelector('.music-preview-title');
+                const descElement = modal.querySelector('.music-preview-description');
+                
+                // 设置标题和描述
+                titleElement.textContent = title;
+                descElement.textContent = description;
+                
+                // 清空媒体容器
+                mediaContainer.innerHTML = '';
+                
+                if (type === 'video') {
+                    // 创建视频元素
+                    const video = document.createElement('video');
+                    video.src = src;
+                    video.controls = true;
+                    video.autoplay = true;
+                    video.volume = 0.5; // 设置默认音量为一半
+                    video.className = 'music-preview-video';
+                    mediaContainer.appendChild(video);
+                } else {
+                    // 创建图片元素
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = title;
+                    img.className = 'music-preview-image';
+                    mediaContainer.appendChild(img);
+                }
+                
+                // 显示模态窗口
+                modal.style.display = 'flex';
+            };
+            
+            // 关闭Music预览
+            window.closeMusicPreview = function() {
+                const modal = document.getElementById('musicPreviewModal');
+                modal.style.display = 'none';
+                
+                // 停止视频播放
+                const video = modal.querySelector('video');
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            };
+            
+            // 点击外部关闭预览
+            document.addEventListener('click', function(e) {
+                const modal = document.getElementById('musicPreviewModal');
+                if (e.target === modal) {
+                    closeMusicPreview();
+                }
+            });
             
             // 立方体提示文字控制 - 只在Creative Dimension页面显示
             const cubeHint = document.getElementById('cubeHint');
@@ -384,17 +425,27 @@
             });
             
             // 使用Intersection Observer检测Creative Dimension页面
+            let cubeHintTimeout = null;
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
+                    // 清除之前的定时器
+                    if (cubeHintTimeout) {
+                        clearTimeout(cubeHintTimeout);
+                        cubeHintTimeout = null;
+                    }
+                    
                     if (entry.isIntersecting) {
                         // Creative Dimension页面可见 - 等立方体初始动画结束后再显示
-                        setTimeout(() => {
-                            cubeHint.style.display = 'block';
-                            setTimeout(() => {
-                                cubeHint.style.opacity = '1';
-                            }, 50);
-                        }, 4000); // 等立方体初始动画结束后
-                        console.log('Showing cube hint - Creative Dimension visible');
+                        cubeHintTimeout = setTimeout(() => {
+                            // 再次检查是否还在Creative Dimension页面
+                            if (entry.isIntersecting) {
+                                cubeHint.style.display = 'block';
+                                setTimeout(() => {
+                                    cubeHint.style.opacity = '1';
+                                }, 2000); // 2秒淡入
+                                console.log('Showing cube hint - Creative Dimension visible');
+                            }
+                        }, 2000); // 2秒开始显示，4秒淡入完成，与立方体初始动画同步
                     } else {
                         // Creative Dimension页面不可见 - 立即隐藏
                         cubeHint.style.opacity = '0';
@@ -403,7 +454,7 @@
                     }
                 });
             }, {
-                threshold: 0.05 // 进一步降低阈值，让检测更敏感
+                threshold: 0.3 // 提高阈值，确保页面真正可见
             });
             
             // 观察Creative Dimension页面
@@ -436,8 +487,25 @@
                     cubeWrapper.classList.remove('fade-out');
                     cubeWrapper.classList.add('fade-in');
                     
-                    // 每次进入页面都重新触发初始动画
-                    resetCubeAnimation();
+                    // 确保立方体状态正确
+                    cubeWrapper.style.opacity = '1';
+                    cubeWrapper.style.visibility = 'visible';
+                    
+                    // 强制重置动画状态
+                    cubeWrapper.style.animation = 'none';
+                    
+                    // 强制重绘
+                    void cubeWrapper.offsetWidth;
+                    
+                    // 重新开始初始动画
+                    cubeWrapper.style.animation = 'creativeCubeRotate 4s ease-in-out forwards';
+                    console.log('Cube animation restarted - initial animation');
+                    
+                    // 4秒后切换到循环动画
+                    setTimeout(() => {
+                        cubeWrapper.style.animation = 'creativeCubeLoop 40s ease-in-out infinite';
+                        console.log('Cube animation restarted - switched to loop animation');
+                    }, 4000);
                 }
                 if (creativeBg) {
                     creativeBg.classList.remove('fade-out');
@@ -458,31 +526,51 @@
             
             // 监听页面切换 - 使用Intersection Observer
             let cubeObserverVisibleState = false;
+            let cubeAnimationTimeout = null;
+            let isFirstEntry = true; // 标记是否是首次进入
             const cubeObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const isIntersecting = entry.isIntersecting;
+                    
+                    // 清除之前的定时器
+                    if (cubeAnimationTimeout) {
+                        clearTimeout(cubeAnimationTimeout);
+                        cubeAnimationTimeout = null;
+                    }
                     
                     // 只有当状态真正改变时才执行
                     if (isIntersecting !== cubeObserverVisibleState) {
                         cubeObserverVisibleState = isIntersecting;
                         
                         if (isIntersecting) {
-                            // 进入Creative Dimension页面
-                            fadeInCube();
+                            if (isFirstEntry) {
+                                // 首次进入 - 使用fadeInCube函数确保背景也显示
+                                fadeInCube();
+                                isFirstEntry = false;
+                                console.log('First entry - full fade in');
+                            } else {
+                                // 后续进入 - 使用JavaScript控制动画
+                                cubeAnimationTimeout = setTimeout(() => {
+                                    fadeInCube();
+                                    console.log('Cube fade in triggered');
+                                }, 150);
+                            }
                         } else {
                             // 离开Creative Dimension页面
                             fadeOutCube();
+                            console.log('Cube fade out triggered');
                         }
                     }
                 });
             }, {
-                threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0], // 多个阈值确保检测
+                threshold: 0.3, // 简化阈值，提高稳定性
                 rootMargin: '0px 0px 0px 0px' // 精确检测，无边距
             });
             
             // 观察立方体容器
             if (cubeWrapper) {
                 cubeObserver.observe(cubeWrapper);
+                console.log('Cube observer started');
             }
             
             
@@ -626,18 +714,68 @@
                         `;
                     } else {
                         cubeModal.classList.remove('graphic');
-                        // Painting/Music：显示对应中文文案
-                        let msg = '';
+                        // Painting/Music：显示对应内容
                         if (face.classList.contains('left') || face.classList.contains('right')) {
-                            msg = '这是painting页面';
+                            // Painting页面保持原有内容
+                            let msg = '这是painting页面';
+                            cubeModalContent.innerHTML = defaultHTML;
+                            const p = cubeModalContent.querySelector('p');
+                            if (p && msg) p.textContent = msg;
                         } else if (face.classList.contains('top') || face.classList.contains('bottom')) {
-                            msg = '这是music页面';
+                            // Music页面显示新的滚动内容
+                            cubeModalContent.innerHTML = `
+                                <div class="music-modal-content">
+                                    <div class="music-intro">
+                                        <h3>Campus Band Experience</h3>
+                                        <p>During my university years, I founded and led a campus band where I served as the lead vocalist and keyboardist. I also took on the responsibility of visual design for our performances. Our band actively participated in both on-campus and off-campus events, creating memorable musical experiences.</p>
+                                    </div>
+                                    
+                                    <div class="music-grid">
+                                        <div class="music-item" onclick="openMusicPreview('/static/media/creative-dimension/music/2.JPG', 'Performance Photo', 'This is a photo from one of our live performances, capturing the energy and passion of our band during a campus event.')">
+                                            <img src="/static/media/creative-dimension/music/2.JPG" alt="Band Performance Photo" class="music-image">
+                                            <div class="music-overlay">
+                                                <h4>Performance Photo</h4>
+                                                <p>Click to view</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="music-item" onclick="openMusicPreview('/static/media/creative-dimension/music/1.PNG', 'Recruitment Poster', 'I designed this recruitment poster to attract new members to our campus band. The design reflects our musical style and creative vision.')">
+                                            <img src="/static/media/creative-dimension/music/1.PNG" alt="Band Recruitment Poster" class="music-image">
+                                            <div class="music-overlay">
+                                                <h4>Recruitment Poster</h4>
+                                                <p>Click to view</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="music-item" onclick="openMusicPreview('/static/media/creative-dimension/music/music.mp4', 'Rehearsal Video', 'This video captures one of our rehearsal sessions, showing the collaborative process and musical development of our band.', 'video')">
+                                            <video class="music-video" muted>
+                                                <source src="/static/media/creative-dimension/music/music.mp4" type="video/mp4">
+                                            </video>
+                                            <div class="music-overlay">
+                                                <h4>Rehearsal Video</h4>
+                                                <p>Click to view</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Music Preview Modal -->
+                                <div id="musicPreviewModal" class="music-preview-modal">
+                                    <div class="music-preview-content">
+                                        <span class="music-preview-close" onclick="closeMusicPreview()">&times;</span>
+                                        <div class="music-preview-frame">
+                                            <div class="music-preview-media"></div>
+                                            <div class="music-preview-text">
+                                                <h3 class="music-preview-title"></h3>
+                                                <p class="music-preview-description"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
                         } else {
-                            msg = '';
+                            cubeModalContent.innerHTML = defaultHTML;
                         }
-                        cubeModalContent.innerHTML = defaultHTML;
-                        const p = cubeModalContent.querySelector('p');
-                        if (p && msg) p.textContent = msg;
                     }
                     openCubeModal();
                 });

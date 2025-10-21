@@ -701,6 +701,7 @@ html, body {
     opacity: 0;
     display: none;
     font-family: 'Cormorant Garamond', Georgia, serif;
+    transition: opacity 2s ease-in-out;
 }
 
 .scroll-arrow {
@@ -4947,11 +4948,11 @@ html, body {
 .contact-layout {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     min-height: 100vh;
     padding: 2rem;
-    text-align: center;
+    text-align: right;
     max-width: 800px;
     margin: 0 auto;
 }
@@ -4973,12 +4974,23 @@ html, body {
     letter-spacing: 0.1em;
 }
 
+.contact-intro {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    letter-spacing: 0.3px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
 #connect .contact-info-container {
     background: rgba(255, 255, 255, 0.01);
     border: 3px solid rgba(255, 255, 255, 0.15);
     border-radius: 0;
     padding: 2rem;
-    margin: 0 auto 1.5rem auto;
+    margin: 0 0 1.5rem 0;
     max-width: 600px;
     position: relative;
     backdrop-filter: blur(3px);
@@ -5018,11 +5030,12 @@ html, body {
 
 .contact-info-item {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding: 1rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     margin-bottom: 0.5rem;
+    gap: 1rem;
 }
 
 .contact-info-item:last-child {
@@ -5034,9 +5047,10 @@ html, body {
     font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.6);
     font-weight: 400;
-    text-align: left;
-    min-width: 200px;
+    text-align: right;
+    min-width: auto;
     letter-spacing: 0.5px;
+    order: 2;
 }
 
 .contact-value {
@@ -5044,6 +5058,7 @@ html, body {
     color: #ffffff;
     font-weight: 300;
     text-align: right;
+    order: 1;
 }
 
 .contact-link {
@@ -5053,6 +5068,7 @@ html, body {
     text-decoration: none;
     text-align: right;
     transition: color 0.3s ease;
+    order: 1;
 }
 
 .contact-link:hover {
@@ -5071,6 +5087,7 @@ html, body {
     font-weight: 300;
     font-style: italic;
     letter-spacing: 0.3px;
+    opacity: 1;
 }
 
 /* Contact页面响应式设计 */
@@ -5093,7 +5110,7 @@ html, body {
     
     .contact-info-item {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-end;
         gap: 0.5rem;
         padding: 1.5rem 0;
     }
@@ -5102,11 +5119,13 @@ html, body {
         min-width: auto;
         font-weight: 500;
         font-size: 1rem;
+        order: 2;
     }
     
     .contact-value,
     .contact-link {
-        text-align: left;
+        text-align: right;
+        order: 1;
     }
     
     .contact-footer {
@@ -7976,7 +7995,9 @@ letter-spacing: 2px;
     width: 300px;
     height: 300px;
     transform-style: preserve-3d;
-    animation: creativeCubeRotate 4s ease-in-out forwards;
+    opacity: 0;
+    visibility: hidden;
+    animation: creativeCubeRotate 4s ease-in-out forwards, creativeCubeLoop 40s ease-in-out infinite 4s;
     transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out;
 }
 
@@ -8435,35 +8456,6 @@ letter-spacing: 2px;
     }
 }
 
-/* 打字机效果 */
-.typewriter-text {
-    display: inline-block;
-    overflow: hidden;
-    border-right: 2px solid rgba(255, 255, 255, 0.7);
-    white-space: nowrap;
-    width: 0;
-    opacity: 0;
-    animation: typing 3s steps(40, end) 3s forwards, blink-caret 0.75s step-end infinite 6s;
-}
-
-@keyframes typing {
-    0% { 
-        width: 0; 
-        opacity: 0;
-    }
-    1% {
-        opacity: 1;
-    }
-    100% { 
-        width: 100%; 
-        opacity: 1;
-    }
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: rgba(255, 255, 255, 0.7); }
-}
 
 /* Contact页面淡入动画 */
 @keyframes contactFadeInUp {
@@ -8475,6 +8467,217 @@ letter-spacing: 2px;
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* ============================================
+   Music Modal Content Styles
+   ============================================ */
+.music-modal-content {
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.music-intro {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.music-intro h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+}
+
+.music-intro p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.music-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.music-item {
+    position: relative;
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.music-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.music-image,
+.music-video {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.music-item:hover .music-image,
+.music-item:hover .music-video {
+    transform: scale(1.05);
+}
+
+.music-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 1.5rem 1rem 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.music-item:hover .music-overlay {
+    transform: translateY(0);
+}
+
+.music-overlay h4 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.music-overlay p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin: 0;
+}
+
+/* Music Preview Modal */
+.music-preview-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+}
+
+.music-preview-content {
+    position: relative;
+    max-width: 80vw;
+    max-height: 80vh;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.music-preview-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001;
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.music-preview-close:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.music-preview-frame {
+    display: flex;
+    flex-direction: column;
+    background: #000;
+    border: 3px solid #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 700px;
+    max-height: 600px;
+}
+
+.music-preview-media {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    padding: 1rem;
+    min-height: 400px;
+}
+
+.music-preview-image,
+.music-preview-video {
+    max-width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+/* 特别为演出合照（图片2）设置更大的尺寸 */
+.music-preview-image[src*="2.JPG"] {
+    max-height: 400px;
+}
+
+/* 为招新海报（图片1）设置稍大的尺寸 */
+.music-preview-image[src*="1.PNG"] {
+    max-height: 380px;
+}
+
+.music-preview-text {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.music-preview-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.05em;
+}
+
+.music-preview-description {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
 }
 
 /* 衣架线样式 - 适应新宽度 */
