@@ -5316,7 +5316,7 @@ letter-spacing: 2px;
     text-align: center;
     margin-bottom: 2rem;
     padding: 1.5rem 0;
-    margin-top: 0.5rem;
+    margin-top: -1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -6514,18 +6514,16 @@ letter-spacing: 2px;
 }
 
 /* ===== 项目详情页面样式 ===== */
-.project-detail-page {
-    min-height: 100vh;
-    background: #000000;
-    position: relative;
+/* 项目详情页内容包装器 */
+.project-content-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
     padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    overflow-y: auto;
-    overflow-x: hidden;
-    animation: pageSimpleFadeIn 0.6s ease-out forwards;
+    position: relative;
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
 }
 
 /* 简单淡入动画 */
@@ -6598,6 +6596,7 @@ letter-spacing: 2px;
 /* 项目标题 */
 .project-header {
     text-align: center;
+    margin-top: -1rem;
 }
 
 .project-title {
@@ -6607,6 +6606,87 @@ letter-spacing: 2px;
     color: #ffffff;
     margin: 0;
     letter-spacing: 0.1em;
+}
+
+.project-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    color: #cccccc;
+    margin: 1rem 0;
+    font-weight: 300;
+}
+
+.project-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 2rem 0;
+}
+
+.project-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #888888;
+    font-weight: 500;
+}
+
+.project-tech {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: #666666;
+    font-weight: 400;
+}
+
+.project-sections {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.project-section {
+    margin-bottom: 3rem;
+}
+
+.project-section .section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #333333;
+    padding-bottom: 0.5rem;
+}
+
+.project-section .section-content {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #cccccc;
+}
+
+.project-section .section-content p {
+    margin-bottom: 1.5rem;
+}
+
+.highlights-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.highlights-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: #dddddd;
+}
+
+.highlights-list li::before {
+    content: "◆";
+    position: absolute;
+    left: 0;
+    color: #666666;
+    font-size: 0.8rem;
     text-transform: uppercase;
     opacity: 0;
     transform: translateY(30px);
