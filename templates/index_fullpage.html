@@ -377,6 +377,83 @@
                 }
             });
             
+            // Painting Gallery功能
+            const paintingImages = [
+                '/static/media/creative-dimension/art/1.JPG',
+                '/static/media/creative-dimension/art/2.JPG',
+                '/static/media/creative-dimension/art/3.JPG',
+                '/static/media/creative-dimension/art/4.JPG',
+                '/static/media/creative-dimension/art/5.JPG',
+                '/static/media/creative-dimension/art/6.JPG',
+                '/static/media/creative-dimension/art/7.JPG',
+                '/static/media/creative-dimension/art/8.JPG',
+                '/static/media/creative-dimension/art/9.JPG'
+            ];
+            
+            let currentPaintingIndex = 0;
+            
+            // 打开Painting预览
+            window.openPaintingPreview = function(src, index) {
+                currentPaintingIndex = index;
+                const modal = document.getElementById('paintingPreviewModal');
+                const image = document.getElementById('paintingPreviewImage');
+                
+                if (image) {
+                    image.src = src;
+                    image.alt = `Painting ${index + 1}`;
+                }
+                
+                modal.style.display = 'flex';
+            };
+            
+            // 关闭Painting预览
+            window.closePaintingPreview = function() {
+                const modal = document.getElementById('paintingPreviewModal');
+                modal.style.display = 'none';
+            };
+            
+            // 上一张Painting
+            window.previousPainting = function() {
+                currentPaintingIndex = (currentPaintingIndex - 1 + paintingImages.length) % paintingImages.length;
+                const image = document.getElementById('paintingPreviewImage');
+                if (image) {
+                    image.src = paintingImages[currentPaintingIndex];
+                    image.alt = `Painting ${currentPaintingIndex + 1}`;
+                }
+            };
+            
+            // 下一张Painting
+            window.nextPainting = function() {
+                currentPaintingIndex = (currentPaintingIndex + 1) % paintingImages.length;
+                const image = document.getElementById('paintingPreviewImage');
+                if (image) {
+                    image.src = paintingImages[currentPaintingIndex];
+                    image.alt = `Painting ${currentPaintingIndex + 1}`;
+                }
+            };
+            
+            // 点击外部关闭Painting预览
+            document.addEventListener('click', function(e) {
+                const modal = document.getElementById('paintingPreviewModal');
+                if (e.target === modal) {
+                    closePaintingPreview();
+                }
+            });
+            
+            // 键盘导航支持
+            document.addEventListener('keydown', function(e) {
+                const paintingModal = document.getElementById('paintingPreviewModal');
+                if (paintingModal && paintingModal.style.display === 'flex') {
+                    if (e.key === 'ArrowLeft') {
+                        previousPainting();
+                    } else if (e.key === 'ArrowRight') {
+                        nextPainting();
+                    } else if (e.key === 'Escape') {
+                        closePaintingPreview();
+                    }
+                }
+            });
+            
             // 立方体提示文字控制 - 只在Creative Dimension页面显示
             const cubeHint = document.getElementById('cubeHint');
             const experimentsSection = document.getElementById('experiments');
@@ -719,11 +796,59 @@
                         cubeModal.classList.remove('graphic');
                         // Painting/Music：显示对应内容
                         if (face.classList.contains('left') || face.classList.contains('right')) {
-                            // Painting页面保持原有内容
-                            let msg = '这是painting页面';
-                            cubeModalContent.innerHTML = defaultHTML;
-                            const p = cubeModalContent.querySelector('p');
-                            if (p && msg) p.textContent = msg;
+                            // Painting页面显示九宫格画廊
+                            cubeModalContent.innerHTML = `
+                                <div class="painting-modal-content">
+                                    <div class="painting-intro">
+                                        <h3>Painting Gallery</h3>
+                                        <p>My personal painting collection showcasing various artistic styles and techniques.</p>
+                                    </div>
+                                    
+                                    <div class="painting-grid">
+                                        <div class="painting-item" onclick="openPaintingPreview('/static/media/creative-dimension/art/1.JPG', 0)">
+                                            <img src="/static/media/creative-dimension/art/1.JPG" alt="Painting 1" class="painting-image">
+                                        </div>
+                                        <div class="painting-item" onclick="openPaintingPreview('/static/media/creative-dimension/art/2.JPG', 1)">
+                                            <img src="/static/media/creative-dimension/art/2.JPG" alt="Painting 2" class="painting-image">
+                                        </div>
+                                        <div class="painting-item" onclick="openPaintingPreview('/static/media/creative-dimension/art/3.JPG', 2)">
+                                            <img src="/static/media/creative-dimension/art/3.JPG" alt="Painting 3" class="painting-image">
+                                        </div>
+                                        <div class="painting-item" onclick="openPaintingPreview('/static/media/creative-dimension/art/4.JPG', 3)">
+                                            <img src="/static/media/creative-dimension/art/4.JPG" alt="Painting 4" class="painting-image">
+                                        </div>
+                                        <div class="painting-item" onclick="openPaintingPreview('/static/media/creative-dimension/art/5.JPG', 4)">
+                                            <img src="/static/media/creative-dimension/art/5.JPG" alt="Painting 5" class="painting-image">
+                                        </div>
+                                        <div class="painting-item" onclick="openPaintingPreview('/static/media/creative-dimension/art/6.JPG', 5)">
+                                            <img src="/static/media/creative-dimension/art/6.JPG" alt="Painting 6" class="painting-image">
+                                        </div>
+                                        <div class="painting-item" onclick="openPaintingPreview('/static/media/creative-dimension/art/7.JPG', 6)">
+                                            <img src="/static/media/creative-dimension/art/7.JPG" alt="Painting 7" class="painting-image">
+                                        </div>
+                                        <div class="painting-item" onclick="openPaintingPreview('/static/media/creative-dimension/art/8.JPG', 7)">
+                                            <img src="/static/media/creative-dimension/art/8.JPG" alt="Painting 8" class="painting-image">
+                                        </div>
+                                        <div class="painting-item" onclick="openPaintingPreview('/static/media/creative-dimension/art/9.JPG', 8)">
+                                            <img src="/static/media/creative-dimension/art/9.JPG" alt="Painting 9" class="painting-image">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Painting Preview Modal -->
+                                <div id="paintingPreviewModal" class="painting-preview-modal">
+                                    <div class="painting-preview-content">
+                                        <span class="painting-preview-close" onclick="closePaintingPreview()">&times;</span>
+                                        <button class="painting-preview-prev" onclick="previousPainting()">&lt;</button>
+                                        <button class="painting-preview-next" onclick="nextPainting()">&gt;</button>
+                                        <div class="painting-preview-frame">
+                                            <div class="painting-preview-media">
+                                                <img id="paintingPreviewImage" src="" alt="Painting" class="painting-preview-image">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
                         } else if (face.classList.contains('top') || face.classList.contains('bottom')) {
                             // Music页面显示新的滚动内容
                             cubeModalContent.innerHTML = `
