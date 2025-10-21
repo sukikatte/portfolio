@@ -8279,16 +8279,14 @@ letter-spacing: 2px;
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     backdrop-filter: blur(20px);
-    margin: 5% auto;
-    padding: 0;
+    margin: 12% auto;
+    padding: 2rem;
     width: 90%;
     max-width: 1000px;
     text-align: left;
     box-shadow: 0 12px 42px rgba(0, 0, 0, 0.35);
-    max-height: 85vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    max-height: 70vh;
+    overflow-y: auto;
 }
 
 .cube-modal h2 {
@@ -8545,14 +8543,12 @@ letter-spacing: 2px;
    ============================================ */
 .music-modal-content {
     width: 100%;
-    height: 100%;
-    padding: 2rem;
+    height: auto;
+    padding: 0;
     color: #ffffff;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    overflow-y: auto;
-    flex: 1;
+    justify-content: center;
 }
 
 .music-intro {
@@ -8697,8 +8693,8 @@ letter-spacing: 2px;
     border: 3px solid #fff;
     border-radius: 8px;
     overflow: hidden;
-    max-width: 700px;
-    max-height: 600px;
+    max-width: 650px;
+    max-height: 550px;
 }
 
 .music-preview-media {
@@ -8708,25 +8704,25 @@ letter-spacing: 2px;
     justify-content: center;
     background: #000;
     padding: 1rem;
-    min-height: 400px;
+    min-height: 350px;
 }
 
 .music-preview-image,
 .music-preview-video {
     max-width: 100%;
-    max-height: 350px;
+    max-height: 300px;
     object-fit: contain;
     border-radius: 4px;
 }
 
 /* 特别为演出合照（图片2）设置更大的尺寸 */
 .music-preview-image[src*="2.JPG"] {
-    max-height: 400px;
+    max-height: 320px;
 }
 
 /* 为招新海报（图片1）设置稍大的尺寸 */
 .music-preview-image[src*="1.PNG"] {
-    max-height: 380px;
+    max-height: 310px;
 }
 
 .music-preview-text {
@@ -8758,14 +8754,12 @@ letter-spacing: 2px;
    ============================================ */
 .music-modal-content {
     width: 100%;
-    height: 100%;
-    padding: 2rem;
+    height: auto;
+    padding: 0;
     color: #ffffff;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    overflow-y: auto;
-    flex: 1;
+    justify-content: center;
 }
 
 .music-intro {
@@ -8857,153 +8851,56 @@ letter-spacing: 2px;
     margin: 0;
 }
 
-/* Music Preview Modal */
-.music-preview-modal {
-    display: none;
-    position: fixed;
-    z-index: 10000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    align-items: center;
-    justify-content: center;
-}
-
-.music-preview-content {
-    position: relative;
-    max-width: 80vw;
+/* Painting Gallery特殊样式 - 使用类名选择器 */
+.cube-modal-content.painting-gallery-modal {
     max-height: 80vh;
-    background: #000;
-    border-radius: 8px;
-    overflow: hidden;
+    overflow-y: visible;
+    padding: 0;
 }
 
-.music-preview-close {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    color: #fff;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 10001;
-    background: rgba(0, 0, 0, 0.5);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s ease;
+.cube-modal-content.painting-gallery-modal .painting-modal-content {
+    max-height: 75vh;
+    overflow-y: scroll !important;
+    padding: 2rem;
 }
-
-.music-preview-close:hover {
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.music-preview-frame {
-    display: flex;
-    flex-direction: column;
-    background: #000;
-    border: 3px solid #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    max-width: 700px;
-    max-height: 600px;
-}
-
-.music-preview-media {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #000;
-    padding: 1rem;
-    min-height: 400px;
-}
-
-.music-preview-image,
-.music-preview-video {
-    max-width: 100%;
-    max-height: 350px;
-    object-fit: contain;
-    border-radius: 4px;
-}
-
-/* 特别为演出合照（图片2）设置更大的尺寸 */
-.music-preview-image[src*="2.JPG"] {
-    max-height: 400px;
-}
-
-/* 为招新海报（图片1）设置稍大的尺寸 */
-.music-preview-image[src*="1.PNG"] {
-    max-height: 380px;
-}
-
-.music-preview-text {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 1.5rem;
-    text-align: center;
-    backdrop-filter: blur(10px);
-}
-
-.music-preview-title {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: #ffffff;
-    margin-bottom: 0.8rem;
-    letter-spacing: 0.05em;
-}
-
-.music-preview-description {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.8);
-    margin: 0;
-}
-
-/* ============================================
-   Painting Gallery Styles
-   ============================================ */
 .painting-modal-content {
     width: 100%;
-    height: 100%;
-    padding: 2rem;
+    height: auto;
+    padding: 0;
     color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     overflow-y: auto;
-    flex: 1;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+    max-height: 60vh;
+    scrollbar-width: auto;
+    scrollbar-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.05);
 }
 
 .painting-modal-content::-webkit-scrollbar {
-    width: 8px;
+    width: 12px;
 }
 
 .painting-modal-content::-webkit-scrollbar-track {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
 }
 
 .painting-modal-content::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    border: 2px solid rgba(255, 255, 255, 0.05);
 }
 
 .painting-modal-content::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.6);
 }
 
 .painting-intro {
-    margin-bottom: 2rem;
+    margin-bottom: 10px;
     text-align: center;
     flex-shrink: 0;
+    min-height: 200px;
 }
 
 .painting-intro h3 {
@@ -9016,12 +8913,14 @@ letter-spacing: 2px;
 }
 
 .painting-intro p {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 1.1rem;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.2rem;
+    font-style: italic;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.8);
     max-width: 700px;
     margin: 0 auto;
+    letter-spacing: 0.5px;
 }
 
 .painting-grid {
@@ -9029,9 +8928,10 @@ letter-spacing: 2px;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     max-width: 800px;
-    margin: 0 auto;
+    margin: -50px auto 0 auto;
     flex-shrink: 0;
     padding-bottom: 2rem;
+    min-height: 800px;
 }
 
 .painting-item {
@@ -9076,34 +8976,36 @@ letter-spacing: 2px;
 
 .painting-preview-content {
     position: relative;
-    max-width: 90vw;
-    max-height: 90vh;
-    background: #000;
-    border-radius: 8px;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 .painting-preview-close {
     position: absolute;
-    top: 15px;
-    right: 20px;
+    top: 30px;
+    right: 30px;
     color: #fff;
-    font-size: 30px;
+    font-size: 35px;
     font-weight: bold;
     cursor: pointer;
     z-index: 10001;
-    background: rgba(0, 0, 0, 0.5);
-    width: 40px;
-    height: 40px;
+    background: rgba(0, 0, 0, 0.6);
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .painting-preview-close:hover {
     background: rgba(0, 0, 0, 0.8);
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
 .painting-preview-prev,
@@ -9111,14 +9013,14 @@ letter-spacing: 2px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     color: #fff;
-    border: none;
+    border: 2px solid rgba(255, 255, 255, 0.3);
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -9128,45 +9030,42 @@ letter-spacing: 2px;
 }
 
 .painting-preview-prev {
-    left: 20px;
+    left: 30px;
 }
 
 .painting-preview-next {
-    right: 20px;
+    right: 30px;
 }
 
 .painting-preview-prev:hover,
 .painting-preview-next:hover {
     background: rgba(0, 0, 0, 0.8);
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
-.painting-preview-frame {
-    display: flex;
-    flex-direction: column;
-    background: #000;
-    border: 3px solid #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    max-width: 80vw;
-    max-height: 80vh;
-}
-
-.painting-preview-media {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #000;
-    padding: 1rem;
-    min-height: 60vh;
-}
 
 .painting-preview-image {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 90vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
     object-fit: contain;
-    border-radius: 4px;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
+
+/* 竖图时调整容器方向 */
+.painting-preview-image[style*="height"] {
+    max-width: 60vh;
+    max-height: 95vh;
+}
+
+/* 横图时保持原有设置 */
+.painting-preview-image[style*="width"] {
+    max-width: 90vw;
+    max-height: 60vh;
+}
+
 
 /* 衣架线样式 - 适应新宽度 */
 .clothesline {

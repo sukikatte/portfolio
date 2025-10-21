@@ -323,6 +323,12 @@
             // Music预览功能
             window.openMusicPreview = function(src, title, description, type = 'image') {
                 const modal = document.getElementById('musicPreviewModal');
+                
+                if (!modal) {
+                    console.error('Music preview modal not found!');
+                    return;
+                }
+                
                 const mediaContainer = modal.querySelector('.music-preview-media');
                 const titleElement = modal.querySelector('.music-preview-title');
                 const descElement = modal.querySelector('.music-preview-description');
@@ -372,8 +378,25 @@
             // 点击外部关闭预览
             document.addEventListener('click', function(e) {
                 const modal = document.getElementById('musicPreviewModal');
-                if (e.target === modal) {
-                    closeMusicPreview();
+                if (modal && modal.style.display === 'flex') {
+                    // 只检测点击模态窗口背景区域
+                    if (e.target === modal) {
+                        closeMusicPreview();
+                    }
+                }
+            });
+            
+            // 处理点击Music小窗外区域关闭视频
+            document.addEventListener('click', function(e) {
+                const modal = document.getElementById('musicPreviewModal');
+                const musicModal = document.getElementById('cubeModal');
+                
+                // 如果Music预览窗口打开，且点击的不是Music小窗内的任何元素
+                if (modal && modal.style.display === 'flex' && musicModal && musicModal.style.display === 'block') {
+                    const musicContent = musicModal.querySelector('.cube-modal-content');
+                    if (musicContent && !musicContent.contains(e.target) && !modal.contains(e.target)) {
+                        closeMusicPreview();
+                    }
                 }
             });
             
@@ -401,6 +424,22 @@
                 if (image) {
                     image.src = src;
                     image.alt = `Painting ${index + 1}`;
+                    
+                    // 检测图片宽高比并调整容器
+                    image.onload = function() {
+                        const aspectRatio = image.naturalWidth / image.naturalHeight;
+                        const imageElement = image;
+                        
+                        if (aspectRatio < 1) {
+                            // 竖图：高度大于宽度
+                            imageElement.style.maxWidth = '60vh';
+                            imageElement.style.maxHeight = '95vh';
+                        } else {
+                            // 横图或正方形：宽度大于等于高度
+                            imageElement.style.maxWidth = '90vw';
+                            imageElement.style.maxHeight = '60vh';
+                        }
+                    };
                 }
                 
                 modal.style.display = 'flex';
@@ -419,6 +458,21 @@
                 if (image) {
                     image.src = paintingImages[currentPaintingIndex];
                     image.alt = `Painting ${currentPaintingIndex + 1}`;
+                    
+                    // 检测图片宽高比并调整容器
+                    image.onload = function() {
+                        const aspectRatio = image.naturalWidth / image.naturalHeight;
+                        
+                        if (aspectRatio < 1) {
+                            // 竖图：高度大于宽度
+                            image.style.maxWidth = '60vh';
+                            image.style.maxHeight = '95vh';
+                        } else {
+                            // 横图或正方形：宽度大于等于高度
+                            image.style.maxWidth = '90vw';
+                            image.style.maxHeight = '60vh';
+                        }
+                    };
                 }
             };
             
@@ -429,6 +483,21 @@
                 if (image) {
                     image.src = paintingImages[currentPaintingIndex];
                     image.alt = `Painting ${currentPaintingIndex + 1}`;
+                    
+                    // 检测图片宽高比并调整容器
+                    image.onload = function() {
+                        const aspectRatio = image.naturalWidth / image.naturalHeight;
+                        
+                        if (aspectRatio < 1) {
+                            // 竖图：高度大于宽度
+                            image.style.maxWidth = '60vh';
+                            image.style.maxHeight = '95vh';
+                        } else {
+                            // 横图或正方形：宽度大于等于高度
+                            image.style.maxWidth = '90vw';
+                            image.style.maxHeight = '60vh';
+                        }
+                    };
                 }
             };
             
@@ -763,6 +832,7 @@
                     // GRAPHIC（front/back）：第一行文字，第二行左右为图片与视频
                     if (face.classList.contains('front') || face.classList.contains('back')) {
                         cubeModal.classList.add('graphic');
+                        cubeModal.classList.remove('painting-gallery-modal');
                         cubeModalContent.innerHTML = `
                             <div class="graphic-modal-body">
                                 <div class="graphic-desc">
@@ -794,6 +864,7 @@
                         `;
                     } else {
                         cubeModal.classList.remove('graphic');
+                        cubeModal.classList.remove('painting-gallery-modal');
                         // Painting/Music：显示对应内容
                         if (face.classList.contains('left') || face.classList.contains('right')) {
                             // Painting页面显示九宫格画廊
@@ -801,7 +872,7 @@
                                 <div class="painting-modal-content">
                                     <div class="painting-intro">
                                         <h3>Painting Gallery</h3>
-                                        <p>My personal painting collection showcasing various artistic styles and techniques.</p>
+                                        <p>I have placed some of my art works, mainly colored pencil drawings.</p>
                                     </div>
                                     
                                     <div class="painting-grid">
@@ -841,16 +912,13 @@
                                         <span class="painting-preview-close" onclick="closePaintingPreview()">&times;</span>
                                         <button class="painting-preview-prev" onclick="previousPainting()">&lt;</button>
                                         <button class="painting-preview-next" onclick="nextPainting()">&gt;</button>
-                                        <div class="painting-preview-frame">
-                                            <div class="painting-preview-media">
-                                                <img id="paintingPreviewImage" src="" alt="Painting" class="painting-preview-image">
-                                            </div>
-                                        </div>
+                                        <img id="paintingPreviewImage" src="" alt="Painting" class="painting-preview-image">
                                     </div>
                                 </div>
                             `;
                         } else if (face.classList.contains('top') || face.classList.contains('bottom')) {
                             // Music页面显示新的滚动内容
+                            cubeModal.classList.remove('painting-gallery-modal');
                             cubeModalContent.innerHTML = `
                                 <div class="music-modal-content">
                                     <div class="music-intro">
