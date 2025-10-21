@@ -32,7 +32,6 @@ class FullPageScroll {
         this.updateActiveDot();
         this.updateActiveNav();
         this.initProjectSlider();
-        this.initBackgroundImage();
         console.log(`Full-page scrolling initialized ✨ - ${this.totalSections} sections`);
     }
     
@@ -56,19 +55,6 @@ class FullPageScroll {
             this.projectsContainer.style.transition = 'none';
         }
         // 如果是新的.projects-slide，不做任何处理，由initProjectsSlider()处理
-    }
-    
-    // 初始化背景图片淡入效果
-    initBackgroundImage() {
-        const bgImage = document.querySelector('.bg-image');
-        if (bgImage && this.currentSection === 0) {
-            // 页面首次加载时，延迟触发淡入效果
-            setTimeout(() => {
-                bgImage.classList.remove('fade-out');
-                bgImage.classList.add('visible');
-                console.log('首次加载 - 背景图片显示');
-            }, 500); // 延迟500ms，让页面先加载完成
-        }
     }
     
     addEventListeners() {
@@ -206,49 +192,11 @@ class FullPageScroll {
         const bgImage = document.querySelector('.bg-image');
         if (bgImage) {
             if (index === 0) {
-                // 在首页时，确保背景图片显示
-                bgImage.classList.remove('fade-out');
                 bgImage.classList.add('visible');
-                console.log('背景图片显示 - 首页');
+                console.log('背景图片已显示 - bg6');
             } else {
-                // 离开首页时，添加淡出效果
-                bgImage.classList.add('fade-out');
                 bgImage.classList.remove('visible');
-                console.log('背景图片淡出 - 离开首页');
-            }
-        }
-        
-        // 控制Creative Dimension背景图片和立方体动画
-        const creativeBg = document.querySelector('.creative-bg-image');
-        const cubeWrapper = document.querySelector('.cube-wrapper');
-        
-        if (creativeBg && cubeWrapper) {
-            if (index === 2) {
-                // 在Creative Dimension页面时，确保背景图片显示并重置动画
-                creativeBg.classList.remove('fade-out');
-                cubeWrapper.classList.remove('fade-out');
-                
-                // 重置背景动画
-                creativeBg.style.animation = 'none';
-                creativeBg.offsetHeight; // 触发重排
-                creativeBg.style.animation = 'bgFadeInAndColorShift 4s ease-in-out forwards';
-                
-                // 重置立方体动画
-                cubeWrapper.style.animation = 'none';
-                cubeWrapper.offsetHeight; // 触发重排
-                cubeWrapper.style.animation = 'creativeCubeRotate 4s ease-in-out forwards';
-                
-                // 4秒后开始循环动画
-                setTimeout(() => {
-                    cubeWrapper.style.animation = 'creativeCubeLoop 24s ease-in-out infinite';
-                }, 4000);
-                
-                console.log('Creative Dimension背景和立方体动画显示');
-            } else {
-                // 离开Creative Dimension页面时，添加淡出效果
-                creativeBg.classList.add('fade-out');
-                cubeWrapper.classList.add('fade-out');
-                console.log('Creative Dimension背景和立方体动画淡出');
+                console.log('背景图片已隐藏');
             }
         }
 
@@ -292,7 +240,6 @@ class FullPageScroll {
         const bgCanvas = document.getElementById('bgCanvas');
         const starsCanvas = document.getElementById('starsCanvas');
         const projectsCanvas = document.getElementById('projectsCanvas');
-        const experimentsCanvas = document.getElementById('experimentsCanvas');
         const contactCanvas = document.getElementById('contactCanvas');
         
         if (index === 0) {
@@ -316,24 +263,11 @@ class FullPageScroll {
             if (window.resetProjectsSlider) {
                 window.resetProjectsSlider();
             }
-        } else if (index === 2) {
-            // Creative Works页面：显示Creative Works星空背景
-            if (bgCanvas) bgCanvas.style.display = 'none';
-            if (starsCanvas) starsCanvas.style.display = 'none';
-            if (projectsCanvas) projectsCanvas.style.display = 'none';
-            if (experimentsCanvas) experimentsCanvas.style.display = 'block';
-            if (contactCanvas) contactCanvas.style.display = 'none';
-            
-            // 启动Creative Works粒子动画
-            if (window.creativeWorksParticles) {
-                window.creativeWorksParticles.start();
-            }
         } else if (index === 3) {
             // Contact页面：显示Contact星空背景
             if (bgCanvas) bgCanvas.style.display = 'none';
             if (starsCanvas) starsCanvas.style.display = 'none';
             if (projectsCanvas) projectsCanvas.style.display = 'none';
-            if (experimentsCanvas) experimentsCanvas.style.display = 'none';
             if (contactCanvas) contactCanvas.style.display = 'block';
             
             // 启动Contact粒子动画
@@ -345,14 +279,10 @@ class FullPageScroll {
             if (bgCanvas) bgCanvas.style.display = 'none';
             if (starsCanvas) starsCanvas.style.display = 'block';
             if (projectsCanvas) projectsCanvas.style.display = 'none';
-            if (experimentsCanvas) experimentsCanvas.style.display = 'none';
             if (contactCanvas) contactCanvas.style.display = 'none';
             
             if (window.projectsParticles) {
                 window.projectsParticles.stop();
-            }
-            if (window.creativeWorksParticles) {
-                window.creativeWorksParticles.stop();
             }
             if (window.contactParticles) {
                 window.contactParticles.stop();
