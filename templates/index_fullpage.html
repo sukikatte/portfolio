@@ -58,6 +58,7 @@
     
     <!-- 滚动提示（一直显示） -->
     <div class="scroll-hint">
+        <div class="cube-hint" id="cubeHint" style="display: none;">Click cube faces to explore creative works</div>
         <div class="scroll-text">Scroll to explore</div>
         <div class="scroll-arrow">↓</div>
     </div>
@@ -262,6 +263,47 @@
     <script>
         // Book-style Creative Dimension functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // 立方体提示文字控制 - 只在Creative Dimension页面显示
+            const cubeHint = document.getElementById('cubeHint');
+            const experimentsSection = document.getElementById('experiments');
+            
+            // 调试信息
+            console.log('Cube hint element:', cubeHint);
+            console.log('Experiments section:', experimentsSection);
+            
+            if (!cubeHint) {
+                console.error('Cube hint element not found!');
+                return;
+            }
+            
+            // 使用Intersection Observer检测Creative Dimension页面
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Creative Dimension页面可见
+                        cubeHint.style.display = 'block';
+                        cubeHint.style.opacity = '1';
+                        console.log('Showing cube hint - Creative Dimension visible');
+                    } else {
+                        // Creative Dimension页面不可见
+                        cubeHint.style.opacity = '0';
+                        setTimeout(() => {
+                            if (cubeHint.style.opacity === '0') {
+                                cubeHint.style.display = 'none';
+                            }
+                        }, 300);
+                        console.log('Hiding cube hint - Creative Dimension not visible');
+                    }
+                });
+            }, {
+                threshold: 0.5 // 当50%的页面可见时触发
+            });
+            
+            // 观察Creative Dimension页面
+            if (experimentsSection) {
+                observer.observe(experimentsSection);
+            }
+            
             // 确保背景动画正常播放
             const creativeBg = document.querySelector('.creative-bg-image');
             if (creativeBg) {

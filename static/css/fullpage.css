@@ -693,6 +693,16 @@ html, body {
     margin-bottom: 0.5rem;
 }
 
+.cube-hint {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    display: none;
+}
+
 .scroll-arrow {
     font-size: 1.5rem;
     color: rgba(255, 255, 255, 0.7);
@@ -7857,11 +7867,7 @@ letter-spacing: 2px;
     transition: opacity 2s ease-in-out;
 }
 
-/* 背景淡出效果 */
-.creative-bg-image.fade-out {
-    opacity: 0 !important;
-    animation: none !important;
-}
+/* 背景淡出效果 - 已删除 */
 
 /* 背景淡入和颜色变化组合动画 - 三段式 */
 @keyframes bgFadeInAndColorShift {
@@ -8302,12 +8308,7 @@ letter-spacing: 2px;
     }
 }
 
-/* 立方体淡出效果 */
-.cube-wrapper.fade-out {
-    opacity: 0 !important;
-    animation: none !important;
-    transition: opacity 2s ease-in-out;
-}
+/* 立方体淡出效果 - 已删除 */
 
 /* 衣架线样式 - 适应新宽度 */
 .clothesline {
