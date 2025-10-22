@@ -16,11 +16,11 @@
     --bg-secondary: #12121f;
     --bg-card: #1a1a2e;
     
-    /* 霓虹色 - 蓝/粉/薄荷绿 */
-    --neon-blue: #4CC9F0;
-    --neon-purple: #a78bfa;
-    --neon-pink: #F72585;
-    --neon-green: #06FFA5;
+    /* 霓虹色 - 蓝/白/薄荷绿 */
+    --neon-blue: #ffffff;
+    --neon-purple: #ffffff;
+    --neon-pink: #ffffff;
+    --neon-green: #ffffff;
     
     /* 文字颜色 */
     --text-primary: #e2e8f0;
@@ -1542,7 +1542,7 @@ html, body {
     color: #ffffff;
     margin-bottom: 1rem;
     letter-spacing: 0.1em;
-    text-shadow: 0 0 20px rgba(255, 182, 193, 0.3);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .event-subtitle {
@@ -1571,19 +1571,19 @@ html, body {
 
 .event-keywords .keyword {
     padding: 0.5rem 1rem;
-    background: rgba(255, 182, 193, 0.1);
-    border: 1px solid rgba(255, 182, 193, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
-    color: #FFB6C1;
+    color: #ffffff;
     font-size: 0.8rem;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
 .event-keywords .keyword:hover {
-    background: rgba(255, 182, 193, 0.2);
-    border-color: #FFB6C1;
-    box-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 .event-github {
@@ -1597,18 +1597,18 @@ html, body {
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     padding: 0.5rem 1rem;
-    border: 1px solid rgba(255, 182, 193, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
-    background: rgba(255, 182, 193, 0.05);
+    background: rgba(255, 255, 255, 0.05);
     transition: all 0.3s ease;
     font-size: 0.85rem;
     font-weight: 500;
 }
 
 .event-github .github-link:hover {
-    background: rgba(255, 182, 193, 0.1);
-    border-color: #FFB6C1;
-    box-shadow: 0 0 15px rgba(255, 182, 193, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
 /* UML Diagrams 区域 */
@@ -1644,7 +1644,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px dashed rgba(255, 182, 193, 0.3);
+    border: 2px dashed rgba(255, 255, 255, 0.3);
     border-radius: 15px;
     position: relative;
     transition: all 0.3s ease;
@@ -1653,8 +1653,8 @@ html, body {
 }
 
 .uml-placeholder:hover {
-    border-color: #FFB6C1;
-    box-shadow: 0 0 30px rgba(255, 182, 193, 0.2);
+    border-color: #ffffff;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
     transform: translateY(-5px);
 }
 
@@ -1701,13 +1701,13 @@ html, body {
     background: var(--bg-card);
     border-radius: 20px;
     padding: 2rem;
-    border: 1px solid rgba(255, 182, 193, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.4s ease;
 }
 
 .arch-placeholder:hover {
-    border-color: #FFB6C1;
-    box-shadow: 0 20px 60px rgba(255, 182, 193, 0.2);
+    border-color: #ffffff;
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.2);
     transform: translateY(-5px);
 }
 
@@ -1739,8 +1739,8 @@ html, body {
 
 .layer {
     padding: 0.8rem 1.2rem;
-    background: rgba(255, 182, 193, 0.1);
-    border: 1px solid rgba(255, 182, 193, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     color: rgba(255, 255, 255, 0.8);
     font-size: 0.9rem;
@@ -1780,7 +1780,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px dashed rgba(255, 182, 193, 0.3);
+    border: 2px dashed rgba(255, 255, 255, 0.3);
     border-radius: 12px;
     position: relative;
     transition: all 0.3s ease;
@@ -1788,8 +1788,8 @@ html, body {
 }
 
 .screen-placeholder:hover {
-    border-color: #FFB6C1;
-    box-shadow: 0 0 25px rgba(255, 182, 193, 0.2);
+    border-color: #ffffff;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
     transform: translateY(-5px);
 }
 
@@ -1837,7 +1837,7 @@ html, body {
 .event-section .section-number {
     font-size: 1.2rem;
     font-weight: 700;
-    color: #FFB6C1;
+    color: #ffffff;
     min-width: 3rem;
     text-align: right;
     padding-top: 0.2rem;
@@ -1848,7 +1848,7 @@ html, body {
     font-weight: 700;
     color: #ffffff;
     margin-bottom: 1.5rem;
-    border-bottom: 2px solid rgba(255, 182, 193, 0.3);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
     padding-bottom: 0.5rem;
 }
 
@@ -1873,8 +1873,8 @@ html, body {
 
 .feature-item {
     padding: 1.5rem;
-    background: rgba(255, 182, 193, 0.05);
-    border: 1px solid rgba(255, 182, 193, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     transition: all 0.3s ease;
     position: relative;
@@ -1887,14 +1887,14 @@ html, body {
     left: 0;
     width: 4px;
     height: 100%;
-    background: #FFB6C1;
+    background: #ffffff;
     border-radius: 2px 0 0 2px;
 }
 
 .feature-item:hover {
-    background: rgba(255, 182, 193, 0.1);
-    border-color: #FFB6C1;
-    box-shadow: 0 0 20px rgba(255, 182, 193, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .feature-item h4 {
@@ -1920,8 +1920,8 @@ html, body {
 
 .challenge-item {
     padding: 1.5rem;
-    background: rgba(255, 182, 193, 0.05);
-    border: 1px solid rgba(255, 182, 193, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     transition: all 0.3s ease;
     position: relative;
@@ -1934,14 +1934,14 @@ html, body {
     left: 0;
     width: 4px;
     height: 100%;
-    background: #FFB6C1;
+    background: #ffffff;
     border-radius: 2px 0 0 2px;
 }
 
 .challenge-item:hover {
-    background: rgba(255, 182, 193, 0.1);
-    border-color: #FFB6C1;
-    box-shadow: 0 0 20px rgba(255, 182, 193, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .challenge-item h3 {
@@ -1963,14 +1963,14 @@ html, body {
     display: flex;
     gap: 1rem;
     padding: 1rem;
-    background: rgba(255, 182, 193, 0.05);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
-    border-left: 4px solid #FFB6C1;
+    border-left: 4px solid #ffffff;
 }
 
 .tech-label {
     min-width: 140px;
-    color: #FFB6C1;
+    color: #ffffff;
     font-weight: 600;
     font-size: 0.9rem;
 }
@@ -1991,17 +1991,17 @@ html, body {
 
 .principle-item {
     padding: 1.5rem;
-    background: rgba(255, 182, 193, 0.05);
-    border: 1px solid rgba(255, 182, 193, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     transition: all 0.3s ease;
     text-align: center;
 }
 
 .principle-item:hover {
-    background: rgba(255, 182, 193, 0.1);
-    border-color: #FFB6C1;
-    box-shadow: 0 0 20px rgba(255, 182, 193, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .principle-item h3 {
@@ -2021,16 +2021,16 @@ html, body {
 
 .ux-item {
     padding: 1.5rem;
-    background: rgba(255, 182, 193, 0.05);
-    border: 1px solid rgba(255, 182, 193, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     transition: all 0.3s ease;
 }
 
 .ux-item:hover {
-    background: rgba(255, 182, 193, 0.1);
-    border-color: #FFB6C1;
-    box-shadow: 0 0 20px rgba(255, 182, 193, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .ux-item h4 {
@@ -2050,8 +2050,8 @@ html, body {
 
 .impact-item {
     padding: 1rem;
-    background: rgba(255, 182, 193, 0.05);
-    border-left: 4px solid #FFB6C1;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #ffffff;
     border-radius: 0 8px 8px 0;
     color: rgba(255, 255, 255, 0.9);
     font-size: 0.95rem;
@@ -2059,8 +2059,8 @@ html, body {
 }
 
 .reflection-text {
-    background: rgba(255, 182, 193, 0.05);
-    border: 1px solid rgba(255, 182, 193, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -2081,8 +2081,8 @@ html, body {
 
 .learning-item {
     padding: 1rem;
-    background: rgba(255, 182, 193, 0.05);
-    border-left: 4px solid #FFB6C1;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #ffffff;
     border-radius: 0 8px 8px 0;
     color: rgba(255, 255, 255, 0.9);
     font-size: 0.95rem;
@@ -2095,13 +2095,13 @@ html, body {
 }
 
 .achievement-text {
-    color: #FFB6C1;
+    color: #ffffff;
     font-size: 1.1rem;
     font-weight: 600;
     padding: 1rem 2rem;
-    background: rgba(255, 182, 193, 0.1);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    border: 1px solid rgba(255, 182, 193, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     display: inline-block;
 }
 
@@ -2167,7 +2167,7 @@ html, body {
     color: #ffffff;
     margin-bottom: 1rem;
     letter-spacing: 0.1em;
-    text-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .songs-subtitle {
@@ -2206,19 +2206,19 @@ html, body {
 
 .keyword {
     padding: 0.5rem 1rem;
-    background: rgba(255, 107, 107, 0.1);
-    border: 1px solid rgba(255, 107, 107, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
-    color: #FF6B6B;
+    color: #ffffff;
     font-size: 0.8rem;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
 .keyword:hover {
-    background: rgba(255, 107, 107, 0.2);
-    border-color: #FF6B6B;
-    box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 /* 演示视频区域 */
@@ -2251,14 +2251,14 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px dashed rgba(255, 107, 107, 0.3);
+    border: 2px dashed rgba(255, 255, 255, 0.3);
     position: relative;
     transition: all 0.3s ease;
 }
 
 .video-placeholder:hover {
-    border-color: #FF6B6B;
-    box-shadow: 0 0 30px rgba(255, 107, 107, 0.2);
+    border-color: #ffffff;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
 }
 
 .video-icon {
@@ -2292,7 +2292,7 @@ html, body {
     background: var(--bg-card);
     border-radius: 20px;
     padding: 2rem;
-    border: 1px solid rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
@@ -2313,7 +2313,7 @@ html, body {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #FF6B6B, #FF8E8E);
+    background: linear-gradient(90deg, #ffffff, #ffffff);
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
@@ -2323,15 +2323,15 @@ html, body {
 }
 
 .songs-card:hover {
-    border-color: #FF6B6B;
-    box-shadow: 0 20px 60px rgba(255, 107, 107, 0.2);
+    border-color: #ffffff;
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.2);
     transform: translateY(-10px);
 }
 
 .card-number {
     font-size: 1rem;
     font-weight: 700;
-    color: #FF6B6B;
+    color: #ffffff;
     margin-bottom: 1rem;
     opacity: 0.8;
 }
@@ -2359,8 +2359,8 @@ html, body {
 
 .highlight-item {
     padding: 0.8rem 1rem;
-    background: rgba(255, 107, 107, 0.05);
-    border-left: 3px solid #FF6B6B;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid #ffffff;
     border-radius: 0 8px 8px 0;
     color: rgba(255, 255, 255, 0.9);
     font-size: 0.9rem;
@@ -2369,8 +2369,8 @@ html, body {
 }
 
 .highlight-item:hover {
-    background: rgba(255, 107, 107, 0.1);
-    border-left-color: #FF8E8E;
+    background: rgba(255, 255, 255, 0.1);
+    border-left-color: #ffffff;
 }
 
 /* 响应式设计 */
@@ -5487,7 +5487,7 @@ letter-spacing: 2px;
 .dwen-subtitle {
     font-size: 2rem;
     color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     font-weight: 300;
     letter-spacing: 1px;
     font-family: 'Cormorant Garamond', serif;
@@ -5497,6 +5497,7 @@ letter-spacing: 2px;
     justify-content: center;
     gap: 1rem;
 }
+
 
 .subtitle-decorator {
     color: rgba(255, 255, 255, 0.4);
@@ -5510,11 +5511,12 @@ letter-spacing: 2px;
     display: flex;
     align-items: baseline;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
     margin-bottom: 2rem;
     margin-top: -0.5rem;
     flex-wrap: nowrap;
     max-width: 100%;
+    width: 100%;
 }
 
 .meta-date {
@@ -5544,7 +5546,7 @@ letter-spacing: 2px;
     line-height: 1;
 }
 
-.tech-stack {
+.dwen-meta-info .tech-stack {
     display: inline-flex;
     align-items: center;
     font-size: 1rem;
@@ -5579,6 +5581,40 @@ letter-spacing: 2px;
 }
 
 .dwen-meta-info .github-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Dwen GitHub 链接样式 */
+.dwen-github {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.dwen-github .github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.95);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.dwen-github .github-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+    color: #ffffff;
+}
+
+.dwen-github .github-link svg {
     width: 20px;
     height: 20px;
 }
@@ -6053,7 +6089,7 @@ letter-spacing: 2px;
 }
 
 .modal-close:hover {
-    color: #667eea;
+    color: #ffffff;
     transform: rotate(90deg);
 }
 
@@ -6550,12 +6586,13 @@ letter-spacing: 2px;
     
     .dwen-meta-info {
         flex-wrap: nowrap;
-        gap: 1.2rem;
+        gap: 0.8rem;
         margin-bottom: 2rem;
         margin-top: -0.3rem;
         overflow-x: auto;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: baseline;
+        width: 100%;
     }
     
     .meta-date {
@@ -6571,7 +6608,7 @@ letter-spacing: 2px;
         margin: 0 0.4rem;
     }
     
-    .tech-stack {
+    .dwen-meta-info .tech-stack {
         display: inline-flex;
         align-items: center;
         font-size: 0.9rem;
@@ -6583,6 +6620,16 @@ letter-spacing: 2px;
     }
     
     .dwen-meta-info .github-link svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .dwen-github .github-link {
+        font-size: 0.9rem;
+        padding: 0.15rem 0.4rem;
+    }
+    
+    .dwen-github .github-link svg {
         width: 18px;
         height: 18px;
     }
@@ -9592,6 +9639,247 @@ letter-spacing: 2px;
     
     .gallery-overlay p {
         font-size: 0.9rem;
+    }
+}
+
+/* ============================================
+   OOD Development Process Styles
+   ============================================ */
+.ood-process-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.ood-stage {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.ood-stage:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.ood-stage h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.5rem;
+}
+
+.stage-screenshot {
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.stage-screenshot img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.stage-screenshot img:hover {
+    transform: scale(1.02);
+}
+
+.ood-stage p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* OOD Process 响应式设计 */
+@media (max-width: 768px) {
+    .ood-process-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .ood-stage {
+        padding: 1rem;
+    }
+    
+    .ood-stage h3 {
+        font-size: 1.1rem;
+    }
+}
+
+/* ============================================
+   Event Management 整合后的紧凑布局优化
+   ============================================ */
+.dwen-section {
+    margin-bottom: 1.5rem;
+    margin-top: -1rem;
+}
+
+.dwen-section .section-content {
+    margin-bottom: 0.5rem;
+    margin-top: -0.5rem;
+}
+
+.key-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.tech-stack {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.principles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.ux-highlights {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.ood-process-container {
+    margin-top: 1rem;
+}
+
+.impact-highlights {
+    margin-bottom: 1rem;
+}
+
+.reflection-text {
+    margin-bottom: 1rem;
+}
+
+/* 架构层级单行样式 */
+.architecture-single-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    margin: 1.5rem 0;
+}
+
+.layer-tag {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+/* 项目成果样式 */
+.project-outcomes-box {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+}
+
+.project-outcomes-box p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.project-outcomes-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* 设计模式样式 */
+.design-patterns {
+    margin-top: 2rem;
+}
+
+.design-patterns h3 {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    font-weight: 500;
+}
+
+.patterns-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.pattern-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.pattern-item h4 {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.pattern-item p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    .key-features,
+    .tech-stack,
+    .principles-grid,
+    .ux-highlights {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    
+    .architecture-single-line {
+        gap: 0.6rem;
+    }
+    
+    .layer-tag {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .patterns-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    
+    .dwen-section {
+        margin-bottom: 1.2rem;
+        margin-top: -0.8rem;
     }
 }
 

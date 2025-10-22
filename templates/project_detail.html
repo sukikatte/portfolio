@@ -180,274 +180,462 @@
                 </div>
                 {% elif project.id == 'event' %}
                 <!-- Event Management 项目详情页面 -->
-                <div class="event-layout">
+                <div class="dwen-layout">
                     <!-- 标题区 -->
-                    <div class="event-hero">
-                        <h1 class="event-title">EVENT MANAGEMENT</h1>
-                        <p class="event-subtitle">Enterprise-Grade Event Management System</p>
-                        
-                        <div class="event-meta">
-                            <span class="meta-item">8-Person Team Project</span>
-                            <span class="meta-divider">·</span>
-                            <span class="meta-item">Spring Boot 3.3.6</span>
-                            <span class="meta-divider">·</span>
-                            <span class="meta-item">70+ UML Diagrams</span>
-                        </div>
-                        
-                        <div class="event-keywords">
-                            <span class="keyword">Spring Boot</span>
-                            <span class="keyword">Spring Security</span>
-                            <span class="keyword">JPA + MySQL</span>
-                            <span class="keyword">Thymeleaf</span>
-                            <span class="keyword">Docker</span>
-                        </div>
-                        
-                        <div class="event-github">
-                            <a href="{{ project.github }}" target="_blank" class="github-link">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                <span>GitHub Repository</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- UML Diagrams 区域 -->
-                    <div class="event-uml-section">
-                        <h2 class="section-title">UML Design Diagrams</h2>
-                        <div class="uml-grid">
-                            <div class="uml-item">
-                            <div class="uml-placeholder">
-                                <div class="uml-icon">📊</div>
-                                <h3>Class Diagram</h3>
-                                <p>30+ Java entities with JPA relationships: User, Event, Registration, Role, Notification</p>
-                            </div>
-                        </div>
-                        <div class="uml-item">
-                            <div class="uml-placeholder">
-                                <div class="uml-icon">👥</div>
-                                <h3>Use Case Diagram</h3>
-                                <p>19 detailed use cases with 4 actor roles: Admin, Organizer, Participant, Guest</p>
-                            </div>
-                        </div>
-                        <div class="uml-item">
-                            <div class="uml-placeholder">
-                                <div class="uml-icon">🔄</div>
-                                <h3>Sequence Diagram</h3>
-                                <p>Authentication flows, event registration, and notification delivery workflows</p>
-                            </div>
-                        </div>
-                        <div class="uml-item">
-                            <div class="uml-placeholder">
-                                <div class="uml-icon">📋</div>
-                                <h3>Component Diagram</h3>
-                                <p>Spring Boot layered architecture: Controller → Service → Repository → Database</p>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- System Architecture 区域 -->
-                    <div class="event-arch-section">
-                        <h2 class="section-title">System Architecture</h2>
-                        <div class="arch-diagram">
-                            <div class="arch-placeholder">
-                                <div class="arch-icon">🏗️</div>
-                                <h3>Spring Boot Layered Architecture</h3>
-                                <p>Thymeleaf Templates → Spring MVC Controllers → Service Layer → JPA Repositories → MySQL Database</p>
-                                <div class="arch-layers">
-                                    <div class="layer">Presentation Layer (Thymeleaf + HTML5/CSS3)</div>
-                                    <div class="layer">Controller Layer (Spring MVC + Security)</div>
-                                    <div class="layer">Service Layer (Business Logic)</div>
-                                    <div class="layer">Repository Layer (JPA + MySQL)</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Interface Screenshots 区域 -->
-                    <div class="event-screens-section">
-                        <h2 class="section-title">Interface Screenshots</h2>
-                        <div class="screens-grid">
-                            <div class="screen-item">
-                                <div class="screen-placeholder">
-                                    <div class="screen-icon">🔐</div>
-                                    <p>Authentication System</p>
-                                    <span class="screen-desc">Spring Security login with role-based access</span>
-                                </div>
-                            </div>
-                            <div class="screen-item">
-                                <div class="screen-placeholder">
-                                    <div class="screen-icon">📊</div>
-                                    <p>Admin Dashboard</p>
-                                    <span class="screen-desc">Event management and user administration interface</span>
-                                </div>
-                            </div>
+                    <div class="dwen-hero">
+                        <h1 class="dwen-title" data-text="EVENT MANAGEMENT">EVENT MANAGEMENT</h1>
+                        <p class="dwen-subtitle">
+                            <span class="subtitle-decorator">◆</span>
+                            Enterprise-Grade Event Management System
+                            <span class="subtitle-decorator">◆</span>
+                        </p>
+                        <div class="dwen-meta-info">
+                            <span class="meta-date">Sept. 2024 - Jan. 2025</span>
+                            <span class="meta-divider-thick">|</span>
+                            <span class="tech-stack">Spring Boot, MySQL, Docker, Maven</span>
                         </div>
                     </div>
 
                     <!-- 内容区块 -->
-                    <div class="event-sections">
+                    <div class="dwen-sections">
                         <!-- 01 Project Overview -->
-                        <section class="event-section" data-number="01">
+                        <section class="dwen-section" data-number="01">
                             <div class="section-number">01</div>
                             <h2 class="section-title">Project Overview</h2>
                             <div class="section-content">
-                                <p>A comprehensive enterprise-grade event management system built with Spring Boot, featuring multi-role authentication, complete CRUD operations, and extensive UML documentation. This 8-person team project demonstrates full-stack development capabilities with modern Java technologies.</p>
-                                <div class="key-features">
-                                    <div class="feature-item">
-                                        <h4>Multi-Role Authentication</h4>
-                                        <p>Spring Security implementation with Admin, Organizer, Participant, and Guest roles</p>
-                                    </div>
-                                    <div class="feature-item">
-                                        <h4>Event Lifecycle Management</h4>
-                                        <p>Complete CRUD operations for events with registration and notification systems</p>
-                                    </div>
-                                    <div class="feature-item">
-                                        <h4>Database Design</h4>
-                                        <p>30+ JPA entities with MySQL database and comprehensive relationship mapping</p>
-                                    </div>
-                                    <div class="feature-item">
-                                        <h4>UML Documentation</h4>
-                                        <p>70+ UML diagrams including class, use case, sequence, and component diagrams</p>
-                                    </div>
-                                </div>
+                                <div class="project-overview-box">
+                                    <p>A comprehensive enterprise-grade event management system built with Spring Boot, featuring multi-role authentication, complete CRUD operations, and extensive UML documentation.</p>
+                        </div>
                             </div>
                         </section>
 
-                        <!-- 02 Problem Context -->
-                        <section class="event-section" data-number="02">
+                        <!-- 02 Technical Implementation & OOD Process -->
+                        <section class="dwen-section" data-number="02">
                             <div class="section-number">02</div>
-                            <h2 class="section-title">Problem & Context</h2>
+                            <h2 class="section-title">Technical Implementation & OOD Process</h2>
                             <div class="section-content">
-                                <p>Traditional event management systems lack comprehensive role-based access control, scalable architecture, and detailed documentation. Organizations need a robust platform that supports multiple user types with different permissions while maintaining security and providing clear system documentation.</p>
-                                <div class="challenge-grid">
-                                    <div class="challenge-item">
-                                        <h3>Multi-role access control with different permission levels</h3>
-                                    </div>
-                                    <div class="challenge-item">
-                                        <h3>Scalable architecture supporting enterprise-level operations</h3>
-                                    </div>
-                                    <div class="challenge-item">
-                                        <h3>Comprehensive system documentation for maintainability</h3>
-                                    </div>
-                                    <div class="challenge-item">
-                                        <h3>Team coordination in large-scale development project</h3>
-                                    </div>
-                                </div>
+                                <div class="project-overview-box">
+                                    <p>Built using Spring Boot 3.3.6 with enterprise-grade features demonstrating complete Object-Oriented Design methodology from UML modeling to Spring Boot implementation.</p>
+                        </div>
+                        
+                                <div class="ood-process-container">
+                                    <div class="ood-stage">
+                                        <h3>01. Prototype</h3>
+                                        <div class="stage-screenshot">
+                                            <img src="{{ url_for('static', filename='media/eventmanagement/prototype.png') }}" alt="Prototype Phase Screenshot" onclick="openImageModal(this.src)" style="cursor: pointer;">
+                        </div>
+                                        <p>Initial wireframes and mockups defining UI layout and functionality flow.</p>
+                    </div>
+
+                                    <div class="ood-stage">
+                                        <h3>02. UML Design</h3>
+                                        <div class="stage-screenshot">
+                                            <img src="{{ url_for('static', filename='media/eventmanagement/uml_design.png') }}" alt="UML Design Phase Screenshot" onclick="openImageModal(this.src)" style="cursor: pointer;">
                             </div>
+                                        <p>Comprehensive UML documentation including class diagrams, use cases, and sequence diagrams.</p>
+                        </div>
+                                    
+                                    <div class="ood-stage">
+                                        <h3>03. Implementation</h3>
+                                        <div class="stage-screenshot">
+                                            <img src="{{ url_for('static', filename='media/eventmanagement/implementation.png') }}" alt="Implementation Phase Screenshot" onclick="openImageModal(this.src)" style="cursor: pointer;">
+                            </div>
+                                        <p>Final Spring Boot application with complete functionality and database integration.</p>
+                        </div>
+                            </div>
+                        </div>
                         </section>
 
-                        <!-- 03 Technical Implementation -->
-                        <section class="event-section" data-number="03">
+                        <!-- 03 System Architecture -->
+                        <section class="dwen-section" data-number="03">
                             <div class="section-number">03</div>
-                            <h2 class="section-title">Technical Implementation</h2>
+                            <h2 class="section-title">System Architecture</h2>
                             <div class="section-content">
-                                <p>Built using Spring Boot 3.3.6 with a layered architecture pattern, implementing Spring Security for authentication, JPA for database operations, and Thymeleaf for templating. The system features 30+ Java classes, comprehensive database relationships, and Docker containerization for deployment.</p>
-                                <div class="tech-stack">
-                                    <div class="tech-item">
-                                        <div class="tech-label">Backend Framework</div>
-                                        <div class="tech-value">Spring Boot 3.3.6 + Spring Security + JPA</div>
-                                    </div>
-                                    <div class="tech-item">
-                                        <div class="tech-label">Database</div>
-                                        <div class="tech-value">MySQL with 30+ JPA entities and relationship mapping</div>
-                                    </div>
-                                    <div class="tech-item">
-                                        <div class="tech-label">Frontend</div>
-                                        <div class="tech-value">Thymeleaf + HTML5/CSS3 + JavaScript</div>
-                                    </div>
-                                    <div class="tech-item">
-                                        <div class="tech-label">Deployment</div>
-                                        <div class="tech-value">Docker + Docker Compose for containerization</div>
-                                    </div>
-                                    <div class="tech-item">
-                                        <div class="tech-label">Documentation</div>
-                                        <div class="tech-value">70+ UML diagrams using PlantUML</div>
-                                    </div>
-                                    <div class="tech-item">
-                                        <div class="tech-label">Build Tool</div>
-                                        <div class="tech-value">Maven + Lombok for code generation</div>
-                                    </div>
-                                </div>
+                                <div class="project-overview-box">
+                                    <p>Implemented enterprise-grade 3-tier architecture following SOLID principles with comprehensive design patterns and security measures.</p>
                             </div>
+                                
+                                <div class="architecture-single-line">
+                                    <span class="layer-tag">Presentation Layer</span>
+                                    <span class="layer-tag">Business Logic Layer</span>
+                                    <span class="layer-tag">Data Access Layer</span>
+                                    <span class="layer-tag">Security Layer</span>
+                                    <span class="layer-tag">Database Layer</span>
+                            </div>
+                                
+                                <div class="design-patterns">
+                                    <h3>Key Design Patterns</h3>
+                                    <div class="patterns-grid">
+                                        <div class="pattern-item">
+                                            <h4>Abstract Inheritance</h4>
+                                            <p>Account → Administrator/Organiser/User</p>
+                        </div>
+                                        <div class="pattern-item">
+                                            <h4>Service Layer Pattern</h4>
+                                            <p>Business logic encapsulation</p>
+                    </div>
+                                        <div class="pattern-item">
+                                            <h4>Repository Pattern</h4>
+                                            <p>Data access abstraction</p>
+                                </div>
+                                        <div class="pattern-item">
+                                            <h4>DTO Pattern</h4>
+                                            <p>Data transfer and validation</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
                         </section>
 
-                        <!-- 04 Design Principles -->
-                        <section class="event-section" data-number="04">
+                        <!-- 04 Project Outcomes -->
+                        <section class="dwen-section" data-number="04">
                             <div class="section-number">04</div>
-                            <h2 class="section-title">Design Principles</h2>
+                            <h2 class="section-title">Project Outcomes</h2>
                             <div class="section-content">
-                                <p>Following software engineering best practices, the system implements layered architecture, separation of concerns, and comprehensive documentation. The design emphasizes scalability, maintainability, and security through proper abstraction and modular design patterns.</p>
-                                <div class="principles-grid">
-                                    <div class="principle-item">
-                                        <h3>Layered Architecture Pattern</h3>
-                                    </div>
-                                    <div class="principle-item">
-                                        <h3>Separation of Concerns</h3>
-                                    </div>
-                                    <div class="principle-item">
-                                        <h3>Role-Based Access Control</h3>
-                                    </div>
-                                    <div class="principle-item">
-                                        <h3>Comprehensive Documentation</h3>
-                                    </div>
-                                    <div class="principle-item">
-                                        <h3>Scalable Database Design</h3>
-                                    </div>
-                                    <div class="principle-item">
-                                        <h3>Security-First Approach</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- 05 User Experience -->
-                        <section class="event-section" data-number="05">
-                            <div class="section-number">05</div>
-                            <h2 class="section-title">User Experience Design</h2>
-                            <div class="section-content">
-                                <p>The system provides an intuitive interface for different user roles with role-specific dashboards and functionality. Admin users have comprehensive management capabilities, while participants enjoy streamlined registration and event interaction features.</p>
-                                <div class="ux-highlights">
-                                    <div class="ux-item">
-                                        <h4>Role-based Dashboard Interfaces</h4>
-                                    </div>
-                                    <div class="ux-item">
-                                        <h4>Responsive Design for Multiple Devices</h4>
-                                    </div>
-                                    <div class="ux-item">
-                                        <h4>Intuitive Event Registration Flow</h4>
-                                    </div>
-                                    <div class="ux-item">
-                                        <h4>Real-time Notifications and Updates</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- 06 Impact & Reflection -->
-                        <section class="event-section" data-number="06">
-                            <div class="section-number">06</div>
-                            <h2 class="section-title">Impact & Reflection</h2>
-                            <div class="section-content">
-                                <div class="impact-highlights">
-                                    <div class="impact-item">Successfully implemented enterprise-grade authentication and authorization system</div>
-                                    <div class="impact-item">Created comprehensive documentation with 70+ UML diagrams</div>
-                                    <div class="impact-item">Demonstrated large-scale team collaboration and project management</div>
-                                    <div class="impact-item">Applied modern Java technologies and Spring ecosystem</div>
-                                </div>
-                                <div class="reflection-text">
+                                <div class="project-outcomes-box">
                                     <p>This project was instrumental in developing my understanding of enterprise software development, team collaboration, and system design. Working with Spring Boot, Spring Security, and JPA provided hands-on experience with modern Java frameworks. The extensive UML documentation process taught me the importance of thorough system design and documentation in large-scale projects.</p>
                                 </div>
-                                <div class="learnings-list">
-                                    <div class="learning-item">Mastered Spring Boot ecosystem and enterprise Java development</div>
-                                    <div class="learning-item">Gained experience in multi-role authentication and security implementation</div>
-                                    <div class="learning-item">Learned large-scale team coordination and project management</div>
-                                    <div class="learning-item">Developed skills in comprehensive system documentation and UML modeling</div>
-                                    <div class="learning-item">Applied containerization and DevOps practices with Docker</div>
+                                
+                                <div class="function-container">
+                                    <h3 class="container-title">Source Code</h3>
+                                    <div class="doc-content">
+                                        <p>View the project source code and implementation details on GitHub (excluding sensitive configuration files).</p>
+                                        <a href="https://github.com/sukikatte/event_management" class="download-link github-link" target="_blank" rel="noopener noreferrer">
+                                            View on GitHub
+                                        </a>
+                            </div>
                                 </div>
-                                <div class="achievement-badge">
-                                    <span class="achievement-text">Course Design Excellence Award</span>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                {% elif project.id == 'mahjong' %}
+                <!-- Mahjong Game System 特殊布局 -->
+                <div class="dwen-layout">
+                    <!-- 标题区 -->
+                    <div class="dwen-hero">
+                        <h1 class="dwen-title" data-text="MAHJONG GAME SYSTEM">MAHJONG GAME SYSTEM</h1>
+                        <p class="dwen-subtitle">
+                            <span class="subtitle-decorator">◆</span>
+                            Cross-Platform Desktop Mahjong Application
+                            <span class="subtitle-decorator">◆</span>
+                        </p>
+                        <div class="dwen-meta-info">
+                            <span class="meta-date">Feb. 2024 - June 2024</span>
+                            <span class="meta-divider-thick">|</span>
+                            <span class="tech-stack">Java 17 · JavaFX 21 · Maven · JUnit/TestNG</span>
+                        </div>
+                    </div>
+
+                    <!-- 内容区块 -->
+                    <div class="dwen-sections">
+                        <!-- PROJECT OVERVIEW -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Project Overview</h2>
+                            <div class="section-content">
+                                <div class="function-container problem-statement-container">
+                                    <p>Developed as a comprehensive desktop application, Mahjong Game System is a fully-featured cross-platform game that implements traditional Chinese Mahjong rules with modern GUI design. The project demonstrates advanced object-oriented programming principles through MVC architecture, featuring intelligent AI opponents, sophisticated game algorithms, and real-time interactive gameplay. Built with Java 17 and JavaFX 21, it supports Windows, macOS, and Linux platforms, showcasing complete software engineering lifecycle from design to deployment.</p>
+                                    </div>
+                                    </div>
+                        </section>
+
+                        <!-- DEMO VIDEO -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Demo Video</h2>
+                            <div class="section-content">
+                                <div class="function-container">
+                                    <p style="margin-bottom: 1rem; color: #fff;">This is the demonstration video of this game.</p>
+                                    <video controls class="container-video" id="mahjongDemoVideo">
+                                        <source src="{{ url_for('static', filename='media/mahjong/mahjong.mp4') }}" type="video/mp4">
+                                        Mahjong Game Demo
+                                    </video>
+                                    </div>
+                            </div>
+                        </section>
+
+                        <!-- CORE FEATURES -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Core Features</h2>
+                            <div class="section-content">
+                                <div class="features-grid">
+                                    <!-- Game Modes -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Game Modes</h3>
+                                        <div class="feature-content">
+                                            <p><strong>Single Player Mode:</strong> Human player (SOUTH) vs 3 AI opponents (WEST, EAST, NORTH)</p>
+                                            <p><strong>Real-time Turn Management:</strong> Dice-based dealer determination and turn rotation system</p>
+                                            <p><strong>Complete Game Flow:</strong> From login interface to game settlement with leaderboard</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Mahjong Rules Engine -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Mahjong Rules Engine</h3>
+                                        <div class="feature-content">
+                                            <p><strong>Core Operations:</strong> Chi (吃), Peng (碰), Gang (杠) with interactive dialog prompts</p>
+                                            <p><strong>Winning Detection:</strong> Sophisticated algorithm supporting multiple winning patterns</p>
+                                            <p><strong>Special Patterns:</strong> Dui Dui Hu, Qing Yi Se (清一色), Yi Tiao Long, Hao Hua Seven Pairs</p>
+                                            <p><strong>Wild Card System:</strong> HunEr (混儿) implementation with dynamic substitution logic</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Visual Interface -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Visual Interface</h3>
+                                        <div class="feature-content">
+                                            <p><strong>Four-Directional Rendering:</strong> East/South/West/North perspectives with rotated tile images</p>
+                                            <p><strong>Interactive Tile Management:</strong> Mouse-click tile selection with visual feedback</p>
+                                            <p><strong>Real-time UI Updates:</strong> Dynamic refresh of player hands, discarded tiles, and game state</p>
+                                            <p><strong>Resource Management:</strong> 150+ PNG image assets for complete tile visualization</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- TECHNICAL IMPLEMENTATION -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Technical Implementation</h2>
+                            <div class="section-content">
+                                <div class="features-grid">
+                                    <!-- Game Logic Architecture -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Game Logic Architecture</h3>
+                                        <div class="feature-content">
+                                            <p><strong>MVC Pattern:</strong> Clear separation between Game (Controller), Player/Item (Model), GameInterface (View)</p>
+                                            <p><strong>Object-Oriented Design:</strong> 21 Java classes with inheritance hierarchy (Item → WindPlate/WordPlate)</p>
+                                            <p><strong>State Management:</strong> Table class managing discarded tiles, waiting tiles, and game state</p>
+                                    </div>
+                                    </div>
+
+                                    <!-- Advanced Algorithms -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Advanced Algorithms</h3>
+                                        <div class="feature-content">
+                                            <p><strong>Winning Detection:</strong> DetermineHu class with Jiang (将) extraction and pattern matching</p>
+                                            <p><strong>Wild Card Logic:</strong> DetermineHunErWin with comprehensive substitution testing</p>
+                                            <p><strong>Pattern Recognition:</strong> DetermineWinType supporting 5+ special winning combinations</p>
+                                            <p><strong>Scoring System:</strong> Dynamic point calculation with time and accuracy factors</p>
+                                    </div>
+                                    </div>
+
+                                    <!-- UI & Interaction Design -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">UI & Interaction Design</h3>
+                                        <div class="feature-content">
+                                            <p><strong>JavaFX Framework:</strong> Event-driven interaction with mouse click handlers</p>
+                                            <p><strong>Responsive Layout:</strong> BorderPane with dynamic player area positioning</p>
+                                            <p><strong>Visual Effects:</strong> Drop shadow effects for newly drawn tiles</p>
+                                            <p><strong>Cross-platform Compatibility:</strong> Shell scripts for Windows/macOS/Linux deployment</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- PROJECT OUTCOMES -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Project Outcomes</h2>
+                            <div class="section-content">
+                                <div class="project-outcomes-box">
+                                    <p>This project demonstrates comprehensive desktop application development, encompassing full-stack Java programming from core algorithms to modern GUI implementation. It combines traditional game logic with contemporary software engineering practices, including object-oriented design, design patterns, and cross-platform deployment. Through this development process, I gained hands-on experience in complex algorithm implementation, real-time UI management, and software architecture design.</p>
+                                    </div>
+                                
+                                <div class="function-container">
+                                    <h3 class="container-title">Source Code</h3>
+                                    <div class="doc-content">
+                                        <p>View the complete project implementation and technical details on GitHub.</p>
+                                        <a href="https://github.com/sukikatte/mahjong" class="download-link github-link" target="_blank" rel="noopener noreferrer">
+                                            View on GitHub
+                                        </a>
+                                    </div>
+                                    </div>
+                                    </div>
+                        </section>
+                                    </div>
+                                    </div>
+
+                {% elif project.id == 'parrot' %}
+                <!-- Parrot Ordering 特殊布局 -->
+                <div class="dwen-layout">
+                    <!-- 标题区 -->
+                    <div class="dwen-hero">
+                        <h1 class="dwen-title" data-text="PARROT ORDERING">PARROT ORDERING</h1>
+                        <p class="dwen-subtitle">
+                            <span class="subtitle-decorator">◆</span>
+                            Online Campus Food Ordering Platform
+                            <span class="subtitle-decorator">◆</span>
+                        </p>
+                        <div class="dwen-meta-info">
+                            <span class="meta-date">Sept. 2024 - Feb. 2025</span>
+                            <span class="meta-divider-thick">|</span>
+                            <span class="tech-stack">Flask · Python · SQLAlchemy · JavaScript · HTML/CSS · Bootstrap · SQLite</span>
+                        </div>
+                    </div>
+
+                    <!-- 内容区块 -->
+                    <div class="dwen-sections">
+                        <!-- PROJECT OVERVIEW -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Project Overview</h2>
+                            <div class="section-content">
+                                <div class="function-container problem-statement-container">
+                                    <p>Developed as a comprehensive web application for campus food ordering, Parrot Ordering is a full-stack platform that integrates multi-user role-based access control with complete ordering business workflows. The project explores modern web development by combining user authentication, real-time menu management, intelligent shopping cart systems, and social features within a responsive web environment. It was developed using Flask, SQLAlchemy, JavaScript, and Bootstrap, demonstrating full-stack web development capabilities with database design, API development, and user interface implementation.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- DEMO VIDEO -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Demo Video</h2>
+                            <div class="section-content">
+                                <div class="function-container">
+                                    <p style="margin-bottom: 1rem; color: #fff;">This is the demonstration video of the Parrot Ordering platform.</p>
+                                    <video controls class="container-video" id="parrotDemoVideo">
+                                        <source src="{{ url_for('static', filename='media/parrot/demo_video.mp4') }}" type="video/mp4">
+                                        Parrot Ordering Demo
+                                    </video>
+                                    </div>
+                                    </div>
+                        </section>
+
+                        <!-- CORE FEATURES -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Core Features</h2>
+                            <div class="section-content">
+                                <div class="features-grid">
+                                    <!-- Multi-User System -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Multi-User System</h3>
+                                        <div class="feature-content">
+                                            <p><strong>Role-Based Access Control:</strong> Three distinct user roles (Customer, Cook, Administrator) with specific permissions and functionalities</p>
+                                            <p><strong>Secure Authentication:</strong> User registration, login, and session management with password encryption using Werkzeug</p>
+                                            <p><strong>Profile Management:</strong> User profiles with avatar upload, personal information editing, and account management</p>
+                                    </div>
+                                    </div>
+
+                                    <!-- Menu Management -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Menu Management</h3>
+                                        <div class="feature-content">
+                                            <p><strong>Daily Menu Publishing:</strong> Cooks can publish daily menus with available dishes and quantities</p>
+                                            <p><strong>Real-time Inventory:</strong> Dynamic inventory tracking with automatic updates when orders are placed</p>
+                                            <p><strong>Category Management:</strong> Organized dish categories (Desserts, Fast Food, Beverages, Hot Dishes, Vegetarian)</p>
+                                            <p><strong>Dish Management:</strong> Complete CRUD operations for dishes with image upload and detailed descriptions</p>
+                                    </div>
+                                    </div>
+
+                                    <!-- Ordering System -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Ordering System</h3>
+                                        <div class="feature-content">
+                                            <p><strong>Smart Shopping Cart:</strong> Add, update, and remove items with quantity validation</p>
+                                            <p><strong>Order Processing:</strong> Complete order workflow from cart to submission with inventory updates</p>
+                                            <p><strong>Order History:</strong> Comprehensive order tracking and history for customers</p>
+                                            <p><strong>Real-time Updates:</strong> Dynamic menu availability and inventory management</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Social Features -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Social Features</h3>
+                                        <div class="feature-content">
+                                            <p><strong>Friend System:</strong> Add friends, send friend requests, and manage friendships</p>
+                                            <p><strong>Messaging System:</strong> Real-time messaging between customers with conversation history</p>
+                                            <p><strong>Review System:</strong> Customer reviews for dishes with chef reply functionality</p>
+                                            <p><strong>User Discovery:</strong> Search and find other users in the platform</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Administrative Features -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Administrative Features</h3>
+                                        <div class="feature-content">
+                                            <p><strong>User Management:</strong> Comprehensive user account management with ban/unban functionality</p>
+                                            <p><strong>Menu Oversight:</strong> Admin control over all menu items and categories</p>
+                                            <p><strong>System Monitoring:</strong> User activity tracking and system administration tools</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- TECHNICAL IMPLEMENTATION -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Technical Implementation</h2>
+                            <div class="section-content">
+                                <div class="features-grid">
+                                    <!-- Backend Architecture -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Backend Architecture</h3>
+                                        <div class="feature-content">
+                                            <p><strong>Flask Framework:</strong> RESTful API development with route handling and business logic</p>
+                                            <p><strong>SQLAlchemy ORM:</strong> Database modeling and relationship management with SQLite</p>
+                                            <p><strong>Werkzeug Security:</strong> Secure password hashing and file upload handling</p>
+                                            <p><strong>Session Management:</strong> User authentication and state management</p>
+                                    </div>
+                                    </div>
+
+                                    <!-- Frontend Development -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Frontend Development</h3>
+                                        <div class="feature-content">
+                                            <p><strong>JavaScript:</strong> Dynamic content loading and AJAX asynchronous communication</p>
+                                            <p><strong>HTML/CSS:</strong> Responsive web design with Bootstrap framework</p>
+                                            <p><strong>Interactive UI:</strong> Real-time updates, form validation, and user interactions</p>
+                                            <p><strong>Responsive Design:</strong> Cross-platform compatibility for desktop and mobile devices</p>
+                                    </div>
+                                    </div>
+
+                                    <!-- Database Design -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">Database Design</h3>
+                                        <div class="feature-content">
+                                            <p><strong>Relational Database:</strong> Comprehensive data modeling with foreign key relationships</p>
+                                            <p><strong>Data Integrity:</strong> Transaction management and database consistency</p>
+                                            <p><strong>Optimized Queries:</strong> Efficient data retrieval and manipulation</p>
+                                            <p><strong>Migration Support:</strong> Database version control and schema updates</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- File Management -->
+                                    <div class="feature-card">
+                                        <h3 class="feature-title">File Management</h3>
+                                        <div class="feature-content">
+                                            <p><strong>Image Upload:</strong> Avatar and dish image upload with secure file handling</p>
+                                            <p><strong>Static Assets:</strong> Organized static file management for images and stylesheets</p>
+                                            <p><strong>File Validation:</strong> Type checking and size validation for uploaded files</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- PROJECT OUTCOMES -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Project Outcomes</h2>
+                            <div class="section-content">
+                                <div class="function-container doc-container">
+                                    <h3 class="container-title">Design Documentation</h3>
+                                    <p>Comprehensive design documentation including system architecture, database schema, API specifications, and user interface mockups. The documentation covers the complete development process from requirements analysis to final implementation.</p>
+                                    <a href="{{ url_for('static', filename='media/parrotordering/design_doc.pdf') }}" class="download-link" download>
+                                        Download Design Documentation
+                                    </a>
+                                </div>
+                                
+                                <div class="project-outcomes-box">
+                                    <p>This project encompasses the full stack of web application development—from database design and backend API development to frontend interface design and user experience optimization. It combines secure user authentication, efficient business logic, and responsive design to deliver a comprehensive and user-friendly ordering platform. Through this development process, the team gained hands-on experience in system architecture, database design, API development, and modern web technologies.</p>
+                                </div>
+                                
+                                <div class="function-container">
+                                    <h3 class="container-title">Source Code</h3>
+                                    <div class="doc-content">
+                                        <p>View the complete project implementation and technical details on GitHub.</p>
+                                        <a href="https://github.com/sukikatte/parrot_ordering" class="download-link github-link" target="_blank" rel="noopener noreferrer">
+                                            View on GitHub
+                                        </a>
+                                </div>
                                 </div>
                             </div>
                         </section>
@@ -470,8 +658,8 @@
                             <span class="meta-divider-thick">|</span>
                             <span class="tech-stack">Android Studio · Java · Firebase · MediaPlayer API</span>
                         </div>
-                    </div>
-
+                        </div>
+                        
                     <!-- 内容区块 -->
                     <div class="dwen-sections">
                         <!-- PROBLEM STATEMENT -->
@@ -481,13 +669,13 @@
                                 <!-- Problem Statement 子容器 -->
                                 <div class="function-container problem-statement-container">
                                     <p>Developed as a learning output of Mobile Computing, Guess Songs is a lightweight Android app that integrates a music guessing game with a built-in player. The project explores interactive mobile entertainment by combining audio playback, real-time feedback, and user-driven gameplay. It was developed using Java, Firebase, and the Android SDK, demonstrating full-stack mobile development capability. It supports both single-player and multiplayer modes, enabling users to compete, discover songs, and enjoy an engaging social experience within a compact mobile environment.</p>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
                         </section>
 
                         <!-- DEMO VIDEO -->
                         <section class="dwen-section">
-                            <h2 class="section-title">Demo Video</h2>
+                        <h2 class="section-title">Demo Video</h2>
                             <div class="section-content">
                                 <div class="function-container">
                                     <p style="margin-bottom: 1rem; color: #fff;">This is the demonstration video I recorded for the Mobile Computing Project final version.</p>
@@ -510,15 +698,15 @@
                                         <div class="modes-grid">
                                             <div class="mode-card">
                                                 <p><strong>Classic Mode:</strong> Single-player 10-question challenge with scoring based on speed and accuracy.</p>
-                                            </div>
+                                    </div>
                                             <div class="mode-card">
                                                 <p><strong>Endless Mode:</strong> 3-minute challenge. This leaderboard records each player's highest score and ranks all players.</p>
-                                            </div>
+                                    </div>
                                             <div class="mode-card">
                                                 <p><strong>Competitive Mode:</strong> Real-time multiplayer battles (3 players are needed) in a game room with live score tracking.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                    </div>
 
                                     <!-- Music Library -->
                                     <div class="feature-card">
@@ -526,16 +714,16 @@
                                         <div class="feature-content">
                                             <p>Browse, search, and manage songs.</p>
                                             <p>Support for user-uploaded tracks integrated into the game database.</p>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
 
                                     <!-- Room Management -->
                                     <div class="feature-card">
                                         <h3 class="feature-title">Room Management</h3>
                                         <div class="feature-content">
                                             <p>Create and join game rooms with real-time status and score updates.</p>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
                                 </div>
                             </div>
                         </section>
@@ -550,8 +738,8 @@
                                         <h3 class="feature-title">Audio Playback System</h3>
                                         <div class="feature-content">
                                             <p>Built using Android MediaPlayer API with asynchronous network streaming, error handling, and custom playback controls.</p>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
 
                                     <!-- Firebase Integration -->
                                     <div class="feature-card">
@@ -559,24 +747,24 @@
                                         <div class="feature-content">
                                             <p><strong>Realtime Database:</strong> Manages song metadata, user progress, and real-time updates.</p>
                                             <p><strong>Authentication:</strong> Handles user registration, login, and session management securely.</p>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
 
                                     <!-- Intelligent Scoring System -->
                                     <div class="feature-card">
                                         <h3 class="feature-title">Intelligent Scoring System</h3>
                                         <div class="feature-content">
                                             <p>Java backend processes game states and player scores with time- and accuracy-based dynamic algorithms.</p>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
 
                                     <!-- UI & Navigation Design -->
                                     <div class="feature-card">
                                         <h3 class="feature-title">UI & Navigation Design</h3>
                                         <div class="feature-content">
                                             <p>Implemented with Material Design principles, gradient visual style, and smooth activity transitions for consistent user experience.</p>
-                                        </div>
-                                    </div>
+                    </div>
+                </div>
                                 </div>
                             </div>
                         </section>
@@ -592,7 +780,7 @@
                                     <a href="{{ url_for('static', filename='media/guesssong/ProjectStatement.pdf') }}" class="download-link" download>
                                         Download Project Statement
                                     </a>
-                                </div>
+                                    </div>
 
                                 <!-- Documentation 子容器 2 - Development Process -->
                                 <div class="function-container doc-container">
@@ -601,8 +789,8 @@
                                     <a href="{{ url_for('static', filename='media/guesssong/guess_songs.pptx') }}" class="download-link" download>
                                         Download Development Process PPT
                                     </a>
-                                </div>
-                            </div>
+                                    </div>
+                                    </div>
                         </section>
 
                         <!-- PROJECT OUTCOMES -->
@@ -615,7 +803,7 @@
                                     <div class="doc-content">
                                         <p>This project was independently designed and developed, encompassing the full stack of Android application development—from frontend interface design to backend integration. It combines intuitive UI, efficient gameplay logic, and Firebase-based data management to deliver a seamless and interactive user experience. Through this process, I gained hands-on experience in system architecture, real-time synchronization, and mobile software optimization.</p>
                                     </div>
-                                </div>
+                                    </div>
 
                                 <!-- GitHub Link -->
                                 <div class="function-container">
@@ -635,7 +823,7 @@
                     <div id="imageModal" class="image-modal">
                         <span class="modal-close">&times;</span>
                         <img class="modal-content" id="modalImage">
-                    </div>
+                                    </div>
 
                     <!-- 设置视频默认音量 -->
                     <script>
@@ -701,7 +889,7 @@
                             <span class="subtitle-decorator">◆</span>
                         </p>
                         <div class="dwen-meta-info">
-                            <span class="meta-date">Feb. 2025 - June. 2025</span>
+                            <span class="meta-date">Feb. 2025 - Jun. 2025</span>
                             <span class="meta-divider-thick">|</span>
                             <span class="tech-stack">Python · Flask · Firebase · Web Crawler · ECharts · Layered SVG</span>
                         </div>
@@ -709,7 +897,7 @@
 
                     <!-- 内容区块 -->
                     <div class="dwen-sections">
-                        <!-- PROBLEM STATEMENT -->
+                                <!-- PROBLEM STATEMENT -->
                         <section class="dwen-section">
                             <h2 class="section-title">Problem Statement</h2>
                             <div class="section-content">
@@ -719,10 +907,10 @@
                                         <!-- 左侧视频区域 - 占6.5 -->
                                         <div class="container-left">
                                             <video controls class="container-video" id="problemStatementVideo">
-                                                <source src="{{ url_for('static', filename='media/dwendwen/videos/bg/bg.mp4') }}" type="video/mp4">
-                                                Problem Statement Overview
-                                            </video>
-                                        </div>
+                                        <source src="{{ url_for('static', filename='media/dwendwen/videos/bg/bg.mp4') }}" type="video/mp4">
+                                        Problem Statement Overview
+                                    </video>
+                                </div>
                                         <!-- 右侧文字区域 - 占3.5 -->
                                         <div class="container-right">
                                             <p>Our customer, <em>Chinese Animal Guardians</em>, required a comprehensive solution for wildlife conservation education.</p>
@@ -751,10 +939,10 @@
                                             <p><em>Firebase Firestore</em> provides real-time data synchronization and scalable cloud storage for user profiles and authentication.</p>
                                             <div class="tech-image">
                                                 <img src="{{ url_for('static', filename='media/dwendwen/videos/index-account/img.png') }}" alt="Firebase Database Technology" onclick="openImageModal(this.src)" style="cursor: pointer;">
-                                            </div>
-                                        </div>
                                     </div>
+                                        </div>
                                 </div>
+                            </div>
 
                                 <!-- Function Implementation 子容器 2 -->
                                 <div class="function-container">
@@ -770,10 +958,10 @@
                                             <p>Using open-source <em>SVG maps</em> as prototypes for interactive wildlife data visualization.</p>
                                             <div class="tech-image">
                                                 <img src="{{ url_for('static', filename='media/dwendwen/videos/encyclopedia/img.jpg') }}" alt="SVG Maps Technology" onclick="openImageModal(this.src)" style="cursor: pointer;">
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
+                                        </div>
+                    </div>
+                </div>
 
                                 <!-- Function Implementation 子容器 3 -->
                                 <div class="function-container">
@@ -789,11 +977,11 @@
                                             <p>Page content is crawled from <em>Wikipedia</em> (English version) for comprehensive wildlife information.</p>
                                             <div class="tech-image">
                                                 <img src="{{ url_for('static', filename='media/dwendwen/videos/games/img.png') }}" alt="Web Scraping Technology" onclick="openImageModal(this.src)" style="cursor: pointer;">
-                                            </div>
+                                    </div>
                                         </div>
                                     </div>
-                                </div>
-
+                        </div>
+                        
                                 <!-- Function Implementation 子容器 4 -->
                                 <div class="function-container">
                                     <h3 class="container-title">04. My Red Panda</h3>
@@ -808,10 +996,10 @@
                                             <p>Using <em>Sketch</em> to draw layered SVG for achieving Live2D effects with dynamic animations.</p>
                                             <div class="tech-image">
                                                 <img src="{{ url_for('static', filename='media/dwendwen/videos/virtual-panda/sketch.jpg') }}" alt="Layered SVG Technology" onclick="openImageModal(this.src)" style="cursor: pointer;">
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
+                                        </div>
+                        </div>
+                    </div>
 
                                 <!-- Function Implementation 子容器 5 -->
                                 <div class="function-container">
@@ -826,9 +1014,9 @@
                                         <div class="container-right">
                                             <p><strong>Community and Friends System</strong><br>Community layout design inspired by Xiaohongshu web interface for enhanced user engagement.</p>
                                             <p><em>Firebase Realtime Database</em> enables instant messaging and social interactions with real-time synchronization across all connected users.</p>
-                                        </div>
                                     </div>
-                                </div>
+                                        </div>
+                    </div>
 
                                 <!-- Function Implementation 子容器 6 -->
                                 <div class="function-container">
@@ -839,7 +1027,7 @@
                                                 <source src="{{ url_for('static', filename='media/dwendwen/videos/donation/donation_demo.mp4') }}" type="video/mp4">
                                                 Donation Demo
                                             </video>
-                                        </div>
+                            </div>
                                         <div class="container-right">
                                             <p><strong>Donation Section</strong><br>Integrated reward system with Firebase backend processes donation transactions and automatically distributes tiered gifts based on contribution amounts.</p>
                                             <p><strong>Profile Section</strong><br>Dynamic content aggregation combines Firebase data streams with responsive web design for personalized user experience and real-time updates.</p>
@@ -860,7 +1048,7 @@
                                     <a href="{{ url_for('static', filename='documents/system.pdf') }}" class="download-link" download>
                                         Download System Documentation
                                     </a>
-                                </div>
+                    </div>
 
                                 <!-- Documentation 子容器 2 - User Documentation -->
                                 <div class="function-container doc-container">
@@ -869,7 +1057,7 @@
                                     <a href="{{ url_for('static', filename='documents/user.pdf') }}" class="download-link" download>
                                         Download User Documentation
                                     </a>
-                                </div>
+                        </div>
                             </div>
                         </section>
 
@@ -882,16 +1070,16 @@
                                     <h3 class="container-title">Competition Achievement</h3>
                                     <div class="doc-content">
                                         <p><strong>Third Prize</strong> - Beijing University of Technology Innovation and Entrepreneurship Competition</p>
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
 
                                 <!-- Personal Contribution -->
                                 <div class="function-container">
                                     <h3 class="container-title">Personal Contribution</h3>
                                     <div class="doc-content">
                                         <p>As team leader, implemented full-stack development including frontend design, backend architecture, database integration, and deployment. Led data visualization and interactive features using Python Flask framework.</p>
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
 
                                 <!-- GitHub Link -->
                                 <div class="function-container">
@@ -901,11 +1089,11 @@
                                         <a href="https://github.com/sukikatte/dwen_dwens_neighbour" class="download-link github-link" target="_blank" rel="noopener noreferrer">
                                             View on GitHub
                                         </a>
-                                    </div>
-                                </div>
                             </div>
-                        </section>
+                        </div>
                     </div>
+                        </section>
+                </div>
 
                     <!-- 图片放大模态框 -->
                     <div id="imageModal" class="image-modal">
@@ -1014,7 +1202,7 @@
                                             <p>Comprehensive database of 180+ medicinal herbs with bilingual descriptions, visual identification, and detailed properties</p>
                                         </div>
                                         <div class="core-function-video">
-                                            <div class="video-placeholder">
+                                    <div class="video-placeholder">
                                                 <p>📚 Herb Encyclopedia Demo</p>
                                             </div>
                                         </div>
@@ -1104,11 +1292,11 @@
                                     <div class="architecture-item">
                                         <h3>AI Integration</h3>
                                         <p>OpenAI API and Coze platform integration for intelligent consultation with safety protocols and response filtering.</p>
-                                    </div>
+                        </div>
                                     <div class="architecture-item">
                                         <h3>Data Management</h3>
                                         <p>440+ database records (180 herbs + 260 prescriptions) across 50+ RESTful API endpoints with comprehensive logging.</p>
-                                    </div>
+                        </div>
                                 </div>
                             </div>
                         </section>
@@ -1123,21 +1311,21 @@
                                         <div class="achievement-content">
                                             <h3>Third Prize</h3>
                                             <p>"Gongda Cup" Innovation and Entrepreneurship Competition at Beijing University of Technology</p>
-                                        </div>
+                                    </div>
                                     </div>
                                     <div class="achievement-item">
                                         <span class="achievement-icon">🌐</span>
                                         <div class="achievement-content">
                                             <h3>Bilingual Support</h3>
                                             <p>Complete Chinese/English localization making TCM knowledge accessible globally</p>
-                                        </div>
+                                    </div>
                                     </div>
                                     <div class="achievement-item">
                                         <span class="achievement-icon">🎯</span>
                                         <div class="achievement-content">
                                             <h3>Educational Impact</h3>
                                             <p>Gamified learning system with adaptive difficulty and performance tracking</p>
-                                        </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -1173,15 +1361,15 @@
                                         <div class="container-left">
                                             <p>This was my first complete project, aiming to implement a fully functional mahjong game using Python. The focus was on algorithm design: scoring calculation, winning detection, AI opponents, and other core logic.</p>
                                             <p>The main challenges included complex rule systems and state management, with the learning goal of mastering algorithm design, data structures, and game logic.</p>
-                                        </div>
+                                    </div>
                                         <div class="container-right">
                                             <div class="tech-image">
-                                                <div class="video-placeholder">
+                                    <div class="video-placeholder">
                                                     <p>🀄 Mahjong Demo</p>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
+                                    </div>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
                         </section>
@@ -1196,7 +1384,7 @@
                                         <div class="achievement-content">
                                             <h3>Turning Point</h3>
                                             <p>After completion, teacher feedback: "Functionally complete, but lacks user thinking." This became my turning point.</p>
-                                        </div>
+                                    </div>
                                     </div>
                                     <div class="achievement-item">
                                         <span class="achievement-icon">🎯</span>
@@ -1246,14 +1434,14 @@
                                         <div class="container-left">
                                             <p>Restaurant ordering systems need to coordinate multiple roles (customers, chefs, administrators). Traditional systems have complex processes and lack transparency.</p>
                                             <p>A comprehensive system is needed where each role can efficiently complete tasks while maintaining a smooth experience.</p>
-                                        </div>
+                                    </div>
                                         <div class="container-right">
                                             <div class="tech-image">
                                                 <div class="video-placeholder">
                                                     <p>🦜 Parrot Demo</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -1268,19 +1456,19 @@
                                         <div class="core-function-content">
                                             <h3>Customer Interface</h3>
                                             <p>Browse menu → Quick ordering → Track status</p>
-                                        </div>
+                                    </div>
                                     </div>
                                     <div class="core-function-item">
                                         <div class="core-function-content">
                                             <h3>Chef Interface</h3>
                                             <p>Receive orders → Mark progress → Completion notification</p>
-                                        </div>
+                                    </div>
                                     </div>
                                     <div class="core-function-item">
                                         <div class="core-function-content">
                                             <h3>Admin Interface</h3>
                                             <p>Statistics → Menu management → User management</p>
-                                        </div>
+                                </div>
                                     </div>
                                 </div>
                             </div>
@@ -1353,3 +1541,4 @@
     </script>
 </body>
 </html>
+
