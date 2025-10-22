@@ -1,4 +1,4 @@
-# 🚀 IDT Portfolio - Zitong Wang
+# 🚀 Portfolio - Zitong Wang
 
 > **"Integrating technology and human experience: A portfolio of innovative, user-centered systems bridging functionality with creativity."**
 

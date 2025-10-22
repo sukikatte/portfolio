@@ -76,9 +76,9 @@
                             <div class="section-number">01</div>
                             <h2 class="section-title">Project Overview</h2>
                             <div class="section-content">
-                                <p>FrankenStory explores the intersection of AI-generated storytelling and visual narrative composition.</p>
-                                <p>The system builds stories by recombining reusable comic elements — text, panels, and visual cues — stored in a structured ComiXML repository. The project investigates how large language models (LLMs) can guide narrative synthesis while maintaining coherence, integration, and thematic consistency across panels.</p>
-                                <p class="highlight">The ultimate goal is to design an automated creative system capable of generating complete, visually grounded stories that feel intentional rather than fragmented.</p>
+                                <div class="project-overview-box">
+                                    <p>FrankenStory explores AI-driven storytelling through the recombination of reusable comic elements — text, panels, and visual cues — stored in a structured ComiXML repository. The project investigates how large language models (LLMs) can synthesize coherent, visually grounded narratives across sequential panels, aiming to create automated stories that feel intentional rather than fragmented.</p>
+                                </div>
                             </div>
                         </section>
 
@@ -87,19 +87,16 @@
                             <div class="section-number">02</div>
                             <h2 class="section-title">Background & Motivation</h2>
                             <div class="section-content">
-                                <p>Traditional AI storytelling models often produce fluent sentences but lack continuity and visual logic when applied to comics or sequential art.</p>
-                                <p>Using ComiXML, a data structure developed by our supervisor, this project aims to bridge that gap by experimenting with two main generation methods:</p>
-                                <div class="generation-methods">
-                                    <div class="method-highlight">
-                                        <h4>Direct XML-driven generation</h4>
-                                        <p>Prompting the model to synthesize stories from structured comic metadata.</p>
+                                <div class="function-container">
+                                    <h3 class="container-title">Background & Motivation</h3>
+                                    <div class="doc-content">
+                                        <p>Traditional AI storytelling lacks visual and narrative continuity.</p>
+                                        <p>This project leverages ComiXML, developed by the supervisor, to compare two generation methods:</p>
+                                        <p><strong>XML-driven generation:</strong> Synthesizing stories directly from structured comic metadata.</p>
+                                        <p><strong>Dialogue-based co-creation:</strong> Iteratively refining stories through conversational prompting.</p>
+                                        <p>The comparison examines which method better preserves story cohesion and character consistency.</p>
                                     </div>
-                                    <div class="method-highlight">
-                                        <h4>Dialogue-based refinement</h4>
-                                        <p>Iteratively co-creating stories via conversational prompts that clarify context and structure before composition.</p>
                                     </div>
-                                </div>
-                                <p>This comparison helps identify which approach better supports narrative cohesion and character consistency.</p>
                             </div>
                         </section>
 
@@ -108,22 +105,16 @@
                             <div class="section-number">03</div>
                             <h2 class="section-title">Research Focus</h2>
                             <div class="section-content">
-                                <p>The study centers on three major challenges observed in current ComiXML outputs:</p>
-                                <div class="challenge-grid">
-                                    <div class="challenge-item">
-                                        <h3>Hallucination</h3>
-                                        <p>Inaccurate or irrelevant panel generation beyond source context.</p>
+                                <div class="function-container">
+                                    <h3 class="container-title">Research Focus</h3>
+                                    <div class="doc-content">
+                                        <p>The research targets three major issues in multimodal generation:</p>
+                                        <p><strong>Hallucination:</strong> Inaccurate or irrelevant panel creation.</p>
+                                        <p><strong>Cohesion:</strong> Weak narrative or emotional flow.</p>
+                                        <p><strong>Integration:</strong> Misalignment between text, visuals, and themes.</p>
+                                        <p>It proposes new metrics for evaluating coherence, linkage, and creative fidelity.</p>
                                     </div>
-                                    <div class="challenge-item">
-                                        <h3>Cohesion</h3>
-                                        <p>Lack of logical or emotional flow between sequential panels.</p>
                                     </div>
-                                    <div class="challenge-item">
-                                        <h3>Integration</h3>
-                                        <p>Weak alignment between text, image cues, and underlying theme.</p>
-                                    </div>
-                                </div>
-                                <p>Through systematic evaluation and qualitative analysis, the project will propose new metrics for assessing story coherence, panel linkage, and creative fidelity in multimodal generation.</p>
                             </div>
                         </section>
 
@@ -132,25 +123,15 @@
                             <div class="section-number">04</div>
                             <h2 class="section-title">Methodology & Implementation</h2>
                             <div class="section-content">
-                                <div class="methodology-list">
-                                    <div class="method-item">
-                                        <span class="method-label">Framework</span>
-                                        <span class="method-value">Python-based LLM interface + ComiXML repository</span>
+                                <div class="function-container">
+                                    <h3 class="container-title">Methodology</h3>
+                                    <div class="doc-content">
+                                        <p><strong>Framework:</strong> Python-based LLM interface + ComiXML dataset</p>
+                                        <p><strong>Pipeline:</strong> Story concept → Panel retrieval → Scene synthesis → XML rendering</p>
+                                        <p><strong>Evaluation:</strong> Human preference tests and narrative consistency metrics</p>
+                                        <p>The current stage focuses on implementing both pipelines, refining prompts, and assessing generation quality.</p>
                                     </div>
-                                    <div class="method-item">
-                                        <span class="method-label">Data</span>
-                                        <span class="method-value">Curated visual-textual assets from existing comics</span>
                                     </div>
-                                    <div class="method-item">
-                                        <span class="method-label">Evaluation</span>
-                                        <span class="method-value">Human preference testing + narrative consistency metrics</span>
-                                    </div>
-                                    <div class="method-item">
-                                        <span class="method-label">Pipeline</span>
-                                        <span class="method-value">Story concept → Panel retrieval → Scene synthesis → XML rendering</span>
-                                    </div>
-                                </div>
-                                <p>The current stage involves implementing and comparing both generation pipelines, refining prompt design, and testing output quality through user evaluations.</p>
                             </div>
                         </section>
 
@@ -159,12 +140,14 @@
                             <div class="section-number">05</div>
                             <h2 class="section-title">Expected Outcome</h2>
                             <div class="section-content">
-                                <p>FrankenStory aims to produce:</p>
-                                <ul class="outcome-list">
-                                    <li>A functional AI-assisted storytelling engine combining structured XML logic and generative creativity.</li>
-                                    <li>An evaluation framework for narrative coherence in multimodal generation.</li>
-                                    <li>A curated dataset of sample stories demonstrating different synthesis strategies.</li>
-                                </ul>
+                                <div class="function-container">
+                                    <h3 class="container-title">Expected Outcomes</h3>
+                                    <div class="doc-content">
+                                        <p><strong>AI-assisted storytelling engine</strong> combining XML logic with LLM creativity</p>
+                                        <p><strong>Evaluation framework</strong> for narrative coherence</p>
+                                        <p><strong>Dataset of generated stories</strong> illustrating different synthesis strategies</p>
+                                    </div>
+                                </div>
                             </div>
                         </section>
 
@@ -173,7 +156,9 @@
                             <div class="section-number">06</div>
                             <h2 class="section-title">Reflection</h2>
                             <div class="section-content">
-                                <p class="reflection-text">This project deepens my understanding of computational creativity, AI narrative control, and the balance between structured representation and open-ended generation. It also strengthens my interdisciplinary thinking—bridging software engineering, language modeling, and digital storytelling design.</p>
+                                <div class="project-outcomes-box">
+                                    <p>This project enhances my understanding of computational creativity and AI narrative control, deepening my ability to connect software engineering, language modeling, and digital storytelling within a unified creative framework.</p>
+                                </div>
                             </div>
                         </section>
                     </div>
@@ -222,7 +207,7 @@
                                     <div class="ood-stage">
                                         <h3>01. Prototype</h3>
                                         <div class="stage-screenshot">
-                                            <img src="{{ url_for('static', filename='media/eventmanagement/prototype.png') }}" alt="Prototype Phase Screenshot" onclick="openImageModal(this.src)" style="cursor: pointer;">
+                                            <img src="{{ url_for('static', filename='media/event/-1.jpg') }}" alt="Prototype Phase Screenshot" onclick="openImageModal(this.src)" style="cursor: pointer;">
                         </div>
                                         <p>Initial wireframes and mockups defining UI layout and functionality flow.</p>
                     </div>
@@ -230,7 +215,7 @@
                                     <div class="ood-stage">
                                         <h3>02. UML Design</h3>
                                         <div class="stage-screenshot">
-                                            <img src="{{ url_for('static', filename='media/eventmanagement/uml_design.png') }}" alt="UML Design Phase Screenshot" onclick="openImageModal(this.src)" style="cursor: pointer;">
+                                            <img src="{{ url_for('static', filename='media/event/-2.jpg') }}" alt="UML Design Phase Screenshot" onclick="openImageModal(this.src)" style="cursor: pointer;">
                             </div>
                                         <p>Comprehensive UML documentation including class diagrams, use cases, and sequence diagrams.</p>
                         </div>
@@ -238,7 +223,7 @@
                                     <div class="ood-stage">
                                         <h3>03. Implementation</h3>
                                         <div class="stage-screenshot">
-                                            <img src="{{ url_for('static', filename='media/eventmanagement/implementation.png') }}" alt="Implementation Phase Screenshot" onclick="openImageModal(this.src)" style="cursor: pointer;">
+                                            <img src="{{ url_for('static', filename='media/event/-3.jpg') }}" alt="Implementation Phase Screenshot" onclick="openImageModal(this.src)" style="cursor: pointer;">
                             </div>
                                         <p>Final Spring Boot application with complete functionality and database integration.</p>
                         </div>
@@ -292,8 +277,42 @@
                             <div class="section-number">04</div>
                             <h2 class="section-title">Project Outcomes</h2>
                             <div class="section-content">
+                                <!-- Project Reflection -->
                                 <div class="project-outcomes-box">
                                     <p>This project was instrumental in developing my understanding of enterprise software development, team collaboration, and system design. Working with Spring Boot, Spring Security, and JPA provided hands-on experience with modern Java frameworks. The extensive UML documentation process taught me the importance of thorough system design and documentation in large-scale projects.</p>
+                                </div>
+
+                                <!-- Documentation -->
+                                <div class="function-container doc-container">
+                                    <h3 class="container-title">01. Requirements Analysis</h3>
+                                    <p>Comprehensive requirements analysis documentation including stakeholder identification, functional requirements, non-functional requirements, and use case specifications with detailed UML diagrams.</p>
+                                    <a href="{{ url_for('static', filename='media/event/1-pd.pdf') }}" class="download-link" download>
+                                        Download Requirements Analysis Documentation
+                                    </a>
+                            </div>
+
+                                <div class="function-container doc-container">
+                                    <h3 class="container-title">02. System Analysis</h3>
+                                    <p>Detailed system analysis documentation covering domain modeling, entity relationship diagrams, and comprehensive UML analysis diagrams for the Event Management System.</p>
+                                    <a href="{{ url_for('static', filename='media/event/2-analysis.pdf') }}" class="download-link" download>
+                                        Download System Analysis Documentation
+                                    </a>
+                        </div>
+
+                                <div class="function-container doc-container">
+                                    <h3 class="container-title">03. System Design</h3>
+                                    <p>Complete system design documentation including architectural patterns, class diagrams, sequence diagrams, and detailed UML design specifications.</p>
+                                    <a href="{{ url_for('static', filename='media/event/3-design.pdf') }}" class="download-link" download>
+                                        Download System Design Documentation
+                                    </a>
+                    </div>
+
+                                <div class="function-container doc-container">
+                                    <h3 class="container-title">04. Implementation</h3>
+                                    <p>Implementation documentation covering Spring Boot architecture, database integration, security implementation, and comprehensive UML implementation diagrams.</p>
+                                    <a href="{{ url_for('static', filename='media/event/4-implementation.pdf') }}" class="download-link" download>
+                                        Download Implementation Documentation
+                                    </a>
                                 </div>
                                 
                                 <div class="function-container">
@@ -334,8 +353,8 @@
                         <section class="dwen-section">
                             <h2 class="section-title">Project Overview</h2>
                             <div class="section-content">
-                                <div class="function-container problem-statement-container">
-                                    <p>Developed as a comprehensive desktop application, Mahjong Game System is a fully-featured cross-platform game that implements traditional Chinese Mahjong rules with modern GUI design. The project demonstrates advanced object-oriented programming principles through MVC architecture, featuring intelligent AI opponents, sophisticated game algorithms, and real-time interactive gameplay. Built with Java 17 and JavaFX 21, it supports Windows, macOS, and Linux platforms, showcasing complete software engineering lifecycle from design to deployment.</p>
+                                <div class="project-overview-box">
+                                    <p>Mahjong Game System is a cross-platform desktop application that implements traditional Chinese Mahjong with a modern GUI. Developed with Java 17 and JavaFX 21, it showcases advanced OOP design through MVC architecture, intelligent AI opponents, and real-time interactive gameplay. The project supports Windows, macOS, and Linux, covering the full software lifecycle from design to deployment.</p>
                                     </div>
                                     </div>
                         </section>
@@ -345,7 +364,7 @@
                             <h2 class="section-title">Demo Video</h2>
                             <div class="section-content">
                                 <div class="function-container">
-                                    <p style="margin-bottom: 1rem; color: #fff;">This is the demonstration video of this game.</p>
+                                    <p style="margin-bottom: 1rem; color: #fff;">Demonstration video of the final version.</p>
                                     <video controls class="container-video" id="mahjongDemoVideo">
                                         <source src="{{ url_for('static', filename='media/mahjong/mahjong.mp4') }}" type="video/mp4">
                                         Mahjong Game Demo
@@ -358,37 +377,31 @@
                         <section class="dwen-section">
                             <h2 class="section-title">Core Features</h2>
                             <div class="section-content">
-                                <div class="features-grid">
-                                    <!-- Game Modes -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Game Modes</h3>
-                                        <div class="feature-content">
-                                            <p><strong>Single Player Mode:</strong> Human player (SOUTH) vs 3 AI opponents (WEST, EAST, NORTH)</p>
-                                            <p><strong>Real-time Turn Management:</strong> Dice-based dealer determination and turn rotation system</p>
-                                            <p><strong>Complete Game Flow:</strong> From login interface to game settlement with leaderboard</p>
-                                        </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">Game Modes</h3>
+                                    <div class="doc-content">
+                                        <p><strong>Single-player mode:</strong> Human (South) vs 3 AI opponents.</p>
+                                        <p><strong>Real-time turn management</strong> with dice-based dealer determination.</p>
+                                        <p><strong>Complete game flow</strong> from login to leaderboard settlement.</p>
                                     </div>
+                                </div>
 
-                                    <!-- Mahjong Rules Engine -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Mahjong Rules Engine</h3>
-                                        <div class="feature-content">
-                                            <p><strong>Core Operations:</strong> Chi (吃), Peng (碰), Gang (杠) with interactive dialog prompts</p>
-                                            <p><strong>Winning Detection:</strong> Sophisticated algorithm supporting multiple winning patterns</p>
-                                            <p><strong>Special Patterns:</strong> Dui Dui Hu, Qing Yi Se (清一色), Yi Tiao Long, Hao Hua Seven Pairs</p>
-                                            <p><strong>Wild Card System:</strong> HunEr (混儿) implementation with dynamic substitution logic</p>
-                                        </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">Mahjong Rules Engine</h3>
+                                    <div class="doc-content">
+                                        <p><strong>Core operations:</strong> Chi, Peng, Gang with interactive prompts.</p>
+                                        <p><strong>Winning detection algorithm</strong> supporting multiple patterns.</p>
+                                        <p><strong>Special hands:</strong> Dui Dui Hu, Qing Yi Se, Yi Tiao Long, Hao Hua Seven Pairs.</p>
+                                        <p><strong>Dynamic Wild Card (HunEr)</strong> substitution logic.</p>
                                     </div>
+                                </div>
 
-                                    <!-- Visual Interface -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Visual Interface</h3>
-                                        <div class="feature-content">
-                                            <p><strong>Four-Directional Rendering:</strong> East/South/West/North perspectives with rotated tile images</p>
-                                            <p><strong>Interactive Tile Management:</strong> Mouse-click tile selection with visual feedback</p>
-                                            <p><strong>Real-time UI Updates:</strong> Dynamic refresh of player hands, discarded tiles, and game state</p>
-                                            <p><strong>Resource Management:</strong> 150+ PNG image assets for complete tile visualization</p>
-                                        </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">Visual Interface</h3>
+                                    <div class="doc-content">
+                                        <p><strong>Four-direction rendering</strong> with rotated tile views.</p>
+                                        <p><strong>Mouse-based tile selection</strong> and visual feedback.</p>
+                                        <p><strong>Real-time updates</strong> of player hands and game state.</p>
                                     </div>
                                 </div>
                             </div>
@@ -398,37 +411,30 @@
                         <section class="dwen-section">
                             <h2 class="section-title">Technical Implementation</h2>
                             <div class="section-content">
-                                <div class="features-grid">
-                                    <!-- Game Logic Architecture -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Game Logic Architecture</h3>
-                                        <div class="feature-content">
-                                            <p><strong>MVC Pattern:</strong> Clear separation between Game (Controller), Player/Item (Model), GameInterface (View)</p>
-                                            <p><strong>Object-Oriented Design:</strong> 21 Java classes with inheritance hierarchy (Item → WindPlate/WordPlate)</p>
-                                            <p><strong>State Management:</strong> Table class managing discarded tiles, waiting tiles, and game state</p>
+                                <div class="function-container">
+                                    <h3 class="container-title">Architecture & Design</h3>
+                                    <div class="doc-content">
+                                        <p><strong>MVC structure</strong> separating logic, UI, and data layers.</p>
+                                        <p><strong>20+ object-oriented classes</strong> with inheritance hierarchy.</p>
+                                        <p><strong>Central table state management</strong> for tiles and gameplay flow.</p>
                                     </div>
                                     </div>
 
-                                    <!-- Advanced Algorithms -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Advanced Algorithms</h3>
-                                        <div class="feature-content">
-                                            <p><strong>Winning Detection:</strong> DetermineHu class with Jiang (将) extraction and pattern matching</p>
-                                            <p><strong>Wild Card Logic:</strong> DetermineHunErWin with comprehensive substitution testing</p>
-                                            <p><strong>Pattern Recognition:</strong> DetermineWinType supporting 5+ special winning combinations</p>
-                                            <p><strong>Scoring System:</strong> Dynamic point calculation with time and accuracy factors</p>
+                                <div class="function-container">
+                                    <h3 class="container-title">Algorithms</h3>
+                                    <div class="doc-content">
+                                        <p><strong>Advanced winning detection</strong> with pattern recognition.</p>
+                                        <p><strong>Comprehensive wild card testing</strong> and substitution.</p>
+                                        <p><strong>Dynamic scoring</strong> based on combinations and timing.</p>
                                     </div>
-                                    </div>
+                                </div>
 
-                                    <!-- UI & Interaction Design -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">UI & Interaction Design</h3>
-                                        <div class="feature-content">
-                                            <p><strong>JavaFX Framework:</strong> Event-driven interaction with mouse click handlers</p>
-                                            <p><strong>Responsive Layout:</strong> BorderPane with dynamic player area positioning</p>
-                                            <p><strong>Visual Effects:</strong> Drop shadow effects for newly drawn tiles</p>
-                                            <p><strong>Cross-platform Compatibility:</strong> Shell scripts for Windows/macOS/Linux deployment</p>
-                                        </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">UI & Interaction</h3>
+                                    <div class="doc-content">
+                                        <p><strong>JavaFX-based responsive layout</strong> with mouse event handling.</p>
+                                        <p><strong>Visual effects</strong> for new tiles and dynamic player positioning.</p>
+                                        <p><strong>Shell-based deployment</strong> for Windows, macOS, and Linux.</p>
                                     </div>
                                 </div>
                             </div>
@@ -439,13 +445,13 @@
                             <h2 class="section-title">Project Outcomes</h2>
                             <div class="section-content">
                                 <div class="project-outcomes-box">
-                                    <p>This project demonstrates comprehensive desktop application development, encompassing full-stack Java programming from core algorithms to modern GUI implementation. It combines traditional game logic with contemporary software engineering practices, including object-oriented design, design patterns, and cross-platform deployment. Through this development process, I gained hands-on experience in complex algorithm implementation, real-time UI management, and software architecture design.</p>
+                                    <p>This project demonstrates end-to-end desktop software development—from algorithmic logic to modern UI design. It integrates traditional game rules with advanced software engineering principles such as modular architecture, OOP, and real-time rendering. Through this process, I strengthened my skills in complex logic design, event-driven interaction, and cross-platform deployment.</p>
                                     </div>
                                 
                                 <div class="function-container">
                                     <h3 class="container-title">Source Code</h3>
                                     <div class="doc-content">
-                                        <p>View the complete project implementation and technical details on GitHub.</p>
+                                        <p>View the project source code and implementation details on GitHub.</p>
                                         <a href="https://github.com/sukikatte/mahjong" class="download-link github-link" target="_blank" rel="noopener noreferrer">
                                             View on GitHub
                                         </a>
@@ -662,13 +668,12 @@
                         
                     <!-- 内容区块 -->
                     <div class="dwen-sections">
-                        <!-- PROBLEM STATEMENT -->
+                        <!-- PROJECT OVERVIEW -->
                         <section class="dwen-section">
-                            <h2 class="section-title">Problem Statement</h2>
+                            <h2 class="section-title">Project Overview</h2>
                             <div class="section-content">
-                                <!-- Problem Statement 子容器 -->
-                                <div class="function-container problem-statement-container">
-                                    <p>Developed as a learning output of Mobile Computing, Guess Songs is a lightweight Android app that integrates a music guessing game with a built-in player. The project explores interactive mobile entertainment by combining audio playback, real-time feedback, and user-driven gameplay. It was developed using Java, Firebase, and the Android SDK, demonstrating full-stack mobile development capability. It supports both single-player and multiplayer modes, enabling users to compete, discover songs, and enjoy an engaging social experience within a compact mobile environment.</p>
+                                <div class="project-overview-box">
+                                    <p>Developed as part of the Mobile Computing course, Guess Songs is a lightweight Android app that integrates a music guessing game with a built-in player. It combines audio playback, real-time interaction, and user-driven gameplay, supporting both single-player and multiplayer modes. Built with Java, Firebase, and the Android SDK, it demonstrates full-stack mobile development, real-time data handling, and interactive design.</p>
                         </div>
                     </div>
                         </section>
@@ -678,12 +683,12 @@
                         <h2 class="section-title">Demo Video</h2>
                             <div class="section-content">
                                 <div class="function-container">
-                                    <p style="margin-bottom: 1rem; color: #fff;">This is the demonstration video I recorded for the Mobile Computing Project final version.</p>
+                                    <p style="margin-bottom: 1rem; color: #fff;">Final version demonstration video for the Mobile Computing Project.</p>
                                     <video controls class="container-video" id="demoVideo">
                                         <source src="{{ url_for('static', filename='media/guesssong/final_video.mp4') }}" type="video/mp4">
                                         Final Project Demo
                                     </video>
-                                </div>
+                            </div>
                             </div>
                         </section>
 
@@ -691,40 +696,29 @@
                         <section class="dwen-section">
                             <h2 class="section-title">Core Features</h2>
                             <div class="section-content">
-                                <div class="features-grid">
-                                    <!-- Game Modes -->
-                                    <div class="game-modes-container">
-                                        <h3 class="feature-title">Game Modes</h3>
-                                        <div class="modes-grid">
-                                            <div class="mode-card">
-                                                <p><strong>Classic Mode:</strong> Single-player 10-question challenge with scoring based on speed and accuracy.</p>
-                                    </div>
-                                            <div class="mode-card">
-                                                <p><strong>Endless Mode:</strong> 3-minute challenge. This leaderboard records each player's highest score and ranks all players.</p>
-                                    </div>
-                                            <div class="mode-card">
-                                                <p><strong>Competitive Mode:</strong> Real-time multiplayer battles (3 players are needed) in a game room with live score tracking.</p>
-                            </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">Game Modes</h3>
+                                    <div class="doc-content">
+                                        <p><strong>Classic Mode:</strong> 10-question challenge with time-based scoring.</p>
+                                        <p><strong>Endless Mode:</strong> 3-minute session with a global leaderboard.</p>
+                                        <p><strong>Competitive Mode:</strong> Real-time multiplayer battles with live scoring.</p>
                         </div>
                     </div>
 
-                                    <!-- Music Library -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Music Library</h3>
-                                        <div class="feature-content">
-                                            <p>Browse, search, and manage songs.</p>
-                                            <p>Support for user-uploaded tracks integrated into the game database.</p>
+                                <div class="function-container">
+                                    <h3 class="container-title">Music Library</h3>
+                                    <div class="doc-content">
+                                        <p>Browse, search, and manage songs.</p>
+                                        <p>Support for user-uploaded tracks integrated into the database.</p>
                             </div>
                         </div>
 
-                                    <!-- Room Management -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Room Management</h3>
-                                        <div class="feature-content">
-                                            <p>Create and join game rooms with real-time status and score updates.</p>
+                                <div class="function-container">
+                                    <h3 class="container-title">Room Management</h3>
+                                    <div class="doc-content">
+                                        <p>Create or join game rooms with real-time status updates.</p>
                             </div>
                         </div>
-                                </div>
                             </div>
                         </section>
 
@@ -732,39 +726,32 @@
                         <section class="dwen-section">
                             <h2 class="section-title">Technical Implementation</h2>
                             <div class="section-content">
-                                <div class="features-grid">
-                                    <!-- Audio Playback System -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Audio Playback System</h3>
-                                        <div class="feature-content">
-                                            <p>Built using Android MediaPlayer API with asynchronous network streaming, error handling, and custom playback controls.</p>
+                                <div class="function-container">
+                                    <h3 class="container-title">Audio System</h3>
+                                    <div class="doc-content">
+                                        <p>Built with Android MediaPlayer API, featuring async streaming, playback control, and error handling.</p>
                             </div>
                         </div>
 
-                                    <!-- Firebase Integration -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Firebase Integration</h3>
-                                        <div class="feature-content">
-                                            <p><strong>Realtime Database:</strong> Manages song metadata, user progress, and real-time updates.</p>
-                                            <p><strong>Authentication:</strong> Handles user registration, login, and session management securely.</p>
+                                <div class="function-container">
+                                    <h3 class="container-title">Firebase Integration</h3>
+                                    <div class="doc-content">
+                                        <p>Realtime Database for song metadata and score sync; Authentication for secure user sessions.</p>
                             </div>
                         </div>
 
-                                    <!-- Intelligent Scoring System -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Intelligent Scoring System</h3>
-                                        <div class="feature-content">
-                                            <p>Java backend processes game states and player scores with time- and accuracy-based dynamic algorithms.</p>
+                                <div class="function-container">
+                                    <h3 class="container-title">Scoring Algorithm</h3>
+                                    <div class="doc-content">
+                                        <p>Dynamic calculation based on accuracy and response time.</p>
                             </div>
                         </div>
 
-                                    <!-- UI & Navigation Design -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">UI & Navigation Design</h3>
-                                        <div class="feature-content">
-                                            <p>Implemented with Material Design principles, gradient visual style, and smooth activity transitions for consistent user experience.</p>
+                                <div class="function-container">
+                                    <h3 class="container-title">UI Design</h3>
+                                    <div class="doc-content">
+                                        <p>Material Design principles with smooth transitions and cohesive visual style.</p>
                     </div>
-                </div>
                                 </div>
                             </div>
                         </section>
@@ -773,23 +760,21 @@
                         <section class="dwen-section">
                             <h2 class="section-title">Documentation</h2>
                             <div class="section-content">
-                                <!-- Documentation 子容器 1 - Project Statement -->
                                 <div class="function-container doc-container">
                                     <h3 class="container-title">Project Statement</h3>
-                                    <p>Comprehensive project description and requirements analysis document outlining the project scope, objectives, and technical specifications.</p>
+                                    <p>Defines scope, objectives, and technical specifications.</p>
                                     <a href="{{ url_for('static', filename='media/guesssong/ProjectStatement.pdf') }}" class="download-link" download>
                                         Download Project Statement
                                     </a>
-                                    </div>
+                                </div>
 
-                                <!-- Documentation 子容器 2 - Development Process -->
                                 <div class="function-container doc-container">
                                     <h3 class="container-title">Development Process</h3>
-                                    <p>Complete project development timeline including Alpha, Beta, and Final phases with detailed progress tracking and milestone achievements.</p>
-                                    <a href="{{ url_for('static', filename='media/guesssong/guess_songs.pptx') }}" class="download-link" download>
-                                        Download Development Process PPT
+                                    <p>Tracks Alpha, Beta, and Final stages with key milestones.</p>
+                                    <a href="{{ url_for('static', filename='media/guesssong/DevelopmentProcess.pdf') }}" class="download-link" download>
+                                        Download Development Process
                                     </a>
-                                    </div>
+                                </div>
                                     </div>
                         </section>
 
@@ -797,19 +782,14 @@
                         <section class="dwen-section">
                             <h2 class="section-title">Project Outcomes</h2>
                             <div class="section-content">
-                                <!-- Lessons Learned -->
-                                <div class="function-container">
-                                    <h3 class="container-title">Lessons Learned</h3>
-                                    <div class="doc-content">
-                                        <p>This project was independently designed and developed, encompassing the full stack of Android application development—from frontend interface design to backend integration. It combines intuitive UI, efficient gameplay logic, and Firebase-based data management to deliver a seamless and interactive user experience. Through this process, I gained hands-on experience in system architecture, real-time synchronization, and mobile software optimization.</p>
-                                    </div>
-                                    </div>
+                                <div class="project-outcomes-box">
+                                    <p>The project was independently designed and implemented, covering both frontend and backend integration. It demonstrates practical experience in Android architecture, data synchronization, and mobile optimization. Through this project, I strengthened my skills in full-stack app development and learned to design interactive, user-centered mobile experiences.</p>
+                                </div>
 
-                                <!-- GitHub Link -->
                                 <div class="function-container">
                                     <h3 class="container-title">Source Code</h3>
                                     <div class="doc-content">
-                                        <p>View the project source code and implementation details on GitHub (excluding sensitive API keys).</p>
+                                        <p>View the project source code and implementation details on GitHub.</p>
                                         <a href="https://github.com/sukikatte/guess_songs" class="download-link github-link" target="_blank" rel="noopener noreferrer">
                                             View on GitHub
                                         </a>
@@ -1159,22 +1139,12 @@
                     <div class="dwen-hero">
                         <h1 class="dwen-title" data-text="HUAXIA TCM">HUAXIA TCM</h1>
                         <p class="dwen-subtitle">
-                            <span class="subtitle-decorator">◆</span>
-                            Digital Preservation and Education System for Traditional Chinese Medicine Culture
-                            <span class="subtitle-decorator">◆</span>
+                            Digital Preservation and Education System for Traditional Chinese Medicine
                         </p>
                         <div class="dwen-meta-info">
                             <span class="meta-date">Feb. 2025 - Jun. 2025</span>
                             <span class="meta-divider-thick">|</span>
                             <span class="tech-stack">Vue.js · Flask · SQLAlchemy · JWT · AI Integration · Bilingual Support</span>
-                        </div>
-                        <div class="dwen-github">
-                            <a href="https://github.com/sukikatte/Chinese_traditional_medicine" target="_blank" class="github-link">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                <span>GitHub Repository</span>
-                            </a>
                         </div>
                     </div>
 
@@ -1203,7 +1173,7 @@
                                         </div>
                                         <div class="core-function-video">
                                     <div class="video-placeholder">
-                                                <p>📚 Herb Encyclopedia Demo</p>
+                                                <p>Herb Encyclopedia Demo</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1216,7 +1186,7 @@
                                         </div>
                                         <div class="core-function-video">
                                             <div class="video-placeholder">
-                                                <p>💊 Prescription Demo</p>
+                                                <p>Prescription Demo</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1229,7 +1199,7 @@
                                         </div>
                                         <div class="core-function-video">
                                             <div class="video-placeholder">
-                                                <p>🗺️ Geographic Demo</p>
+                                                <p>Geographic Demo</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1242,7 +1212,7 @@
                                         </div>
                                         <div class="core-function-video">
                                             <div class="video-placeholder">
-                                                <p>📖 Story Mode Demo</p>
+                                                <p>Story Mode Demo</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1255,7 +1225,7 @@
                                         </div>
                                         <div class="core-function-video">
                                             <div class="video-placeholder">
-                                                <p>🎯 Quiz Demo</p>
+                                                <p>Quiz Demo</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1268,7 +1238,7 @@
                                         </div>
                                         <div class="core-function-video">
                                             <div class="video-placeholder">
-                                                <p>🤖 AI Consultation Demo</p>
+                                                <p>AI Consultation Demo</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1284,11 +1254,11 @@
                                     <div class="architecture-item">
                                         <h3>Backend Infrastructure</h3>
                                         <p>Flask 3.1.0 with Blueprint modules, SQLAlchemy ORM, JWT authentication, and Gunicorn deployment with 11 RESTful API modules.</p>
-                                    </div>
+                    </div>
                                     <div class="architecture-item">
                                         <h3>Frontend Framework</h3>
                                         <p>Vue.js with Vite, Vue Router, i18n internationalization, and responsive mobile-first design approach.</p>
-                                    </div>
+                </div>
                                     <div class="architecture-item">
                                         <h3>AI Integration</h3>
                                         <p>OpenAI API and Coze platform integration for intelligent consultation with safety protocols and response filtering.</p>
@@ -1297,35 +1267,43 @@
                                         <h3>Data Management</h3>
                                         <p>440+ database records (180 herbs + 260 prescriptions) across 50+ RESTful API endpoints with comprehensive logging.</p>
                         </div>
-                                </div>
+                    </div>
                             </div>
                         </section>
 
-                        <!-- ACHIEVEMENTS & IMPACT -->
+                        <!-- PROJECT OUTCOMES -->
                         <section class="dwen-section">
-                            <h2 class="section-title">Achievements & Impact</h2>
+                            <h2 class="section-title">Project Outcomes</h2>
                             <div class="section-content">
-                                <div class="achievement-highlights">
-                                    <div class="achievement-item">
-                                        <span class="achievement-icon">🏆</span>
-                                        <div class="achievement-content">
-                                            <h3>Third Prize</h3>
-                                            <p>"Gongda Cup" Innovation and Entrepreneurship Competition at Beijing University of Technology</p>
+                                <!-- Competition Achievement -->
+                                <div class="function-container">
+                                    <h3 class="container-title">Competition Achievement</h3>
+                                    <div class="doc-content">
+                                        <p><strong>Third Prize</strong> - "Gongda Cup" Innovation and Entrepreneurship Competition at Beijing University of Technology</p>
                                     </div>
                                     </div>
-                                    <div class="achievement-item">
-                                        <span class="achievement-icon">🌐</span>
-                                        <div class="achievement-content">
-                                            <h3>Bilingual Support</h3>
-                                            <p>Complete Chinese/English localization making TCM knowledge accessible globally</p>
+
+                                <!-- Technical Impact -->
+                                <div class="function-container">
+                                    <h3 class="container-title">Technical Impact</h3>
+                                    <div class="doc-content">
+                                        <p>Complete Chinese/English localization making TCM knowledge accessible globally. Gamified learning system with adaptive difficulty and performance tracking.</p>
                                     </div>
                                     </div>
-                                    <div class="achievement-item">
-                                        <span class="achievement-icon">🎯</span>
-                                        <div class="achievement-content">
-                                            <h3>Educational Impact</h3>
-                                            <p>Gamified learning system with adaptive difficulty and performance tracking</p>
+
+                                <!-- Project Reflection -->
+                                <div class="project-outcomes-box">
+                                    <p>This project demonstrates comprehensive full-stack web development, encompassing modern frontend frameworks, backend architecture, AI integration, and bilingual support. It combines educational technology with traditional medicine knowledge, creating an accessible platform for global learners. Through this development process, I gained hands-on experience in Vue.js, Flask, SQLAlchemy, JWT authentication, and AI API integration.</p>
                                     </div>
+
+                                <!-- GitHub Link -->
+                                <div class="function-container">
+                                    <h3 class="container-title">Source Code</h3>
+                                    <div class="doc-content">
+                                        <p>View the project source code and implementation details on GitHub.</p>
+                                        <a href="https://github.com/sukikatte/Chinese_traditional_medicine" class="download-link github-link" target="_blank" rel="noopener noreferrer">
+                                            View on GitHub
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -1369,7 +1347,7 @@
                                     </div>
                                     </div>
                                     </div>
-                                </div>
+                                    </div>
                                 </div>
                             </div>
                         </section>
