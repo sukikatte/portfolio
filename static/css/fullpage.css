@@ -6061,6 +6061,7 @@ letter-spacing: 2px;
     border-radius: 8px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     animation: modalZoomIn 0.3s ease;
+    cursor: pointer;
 }
 
 @keyframes modalZoomIn {
@@ -9656,9 +9657,13 @@ letter-spacing: 2px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 1rem 1.5rem;
     text-align: center;
     transition: all 0.3s ease;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .ood-stage:hover {
@@ -9668,19 +9673,24 @@ letter-spacing: 2px;
 }
 
 .ood-stage h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: #ffffff;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
+    flex-shrink: 0;
 }
 
 .stage-screenshot {
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .stage-screenshot img {
@@ -9696,9 +9706,10 @@ letter-spacing: 2px;
 
 .ood-stage p {
     color: rgba(255, 255, 255, 0.7);
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.85rem;
+    line-height: 1.4;
     margin: 0;
+    flex-shrink: 0;
 }
 
 /* OOD Process 响应式设计 */
@@ -9709,11 +9720,100 @@ letter-spacing: 2px;
     }
     
     .ood-stage {
-        padding: 1rem;
+        padding: 0.8rem 1.2rem;
     }
     
     .ood-stage h3 {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .ood-stage p {
+        font-size: 0.8rem;
+    }
+}
+
+/* ============================================
+   基于角色的Demo容器样式 - 水平布局版本（文字左4，视频右6）
+   ============================================ */
+.role-demo-horizontal {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.role-demo-horizontal:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.role-text-left {
+    flex: 4;
+    padding-right: 1rem;
+}
+
+.role-video-right {
+    flex: 6;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.role-video-player-horizontal {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+.role-title-horizontal {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.8rem;
+}
+
+.role-description-horizontal {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 基于角色的Demo响应式设计 */
+@media (max-width: 768px) {
+    .role-demo-horizontal {
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .role-text-left {
+        padding-right: 0;
+        text-align: center;
+        order: 1;
+    }
+    
+    .role-video-right {
+        order: 2;
+    }
+    
+    .role-title-horizontal {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .role-description-horizontal {
+        font-size: 0.9rem;
     }
 }
 

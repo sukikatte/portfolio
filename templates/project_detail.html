@@ -327,6 +327,12 @@
                             </div>
                         </section>
                     </div>
+
+                    <!-- 图片放大模态框 -->
+                    <div id="imageModal" class="image-modal">
+                        <span class="modal-close">&times;</span>
+                        <img class="modal-content" id="modalImage">
+                    </div>
                 </div>
 
                 {% elif project.id == 'mahjong' %}
@@ -369,7 +375,7 @@
                                         <source src="{{ url_for('static', filename='media/mahjong/mahjong.mp4') }}" type="video/mp4">
                                         Mahjong Game Demo
                                     </video>
-                                    </div>
+                                </div>
                             </div>
                         </section>
 
@@ -384,7 +390,7 @@
                                         <p><strong>Real-time turn management</strong> with dice-based dealer determination.</p>
                                         <p><strong>Complete game flow</strong> from login to leaderboard settlement.</p>
                                     </div>
-                                </div>
+                                    </div>
 
                                 <div class="function-container">
                                     <h3 class="container-title">Mahjong Rules Engine</h3>
@@ -427,7 +433,7 @@
                                         <p><strong>Comprehensive wild card testing</strong> and substitution.</p>
                                         <p><strong>Dynamic scoring</strong> based on combinations and timing.</p>
                                     </div>
-                                </div>
+                                    </div>
 
                                 <div class="function-container">
                                     <h3 class="container-title">UI & Interaction</h3>
@@ -486,142 +492,74 @@
                         <section class="dwen-section">
                             <h2 class="section-title">Project Overview</h2>
                             <div class="section-content">
-                                <div class="function-container problem-statement-container">
-                                    <p>Developed as a comprehensive web application for campus food ordering, Parrot Ordering is a full-stack platform that integrates multi-user role-based access control with complete ordering business workflows. The project explores modern web development by combining user authentication, real-time menu management, intelligent shopping cart systems, and social features within a responsive web environment. It was developed using Flask, SQLAlchemy, JavaScript, and Bootstrap, demonstrating full-stack web development capabilities with database design, API development, and user interface implementation.</p>
+                                <div class="project-overview-box">
+                                    <p>Parrot Ordering is a full-stack web platform designed for campus food ordering. It integrates multi-role access control, real-time menu management, and social interaction features, providing a seamless online-to-offline experience. Built with Flask and SQLAlchemy on the backend and Bootstrap + JavaScript on the frontend, the project demonstrates a complete workflow of database design, API implementation, and responsive interface development.</p>
                                 </div>
                             </div>
                         </section>
 
-                        <!-- DEMO VIDEO -->
+                        <!-- Role-Based Demos -->
                         <section class="dwen-section">
-                            <h2 class="section-title">Demo Video</h2>
+                            <h2 class="section-title">Role-Based Demos</h2>
                             <div class="section-content">
-                                <div class="function-container">
-                                    <p style="margin-bottom: 1rem; color: #fff;">This is the demonstration video of the Parrot Ordering platform.</p>
-                                    <video controls class="container-video" id="parrotDemoVideo">
-                                        <source src="{{ url_for('static', filename='media/parrot/demo_video.mp4') }}" type="video/mp4">
-                                        Parrot Ordering Demo
-                                    </video>
+                                <!-- Admin Demo -->
+                                <div class="role-demo-horizontal">
+                                    <div class="role-text-left">
+                                        <h3 class="role-title-horizontal">Admin Demo</h3>
+                                        <p class="role-description-horizontal">Manage users, menus, and system data. Monitor platform activity and perform administrative operations.</p>
+                                        
+                                        <p class="role-description-horizontal">The admin interface provides comprehensive control over user accounts, content moderation, and system analytics. Administrators can view detailed reports on user activity and platform performance metrics.</p>
                                     </div>
+                                    <div class="role-video-right">
+                                        <video controls class="role-video-player-horizontal">
+                                            <source src="{{ url_for('static', filename='media/parrotordering/admin.mp4') }}" type="video/mp4">
+                                            Admin Demo
+                                        </video>
                                     </div>
-                        </section>
+                                </div>
 
-                        <!-- CORE FEATURES -->
-                        <section class="dwen-section">
-                            <h2 class="section-title">Core Features</h2>
-                            <div class="section-content">
-                                <div class="features-grid">
-                                    <!-- Multi-User System -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Multi-User System</h3>
-                                        <div class="feature-content">
-                                            <p><strong>Role-Based Access Control:</strong> Three distinct user roles (Customer, Cook, Administrator) with specific permissions and functionalities</p>
-                                            <p><strong>Secure Authentication:</strong> User registration, login, and session management with password encryption using Werkzeug</p>
-                                            <p><strong>Profile Management:</strong> User profiles with avatar upload, personal information editing, and account management</p>
+                                <!-- Cook Demo -->
+                                <div class="role-demo-horizontal">
+                                    <div class="role-text-left">
+                                        <h3 class="role-title-horizontal">Cook Demo</h3>
+                                        <p class="role-description-horizontal">Publish daily menus and update available dishes. Process customer orders and manage inventory in real-time.</p>
+                                        
+                                        <p class="role-description-horizontal">The cook dashboard streamlines kitchen operations with intuitive order management and inventory tracking. Cooks can efficiently handle multiple orders and communicate directly with customers.</p>
                                     </div>
+                                    <div class="role-video-right">
+                                        <video controls class="role-video-player-horizontal">
+                                            <source src="{{ url_for('static', filename='media/parrotordering/cook.mp4') }}" type="video/mp4">
+                                            Cook Demo
+                                        </video>
                                     </div>
+                                </div>
 
-                                    <!-- Menu Management -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Menu Management</h3>
-                                        <div class="feature-content">
-                                            <p><strong>Daily Menu Publishing:</strong> Cooks can publish daily menus with available dishes and quantities</p>
-                                            <p><strong>Real-time Inventory:</strong> Dynamic inventory tracking with automatic updates when orders are placed</p>
-                                            <p><strong>Category Management:</strong> Organized dish categories (Desserts, Fast Food, Beverages, Hot Dishes, Vegetarian)</p>
-                                            <p><strong>Dish Management:</strong> Complete CRUD operations for dishes with image upload and detailed descriptions</p>
+                                <!-- Customer Demo -->
+                                <div class="role-demo-horizontal">
+                                    <div class="role-text-left">
+                                        <h3 class="role-title-horizontal">Customer Demo</h3>
+                                        <p class="role-description-horizontal">Browse menu, place and track orders. Add friends, chat, and review dishes with chef replies.</p>
+                                        
+                                        <p class="role-description-horizontal">The customer experience focuses on seamless ordering with social features. Users can customize orders, track delivery status, and connect with friends to share dining experiences.</p>
                                     </div>
-                                    </div>
-
-                                    <!-- Ordering System -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Ordering System</h3>
-                                        <div class="feature-content">
-                                            <p><strong>Smart Shopping Cart:</strong> Add, update, and remove items with quantity validation</p>
-                                            <p><strong>Order Processing:</strong> Complete order workflow from cart to submission with inventory updates</p>
-                                            <p><strong>Order History:</strong> Comprehensive order tracking and history for customers</p>
-                                            <p><strong>Real-time Updates:</strong> Dynamic menu availability and inventory management</p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Social Features -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Social Features</h3>
-                                        <div class="feature-content">
-                                            <p><strong>Friend System:</strong> Add friends, send friend requests, and manage friendships</p>
-                                            <p><strong>Messaging System:</strong> Real-time messaging between customers with conversation history</p>
-                                            <p><strong>Review System:</strong> Customer reviews for dishes with chef reply functionality</p>
-                                            <p><strong>User Discovery:</strong> Search and find other users in the platform</p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Administrative Features -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Administrative Features</h3>
-                                        <div class="feature-content">
-                                            <p><strong>User Management:</strong> Comprehensive user account management with ban/unban functionality</p>
-                                            <p><strong>Menu Oversight:</strong> Admin control over all menu items and categories</p>
-                                            <p><strong>System Monitoring:</strong> User activity tracking and system administration tools</p>
-                                        </div>
+                                    <div class="role-video-right">
+                                        <video controls class="role-video-player-horizontal">
+                                            <source src="{{ url_for('static', filename='media/parrotordering/customer.mp4') }}" type="video/mp4">
+                                            Customer Demo
+                                        </video>
                                     </div>
                                 </div>
                             </div>
                         </section>
 
-                        <!-- TECHNICAL IMPLEMENTATION -->
+                        <!-- Project Outcome -->
                         <section class="dwen-section">
-                            <h2 class="section-title">Technical Implementation</h2>
+                            <h2 class="section-title">Project Outcome</h2>
                             <div class="section-content">
-                                <div class="features-grid">
-                                    <!-- Backend Architecture -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Backend Architecture</h3>
-                                        <div class="feature-content">
-                                            <p><strong>Flask Framework:</strong> RESTful API development with route handling and business logic</p>
-                                            <p><strong>SQLAlchemy ORM:</strong> Database modeling and relationship management with SQLite</p>
-                                            <p><strong>Werkzeug Security:</strong> Secure password hashing and file upload handling</p>
-                                            <p><strong>Session Management:</strong> User authentication and state management</p>
-                                    </div>
-                                    </div>
-
-                                    <!-- Frontend Development -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Frontend Development</h3>
-                                        <div class="feature-content">
-                                            <p><strong>JavaScript:</strong> Dynamic content loading and AJAX asynchronous communication</p>
-                                            <p><strong>HTML/CSS:</strong> Responsive web design with Bootstrap framework</p>
-                                            <p><strong>Interactive UI:</strong> Real-time updates, form validation, and user interactions</p>
-                                            <p><strong>Responsive Design:</strong> Cross-platform compatibility for desktop and mobile devices</p>
-                                    </div>
-                                    </div>
-
-                                    <!-- Database Design -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">Database Design</h3>
-                                        <div class="feature-content">
-                                            <p><strong>Relational Database:</strong> Comprehensive data modeling with foreign key relationships</p>
-                                            <p><strong>Data Integrity:</strong> Transaction management and database consistency</p>
-                                            <p><strong>Optimized Queries:</strong> Efficient data retrieval and manipulation</p>
-                                            <p><strong>Migration Support:</strong> Database version control and schema updates</p>
-                                        </div>
-                                    </div>
-
-                                    <!-- File Management -->
-                                    <div class="feature-card">
-                                        <h3 class="feature-title">File Management</h3>
-                                        <div class="feature-content">
-                                            <p><strong>Image Upload:</strong> Avatar and dish image upload with secure file handling</p>
-                                            <p><strong>Static Assets:</strong> Organized static file management for images and stylesheets</p>
-                                            <p><strong>File Validation:</strong> Type checking and size validation for uploaded files</p>
-                                        </div>
-                                    </div>
+                                <div class="project-outcomes-box">
+                                    <p>This project covers the complete stack of web application development — from backend logic and database design to frontend interaction and user experience. Through the development process, the team gained practical experience in system architecture, API development, and secure, scalable web design.</p>
                                 </div>
-                            </div>
-                        </section>
-
-                        <!-- PROJECT OUTCOMES -->
-                        <section class="dwen-section">
-                            <h2 class="section-title">Project Outcomes</h2>
-                            <div class="section-content">
+                                
                                 <div class="function-container doc-container">
                                     <h3 class="container-title">Design Documentation</h3>
                                     <p>Comprehensive design documentation including system architecture, database schema, API specifications, and user interface mockups. The documentation covers the complete development process from requirements analysis to final implementation.</p>
@@ -629,11 +567,7 @@
                                         Download Design Documentation
                                     </a>
                                 </div>
-                                
-                                <div class="project-outcomes-box">
-                                    <p>This project encompasses the full stack of web application development—from database design and backend API development to frontend interface design and user experience optimization. It combines secure user authentication, efficient business logic, and responsive design to deliver a comprehensive and user-friendly ordering platform. Through this development process, the team gained hands-on experience in system architecture, database design, API development, and modern web technologies.</p>
-                                </div>
-                                
+
                                 <div class="function-container">
                                     <h3 class="container-title">Source Code</h3>
                                     <div class="doc-content">
@@ -645,6 +579,7 @@
                                 </div>
                             </div>
                         </section>
+
                     </div>
                 </div>
 
@@ -1492,20 +1427,36 @@
     function openImageModal(src) {
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
-        modal.style.display = 'block';
+        modal.style.display = 'flex';
         modalImg.src = src;
+        document.body.style.overflow = 'hidden';
     }
 
     function closeImageModal() {
         const modal = document.getElementById('imageModal');
         modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
+
+    // 关闭按钮事件监听器
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('imageModal');
+        const closeBtn = document.querySelector('.modal-close');
+        
+        if (closeBtn) {
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+    });
 
     // 点击模态框背景关闭
     window.onclick = function(event) {
         const modal = document.getElementById('imageModal');
         if (event.target === modal) {
             modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
     }
 
@@ -1514,6 +1465,7 @@
         if (event.key === 'Escape') {
             const modal = document.getElementById('imageModal');
             modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
     });
     </script>
