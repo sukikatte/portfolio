@@ -516,7 +516,7 @@
                                             Admin Demo
                                         </video>
                                     </div>
-                                </div>
+                                    </div>
 
                                 <!-- Cook Demo -->
                                 <div class="role-demo-horizontal">
@@ -1089,9 +1089,23 @@
                         <section class="dwen-section">
                             <h2 class="section-title">Project Overview</h2>
                             <div class="section-content project-overview-box">
-                                <p>Huaxia TCM Platform is a comprehensive full-stack web application designed to preserve and promote Traditional Chinese Medicine culture through modern digital technology.</p>
-                                <p>The system integrates educational resources, interactive learning experiences, and AI-powered consultation services, making ancient medical knowledge accessible to contemporary learners worldwide.</p>
-                                <p>Built with Vue.js and Flask, the platform features bilingual support (Chinese/English) and combines herb encyclopedia, prescription management, gamified learning, geographic visualization, and interactive storytelling into a unified educational ecosystem.</p>
+                                <p>Huaxia TCM Platform is a full-stack web application that preserves and promotes Traditional Chinese Medicine culture through digital technology.</p>
+                                <p>It integrates educational resources, interactive learning, and AI-powered consultation to make ancient medical knowledge accessible to modern learners worldwide.</p>
+                                <p>Built with Vue.js and Flask, the platform supports Chinese/English bilingual content and combines herb encyclopedia, prescription management, gamified quizzes, and AI consultation into a unified ecosystem.</p>
+                            </div>
+                        </section>
+
+                        <!-- DEMO VIDEO -->
+                        <section class="dwen-section">
+                            <h2 class="section-title">Demo Video</h2>
+                            <div class="section-content">
+                                <div class="function-container">
+                                    <p style="margin-bottom: 1rem; color: #fff;">A comprehensive video showcasing the platform's core features and user experience.</p>
+                                    <video controls class="container-video" id="chinDemoVideo">
+                                        <source src="{{ url_for('static', filename='media/chin/chin.mp4') }}" type="video/mp4">
+                                        Huaxia TCM Platform Demo
+                                    </video>
+                                </div>
                             </div>
                         </section>
 
@@ -1099,83 +1113,38 @@
                         <section class="dwen-section">
                             <h2 class="section-title">Core Functions</h2>
                             <div class="section-content">
-                                <div class="core-functions-grid">
-                                    <!-- 01. Herb Encyclopedia -->
-                                    <div class="core-function-item">
-                                        <div class="core-function-content">
-                                            <h3>01. Herb Encyclopedia</h3>
-                                            <p>Comprehensive database of 180+ medicinal herbs with bilingual descriptions, visual identification, and detailed properties</p>
-                                        </div>
-                                        <div class="core-function-video">
-                                    <div class="video-placeholder">
-                                                <p>Herb Encyclopedia Demo</p>
-                                            </div>
-                                        </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">Herb Encyclopedia</h3>
+                                    <div class="doc-content">
+                                        <p>Database of 180+ medicinal herbs with bilingual descriptions and detailed properties.</p>
                                     </div>
+                                </div>
 
-                                    <!-- 02. Prescription System -->
-                                    <div class="core-function-item">
-                                        <div class="core-function-content">
-                                            <h3>02. Prescription System</h3>
-                                            <p>Intelligent formula management with 260+ traditional prescriptions and fuzzy matching algorithm</p>
-                                        </div>
-                                        <div class="core-function-video">
-                                            <div class="video-placeholder">
-                                                <p>Prescription Demo</p>
-                                            </div>
-                                        </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">Prescription System</h3>
+                                    <div class="doc-content">
+                                        <p>Intelligent formula management with fuzzy matching and 260+ traditional prescriptions.</p>
                                     </div>
+                                </div>
 
-                                    <!-- 03. Geographic Map -->
-                                    <div class="core-function-item">
-                                        <div class="core-function-content">
-                                            <h3>03. Geographic Map</h3>
-                                            <p>Interactive visualization of medicinal plant distributions across different regions and climates</p>
-                                        </div>
-                                        <div class="core-function-video">
-                                            <div class="video-placeholder">
-                                                <p>Geographic Demo</p>
-                                            </div>
-                                        </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">Geographic Map</h3>
+                                    <div class="doc-content">
+                                        <p>Visualization of medicinal plant distributions across regions and climates.</p>
                                     </div>
+                                </div>
 
-                                    <!-- 04. Story Mode -->
-                                    <div class="core-function-item">
-                                        <div class="core-function-content">
-                                            <h3>04. Story Mode</h3>
-                                            <p>Branching narratives that embed TCM knowledge in engaging gameplay experiences</p>
-                                        </div>
-                                        <div class="core-function-video">
-                                            <div class="video-placeholder">
-                                                <p>Story Mode Demo</p>
-                                            </div>
-                                        </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">Story Mode & Quiz System</h3>
+                                    <div class="doc-content">
+                                        <p>Gamified learning experience with performance tracking and adaptive difficulty.</p>
                                     </div>
+                                </div>
 
-                                    <!-- 05. Quiz System -->
-                                    <div class="core-function-item">
-                                        <div class="core-function-content">
-                                            <h3>05. Quiz System</h3>
-                                            <p>Gamified learning with leaderboard, performance tracking, and adaptive difficulty</p>
-                                        </div>
-                                        <div class="core-function-video">
-                                            <div class="video-placeholder">
-                                                <p>Quiz Demo</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- 06. AI Consultation -->
-                                    <div class="core-function-item">
-                                        <div class="core-function-content">
-                                            <h3>06. AI Consultation</h3>
-                                            <p>Personalized health advice via OpenAI and Coze integration with safety protocols</p>
-                                        </div>
-                                        <div class="core-function-video">
-                                            <div class="video-placeholder">
-                                                <p>AI Consultation Demo</p>
-                                            </div>
-                                        </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">AI Consultation</h3>
+                                    <div class="doc-content">
+                                        <p>Personalized health advice via OpenAI and Coze integration with safety protocols.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1185,24 +1154,33 @@
                         <section class="dwen-section">
                             <h2 class="section-title">Technical Architecture</h2>
                             <div class="section-content">
-                                <div class="architecture-grid">
-                                    <div class="architecture-item">
-                                        <h3>Backend Infrastructure</h3>
-                                        <p>Flask 3.1.0 with Blueprint modules, SQLAlchemy ORM, JWT authentication, and Gunicorn deployment with 11 RESTful API modules.</p>
-                    </div>
-                                    <div class="architecture-item">
-                                        <h3>Frontend Framework</h3>
-                                        <p>Vue.js with Vite, Vue Router, i18n internationalization, and responsive mobile-first design approach.</p>
-                </div>
-                                    <div class="architecture-item">
-                                        <h3>AI Integration</h3>
-                                        <p>OpenAI API and Coze platform integration for intelligent consultation with safety protocols and response filtering.</p>
-                        </div>
-                                    <div class="architecture-item">
-                                        <h3>Data Management</h3>
-                                        <p>440+ database records (180 herbs + 260 prescriptions) across 50+ RESTful API endpoints with comprehensive logging.</p>
-                        </div>
-                    </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">Backend</h3>
+                                    <div class="doc-content">
+                                        <p>Flask 3.1 with Blueprint modules, SQLAlchemy ORM, JWT authentication, and Gunicorn deployment.</p>
+                                    </div>
+                                </div>
+
+                                <div class="function-container">
+                                    <h3 class="container-title">Frontend</h3>
+                                    <div class="doc-content">
+                                        <p>Vue.js + Vite, Vue Router, i18n, responsive mobile-first design.</p>
+                                    </div>
+                                </div>
+
+                                <div class="function-container">
+                                    <h3 class="container-title">AI Integration</h3>
+                                    <div class="doc-content">
+                                        <p>OpenAI API & Coze for intelligent consultation with safety filtering.</p>
+                                    </div>
+                                </div>
+
+                                <div class="function-container">
+                                    <h3 class="container-title">Data Management</h3>
+                                    <div class="doc-content">
+                                        <p>440+ records (180 herbs + 260 prescriptions) and 50+ RESTful API endpoints.</p>
+                                    </div>
+                                </div>
                             </div>
                         </section>
 
