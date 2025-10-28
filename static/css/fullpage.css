@@ -1236,6 +1236,89 @@ html, body {
     border-color: rgba(255, 255, 255, 0.5);
 }
 
+/* 项目符号样式 - 中等尺寸，hover时显示 */
+.project-symbol {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    font-size: 4rem;
+    z-index: 3;
+    opacity: 0;
+    pointer-events: none;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #ffffff;
+}
+
+.project-symbol i {
+    font-size: 4rem;
+}
+
+.projects-card:hover .project-symbol {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* 各个项目的渐变色 */
+.project-symbol--dwen i {
+    background: linear-gradient(135deg, #9664ff, #7896ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.project-symbol--medicine i {
+    background: linear-gradient(135deg, #7cfc00, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.project-symbol--songs i {
+    background: linear-gradient(135deg, #ff8cc8, #c88cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.project-symbol--mahjong i {
+    background: linear-gradient(135deg, #507dd8, #96c8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.project-symbol--parrot i {
+    background: linear-gradient(135deg, #ffdc3c, #ff9632);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.project-symbol--event i {
+    background: linear-gradient(135deg, #ff9ecb, #ffc0cb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.project-symbol--franken i {
+    background: linear-gradient(135deg, #00ff88, #00ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@keyframes symbolGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.6));
+    }
+    50% {
+        filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.9));
+    }
+}
+
 /* 通用card-blob样式（用于所有projects卡片） */
 .projects-card .card-blob,
 .projects-card .dwen-blob {
@@ -8244,21 +8327,27 @@ letter-spacing: 2px;
     pointer-events: none;
 }
 
-.cube .bottom::after {
-    content: 'MUSIC';
+.music-label {
     position: absolute;
-    top: 50%;
+    bottom: 270px;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(180deg);
+    transform: translateX(-50%);
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.9);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     letter-spacing: 2px;
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
+    z-index: 1000;
+    white-space: nowrap;
+}
+
+/* 只有当鼠标悬停在底面时显示MUSIC标签 */
+.cube-animation-container:has(.cube .bottom:hover) .music-label {
+    opacity: 1;
 }
 
 .cube .face:hover::after {
@@ -8521,7 +8610,7 @@ letter-spacing: 2px;
         opacity: 1;
     }
     100% {
-        transform: rotateX(15deg) rotateY(45deg);
+        transform: rotateX(20deg) rotateY(45deg);
         opacity: 1;
     }
 }
@@ -8530,46 +8619,46 @@ letter-spacing: 2px;
 @keyframes creativeCubeLoop {
     /* 第一个面 - GRAPHIC (front) */
     0% {
-        transform: rotateX(15deg) rotateY(45deg);
+        transform: rotateX(20deg) rotateY(45deg);
     }
     20% {
-        transform: rotateX(15deg) rotateY(45deg);
+        transform: rotateX(20deg) rotateY(45deg);
     }
     25% {
-        transform: rotateX(15deg) rotateY(135deg);
+        transform: rotateX(20deg) rotateY(135deg);
     }
     
     /* 第二个面 - PAINTING (right) */
     25% {
-        transform: rotateX(15deg) rotateY(135deg);
+        transform: rotateX(20deg) rotateY(135deg);
     }
     45% {
-        transform: rotateX(15deg) rotateY(135deg);
+        transform: rotateX(20deg) rotateY(135deg);
     }
     50% {
-        transform: rotateX(15deg) rotateY(225deg);
+        transform: rotateX(20deg) rotateY(225deg);
     }
     
     /* 第三个面 - GRAPHIC (back) */
     50% {
-        transform: rotateX(15deg) rotateY(225deg);
+        transform: rotateX(20deg) rotateY(225deg);
     }
     70% {
-        transform: rotateX(15deg) rotateY(225deg);
+        transform: rotateX(20deg) rotateY(225deg);
     }
     75% {
-        transform: rotateX(15deg) rotateY(315deg);
+        transform: rotateX(20deg) rotateY(315deg);
     }
     
     /* 第四个面 - PAINTING (left) */
     75% {
-        transform: rotateX(15deg) rotateY(315deg);
+        transform: rotateX(20deg) rotateY(315deg);
     }
     95% {
-        transform: rotateX(15deg) rotateY(315deg);
+        transform: rotateX(20deg) rotateY(315deg);
     }
     100% {
-        transform: rotateX(15deg) rotateY(45deg);
+        transform: rotateX(20deg) rotateY(45deg);
     }
 }
 
