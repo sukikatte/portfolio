@@ -1260,7 +1260,7 @@
                                     </div>
                                     </div>
                                     </div>
-                                    </div>
+                                </div>
                                 </div>
                             </div>
                         </section>
@@ -1445,6 +1445,21 @@
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
+    });
+
+    // 修复body overflow问题的函数
+    function fixBodyOverflow() {
+        const modal = document.getElementById('imageModal');
+        if (modal && modal.style.display === 'none') {
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    // 页面加载完成后检查并修复
+    document.addEventListener('DOMContentLoaded', function() {
+        fixBodyOverflow();
+        // 每5秒检查一次，防止overflow被意外设置
+        setInterval(fixBodyOverflow, 5000);
     });
     </script>
 </body>

@@ -24,9 +24,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#home" class="nav-logo">
-                <span class="logo-name">Zitong Wang</span>
-                <span class="logo-separator">/</span>
-                <span class="logo-portfolio">Portfolio</span>
+                <span class="logo-name"></span><span class="logo-separator"> / </span><span class="logo-portfolio"></span>
             </a>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link home-icon-link" data-section="0">
@@ -268,6 +266,47 @@
 
     <script src="{{ url_for('static', filename='js/fullpage.js') }}"></script>
     <script src="{{ url_for('static', filename='js/stars.js') }}"></script>
+    
+    <!-- Logo Typewriter Effect -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoName = document.querySelector('.logo-name');
+            const logoPortfolio = document.querySelector('.logo-portfolio');
+            
+            const nameText = 'Zitong Wang';
+            const portfolioText = 'Portfolio';
+            
+            let nameIndex = 0;
+            let portfolioIndex = 0;
+            let isTypingName = true;
+            
+            function typeWriter() {
+                if (isTypingName) {
+                    if (nameIndex < nameText.length) {
+                        logoName.textContent = nameText.substring(0, nameIndex + 1);
+                        nameIndex++;
+                        setTimeout(typeWriter, 100);
+                    } else {
+                        // 名字打完，等待一下然后开始打portfolio
+                        setTimeout(() => {
+                            isTypingName = false;
+                            typeWriter();
+                        }, 300);
+                    }
+                } else {
+                    if (portfolioIndex < portfolioText.length) {
+                        logoPortfolio.textContent = portfolioText.substring(0, portfolioIndex + 1);
+                        portfolioIndex++;
+                        setTimeout(typeWriter, 100);
+                    }
+                    // portfolio打完就完成了
+                }
+            }
+            
+            // 启动打字效果
+            typeWriter();
+        });
+    </script>
     
     <!-- Creative Dimension Book-style Script -->
     <script>
