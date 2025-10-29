@@ -68,6 +68,12 @@
         <section class="fullpage-section active" id="home">
             <!-- Three.js 星空背景画布 -->
             <canvas id="starsCanvas" class="stars-canvas"></canvas>
+            <!-- 装饰图片 -->
+            <img src="{{ url_for('static', filename='images/左上.png') }}" alt="左上装饰" class="home-image home-image-top-left">
+            <img src="{{ url_for('static', filename='images/右上.png') }}" alt="右上装饰" class="home-image home-image-top-right">
+            <img src="{{ url_for('static', filename='images/右下.png') }}" alt="右下装饰" class="home-image home-image-bottom-right">
+            <!-- 职业描述 -->
+            <div class="home-subtitle">Software Engineer & Creative Developer</div>
         </section>
 
         <!-- Section 1: Projects -->
@@ -1056,6 +1062,49 @@
                     modal.style.display = 'none';
                 }
             };
+            
+            // Contact页面淡入动画重新触发
+            window.addEventListener('sectionChange', function(event) {
+                const index = event.detail.index;
+                if (index === 3) { // contact页面的索引
+                    const contactInfoContainer = document.querySelector('.contact-info-container');
+                    if (contactInfoContainer) {
+                        // 重置动画
+                        contactInfoContainer.style.animation = 'none';
+                        // 强制重排
+                        void contactInfoContainer.offsetWidth;
+                        // 重新应用动画
+                        contactInfoContainer.style.animation = 'contactFadeInUp 0.8s ease-out 0.6s forwards';
+                    }
+                }
+                
+                // Home页面动画重新触发
+                if (index === 0) { // home页面
+                    // 重置右下图片动画
+                    const bottomRightImg = document.querySelector('.home-image-bottom-right');
+                    if (bottomRightImg) {
+                        bottomRightImg.style.animation = 'none';
+                        void bottomRightImg.offsetWidth;
+                        bottomRightImg.style.animation = 'revealFromBottom 4s ease-out 0.5s forwards';
+                    }
+                    
+                    // 重置右上图片动画
+                    const topRightImg = document.querySelector('.home-image-top-right');
+                    if (topRightImg) {
+                        topRightImg.style.animation = 'none';
+                        void topRightImg.offsetWidth;
+                        topRightImg.style.animation = 'revealFromBottom 1.5s ease-out 1s forwards';
+                    }
+                    
+                    // 重置文字动画
+                    const subtitle = document.querySelector('.home-subtitle');
+                    if (subtitle) {
+                        subtitle.style.animation = 'none';
+                        void subtitle.offsetWidth;
+                        subtitle.style.animation = 'fadeInUp 1s ease-out 3.5s forwards';
+                    }
+                }
+            });
         });
     </script>
 </body>
