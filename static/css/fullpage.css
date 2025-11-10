@@ -748,9 +748,7 @@ html, body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        radial-gradient(circle at 20% 50%, rgba(167, 139, 250, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(76, 201, 240, 0.05) 0%, transparent 50%);
+    background: #000000;
     pointer-events: none;
 }
 
@@ -976,10 +974,57 @@ html, body {
     display: none;
 }
 
+/* Home页主标题 */
+.home-title {
+    position: absolute;
+    top: calc(16% + 80px);
+    left: 0;
+    right: 0;
+    transform: none;
+    margin: 0 auto;
+    width: 100%;
+    font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.7rem, 5vw, 4.3rem);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.92);
+    text-transform: none;
+    text-align: center;
+    white-space: normal;
+    z-index: 5;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 2.5s forwards;
+}
+
+.home-title::after {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: rgba(255, 255, 255, 0.85);
+    margin-left: 12px;
+    opacity: 0;
+    animation: caretBlink 1s steps(1) infinite;
+    vertical-align: bottom;
+}
+
+.home-title.typing::after {
+    opacity: 1;
+}
+
+@keyframes caretBlink {
+    0%, 50% {
+        opacity: 1;
+    }
+    50.01%, 100% {
+        opacity: 0;
+    }
+}
+
 /* Home页职业描述 */
 .home-subtitle {
     position: absolute;
-    top: 25%;
+    top: calc(25% + 120px);
     left: 50%;
     transform: translateX(-50%);
     font-family: 'Cormorant Garamond', Georgia, serif;
@@ -1516,7 +1561,7 @@ html, body {
         /* 高光层 - 青色和白色 */
         radial-gradient(ellipse 90px 70px at 50% 30%, rgba(100, 200, 255, 0.4), transparent 60%),
         radial-gradient(ellipse 70px 50px at 80% 80%, rgba(180, 200, 255, 0.3), transparent 55%),
-        /* 纹理层 - 粉色和橙色 */
+/* 纹理层 - 粉色和橙色 */
         radial-gradient(ellipse 50px 40px at 20% 70%, rgba(255, 150, 200, 0.3), transparent 50%),
         radial-gradient(ellipse 30px 25px at 60% 20%, rgba(255, 200, 150, 0.2), transparent 45%);
     border-radius: 50% 50% 45% 55% / 55% 45% 50% 50%;
@@ -1542,23 +1587,7 @@ html, body {
     animation: eventBlobMorph 8.5s ease-in-out infinite alternate, eventBlobShimmer 6.5s ease-in-out infinite;
 }
 
-.projects-card--franken .card-blob {
-    width: 160px;
-    height: 160px;
-    background:
-        /* 主要渐变层 - 紫色到粉色 */
-        radial-gradient(ellipse 140px 120px at 30% 40%, rgba(180, 100, 255, 0.6), transparent 65%),
-        radial-gradient(ellipse 120px 100px at 70% 60%, rgba(200, 120, 255, 0.5), transparent 70%),
-        /* 高光层 - 蓝色和青色 */
-        radial-gradient(ellipse 100px 80px at 50% 30%, rgba(100, 150, 255, 0.4), transparent 60%),
-        radial-gradient(ellipse 80px 60px at 80% 80%, rgba(150, 200, 255, 0.3), transparent 55%),
-        /* 纹理层 - 橙色和黄色 */
-        radial-gradient(ellipse 60px 50px at 20% 70%, rgba(255, 180, 100, 0.3), transparent 50%),
-        radial-gradient(ellipse 40px 30px at 60% 20%, rgba(255, 220, 150, 0.2), transparent 45%);
-    border-radius: 40% 60% 55% 45% / 50% 50% 60% 40%;
-    filter: blur(0.3px) contrast(1.2) brightness(1.1);
-    animation: frankenBlobMorph 7.2s ease-in-out infinite alternate, frankenBlobShimmer 5.2s ease-in-out infinite;
-}
+.projects-card--franken .card-blob { background: radial-gradient(ellipse at 35% 45%, rgba(130, 240, 200, 0.45), transparent 60%), radial-gradient(ellipse at 65% 55%, rgba(160, 220, 255, 0.4), transparent 65%), radial-gradient(circle at 50% 50%, rgba(145, 230, 225, 0.3), transparent 70%); border-radius: 65% 35% 45% 55% / 55% 65% 35% 45%; filter: blur(0.5px); animation: frankenMorph 7s ease-in-out infinite alternate; }
 
 .projects-card--medicine .card-blob { background: radial-gradient(ellipse at 35% 40%, rgba(150, 220, 180, 0.35), transparent 60%), radial-gradient(ellipse at 65% 55%, rgba(255, 180, 120, 0.4), transparent 65%), radial-gradient(circle at 50% 50%, rgba(180, 200, 160, 0.25), transparent 70%); border-radius: 45% 55% 50% 50% / 50% 50% 50% 50%; filter: blur(1px); animation: medicineFloat 6s ease-in-out infinite alternate; }
 .projects-card--medicine:hover .card-blob { opacity: 0; transform: translate(-50%, -50%) scale(1.3); filter: blur(15px); transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease; }
@@ -1645,7 +1674,6 @@ html, body {
     clip-path: inset(0 -40px 0 -40px);
 }
 
-.projects-card--franken .card-blob { background: radial-gradient(ellipse at 35% 45%, rgba(130, 240, 200, 0.45), transparent 60%), radial-gradient(ellipse at 65% 55%, rgba(160, 220, 255, 0.4), transparent 65%), radial-gradient(circle at 50% 50%, rgba(145, 230, 225, 0.3), transparent 70%); border-radius: 65% 35% 45% 55% / 55% 65% 35% 45%; filter: blur(0.5px); animation: frankenMorph 7s ease-in-out infinite alternate; }
 .projects-card--franken:hover .card-blob { opacity: 0; transform: translate(-50%, -50%) scale(1.3); filter: blur(15px); transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease; }
 .projects-card--franken:hover { background: linear-gradient(0deg, rgba(255, 140, 160, 0.5) 0%, transparent 40%), linear-gradient(45deg, rgba(255, 180, 140, 0.4) 0%, transparent 50%), linear-gradient(90deg, rgba(255, 200, 170, 0.3) 0%, transparent 60%), #000000; background-size: 200% 200%; animation: frankenFlowingLight 7.2s ease-in-out infinite; }
 .projects-card--franken.center { border-color: rgba(255, 255, 255, 0.25); overflow: visible; position: relative; }

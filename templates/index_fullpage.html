@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fullpage.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
     <!-- Three.js -->
@@ -72,6 +72,8 @@
             <img src="{{ url_for('static', filename='images/左上.png') }}" alt="左上装饰" class="home-image home-image-top-left">
             <img src="{{ url_for('static', filename='images/右上.png') }}" alt="右上装饰" class="home-image home-image-top-right">
             <img src="{{ url_for('static', filename='images/右下.png') }}" alt="右下装饰" class="home-image home-image-bottom-right">
+            <!-- 作品集主标题 -->
+            <h1 class="home-title" data-title="A Universe Within Orbit">A Universe Within Orbit</h1>
             <!-- 职业描述 -->
             <div class="home-subtitle">Software Engineer & Creative Developer</div>
         </section>
@@ -284,12 +286,12 @@
         </video>
     </div>
 
-    <!-- 立方体弹窗 -->
+    <!-- Cube Modal -->
     <div id="cubeModal" class="cube-modal">
         <div class="cube-modal-content">
-            <h2>立方体交互</h2>
-            <p>您点击了立方体的一个面！这是一个3D立方体，展示了不同的创作维度。</p>
-            <button class="cube-modal-close" onclick="closeCubeModal()">关闭</button>
+            <h2>Cube Interaction</h2>
+            <p>You clicked one face of the cube! This 3D cube showcases different creative dimensions.</p>
+            <button class="cube-modal-close" onclick="closeCubeModal()">Close</button>
         </div>
     </div>
 
@@ -301,13 +303,68 @@
         document.addEventListener('DOMContentLoaded', function() {
             const logoName = document.querySelector('.logo-name');
             const logoPortfolio = document.querySelector('.logo-portfolio');
-            
             const nameText = 'Zitong Wang';
             const portfolioText = 'Portfolio';
+            const homeTitle = document.querySelector('.home-title');
+            const homeTitleOriginalText = homeTitle ? (homeTitle.dataset.title || homeTitle.textContent.trim()) : '';
             
             let nameIndex = 0;
             let portfolioIndex = 0;
             let isTypingName = true;
+            const homeTitleSpeed = 180;
+            const homeTitleDelay = 1500;
+            let homeTitleTimer = null;
+            let homeTitleTypingSession = 0;
+            
+            function clearHomeTitleTimer() {
+                if (homeTitleTimer) {
+                    clearTimeout(homeTitleTimer);
+                    homeTitleTimer = null;
+                }
+            }
+            
+            function startHomeTitleTyping(startDelay = homeTitleDelay) {
+                if (!homeTitle || !homeTitleOriginalText) return;
+                
+                homeTitleTypingSession += 1;
+                const session = homeTitleTypingSession;
+                let index = 0;
+                
+                clearHomeTitleTimer();
+                homeTitle.textContent = '';
+                homeTitle.classList.add('typing');
+                
+                const type = () => {
+                    if (homeTitleTypingSession !== session) return;
+                    
+                    if (index < homeTitleOriginalText.length) {
+                        homeTitle.textContent = homeTitleOriginalText.substring(0, index + 1);
+                        index += 1;
+                        homeTitleTimer = setTimeout(type, homeTitleSpeed);
+                    } else {
+                        homeTitle.textContent = homeTitleOriginalText;
+                        homeTitle.classList.remove('typing');
+                    }
+                };
+                
+                homeTitleTimer = setTimeout(type, startDelay);
+            }
+            
+            if (homeTitleOriginalText.length > 0) {
+                startHomeTitleTyping();
+                
+                window.addEventListener('sectionChange', (event) => {
+                    if (!event.detail) return;
+                    
+                    if (event.detail.index === 0) {
+                        startHomeTitleTyping(400);
+                    } else {
+                        clearHomeTitleTimer();
+                        homeTitle.textContent = homeTitleOriginalText;
+                        homeTitle.classList.remove('typing');
+                    }
+                });
+            }
             
             function typeWriter() {
                 if (isTypingName) {
@@ -879,7 +936,7 @@
                 card.style.setProperty('--clip-offset', `${randomOffset}px`);
             });
             
-            // 立方体面点击交互（根据面类型显示不同文案）
+            // Cube face interaction (show different copy based on face type)
             const cubeFaces = document.querySelectorAll('.cube .face');
             const cubeModal = document.getElementById('cubeModal');
             const cubeModalContent = cubeModal.querySelector('.cube-modal-content');
@@ -893,8 +950,8 @@
                 face.addEventListener('click', function() {
                     // 缺省内容（painting/music）
                     let defaultHTML = `
-                        <h2 style="margin-top:0">立方体交互</h2>
-                        <p>您点击了立方体的一个面！这是一个3D立方体，展示了不同的创作维度。</p>
+                        <h2 style="margin-top:0">Cube Interaction</h2>
+                        <p>You clicked one face of the cube! This 3D cube showcases different creative dimensions.</p>
                     `;
 
                     // GRAPHIC（front/back）：第一行文字，第二行左右为图片与视频

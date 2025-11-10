@@ -820,6 +820,33 @@ function initProjectsSlider() {
     let currentIndex = cloneCount; // 从第一个真实项目开始（跳过克隆的）
     let isTransitioning = false;
     
+    const autoPlayDelay = 5000;
+    let autoPlayInterval = null;
+    
+    function startAutoPlay() {
+        const projectsSection = document.getElementById('projects');
+        if (!projectsSection || autoPlayInterval) return;
+        if (!projectsSection.classList.contains('active')) return;
+        
+        autoPlayInterval = setInterval(() => {
+            if (!isTransitioning) {
+                goToNext();
+            }
+        }, autoPlayDelay);
+    }
+    
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+        }
+    }
+    
+    function resetAutoPlay() {
+        stopAutoPlay();
+        startAutoPlay();
+    }
+    
     // 计算每个卡片的宽度（包括间距）
     function getSlideWidth() {
         const slide = allSlides[0];
@@ -935,6 +962,7 @@ function initProjectsSlider() {
         addSwipeEffect('left');
         
         updateSlider(true);
+        resetAutoPlay();
         
         setTimeout(() => {
             handleInfiniteLoop();
@@ -952,6 +980,7 @@ function initProjectsSlider() {
         addSwipeEffect('right');
         
         updateSlider(true);
+        resetAutoPlay();
         
         setTimeout(() => {
             handleInfiniteLoop();
@@ -966,6 +995,7 @@ function initProjectsSlider() {
         isTransitioning = true;
         currentIndex = index + cloneCount;
         updateSlider(true);
+        resetAutoPlay();
         
         setTimeout(() => {
             isTransitioning = false;
@@ -991,6 +1021,31 @@ function initProjectsSlider() {
     indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => goToSlide(index));
     });
+    
+    const sectionChangeHandler = (event) => {
+        if (!event.detail) return;
+        
+        if (event.detail.index === 1) {
+            resetAutoPlay();
+        } else {
+            stopAutoPlay();
+        }
+    };
+    
+    const handleMouseEnter = () => {
+        stopAutoPlay();
+    };
+    
+    const handleMouseLeave = () => {
+        const projectsSection = document.getElementById('projects');
+        if (projectsSection && projectsSection.classList.contains('active')) {
+            startAutoPlay();
+        }
+    };
+    
+    window.addEventListener('sectionChange', sectionChangeHandler);
+    container.addEventListener('mouseenter', handleMouseEnter);
+    container.addEventListener('mouseleave', handleMouseLeave);
     
     // 添加项目卡牌点击事件
     allSlides.forEach((slide, index) => {
@@ -1028,7 +1083,10 @@ function initProjectsSlider() {
     
     console.log('Projects 无限循环滑动已初始化 ✨ - 共', totalSlides, '个项目（含', allSlides.length, '个包括克隆）');
     
-    
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection && projectsSection.classList.contains('active')) {
+        startAutoPlay();
+    }
     
     // 暴露重置函数到全局，用于页面切换时重置显示
     window.resetProjectsSlider = function() {
@@ -1039,6 +1097,7 @@ function initProjectsSlider() {
         setTimeout(() => {
             container.style.transition = '';
         }, 50);
+        resetAutoPlay();
         console.log('Projects滑动器已重置到第一张卡片');
     };
     
@@ -1054,6 +1113,10 @@ function initProjectsSlider() {
         
         // 清理定时器
         if (resizeTimer) clearTimeout(resizeTimer);
+        stopAutoPlay();
+        window.removeEventListener('sectionChange', sectionChangeHandler);
+        container.removeEventListener('mouseenter', handleMouseEnter);
+        container.removeEventListener('mouseleave', handleMouseLeave);
         
         console.log('Projects滑动器已销毁');
     };
