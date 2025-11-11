@@ -888,8 +888,14 @@ function initProjectsSlider() {
         
         // 计算容器需要移动的距离
         const currentTransform = container.style.transform;
-        const currentOffset = currentTransform ? parseFloat(currentTransform.match(/-?\d+\.?\d*/)[0]) : 0;
-        const newOffset = currentOffset + offsetNeeded;
+        const transformMatch = currentTransform ? currentTransform.match(/-?\d+\.?\d*/) : null;
+        const currentOffset = transformMatch ? parseFloat(transformMatch[0]) : 0;
+        let newOffset = currentOffset + offsetNeeded;
+        if (Math.abs(newOffset) < 0.001) {
+            newOffset = 0;
+        } else {
+            newOffset = Math.round(newOffset * 100) / 100;
+        }
         
         if (!animate) {
             container.style.transition = 'none';
