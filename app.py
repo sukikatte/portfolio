@@ -6,6 +6,415 @@ app = Flask(__name__)
 # 项目数据
 PROJECTS = [
     {
+        'id': 'flame',
+        'title': 'Keep Burning',
+        'subtitle': 'An endless Unity corridor runner around a living flame',
+        'tags': ['Independent Development', 'Unity', 'Game Systems'],
+        'icon': '🔥',
+        'color': '#FF5A3C',
+        'description': 'An endless corridor survival runner: keep a living flame alive through fuel drain, water hazards, ice inertia, and snowmen rescues that grant extra lives.',
+        'tech_stack': ['Unity', 'Blender', 'C#'],
+        'github': 'https://github.com/sukikatte/KeepBurning',
+
+        'problem': {
+            'title': 'Problem / Context',
+            'content': 'The game needed a readable resource loop in a short corridor run: the flame is both avatar, timer, and tool.',
+            'highlights': [
+                'Vigor continuously drains',
+                'Fuel, water, and burnable obstacles share one resource',
+                'Players must reach the end camp before the flame dies'
+            ]
+        },
+        'ideation': {
+            'title': 'Ideation & Design Thinking',
+            'content': 'Designed the flame as a living resource: collecting fuel, avoiding water, and burning through obstacles all speak the same vigor language.',
+            'highlights': [
+                'Flame vigor as the core loop',
+                'Hazards and pickups as opposing resource events',
+                'Readable feedback through scale, color, and light'
+            ]
+        },
+        'solution': {
+            'title': 'Solution & Technical Implementation',
+            'content': 'Implemented movement, jump cost, vigor scoring, hazard/pickup logic, and dynamic corridor segment spawning in Unity, with Blender assets.',
+            'highlights': [
+                'Player movement and jump cost',
+                'Vigor scoring and drain',
+                'Hazard and pickup logic',
+                'Dynamic corridor segment spawning'
+            ]
+        },
+        'ux': {
+            'title': 'User Experience & Interface Design',
+            'content': 'Mapped vigor to flame scale, color, and lighting so players can read remaining life at a glance while running.',
+            'highlights': [
+                'Scale, color, and lighting as HUD',
+                'Corridor readability over cluttered UI',
+                'End camp as a clear goal'
+            ]
+        },
+        'outcome': {
+            'title': 'Outcome & Impact',
+            'content': 'A complete corridor-runner prototype with a single, legible resource fantasy and procedural segment flow.',
+            'highlights': [
+                'Independent development, Jan–May 2026',
+                'Unity + Blender + C#',
+                'Resource loop expressed through the flame itself'
+            ]
+        },
+        'reflection': {
+            'title': 'Reflection',
+            'content': 'Gameplay feedback is stronger when the avatar is the meter. Mapping vigor to the flame made systems readable without extra UI.',
+            'learnings': [
+                'One resource can carry movement, hazard, and win conditions',
+                'Visual mapping beats numeric HUD in a runner',
+                'Segment spawning keeps a short corridor feeling alive'
+            ]
+        }
+    },
+    {
+        'id': 'key',
+        'title': 'The Key',
+        'subtitle': 'A dual-staff rhythm game with live MIDI output',
+        'tags': ['Independent Development', 'Java', 'MIDI + Music Notation'],
+        'icon': '♪',
+        'color': '#C9B27A',
+        'description': 'A dual-staff rhythm game that maps pitch to vertical position on treble and bass staves, with Free Compose and Song Performance modes.',
+        'tech_stack': ['Java', 'Swing', 'Java MIDI'],
+        'github': 'https://github.com/sukikatte/The_Key',
+
+        'problem': {
+            'title': 'Problem / Context',
+            'content': 'Most rhythm games map notes to lanes, not to music notation. The Key treats the staff as the playfield so pitch, timing, and reading stay coupled.',
+            'highlights': [
+                'Pitch mapped to vertical staff position',
+                'Treble and bass staves at once',
+                'Need for both composition and performance modes'
+            ]
+        },
+        'ideation': {
+            'title': 'Ideation & Design Thinking',
+            'content': 'Designed Free Compose and Song Performance modes with two-voice playback and live MIDI note output, so input looks and sounds like notation.',
+            'highlights': [
+                'Free Compose and Song Performance',
+                'Two-voice playback',
+                'Live MIDI note output'
+            ]
+        },
+        'solution': {
+            'title': 'Solution & Technical Implementation',
+            'content': 'Implemented MVC gameplay in Java Swing: dual-player note movement, mute/rest toggling, scrolling hit markers, and timing-and-pitch scoring mapped to MIDI note values.',
+            'highlights': [
+                'MVC architecture',
+                'Dual-player note movement',
+                'Mute/rest toggling and scrolling hit markers',
+                'Timing-and-pitch scoring mapped to MIDI'
+            ]
+        },
+        'ux': {
+            'title': 'User Experience & Interface Design',
+            'content': 'Rendered music-notation feedback so players can see whether they hit the right pitch at the right time, not just a generic judgement line.',
+            'highlights': [
+                'Staff as playfield',
+                'Notation-accurate input feedback',
+                'Readable two-voice layout'
+            ]
+        },
+        'outcome': {
+            'title': 'Outcome & Impact',
+            'content': 'A desktop rhythm game that treats notation as interaction, not decoration, with live MIDI output for audible confirmation.',
+            'highlights': [
+                'Independent development, Jan–May 2026',
+                'Java + Swing + Java MIDI',
+                'Compose and performance in one MVC system'
+            ]
+        },
+        'reflection': {
+            'title': 'Reflection',
+            'content': 'Mapping pitch to staff position made scoring and feedback honest: a miss is a wrong note, not just a late tap.',
+            'learnings': [
+                'Notation can be a game UI',
+                'MIDI keeps visual pitch tied to sound',
+                'MVC kept dual-staff gameplay manageable'
+            ]
+        }
+    },
+    {
+        'id': 'hok',
+        'title': 'Honor of Kings Lineup Agent',
+        'subtitle': 'A reasoned draft coach for lane, synergy, and counterplay',
+        'tags': ['Independent Development', 'LLM Agent', 'RAG + Function Calling'],
+        'icon': '🤖',
+        'color': '#FF4D5A',
+        'description': 'A calm HoK draft coach that turns ally/enemy picks and lane into persuasive recommendations, counter/synergy analysis, and teamfight roles.',
+        'tech_stack': ['Python', 'OpenAI Responses API', 'RAG', 'Function Calling', 'REST APIs', 'Matplotlib'],
+        'github': '#',
+
+        'problem': {
+            'title': 'Problem / Context',
+            'content': 'Drafting in Honor of Kings is high-stakes and noisy: players need lane-aware picks, counter/synergy reading, and a clear win condition before the clock runs out.',
+            'highlights': [
+                'Input: ally/enemy picks plus the user’s lane',
+                'Need: persuasive recommendations, not just a ranked list',
+                'Challenge: live ranking data plus curated hero/tactics knowledge'
+            ]
+        },
+        'ideation': {
+            'title': 'Ideation & Design Thinking',
+            'content': 'Designed a calm, reasoned coach that explains why a pick works: counters, synergies, win conditions, and teamfight roles, instead of dumping raw model output.',
+            'highlights': [
+                'Lane-first recommendations',
+                'Counter and synergy analysis in the same report',
+                'Readable draft-strength visualizations'
+            ]
+        },
+        'solution': {
+            'title': 'Solution & Technical Implementation',
+            'content': 'Built an LLM agent loop with RAG over curated hero/tactics data and function calling to live ranking APIs, then a numeric scoring layer before report generation.',
+            'highlights': [
+                'OpenAI Responses API agent loop',
+                'RAG over curated hero and tactics data',
+                'Function calling to live ranking APIs',
+                'Scoring for lane roles, synergy/counter weights, and small-sample adjustment'
+            ]
+        },
+        'ux': {
+            'title': 'User Experience & Interface Design',
+            'content': 'The report is structured for draft-time reading: pick rationale first, then counters, win conditions, teamfight roles, and Matplotlib charts of draft strength.',
+            'highlights': [
+                'Persuasive pick recommendations',
+                'Counter/synergy analysis',
+                'Win conditions and teamfight roles',
+                'Matplotlib visualizations of draft strength'
+            ]
+        },
+        'outcome': {
+            'title': 'Outcome & Impact',
+            'content': 'Independent prototype of a grounded draft agent that combines live data, curated knowledge, and numeric scoring before the language model writes the coach report.',
+            'highlights': [
+                'Independent development, Jan–May 2026',
+                'Grounded recommendations via RAG + APIs',
+                'Scoring layer before generation'
+            ]
+        },
+        'reflection': {
+            'title': 'Reflection',
+            'content': 'The useful part was not the LLM alone, but the loop around it: retrieve, call tools, score, then write. Small-sample adjustment mattered as much as the prompt.',
+            'learnings': [
+                'Function calling keeps recommendations tied to live ranking',
+                'A numeric scoring layer makes the coach less impressionistic',
+                'Draft advice has to be lane-aware to be usable'
+            ]
+        }
+    },
+    {
+        'id': 'franken',
+        'title': 'Frankenstories',
+        'subtitle': 'Story Generation from Reusable Parts',
+        'tags': ['Final Year Project', 'LLM Narrative', 'ComiXML'],
+        'icon': '💬',
+        'color': '#98FB98',
+        'description': 'An LLM-based comic narrative system that recombines pre-existing ComiXML elements into novel, grounded stories.',
+        'achievement': 'Final Year Project, UCD · Grade: A · Supervisor: Assoc. Prof. Tony Veale',
+        'tech_stack': ['Python', 'LLM', 'ComiXML', 'Constrained Generation'],
+        'github': 'https://github.com/sukikatte/FYP_FrankenStories',
+        
+        'problem': {
+            'title': 'Problem / Context',
+            'content': 'Open-ended story generation often drifts from available visual and narrative parts. Frankenstories asks how an LLM can recombine reusable comic elements while staying grounded.',
+            'highlights': [
+                'Reusable narrative parts inside ComiXML',
+                'Need for novelty without losing content grounding',
+                'Final Year Project at UCD, Sept 2025 – May 2026'
+            ]
+        },
+        'ideation': {
+            'title': 'Ideation & Design Thinking',
+            'content': 'Treat comics as structured, reusable parts rather than free text. Generation should invent new stories by recombination, not by unconstrained hallucination.',
+            'highlights': [
+                'ComiXML as the grounding framework',
+                'Recombination over free generation',
+                'Rendered comics as the output, not just prose'
+            ]
+        },
+        'solution': {
+            'title': 'Solution & Technical Implementation',
+            'content': 'Developed an LLM-based comic narrative generation system that recombines pre-existing narrative elements within ComiXML to create novel stories while maintaining content grounding.',
+            'highlights': [
+                'LLM story synthesis over ComiXML parts',
+                'Constrained generation for panel-level grounding',
+                'Rendered comic generations in the dissertation'
+            ]
+        },
+        'ux': {
+            'title': 'Evaluation Framework',
+            'content': 'Designed a two-stage evaluation framework for structural validity and narrative quality: XML/schema validation and hallucination-rate analysis, plus LLM-as-a-judge scoring of coherence, continuity, and entertainment.',
+            'highlights': [
+                'Stage 1: XML/schema validation and hallucination rate',
+                'Stage 2: LLM-as-a-judge for coherence, continuity, entertainment',
+                'Practical guidelines for constrained generation'
+            ]
+        },
+        'impact': {
+            'title': 'Impact & Results',
+            'content': 'Produced a research dissertation featuring rendered comic generations and practical guidelines for constrained generation. Graded A.',
+            'highlights': [
+                'Grade: A',
+                'Supervisor: Assoc. Prof. Tony Veale',
+                'Dissertation with rendered comics and guidelines'
+            ]
+        },
+        'reflection': {
+            'title': 'Reflection',
+            'content': 'Constrained generation is a design problem as much as a model problem: the schema, the parts, and the judge metrics decide whether a story stays grounded.',
+            'learnings': [
+                'Reusable parts keep multimodal stories honest',
+                'Structural validity and narrative quality need different tests',
+                'LLM-as-a-judge works when the criteria are explicit'
+            ]
+        }
+    },
+    {
+        'id': 'songs',
+        'title': 'Guess Songs',
+        'subtitle': 'Real-time Multiplayer Music Game',
+        'tags': ['Solo Project', 'Cloud + Realtime DB', 'Game + Interaction'],
+        'icon': '🎵',
+        'color': '#FF6B6B',
+        'description': '从 0 构建的轻量级音乐问答游戏，强调实时交互和用户体验',
+        'tech_stack': ['Firebase', 'Cloud Storage', 'Real-time Database', 'JavaScript'],
+        'github': '#',
+        
+        'problem': {
+            'title': 'Problem / Context',
+            'content': '市面上的音乐游戏大多需要下载客户端，操作复杂。我想创建一个轻量级的网页版音乐问答游戏，让用户无需安装即可多人对战，随时随地享受猜歌乐趣。',
+            'highlights': [
+                '目标用户：音乐爱好者、休闲游戏玩家',
+                '核心需求：快速开始、多人互动、实时反馈',
+                '技术挑战：音频存储、实时同步、低延迟'
+            ]
+        },
+        'ideation': {
+            'title': 'Ideation & Design Thinking',
+            'content': '设计了简单的游戏流程：创建/加入房间 → 听歌片段 → 快速抢答 → 实时排行。关注用户的社交需求，添加排行榜和对战机制增加竞争性和趣味性。',
+            'highlights': [
+                '游戏机制：限时抢答、积分系统、排行榜',
+                '社交设计：多人房间、实时对战、成就分享',
+                '音频策略：15秒片段、渐进式加载、云存储'
+            ]
+        },
+        'solution': {
+            'title': 'Solution & Technical Implementation',
+            'content': '使用Firebase Realtime Database实现多设备实时同步，自建音频云存储系统绕过API限制。前端采用原生JavaScript，确保快速响应。所有状态变化立即同步到所有客户端。',
+            'highlights': [
+                'Firebase Realtime Database：毫秒级同步',
+                '云存储OSS：自建音频库，无API依赖',
+                'WebSocket：实时通信，低延迟',
+                '缓存策略：预加载下一首，流畅体验'
+            ]
+        },
+        'ux': {
+            'title': 'User Experience & Interface Design',
+            'content': '简洁的游戏界面，大号按钮便于快速操作。实时显示所有玩家状态，增强对战氛围。音频波形可视化，视觉反馈丰富。排行榜设计带动画，成就感强烈。',
+            'highlights': [
+                '极简UI：3秒理解规则，即刻开始',
+                '实时反馈：答题瞬间显示对错',
+                '音频可视化：波形动画增强沉浸感',
+                '排行榜动画：数字跳动，成就满满'
+            ]
+        },
+        'outcome': {
+            'title': 'Outcome & Impact',
+            'content': '成功实现多人实时对战，延迟控制在100ms以内。音频云存储方案稳定可靠，支持100+歌曲库。用户平均游戏时长15分钟，复玩率高。',
+            'highlights': [
+                '⚡ 实时同步延迟 < 100ms',
+                '🎵 音频库包含100+歌曲',
+                '👥 支持同时10人对战',
+                '🔄 用户平均游戏时长15分钟'
+            ]
+        },
+        'reflection': {
+            'title': 'Reflection',
+            'content': '从0到1独立开发一个实时游戏，学会了云服务集成、实时通信、性能优化等技能。最大的收获是理解了"实时性"对用户体验的重要性。',
+            'learnings': [
+                '实时性是多人游戏的核心体验',
+                'Firebase非常适合快速构建实时应用',
+                '音频处理需要平衡质量和加载速度',
+                '下一步：添加更多游戏模式、自定义歌单'
+            ]
+        }
+    },
+    {
+        'id': 'mahjong',
+        'title': 'Digital Mahjong',
+        'subtitle': 'Algorithmic Thinking Meets User Experience',
+        'tags': ['Algorithm + UI', 'Early Work'],
+        'icon': '🀄',
+        'color': '#95E1D3',
+        'description': '从功能实现入手的桌面麻将游戏算法与交互探索',
+        'tech_stack': ['Python', 'Algorithm Design', 'Game Logic'],
+        'github': '#',
+        
+        'problem': {
+            'title': 'Problem / Context',
+            'content': '这是我的第一个完整项目，目标是用Python实现一个功能完整的麻将游戏。重点在于算法设计：番型计算、胡牌判断、AI对手等核心逻辑。',
+            'highlights': [
+                '技术挑战：复杂的规则系统、状态管理',
+                '学习目标：算法设计、数据结构、游戏逻辑',
+                '初期思维：功能优先，追求完整实现'
+            ]
+        },
+        'ideation': {
+            'title': 'Ideation & Design Thinking',
+            'content': '项目完成后，教师评价："功能完整，但缺乏用户思维"。这句话成为我的转折点。开始思考：用户真正需要什么？如何让游戏更易用？界面如何更直观？',
+            'highlights': [
+                '反思：功能≠用户体验',
+                '转变：从"能用"到"好用"的思考',
+                '启发：技术服务于人，而非炫技'
+            ]
+        },
+        'solution': {
+            'title': 'Solution & Technical Implementation',
+            'content': 'Python面向对象设计，将麻将规则抽象为类和方法。状态机管理游戏流程，算法实现番型计算和胡牌判断。虽然技术实现扎实，但UI设计确实不够友好。',
+            'highlights': [
+                '核心算法：番型计算、胡牌判断逻辑',
+                '状态机：游戏流程控制',
+                '数据结构：麻将牌组的高效表示',
+                'AI对手：基础策略算法'
+            ]
+        },
+        'ux': {
+            'title': 'User Experience & Interface Design',
+            'content': '早期版本的UI非常简陋，只关注功能实现。按钮布局混乱，操作流程不清晰，缺少视觉反馈。这些问题让我意识到UI/UX的重要性。',
+            'highlights': [
+                '问题：UI简陋，缺乏视觉层次',
+                '问题：操作流程不直观',
+                '问题：缺少反馈动画',
+                '教训：技术和体验同等重要'
+            ]
+        },
+        'outcome': {
+            'title': 'Outcome & Impact',
+            'content': '虽然项目在用户体验上有不足，但算法实现获得认可。更重要的是，这次经历让我明白了用户导向设计的重要性，促使我在后续项目中更关注UX。',
+            'highlights': [
+                '✅ 功能完整，算法扎实',
+                '⚠️ UI/UX需改进',
+                '💡 重要转折点：开始关注用户体验',
+                '📚 学到的比做出的更重要'
+            ]
+        },
+        'reflection': {
+            'title': 'Reflection',
+            'content': '这是我的起点项目，虽不完美但意义重大。教师的批评是最好的礼物，让我从"程序员"转变为"设计者"。后续所有项目都受这次经历影响，开始真正关注用户需求。',
+            'learnings': [
+                '功能实现只是第一步，用户体验才是关键',
+                '批评是成长的催化剂',
+                '技术与设计缺一不可',
+                '这个项目定义了我之后的方向'
+            ]
+        }
+    },
+    {
         'id': 'dwen',
         'title': "Dwen Dwen's Neighbor",
         'subtitle': 'Designing for Conservation Awareness',
@@ -76,8 +485,7 @@ PROJECTS = [
                 '下一步：添加社区功能，让用户分享保护心得'
             ]
         }
-    }
-,
+    },
     {
         'id': 'medicine',
         'title': 'Chinese Medicine Recommendation',
@@ -147,150 +555,7 @@ PROJECTS = [
                 '下一步：引入专业医师审核，提高可靠性'
             ]
         }
-    }
-,
-    {
-        'id': 'songs',
-        'title': 'Guess Songs',
-        'subtitle': 'Real-time Multiplayer Music Game',
-        'tags': ['Solo Project', 'Cloud + Realtime DB', 'Game + Interaction'],
-        'icon': '🎵',
-        'color': '#FF6B6B',
-        'description': '从 0 构建的轻量级音乐问答游戏，强调实时交互和用户体验',
-        'tech_stack': ['Firebase', 'Cloud Storage', 'Real-time Database', 'JavaScript'],
-        'github': '#',
-        
-        'problem': {
-            'title': 'Problem / Context',
-            'content': '市面上的音乐游戏大多需要下载客户端，操作复杂。我想创建一个轻量级的网页版音乐问答游戏，让用户无需安装即可多人对战，随时随地享受猜歌乐趣。',
-            'highlights': [
-                '目标用户：音乐爱好者、休闲游戏玩家',
-                '核心需求：快速开始、多人互动、实时反馈',
-                '技术挑战：音频存储、实时同步、低延迟'
-            ]
-        },
-        'ideation': {
-            'title': 'Ideation & Design Thinking',
-            'content': '设计了简单的游戏流程：创建/加入房间 → 听歌片段 → 快速抢答 → 实时排行。关注用户的社交需求，添加排行榜和对战机制增加竞争性和趣味性。',
-            'highlights': [
-                '游戏机制：限时抢答、积分系统、排行榜',
-                '社交设计：多人房间、实时对战、成就分享',
-                '音频策略：15秒片段、渐进式加载、云存储'
-            ]
-        },
-        'solution': {
-            'title': 'Solution & Technical Implementation',
-            'content': '使用Firebase Realtime Database实现多设备实时同步，自建音频云存储系统绕过API限制。前端采用原生JavaScript，确保快速响应。所有状态变化立即同步到所有客户端。',
-            'highlights': [
-                'Firebase Realtime Database：毫秒级同步',
-                '云存储OSS：自建音频库，无API依赖',
-                'WebSocket：实时通信，低延迟',
-                '缓存策略：预加载下一首，流畅体验'
-            ]
-        },
-        'ux': {
-            'title': 'User Experience & Interface Design',
-            'content': '简洁的游戏界面，大号按钮便于快速操作。实时显示所有玩家状态，增强对战氛围。音频波形可视化，视觉反馈丰富。排行榜设计带动画，成就感强烈。',
-            'highlights': [
-                '极简UI：3秒理解规则，即刻开始',
-                '实时反馈：答题瞬间显示对错',
-                '音频可视化：波形动画增强沉浸感',
-                '排行榜动画：数字跳动，成就满满'
-            ]
-        },
-        'outcome': {
-            'title': 'Outcome & Impact',
-            'content': '成功实现多人实时对战，延迟控制在100ms以内。音频云存储方案稳定可靠，支持100+歌曲库。用户平均游戏时长15分钟，复玩率高。',
-            'highlights': [
-                '⚡ 实时同步延迟 < 100ms',
-                '🎵 音频库包含100+歌曲',
-                '👥 支持同时10人对战',
-                '🔄 用户平均游戏时长15分钟'
-            ]
-        },
-        'reflection': {
-            'title': 'Reflection',
-            'content': '从0到1独立开发一个实时游戏，学会了云服务集成、实时通信、性能优化等技能。最大的收获是理解了"实时性"对用户体验的重要性。',
-            'learnings': [
-                '实时性是多人游戏的核心体验',
-                'Firebase非常适合快速构建实时应用',
-                '音频处理需要平衡质量和加载速度',
-                '下一步：添加更多游戏模式、自定义歌单'
-            ]
-        }
-    }
-,
-    {
-        'id': 'mahjong',
-        'title': 'Digital Mahjong',
-        'subtitle': 'Algorithmic Thinking Meets User Experience',
-        'tags': ['Algorithm + UI', 'Early Work'],
-        'icon': '🀄',
-        'color': '#95E1D3',
-        'description': '从功能实现入手的桌面麻将游戏算法与交互探索',
-        'tech_stack': ['Python', 'Algorithm Design', 'Game Logic'],
-        'github': '#',
-        
-        'problem': {
-            'title': 'Problem / Context',
-            'content': '这是我的第一个完整项目，目标是用Python实现一个功能完整的麻将游戏。重点在于算法设计：番型计算、胡牌判断、AI对手等核心逻辑。',
-            'highlights': [
-                '技术挑战：复杂的规则系统、状态管理',
-                '学习目标：算法设计、数据结构、游戏逻辑',
-                '初期思维：功能优先，追求完整实现'
-            ]
-        },
-        'ideation': {
-            'title': 'Ideation & Design Thinking',
-            'content': '项目完成后，教师评价："功能完整，但缺乏用户思维"。这句话成为我的转折点。开始思考：用户真正需要什么？如何让游戏更易用？界面如何更直观？',
-            'highlights': [
-                '反思：功能≠用户体验',
-                '转变：从"能用"到"好用"的思考',
-                '启发：技术服务于人，而非炫技'
-            ]
-        },
-        'solution': {
-            'title': 'Solution & Technical Implementation',
-            'content': 'Python面向对象设计，将麻将规则抽象为类和方法。状态机管理游戏流程，算法实现番型计算和胡牌判断。虽然技术实现扎实，但UI设计确实不够友好。',
-            'highlights': [
-                '核心算法：番型计算、胡牌判断逻辑',
-                '状态机：游戏流程控制',
-                '数据结构：麻将牌组的高效表示',
-                'AI对手：基础策略算法'
-            ]
-        },
-        'ux': {
-            'title': 'User Experience & Interface Design',
-            'content': '早期版本的UI非常简陋，只关注功能实现。按钮布局混乱，操作流程不清晰，缺少视觉反馈。这些问题让我意识到UI/UX的重要性。',
-            'highlights': [
-                '问题：UI简陋，缺乏视觉层次',
-                '问题：操作流程不直观',
-                '问题：缺少反馈动画',
-                '教训：技术和体验同等重要'
-            ]
-        },
-        'outcome': {
-            'title': 'Outcome & Impact',
-            'content': '虽然项目在用户体验上有不足，但算法实现获得认可。更重要的是，这次经历让我明白了用户导向设计的重要性，促使我在后续项目中更关注UX。',
-            'highlights': [
-                '✅ 功能完整，算法扎实',
-                '⚠️ UI/UX需改进',
-                '💡 重要转折点：开始关注用户体验',
-                '📚 学到的比做出的更重要'
-            ]
-        },
-        'reflection': {
-            'title': 'Reflection',
-            'content': '这是我的起点项目，虽不完美但意义重大。教师的批评是最好的礼物，让我从"程序员"转变为"设计者"。后续所有项目都受这次经历影响，开始真正关注用户需求。',
-            'learnings': [
-                '功能实现只是第一步，用户体验才是关键',
-                '批评是成长的催化剂',
-                '技术与设计缺一不可',
-                '这个项目定义了我之后的方向'
-            ]
-        }
-    }
-,
+    },
     {
         'id': 'parrot',
         'title': 'Parrot Ordering System',
@@ -426,74 +691,8 @@ PROJECTS = [
                 '用户体验的关键作用'
             ]
         }
-    },
-    {
-        'id': 'franken',
-        'title': 'Frankenstories',
-        'subtitle': 'Collaborative Storytelling Platform',
-        'tags': ['Full-Stack', 'Web + Database + UX'],
-        'icon': '📚',
-        'color': '#98FB98',
-        'description': '一个协作式故事创作平台，用户可以共同创作和分享故事',
-        'achievement': '创新项目展示',
-        'tech_stack': ['Python', 'Flask', 'SQLite', 'JavaScript', 'CSS'],
-        'github': 'https://github.com/sukikatte/frankenstories',
-        
-        'problem': {
-            'title': 'Problem / Context',
-            'content': '传统故事创作缺乏协作性，创作者难以获得反馈和灵感。需要一个平台让多人共同创作故事。',
-            'highlights': [
-                '目标用户：故事创作者、读者',
-                '核心需求：协作创作',
-                '用户痛点：创作孤独、缺乏灵感'
-            ]
-        },
-        'ideation': {
-            'title': 'Ideation & Design Thinking',
-            'content': '设计协作式创作流程，让多个用户可以共同参与故事创作。采用分支式故事结构，支持多种创作模式。',
-            'highlights': [
-                '协作创作模式',
-                '分支式故事结构',
-                '实时编辑功能'
-            ]
-        },
-        'solution': {
-            'title': 'Solution & Technical Implementation',
-            'content': 'Flask 后端 + SQLite 数据库 + 实时编辑功能。实现故事管理、用户协作、版本控制等功能。',
-            'highlights': [
-                '后端：Flask + SQLAlchemy',
-                '数据库：SQLite',
-                '前端：JavaScript + CSS'
-            ]
-        },
-        'ux': {
-            'title': 'User Experience & Interface Design',
-            'content': '直观的创作界面，支持实时协作。采用时间线式故事展示，便于理解故事发展。',
-            'highlights': [
-                '直观的创作界面',
-                '实时协作功能',
-                '时间线式展示'
-            ]
-        },
-        'impact': {
-            'title': 'Impact & Results',
-            'content': '成功创建了协作式故事创作平台，提升了创作体验和作品质量。',
-            'highlights': [
-                '协作效率提升',
-                '创作质量改善',
-                '用户参与度增加'
-            ]
-        },
-        'reflection': {
-            'title': 'Reflection',
-            'content': '学会了如何设计协作式平台，理解了实时编辑的技术挑战。',
-            'learnings': [
-                '协作设计的复杂性',
-                '实时编辑的技术挑战',
-                '用户体验的重要性'
-            ]
-        }
     }
+    
     ]
 
 

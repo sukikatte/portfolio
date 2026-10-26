@@ -51,10 +51,465 @@
         
         <!-- 项目内容 -->
         <div class="project-content-wrapper">
-            {% if project.id == 'franken' %}
-                <!-- Frankenstories 特殊布局 -->
+            {% if project.id == 'hok' %}
                 <div class="dwen-layout">
-                    <!-- 标题区 -->
+                    <div class="dwen-hero">
+                        <h1 class="dwen-title" data-text="HOK LINEUP AGENT">HOK LINEUP AGENT</h1>
+                        <p class="dwen-subtitle">
+                            <span class="subtitle-decorator">◆</span>
+                            A Draft Recommendation Agent for Honor of Kings
+                            <span class="subtitle-decorator">◆</span>
+                        </p>
+                        <div class="dwen-meta-info">
+                            <span class="meta-date">Jan. 2026 - May 2026 · COMP47980</span>
+                            <span class="meta-divider-thick">|</span>
+                            <span class="tech-stack">Python · OpenAI Responses API · Function Calling · RAG · REST APIs</span>
+                        </div>
+                    </div>
+
+                    <div class="hok-cover">
+                        <img src="{{ url_for('static', filename='media/HoK/Project/HoK6.jpg') }}" alt="In-game Honor of Kings draft: which hero should I play?" onclick="openImageModal(this.src)">
+                    </div>
+
+                    <div class="dwen-sections">
+                        <section class="dwen-section" data-number="01">
+                            <div class="section-number">01</div>
+                            <h2 class="section-title">Project Overview</h2>
+                            <div class="section-content">
+                                <div class="project-overview-box">
+                                    <p>Honor of Kings is a 5v5 mobile MOBA. The high-stakes decision happens before the match starts: during the draft phase, players pick heroes from limited information — teammates, enemies, and their own assigned lane. A poor choice can leave the team with a weak frontline, no crowd control, or a losing lane matchup.</p>
+                                    <p>This project builds a technical draft coach that turns that lineup into lane-aware, evidence-grounded recommendations. Compared with vanilla ChatGPT, the assistant retrieves live Camp/KPL statistics, extracts official hero-detail pages, and reads curated local hero files inside a structured Responses API tool loop, so the pick is auditable rather than remembered.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="dwen-section" data-number="02">
+                            <div class="section-number">02</div>
+                            <h2 class="section-title">Assistant Design</h2>
+                            <div class="section-content">
+                                <div class="function-container">
+                                    <h3 class="container-title">Tool-Grounded Agent Loop</h3>
+                                    <div class="doc-content">
+                                        <p>The notebook implementation is powered by the OpenAI Responses API: multi-turn function calling, optional file-search retrieval, and retry/backoff for rate limits. Three tools expose the data layer — <strong>get_hero_camp_and_kpl_snapshot</strong>, <strong>get_qq_hero_detail_page</strong>, and <strong>get_hero_local_info</strong> — so each recommendation can cite Camp ranks, KPL presence, official hero text, and local tactics in the same pass.</p>
+                                        <p>The assistant also switches modes. In the default Top-3 replacement mode it proposes lane picks for an open slot. In locked-hero mode the user has already selected a hero, and the agent analyzes that hero against the same-lane opponent instead of generating a generic replacement list.</p>
+                                    </div>
+                                </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">Design Constraints</h3>
+                                    <div class="doc-content">
+                                        <p>Several choices keep the loop stable in a notebook setting. Parallel tool execution is disabled to avoid token spikes and keep the call trace readable. Code Interpreter is not part of the default main loop; a two-stage path can optionally append a structured <strong>## NUMERIC TRACE</strong> without changing the recommendation itself.</p>
+                                        <p>Canonical name normalization, Camp/KPL cache maps, roster prefetch, and fallback parsing keep ~130 hero entries and three live endpoints usable inside one agent turn. Prompt consistency rules stop the model from claiming “no data” when numerical fields already exist.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="dwen-section" data-number="03">
+                            <div class="section-number">03</div>
+                            <h2 class="section-title">Outside Knowledge</h2>
+                            <div class="section-content">
+                                <div class="function-container">
+                                    <h3 class="container-title">Detecting Official Files and API Calls</h3>
+                                    <div class="doc-content">
+                                        <p>External game data was collected from official sources through browser developer tools and structured file extraction, then cleaned and connected for runtime use. The system mainly relies on three endpoints:</p>
+                                        <p><strong>Official Hero Detail Page Endpoint</strong> — accessed through browser developer tools and network inspection, used for hero text extraction (<code>pvp.qq.com/web201605/herodetail/</code>).</p>
+                                        <p><strong>Camp Hero Ranking API</strong> — internal endpoint for ranked hero statistics (<code>api-camp.honorofkings.com/game/hero/getranklist</code>).</p>
+                                        <p><strong>KPL Hero List API</strong> — professional league statistics endpoint (<code>prod.comp.smoba.qq.com/.../settle_list/open</code>).</p>
+                                        <p>Static hero metadata and tactical text are stored locally to support retrieval and reduce repeated external requests. Data scale: approximately 130 hero entries from the full roster, plus a smaller curated subset of detailed profiles for RAG-style retrieval.</p>
+                                    </div>
+                                    <div class="hok-figure">
+                                        <img src="{{ url_for('static', filename='media/HoK/Project/sc1.jpg') }}" alt="Detecting official files and API calls using browser developer tools on the Honor of Kings match-data platform" onclick="openImageModal(this.src)">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="dwen-section" data-number="04">
+                            <div class="section-number">04</div>
+                            <h2 class="section-title">Worked Examples</h2>
+                            <div class="section-content">
+                                <div class="project-overview-box">
+                                    <p>The same draft question — “which hero should I play?” — is answered four ways: a ChatGPT baseline asked for data support, the agent with Code Interpreter and a numeric trace, the agent with Code Interpreter disabled, and locked-hero matchup mode.</p>
+                                </div>
+
+                                <div class="function-container">
+                                    <h3 class="container-title">Example 1 — Baseline Output from ChatGPT</h3>
+                                    <p class="hok-caption">Asked to “answer with related data support” for a Roam slot. The reply is detailed, but it does not actually include any official Camp, KPL, or hero-page data.</p>
+                                    <div class="hok-figure hok-figure-narrow">
+                                        <img src="{{ url_for('static', filename='media/HoK/Project/chat.jpg') }}" alt="ChatGPT baseline output for the draft scenario" onclick="openImageModal(this.src)">
+                                    </div>
+                                </div>
+
+                                <div class="function-container">
+                                    <h3 class="container-title">Example 2 — Agent with Numeric Trace</h3>
+                                    <p class="hok-caption">Same lineup, with detailed-numeric-explanation enabled. Code Interpreter jointly processes Camp data, KPL data, and heroes information. Top pick still Zhang Fei; the second and third alternatives differ from ChatGPT, and the tables make the ranking auditable.</p>
+                                    <div class="hok-figure">
+                                        <img src="{{ url_for('static', filename='media/HoK/Project/output1.jpg') }}" alt="Agent output with Code Interpreter and numeric trace for the same draft" onclick="openImageModal(this.src)">
+                                    </div>
+                                </div>
+
+                                <div class="function-container">
+                                    <h3 class="container-title">Example 3 — Code Interpreter Disabled</h3>
+                                    <p class="hok-caption">The assistant still grounds the recommendation on retrieved and tool-fetched evidence, but skips the post-hoc numeric-trace stage. The response stays data-informed without extra trace-generation overhead.</p>
+                                    <div class="hok-figure">
+                                        <img src="{{ url_for('static', filename='media/HoK/Project/output2.jpg') }}" alt="Agent output with Code Interpreter disabled" onclick="openImageModal(this.src)">
+                                    </div>
+                                </div>
+
+                                <div class="function-container">
+                                    <h3 class="container-title">Example 4 — Locked-Hero Mode</h3>
+                                    <p class="hok-caption">The user has already selected Zhen Ji. Instead of a Top-3 replacement list, the agent analyzes Zhen Ji versus Angela in mid: ranked and KPL evidence, lane matchup attributes, and play tips for that specific pairing.</p>
+                                    <div class="hok-figure">
+                                        <img src="{{ url_for('static', filename='media/HoK/Project/output3.jpg') }}" alt="Locked-hero mode: Zhen Ji versus Angela mid-lane matchup" onclick="openImageModal(this.src)">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="dwen-section" data-number="05">
+                            <div class="section-number">05</div>
+                            <h2 class="section-title">Project Outcomes</h2>
+                            <div class="section-content">
+                                <div class="project-outcomes-box">
+                                    <p>The added value over a general chat response is structure for draft decisions, direct integration of live statistics and curated local files, and flexible runtime modes — with or without Code Interpreter, Top-3 replacement, or locked-hero matchup. Future work includes stronger alias resolution across endpoints, automated evaluation logs, and a more deterministic scoring layer for long-run consistency.</p>
+                                </div>
+
+                                <div class="function-container doc-container">
+                                    <h3 class="container-title">Project Report</h3>
+                                    <p>COMP47980 project report: assistant design, curated data sources, ChatGPT baseline, and the three agent modes.</p>
+                                    <a href="{{ url_for('static', filename='media/HoK/HoK.pdf') }}" class="download-link" download>
+                                        Download Project Report (PDF)
+                                    </a>
+                                </div>
+
+                                <div class="function-container doc-container">
+                                    <h3 class="container-title">Project Package</h3>
+                                    <p>Runnable notebook plus local data: hero roster, detailed hero profiles, and tactical text used by the agent loop. This project is not hosted on GitHub.</p>
+                                    <a href="{{ url_for('static', filename='media/HoK/HoK_Project.zip') }}" class="download-link" download>
+                                        Download Project Package
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div id="imageModal" class="image-modal">
+                        <span class="modal-close">&times;</span>
+                        <img class="modal-content" id="modalImage">
+                    </div>
+                </div>
+
+            {% elif project.id == 'flame' %}
+                <div class="dwen-layout">
+                    <div class="dwen-hero">
+                        <h1 class="dwen-title" data-text="KEEP BURNING">KEEP BURNING</h1>
+                        <p class="dwen-subtitle">
+                            <span class="subtitle-decorator">◆</span>
+                            Unity 3D Corridor Runner
+                            <span class="subtitle-decorator">◆</span>
+                        </p>
+                        <div class="dwen-meta-info">
+                            <span class="meta-date">Jan. 2026 - May 2026</span>
+                            <span class="meta-divider-thick">|</span>
+                            <span class="tech-stack">Unity · Blender · C#</span>
+                        </div>
+                    </div>
+
+                    <div class="flame-hero-video">
+                        <video controls playsinline preload="metadata" id="flameDemoVideo">
+                            <source src="{{ url_for('static', filename='media/keepBurning/demo_keep_burning.mp4') }}" type="video/mp4">
+                            Keep Burning gameplay demo
+                        </video>
+                    </div>
+
+                    <div class="dwen-sections">
+                        <section class="dwen-section" data-number="01">
+                            <div class="section-number">01</div>
+                            <h2 class="section-title">Project Overview</h2>
+                            <div class="section-content">
+                                <div class="project-overview-box">
+                                    <p>Keep Burning is an endless corridor-style survival runner in Unity. The player controls a living flame moving forward through procedurally generated environments, managing fuel, avoiding hazards, and rescuing boys frozen into snowmen. The goal is to survive as long as possible while keeping the flame alive.</p>
+                                    <p>A continuous risk–reward loop drives the run: fuel decreases over time and is survival itself. Collecting fuel pickups and rescuing snowmen buy recovery. The narrative sits inside the mechanics — the flame is life and persistence, fuel is remaining time, and each rescue restores hope in a frozen world.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="dwen-section" data-number="02">
+                            <div class="section-number">02</div>
+                            <h2 class="section-title">Core Loop</h2>
+                            <div class="section-content">
+                                <div class="function-container">
+                                    <h3 class="container-title">Keep Moving, Keep Burning</h3>
+                                    <div class="doc-content">
+                                        <p>The flame auto-runs forward through an endless corridor. The player steers horizontally and jumps, dodging hazards across different map chunks while rescuing snowmen. Fuel drains continuously — it is live time, not a side meter. Pickups restore fuel; each successful rescue grants one extra life.</p>
+                                        <p>When the flame dies, one extra life is consumed and fuel is fully restored, so a saved life is a second run inside the same attempt rather than a game-over screen. Fuel intensity also maps onto the flame’s scale, color, and lighting, so remaining life is readable at a glance while running.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="dwen-section" data-number="03">
+                            <div class="section-number">03</div>
+                            <h2 class="section-title">Fuel, Lives &amp; Rewards</h2>
+                            <div class="section-content">
+                                <div class="function-container">
+                                    <h3 class="container-title">Fuel System</h3>
+                                    <div class="doc-content">
+                                        <p>Fuel decreases for as long as the run continues and directly affects visual intensity. At zero the flame is extinguished unless an extra life is available. Collecting pickups is the short-term answer; extra lives are the long-term one.</p>
+                                    </div>
+                                </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">Goals and Rewards</h3>
+                                    <div class="doc-content">
+                                        <p>Rescuing snowmen awards extra lives and points. Points persist between runs: before a new game, players can spend them to buy an extra life, so a good run feeds the next attempt instead of resetting to zero.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="dwen-section" data-number="04">
+                            <div class="section-number">04</div>
+                            <h2 class="section-title">Map, Hazards &amp; Difficulty</h2>
+                            <div class="section-content">
+                                <div class="function-container">
+                                    <h3 class="container-title">Procedural Chunks</h3>
+                                    <div class="doc-content">
+                                        <p>The corridor is assembled from a chunk-based procedural system, so each playthrough lays out differently. Ice surfaces add inertia and slower control response, turning the same input into a less obedient flame.</p>
+                                    </div>
+                                </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">Hazards</h3>
+                                    <div class="doc-content">
+                                        <p>Water extinguishes the flame. Obstacles interrupt movement and raise the cost of a mistimed jump. Moving out of bounds is immediate failure — the corridor is a track, not an open field.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="dwen-section" data-number="05">
+                            <div class="section-number">05</div>
+                            <h2 class="section-title">Platforms &amp; Next Steps</h2>
+                            <div class="section-content">
+                                <div class="function-container">
+                                    <h3 class="container-title">PC and Android</h3>
+                                    <div class="doc-content">
+                                        <p>The same core loop ships on PC (macOS) and Android. The Android build is an APK with touch controls for movement and jumping; gameplay stays identical, only the input method changes.</p>
+                                    </div>
+                                </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">Future Improvements</h3>
+                                    <div class="doc-content">
+                                        <p>The design document sketches longer-term progression: Firebase Realtime Database for scores and live sync, a global leaderboard, and a buff / gacha layer for replayability — for example 3× score with reduced vision, 2× score with one life, or slower fuel decay.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="dwen-section" data-number="06">
+                            <div class="section-number">06</div>
+                            <h2 class="section-title">Project Outcomes</h2>
+                            <div class="section-content">
+                                <div class="project-outcomes-box">
+                                    <p>Keep Burning folds avatar, timer, and tool into one flame. Movement, jump cost, fuel drain, hazard/pickup logic, extra lives, and procedural chunk spawning all speak the same resource language — readable without a cluttered HUD.</p>
+                                </div>
+
+                                <div class="function-container doc-container">
+                                    <h3 class="container-title">Design Document</h3>
+                                    <p>Full design write-up: core loop, fuel and lives, procedural maps, hazards, platform support, and planned backend features.</p>
+                                    <a href="{{ url_for('static', filename='media/keepBurning/Keep_Burning.pdf') }}" class="download-link" download>
+                                        Download Design Document (PDF)
+                                    </a>
+                                </div>
+
+                                <div class="function-container">
+                                    <h3 class="container-title">Source Code</h3>
+                                    <div class="doc-content">
+                                        <p>Unity project: assets, packages, and gameplay systems.</p>
+                                        <a href="https://github.com/sukikatte/KeepBurning" class="download-link github-link" target="_blank" rel="noopener noreferrer">
+                                            View on GitHub
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const video = document.getElementById('flameDemoVideo');
+                            if (video) {
+                                video.volume = 0.5;
+                            }
+                        });
+                    </script>
+                </div>
+
+            {% elif project.id == 'key' %}
+                <div class="dwen-layout">
+                    <div class="dwen-hero">
+                        <h1 class="dwen-title" data-text="THE KEY">THE KEY</h1>
+                        <p class="dwen-subtitle">
+                            <span class="subtitle-decorator">◆</span>
+                            Java Desktop Rhythm Game
+                            <span class="subtitle-decorator">◆</span>
+                        </p>
+                        <div class="dwen-meta-info">
+                            <span class="meta-date">Jan. 2026 - May 2026</span>
+                            <span class="meta-divider-thick">|</span>
+                            <span class="tech-stack">Java · Swing · Java MIDI</span>
+                        </div>
+                    </div>
+
+                    <div class="key-hero-video">
+                        <video controls playsinline preload="metadata" id="keyDemoVideo">
+                            <source src="{{ url_for('static', filename='media/theKey/video.mp4') }}" type="video/mp4">
+                            The Key gameplay demo
+                        </video>
+                    </div>
+
+                    <div class="dwen-sections">
+                        <section class="dwen-section" data-number="01">
+                            <div class="section-number">01</div>
+                            <h2 class="section-title">Project Overview</h2>
+                            <div class="section-content">
+                                <div class="project-overview-box">
+                                    <p>The Key began as a shooting game and was redesigned into a rhythm-based music game: entertainment with educational value. Gameplay sits on the traditional five-line staff, so players recognise pitch positions and read basic notation rather than tapping anonymous lanes.</p>
+                                    <p>Two staves run at once — treble and bass. Two players can perform simultaneously, each controlling one staff, or a single player can take both registers. Live MIDI output makes the visual pitch audible, so a miss is a wrong note, not just a late tap.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="dwen-section" data-number="02">
+                            <div class="section-number">02</div>
+                            <h2 class="section-title">Genre Transformation</h2>
+                            <div class="section-content">
+                                <div class="function-container">
+                                    <h3 class="container-title">From Shooter to Staff</h3>
+                                    <div class="doc-content">
+                                        <p>Instead of shooting enemies, the player aligns with incoming musical marks and performs notes at the correct pitch and time. The original framework stayed; the core verbs changed.</p>
+                                        <p>The player character is a quarter-note symbol. The original shooting key (Space) became a mute key. Vertical movement changes pitch on the staff rather than aiming. Enemies were replaced by scrolling musical marks that indicate the required notes. Collision detection was replaced by a pitch–time matching window on a fixed performance line.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="dwen-section" data-number="03">
+                            <div class="section-number">03</div>
+                            <h2 class="section-title">Game Modes</h2>
+                            <div class="section-content">
+                                <div class="function-container">
+                                    <h3 class="container-title">Free Compose</h3>
+                                    <div class="doc-content">
+                                        <p>Continuous performance with no automatic ending — the player exits manually. The sequence of notes played on each staff is recorded and shown on the summary page, so the session reads back as a score rather than a replay of hits.</p>
+                                    </div>
+                                </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">Song Performance</h3>
+                                    <div class="doc-content">
+                                        <p>Prompt marks for <em>Twinkle Twinkle Little Star</em> scroll across the staff. Players perform the correct notes as closely as possible. The mode ends automatically when all marks leave the screen, and accuracy scores are displayed for both players — each register keeps independent scoring.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="dwen-section" data-number="04">
+                            <div class="section-number">04</div>
+                            <h2 class="section-title">Music Theory &amp; Piano Simulation</h2>
+                            <div class="section-content">
+                                <div class="function-container">
+                                    <h3 class="container-title">Two-Handed Play</h3>
+                                    <div class="doc-content">
+                                        <p>Vertical pitch selection plus timed triggering simulates piano performance. Two-player mode maps onto two-hand playing: one person on treble, one on bass. Single-player two-staff mode raises the challenge by asking one person to cover both registers.</p>
+                                    </div>
+                                </div>
+                                <div class="function-container">
+                                    <h3 class="container-title">Notation Conventions</h3>
+                                    <div class="doc-content">
+                                        <p>When the player mutes, displayed notes convert into rests rather than simply dropping the sound — silence is written, not just heard. Stem direction follows engraving rules: notes in the upper half of the staff take downward stems; notes in the lower half take upward stems. Stems stay visually centred and the staff keeps looking like real notation.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="dwen-section" data-number="05">
+                            <div class="section-number">05</div>
+                            <h2 class="section-title">Implementation</h2>
+                            <div class="section-content">
+                                <div class="function-container">
+                                    <h3 class="container-title">Y-Position Mapping</h3>
+                                    <div class="doc-content">
+                                        <p>Two staves are drawn first. The Y-coordinates of each staff line and the distance between lines set the spacing between semitone steps. Each pitch is a fixed Y-position; player movement is restricted to those discrete values. An index maps directly to both pitch and audio (MIDI note values in the Java implementation).</p>
+                                        <p>Scrolling marks are generated as indexed sequences. In Song Performance, scoring is calculated when a mark reaches the fixed performance line at approximately <strong>x = 700</strong>. If the player’s Y-position matches the incoming mark’s index inside the timing window, a score is awarded.</p>
+                                    </div>
+                                </div>
+
+                                <div class="key-control-grid">
+                                    <div class="function-container">
+                                        <h3 class="container-title">Treble Player</h3>
+                                        <div class="doc-content">
+                                            <p><strong>W / S</strong> — vertical pitch movement</p>
+                                            <p><strong>Space</strong> — mute note</p>
+                                        </div>
+                                    </div>
+                                    <div class="function-container">
+                                        <h3 class="container-title">Bass Player</h3>
+                                        <div class="doc-content">
+                                            <p><strong>Up / Down</strong> — vertical pitch movement</p>
+                                            <p><strong>Right Arrow</strong> — mute note</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="function-container">
+                                    <h3 class="container-title">Global Controls &amp; Materials</h3>
+                                    <div class="doc-content">
+                                        <p><strong>R</strong> quits the game; <strong>D</strong> opens the summary. Mouse input is used for menu interaction. All image assets were designed in ArtStudio; musical materials were recorded and generated in GarageBand. The system extends the original shooting-game framework in Java Swing without additional external libraries.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="dwen-section" data-number="06">
+                            <div class="section-number">06</div>
+                            <h2 class="section-title">Project Outcomes</h2>
+                            <div class="section-content">
+                                <div class="project-outcomes-box">
+                                    <p>The Key treats the staff as the playfield, so pitch, timing, and reading stay coupled. MVC gameplay covers dual-player movement, mute/rest toggling, scrolling hit markers, and timing-and-pitch scoring, with notation-accurate feedback instead of a generic judgement line.</p>
+                                </div>
+
+                                <div class="function-container doc-container">
+                                    <h3 class="container-title">Design Document</h3>
+                                    <p>Full design write-up: genre transformation, modes, music-theory rules, controls, and the Y-position scoring system.</p>
+                                    <a href="{{ url_for('static', filename='media/theKey/The_Key_DC.pdf') }}" class="download-link" download>
+                                        Download Design Document (PDF)
+                                    </a>
+                                </div>
+
+                                <div class="function-container">
+                                    <h3 class="container-title">Source Code</h3>
+                                    <div class="doc-content">
+                                        <p>Java Swing implementation, built from the original shooting-game template.</p>
+                                        <a href="https://github.com/sukikatte/The_Key" class="download-link github-link" target="_blank" rel="noopener noreferrer">
+                                            View on GitHub
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const video = document.getElementById('keyDemoVideo');
+                            if (video) {
+                                video.volume = 0.5;
+                            }
+                        });
+                    </script>
+                </div>
+
+            {% elif project.id == 'franken' %}
+                <div class="dwen-layout">
                     <div class="dwen-hero">
                         <h1 class="dwen-title" data-text="FRANKENSTORIES">FRANKENSTORIES</h1>
                         <p class="dwen-subtitle">
@@ -63,104 +518,133 @@
                             <span class="subtitle-decorator">◆</span>
                         </p>
                         <div class="dwen-meta-info">
-                            <span class="meta-date">Final Year Project (In Progress)</span>
+                            <span class="meta-date">Sept. 2025 - May 2026 · Grade: A</span>
                             <span class="meta-divider-thick">|</span>
-                            <span class="tech-stack">Computational Creativity · Multimodal Narrative · LLM Story Generation</span>
+                            <span class="tech-stack">ComiXML · Python · OpenAI / Together APIs · LLM-as-a-Judge</span>
                         </div>
                     </div>
 
-                    <!-- 内容区块 -->
                     <div class="dwen-sections">
-                        <!-- 01 Project Overview -->
                         <section class="dwen-section" data-number="01">
                             <div class="section-number">01</div>
                             <h2 class="section-title">Project Overview</h2>
                             <div class="section-content">
                                 <div class="project-overview-box">
-                                    <p>FrankenStory explores AI-driven storytelling through the recombination of reusable comic elements — text, panels, and visual cues — stored in a structured ComiXML repository. The project investigates how large language models (LLMs) can synthesize coherent, visually grounded narratives across sequential panels, aiming to create automated stories that feel intentional rather than fragmented.</p>
+                                    <p>Final Year Project at UCD, supervised by Prof. Tony Veale. Frankenstories asks whether large language models can generate novel comic narratives by recombining pre-existing parts inside ComiXML, rather than inventing unconstrained text and images.</p>
+                                    <p>The work implements a reproducible two-stage evaluation: first measuring structural reliability (XML well-formedness, schema validity, content validity, hallucination rate), then measuring narrative quality under factorial constraints with an LLM-as-a-judge protocol for continuity, coherence, and entertainment.</p>
                                 </div>
                             </div>
                         </section>
 
-                        <!-- 02 Background & Motivation -->
                         <section class="dwen-section" data-number="02">
                             <div class="section-number">02</div>
-                            <h2 class="section-title">Background & Motivation</h2>
+                            <h2 class="section-title">ComiXML as Constraint Interface</h2>
                             <div class="section-content">
                                 <div class="function-container">
-                                    <h3 class="container-title">Background & Motivation</h3>
-                                    <div class="doc-content">
-                                        <p>Traditional AI storytelling lacks visual and narrative continuity.</p>
-                                        <p>This project leverages ComiXML, developed by the supervisor, to compare two generation methods:</p>
-                                        <p><strong>XML-driven generation:</strong> Synthesizing stories directly from structured comic metadata.</p>
-                                        <p><strong>Dialogue-based co-creation:</strong> Iteratively refining stories through conversational prompting.</p>
-                                        <p>The comparison examines which method better preserves story cohesion and character consistency.</p>
+                                    <h3 class="container-title">Machine-Readable Comics</h3>
+                                    <div class="container-layout">
+                                        <div class="container-left">
+                                            <p>ComiXML, developed by Prof. Veale, encodes a comic as a sequence of panels grounded in a finite library: characters, poses, settings, facings, and speech balloons. Visual choices are explicit tags, not free description, so outputs can be validated and reused across stories.</p>
+                                            <p>The library used in Stage One included 3 characters (Alfie, Betty, Gemma), 586 poses, and 149 settings. A generated panel that names a pose or setting outside that inventory cannot be rendered — which is why hallucination rate is treated as a first-class metric, not an afterthought.</p>
+                                        </div>
+                                        <div class="container-right">
+                                            <div class="tech-image">
+                                                <img src="{{ url_for('static', filename='media/frankenStories/comicXML.png') }}" alt="ComiXML source for cover and first panel" onclick="openImageModal(this.src)" style="cursor: pointer;">
+                                            </div>
+                                        </div>
                                     </div>
-                                    </div>
+                                </div>
                             </div>
                         </section>
 
-                        <!-- 03 Research Focus -->
                         <section class="dwen-section" data-number="03">
                             <div class="section-number">03</div>
-                            <h2 class="section-title">Research Focus</h2>
+                            <h2 class="section-title">Two-Stage Evaluation Framework</h2>
                             <div class="section-content">
                                 <div class="function-container">
-                                    <h3 class="container-title">Research Focus</h3>
+                                    <h3 class="container-title">Why Two Stages</h3>
                                     <div class="doc-content">
-                                        <p>The research targets three major issues in multimodal generation:</p>
-                                        <p><strong>Hallucination:</strong> Inaccurate or irrelevant panel creation.</p>
-                                        <p><strong>Cohesion:</strong> Weak narrative or emotional flow.</p>
-                                        <p><strong>Integration:</strong> Misalignment between text, visuals, and themes.</p>
-                                        <p>It proposes new metrics for evaluating coherence, linkage, and creative fidelity.</p>
+                                        <p>Structural failure invalidates narrative scoring: a comic that is not well-formed XML cannot be fairly judged for story quality. The framework therefore separates the two questions.</p>
                                     </div>
+                                    <div class="tech-image franken-workflow">
+                                        <img src="{{ url_for('static', filename='media/frankenStories/workflow.png') }}" alt="Two-stage Frankenstories evaluation workflow" onclick="openImageModal(this.src)" style="cursor: pointer;">
                                     </div>
+                                </div>
+
+                                <div class="function-container">
+                                    <h3 class="container-title">Stage One — Structural Reliability</h3>
+                                    <div class="doc-content">
+                                        <p>Five models × two generation strategies × 20 narrative seeds = 200 ComiXML files. Method A uses staged planning-then-realization inside one call; Method B fills a ComiXML template in a single pass under explicit library constraints.</p>
+                                        <p><strong>Result:</strong> Method B is the more reliable default. GPT-4.1 under Method B reached 96.8% content validity with a 3.2% hallucination rate, versus 80.2% / 19.8% under Method A. DeepSeek-V3.1 stayed near ceiling on both methods. XML well-formedness did not guarantee grounding: GPT-4.1 Method A produced 100% valid XML while still hallucinating nearly one fifth of elements.</p>
+                                        <p>Method B was therefore fixed for Stage Two, so later differences could be attributed to constraint load rather than prompt strategy.</p>
+                                    </div>
+                                </div>
+
+                                <div class="function-container">
+                                    <h3 class="container-title">Stage Two — Narrative Capability</h3>
+                                    <div class="doc-content">
+                                        <p>The Frankenstories core: recombine one or more of 108 source-story packages with no seed text. A 2×2 factorial crosses cast complexity (single vs. multi-character) with source diversity (single vs. multi-source), from SC-SS to MC-MS. Five models × four conditions × five configurations × two replications = 200 files.</p>
+                                        <p>Claude Sonnet 4.6 scored each comic on local continuity, panel-level coherence, global continuity, and entertainment. Multi-source mixing stressed schema and grounding first; multi-character staging stressed panel control; MC-MS most clearly separated long-horizon narrative quality.</p>
+                                        <p><strong>Tier 1:</strong> GPT-4.1 (strongest structural reliability) and DeepSeek-V3.1 (highest entertainment, competitive continuity). Llama-3.3 showed the weakest long-range continuity under high load.</p>
+                                    </div>
+                                </div>
                             </div>
                         </section>
 
-                        <!-- 04 Methodology -->
                         <section class="dwen-section" data-number="04">
                             <div class="section-number">04</div>
-                            <h2 class="section-title">Methodology & Implementation</h2>
+                            <h2 class="section-title">Rendered Follow-up Comics</h2>
                             <div class="section-content">
-                                <div class="function-container">
-                                    <h3 class="container-title">Methodology</h3>
-                                    <div class="doc-content">
-                                        <p><strong>Framework:</strong> Python-based LLM interface + ComiXML dataset</p>
-                                        <p><strong>Pipeline:</strong> Story concept → Panel retrieval → Scene synthesis → XML rendering</p>
-                                        <p><strong>Evaluation:</strong> Human preference tests and narrative consistency metrics</p>
-                                        <p>The current stage focuses on implementing both pipelines, refining prompts, and assessing generation quality.</p>
+                                <div class="project-overview-box">
+                                    <p>After diagnosing facing errors, missing characters mid-dialogue, and pragmatically wrong poses, the follow-up tightened staging constraints, added pose descriptions beyond name-level labels, and expanded the source bundle. Both outputs below remain valid ComiXML; the difference is how the recombination reads as a story.</p>
+                                </div>
+                                <div class="franken-comic-grid">
+                                    <div class="function-container franken-comic-card">
+                                        <h3 class="container-title">GPT-4.1</h3>
+                                        <p class="franken-comic-caption">More globally coherent arc: breakfast, the ride, the crash, hospital, lab, and return.</p>
+                                        <img src="{{ url_for('static', filename='media/frankenStories/gpt.png') }}" alt="Rendered Frankenstories comic generated by GPT-4.1" onclick="openImageModal(this.src)" style="cursor: pointer;">
                                     </div>
+                                    <div class="function-container franken-comic-card">
+                                        <h3 class="container-title">DeepSeek-R1</h3>
+                                        <p class="franken-comic-caption">Structurally valid, with a more localized Frankenstories stitch: crash, serum, explosion, rebellion.</p>
+                                        <img src="{{ url_for('static', filename='media/frankenStories/deepseek.png') }}" alt="Rendered Frankenstories comic generated by DeepSeek-R1" onclick="openImageModal(this.src)" style="cursor: pointer;">
                                     </div>
+                                </div>
                             </div>
                         </section>
 
-                        <!-- 05 Expected Outcome -->
                         <section class="dwen-section" data-number="05">
                             <div class="section-number">05</div>
-                            <h2 class="section-title">Expected Outcome</h2>
+                            <h2 class="section-title">Project Outcomes</h2>
                             <div class="section-content">
+                                <div class="project-outcomes-box">
+                                    <p>The thesis contributes a two-stage, reproducible evaluation workflow for ComiXML-based constrained generation, a tier-style consolidation for model choice, and practical guidelines: use Method B as the structural default, evaluate structure and narrative separately, and treat prompt control plus richer element semantics as the primary levers before switching models. Graded A.</p>
+                                </div>
+
+                                <div class="function-container doc-container">
+                                    <h3 class="container-title">Dissertation</h3>
+                                    <p>Full Final Year Project thesis, including experimental design, Stage One and Stage Two results, rendered case studies, and practical guidelines for constrained comic generation.</p>
+                                    <a href="{{ url_for('static', filename='media/frankenStories/report_zitong_wang_22207273.pdf') }}" class="download-link" download>
+                                        Download Dissertation (PDF)
+                                    </a>
+                                </div>
+
                                 <div class="function-container">
-                                    <h3 class="container-title">Expected Outcomes</h3>
+                                    <h3 class="container-title">Source Code</h3>
                                     <div class="doc-content">
-                                        <p><strong>AI-assisted storytelling engine</strong> combining XML logic with LLM creativity</p>
-                                        <p><strong>Evaluation framework</strong> for narrative coherence</p>
-                                        <p><strong>Dataset of generated stories</strong> illustrating different synthesis strategies</p>
+                                        <p>Generation pipeline, validation, judge scoring, and rendered outputs.</p>
+                                        <a href="https://github.com/sukikatte/FYP_FrankenStories" class="download-link github-link" target="_blank" rel="noopener noreferrer">
+                                            View on GitHub
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </section>
+                    </div>
 
-                        <!-- 06 Reflection -->
-                        <section class="dwen-section" data-number="06">
-                            <div class="section-number">06</div>
-                            <h2 class="section-title">Reflection</h2>
-                            <div class="section-content">
-                                <div class="project-outcomes-box">
-                                    <p>This project enhances my understanding of computational creativity and AI narrative control, deepening my ability to connect software engineering, language modeling, and digital storytelling within a unified creative framework.</p>
-                                </div>
-                            </div>
-                        </section>
+                    <div id="imageModal" class="image-modal">
+                        <span class="modal-close">&times;</span>
+                        <img class="modal-content" id="modalImage">
                     </div>
                 </div>
                 {% elif project.id == 'event' %}

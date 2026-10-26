@@ -1323,7 +1323,11 @@ html, body {
 #projects.active .projects-slide:nth-child(6) { transition-delay: 0.35s; }
 #projects.active .projects-slide:nth-child(7) { transition-delay: 0.4s; }
 #projects.active .projects-slide:nth-child(8) { transition-delay: 0.1s; }
-#projects.active .projects-slide:nth-child(9) { transition-delay: 0.4s; }
+#projects.active .projects-slide:nth-child(9) { transition-delay: 0.15s; }
+#projects.active .projects-slide:nth-child(10) { transition-delay: 0.2s; }
+#projects.active .projects-slide:nth-child(11) { transition-delay: 0.25s; }
+#projects.active .projects-slide:nth-child(12) { transition-delay: 0.3s; }
+#projects.active .projects-slide:nth-child(13) { transition-delay: 0.35s; }
 
 .projects-card-wrapper {
     display: flex;
@@ -1433,6 +1437,27 @@ html, body {
 
 .project-symbol--franken i {
     background: linear-gradient(135deg, #00ff88, #00ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.project-symbol--hok i {
+    background: linear-gradient(135deg, #ff4d5a, #ffc14d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.project-symbol--flame i {
+    background: linear-gradient(135deg, #ff5a3c, #ff8ad8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.project-symbol--key i {
+    background: linear-gradient(135deg, #e8d5a3, #6b7cff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1678,6 +1703,27 @@ html, body {
 .projects-card--franken:hover { background: linear-gradient(0deg, rgba(255, 140, 160, 0.5) 0%, transparent 40%), linear-gradient(45deg, rgba(255, 180, 140, 0.4) 0%, transparent 50%), linear-gradient(90deg, rgba(255, 200, 170, 0.3) 0%, transparent 60%), #000000; background-size: 200% 200%; animation: frankenFlowingLight 7.2s ease-in-out infinite; }
 .projects-card--franken.center { border-color: rgba(255, 255, 255, 0.25); overflow: visible; position: relative; }
 .projects-card--franken.center::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), -17px 0 23px 1px rgba(130, 240, 200, 0.22), 17px 0 23px 1px rgba(160, 220, 255, 0.22), -23px 0 33px 1.7px rgba(145, 230, 225, 0.1), 23px 0 33px 1.7px rgba(150, 210, 240, 0.1), -30px 0 43px 1.7px rgba(145, 230, 225, 0.03), 30px 0 43px 1.7px rgba(150, 210, 240, 0.03), -35px 0 53px 7px rgba(145, 230, 225, 0.008), 35px 0 53px 7px rgba(150, 210, 240, 0.008), -39px 0 63px 23px rgba(145, 230, 225, 0.002), 39px 0 63px 23px rgba(150, 210, 240, 0.002), inset 0 2px 8px rgba(255, 255, 255, 0.25), inset 2px 0 8px rgba(255, 255, 255, 0.2), inset -2px 0 8px rgba(255, 255, 255, 0.2); clip-path: inset(0 -40px 0 -40px); }
+
+/* Honor of Kings — crimson + gold blob, steel-blue hover */
+.projects-card--hok .card-blob { background: radial-gradient(ellipse at 35% 40%, rgba(255, 70, 80, 0.48), transparent 60%), radial-gradient(ellipse at 65% 55%, rgba(255, 190, 70, 0.42), transparent 65%), radial-gradient(circle at 50% 50%, rgba(255, 120, 70, 0.3), transparent 70%); border-radius: 40% 60% 55% 45% / 60% 40% 60% 40%; filter: blur(0.5px); animation: hokMorph 6.4s ease-in-out infinite alternate; }
+.projects-card--hok:hover .card-blob { opacity: 0; transform: translate(-50%, -50%) scale(1.3); filter: blur(15px); transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease; }
+.projects-card--hok:hover { background: linear-gradient(0deg, rgba(70, 140, 255, 0.5) 0%, transparent 40%), linear-gradient(45deg, rgba(120, 180, 255, 0.4) 0%, transparent 50%), linear-gradient(90deg, rgba(160, 210, 255, 0.3) 0%, transparent 60%), #000000; background-size: 200% 200%; animation: medicineFlowingLight 6.8s ease-in-out infinite; }
+.projects-card--hok.center { border-color: rgba(255, 255, 255, 0.25); overflow: visible; position: relative; }
+.projects-card--hok.center::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), -17px 0 23px 1px rgba(255, 70, 80, 0.22), 17px 0 23px 1px rgba(255, 190, 70, 0.22), -23px 0 33px 1.7px rgba(255, 120, 70, 0.1), 23px 0 33px 1.7px rgba(255, 170, 80, 0.1), -30px 0 43px 1.7px rgba(255, 120, 70, 0.03), 30px 0 43px 1.7px rgba(255, 170, 80, 0.03), -35px 0 53px 7px rgba(255, 120, 70, 0.008), 35px 0 53px 7px rgba(255, 170, 80, 0.008), -39px 0 63px 23px rgba(255, 120, 70, 0.002), 39px 0 63px 23px rgba(255, 170, 80, 0.002), inset 0 2px 8px rgba(255, 255, 255, 0.25), inset 2px 0 8px rgba(255, 255, 255, 0.2), inset -2px 0 8px rgba(255, 255, 255, 0.2); clip-path: inset(0 -40px 0 -40px); }
+
+/* Keep Burning — ember + magenta blob, aqua hover */
+.projects-card--flame .card-blob { background: radial-gradient(ellipse at 40% 35%, rgba(255, 80, 50, 0.5), transparent 55%), radial-gradient(ellipse at 60% 60%, rgba(255, 90, 180, 0.4), transparent 60%), radial-gradient(circle at 50% 50%, rgba(255, 140, 80, 0.3), transparent 65%); border-radius: 70% 30% 50% 50% / 30% 70% 40% 60%; filter: blur(0.5px); animation: flameMorph 5.6s ease-in-out infinite alternate; }
+.projects-card--flame:hover .card-blob { opacity: 0; transform: translate(-50%, -50%) scale(1.3); filter: blur(15px); transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease; }
+.projects-card--flame:hover { background: linear-gradient(0deg, rgba(40, 220, 220, 0.5) 0%, transparent 40%), linear-gradient(45deg, rgba(80, 180, 255, 0.4) 0%, transparent 50%), linear-gradient(90deg, rgba(120, 240, 220, 0.3) 0%, transparent 60%), #000000; background-size: 200% 200%; animation: eventFlowingLight 6.5s ease-in-out infinite; }
+.projects-card--flame.center { border-color: rgba(255, 255, 255, 0.25); overflow: visible; position: relative; }
+.projects-card--flame.center::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), -17px 0 23px 1px rgba(255, 80, 50, 0.22), 17px 0 23px 1px rgba(255, 90, 180, 0.22), -23px 0 33px 1.7px rgba(255, 140, 80, 0.1), 23px 0 33px 1.7px rgba(255, 100, 140, 0.1), -30px 0 43px 1.7px rgba(255, 140, 80, 0.03), 30px 0 43px 1.7px rgba(255, 100, 140, 0.03), -35px 0 53px 7px rgba(255, 140, 80, 0.008), 35px 0 53px 7px rgba(255, 100, 140, 0.008), -39px 0 63px 23px rgba(255, 140, 80, 0.002), 39px 0 63px 23px rgba(255, 100, 140, 0.002), inset 0 2px 8px rgba(255, 255, 255, 0.25), inset 2px 0 8px rgba(255, 255, 255, 0.2), inset -2px 0 8px rgba(255, 255, 255, 0.2); clip-path: inset(0 -40px 0 -40px); }
+
+/* The Key — ivory + indigo blob, amber hover */
+.projects-card--key .card-blob { background: radial-gradient(ellipse at 35% 45%, rgba(230, 210, 160, 0.5), transparent 60%), radial-gradient(ellipse at 65% 55%, rgba(90, 110, 255, 0.42), transparent 65%), radial-gradient(circle at 50% 50%, rgba(180, 170, 220, 0.3), transparent 70%); border-radius: 20% 80% 20% 80% / 50% 50% 50% 50%; filter: blur(0.5px); animation: keyMorph 7.4s ease-in-out infinite; }
+.projects-card--key:hover .card-blob { opacity: 0; transform: translate(-50%, -50%) scale(1.3); filter: blur(15px); transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease; }
+.projects-card--key:hover { background: linear-gradient(0deg, rgba(255, 180, 70, 0.5) 0%, transparent 40%), linear-gradient(45deg, rgba(255, 140, 90, 0.4) 0%, transparent 50%), linear-gradient(90deg, rgba(255, 210, 140, 0.3) 0%, transparent 60%), #000000; background-size: 200% 200%; animation: mahjongFlowingLight 6.9s ease-in-out infinite; }
+.projects-card--key.center { border-color: rgba(255, 255, 255, 0.25); overflow: visible; position: relative; }
+.projects-card--key.center::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), -17px 0 23px 1px rgba(230, 210, 160, 0.22), 17px 0 23px 1px rgba(90, 110, 255, 0.22), -23px 0 33px 1.7px rgba(180, 170, 220, 0.1), 23px 0 33px 1.7px rgba(150, 150, 230, 0.1), -30px 0 43px 1.7px rgba(180, 170, 220, 0.03), 30px 0 43px 1.7px rgba(150, 150, 230, 0.03), -35px 0 53px 7px rgba(180, 170, 220, 0.008), 35px 0 53px 7px rgba(150, 150, 230, 0.008), -39px 0 63px 23px rgba(180, 170, 220, 0.002), 39px 0 63px 23px rgba(150, 150, 230, 0.002), inset 0 2px 8px rgba(255, 255, 255, 0.25), inset 2px 0 8px rgba(255, 255, 255, 0.2), inset -2px 0 8px rgba(255, 255, 255, 0.2); clip-path: inset(0 -40px 0 -40px); }
 
 .projects-project-name { 
     font-size: 1.1rem; 
@@ -2969,6 +3015,117 @@ html, body {
     transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
 }
 
+/* HoK 交互效果 */
+.projects-card--hok.swipe-right .card-blob,
+.projects-card--hok.swipe-left .card-blob {
+    animation: hokMorph 6.4s ease-in-out infinite alternate;
+}
+
+.projects-card--hok.swipe-right,
+.projects-card--hok.swipe-left {
+    background-image: none !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.projects-card--hok.swipe-right:hover,
+.projects-card--hok.swipe-left:hover {
+    background:
+        linear-gradient(0deg, rgba(70, 140, 255, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(120, 180, 255, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(160, 210, 255, 0.3) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200%;
+    animation: medicineFlowingLight 6.8s ease-in-out infinite;
+}
+
+.projects-card--hok.swipe-right:hover .card-blob,
+.projects-card--hok.swipe-left:hover .card-blob {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.3);
+    filter: blur(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
+/* Flame 交互效果 */
+.projects-card--flame.swipe-right .card-blob,
+.projects-card--flame.swipe-left .card-blob {
+    animation: flameMorph 5.6s ease-in-out infinite alternate;
+}
+
+.projects-card--flame.swipe-right,
+.projects-card--flame.swipe-left {
+    background-image: none !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.projects-card--flame.swipe-right:hover,
+.projects-card--flame.swipe-left:hover {
+    background:
+        linear-gradient(0deg, rgba(40, 220, 220, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(80, 180, 255, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(120, 240, 220, 0.3) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200%;
+    animation: eventFlowingLight 6.5s ease-in-out infinite;
+}
+
+.projects-card--flame.swipe-right:hover .card-blob,
+.projects-card--flame.swipe-left:hover .card-blob {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.3);
+    filter: blur(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
+/* The Key 交互效果 */
+.projects-card--key.swipe-right .card-blob,
+.projects-card--key.swipe-left .card-blob {
+    animation: keyMorph 7.4s ease-in-out infinite;
+}
+
+.projects-card--key.swipe-right,
+.projects-card--key.swipe-left {
+    background-image: none !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 30px rgba(255, 255, 255, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.18),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.projects-card--key.swipe-right:hover,
+.projects-card--key.swipe-left:hover {
+    background:
+        linear-gradient(0deg, rgba(255, 180, 70, 0.5) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(255, 140, 90, 0.4) 0%, transparent 50%),
+        linear-gradient(90deg, rgba(255, 210, 140, 0.3) 0%, transparent 60%),
+        #000000 !important;
+    background-size: 200% 200%;
+    animation: mahjongFlowingLight 6.9s ease-in-out infinite;
+}
+
+.projects-card--key.swipe-right:hover .card-blob,
+.projects-card--key.swipe-left:hover .card-blob {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.3);
+    filter: blur(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
 
 .journey-card {
     width: 240px;
@@ -3900,6 +4057,24 @@ html, body {
     33% { border-radius: 35% 65% 55% 45% / 45% 35% 65% 55%; transform: translate(-50%, -50%) rotate(120deg); }
     66% { border-radius: 55% 45% 35% 65% / 65% 55% 45% 35%; transform: translate(-50%, -50%) rotate(240deg); }
     100% { border-radius: 45% 55% 65% 35% / 35% 45% 55% 65%; transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes hokMorph {
+    0% { border-radius: 40% 60% 55% 45% / 60% 40% 60% 40%; transform: translate(-50%, -50%) rotate(0deg); }
+    50% { border-radius: 60% 40% 45% 55% / 40% 60% 40% 60%; transform: translate(-50%, -50%) rotate(8deg); }
+    100% { border-radius: 45% 55% 60% 40% / 50% 50% 50% 50%; transform: translate(-50%, -50%) rotate(-6deg); }
+}
+
+@keyframes flameMorph {
+    0% { border-radius: 70% 30% 50% 50% / 30% 70% 40% 60%; transform: translate(-50%, -50%) scale(1) rotate(-4deg); }
+    50% { border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%; transform: translate(-50%, -50%) scale(1.08) rotate(6deg); }
+    100% { border-radius: 55% 45% 65% 35% / 45% 55% 35% 65%; transform: translate(-50%, -50%) scale(0.95) rotate(-2deg); }
+}
+
+@keyframes keyMorph {
+    0% { border-radius: 20% 80% 20% 80% / 50% 50% 50% 50%; transform: translate(-50%, -50%) rotate(0deg); }
+    50% { border-radius: 80% 20% 80% 20% / 50% 50% 50% 50%; transform: translate(-50%, -50%) rotate(180deg); }
+    100% { border-radius: 20% 80% 20% 80% / 50% 50% 50% 50%; transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .journey-card--franken.swipe-right .card-blob {
@@ -10180,6 +10355,172 @@ letter-spacing: 2px;
     .dwen-section {
         margin-bottom: 1.2rem;
         margin-top: -0.8rem;
+    }
+}
+
+/* Frankenstories detail media */
+.franken-workflow {
+    margin-top: 1.25rem;
+}
+
+.franken-workflow img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.franken-comic-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    max-width: 1200px;
+}
+
+.franken-comic-card {
+    margin-bottom: 0;
+}
+
+.franken-comic-caption {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+}
+
+.franken-comic-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.dwen-layout .doc-content p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0 0 0.85rem 0;
+}
+
+.dwen-layout .doc-content p:last-child {
+    margin-bottom: 0;
+}
+
+.dwen-layout .doc-container .download-link,
+.dwen-layout .doc-content .download-link {
+    margin-top: 1rem;
+}
+
+.dwen-layout .project-overview-box p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0 0 0.85rem 0;
+}
+
+.dwen-layout .project-overview-box p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .franken-comic-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .franken-comic-grid .container-layout {
+        flex-direction: column;
+    }
+}
+
+/* HoK detail media */
+.dwen-layout:has(.hok-cover) .dwen-sections .dwen-section:first-child {
+    margin-top: 0.5rem;
+}
+
+.hok-cover {
+    max-width: 640px;
+    margin: 0.5rem auto 2.5rem;
+}
+
+.hok-figure-narrow {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hok-cover img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+}
+
+.hok-caption {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+}
+
+.hok-figure {
+    margin-top: 1.25rem;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.hok-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: pointer;
+}
+
+.dwen-layout .doc-content code {
+    font-size: 0.88em;
+    color: rgba(255, 255, 255, 0.78);
+    word-break: break-all;
+}
+
+/* The Key / Keep Burning detail media */
+.dwen-layout:has(.key-hero-video) .dwen-sections .dwen-section:first-child,
+.dwen-layout:has(.flame-hero-video) .dwen-sections .dwen-section:first-child {
+    margin-top: 0.5rem;
+}
+
+.key-hero-video,
+.flame-hero-video {
+    max-width: 1000px;
+    margin: 0.5rem auto 2.5rem;
+}
+
+.key-hero-video video,
+.flame-hero-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    background: #000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    object-fit: contain;
+}
+
+.key-control-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.key-control-grid .function-container {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .key-control-grid {
+        grid-template-columns: 1fr;
     }
 }
 
